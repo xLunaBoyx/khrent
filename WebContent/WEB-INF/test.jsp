@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>테스트</h1>
+	
+	<span>지수진 테스트 첫번쨰</span>
+	<span>지수진 테스트 두번째</span>
 </body>
 </html>
