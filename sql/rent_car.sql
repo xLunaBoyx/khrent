@@ -16,6 +16,7 @@ ALTER TABLE member ADD CONSTRAINT "PK_MEMBER" PRIMARY KEY (
 alter table member add constraint ck_member_role check (member_role in ('U', 'A')); 
 
 select * from member;
+abc
 
 insert into member
 values (
