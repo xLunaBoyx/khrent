@@ -96,6 +96,7 @@ h1, .mark {
 a {
 	text-decoration: none;
 	cursor: pointer;
+	color: black;
 }
 
 .dropdown {
