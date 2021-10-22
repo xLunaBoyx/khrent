@@ -50,7 +50,7 @@
 										</div>
 									</div>
 								</form>
-								<button class="search_btn" type="button">
+								<button class="search_btn" type="button" onclick=>
 									<span>차량 검색</span>
 								</button>
 							</div>

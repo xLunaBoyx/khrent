@@ -10,7 +10,7 @@
 
 </head>
 <body>
-		 <nav>
+	 <nav>
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
@@ -20,7 +20,7 @@
 		 </div>
       <ul>
         <li class="dropdown">
-          <div class="dropdown-menu">예약하기</div>
+          <a href="<%=request.getContextPath()%>/reservation/carSearch">예약하기</div>
         </li>
         <li class="dropdown">
           <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/common/rentalInformation';">대여안내</div>
