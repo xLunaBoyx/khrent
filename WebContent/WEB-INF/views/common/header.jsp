@@ -20,13 +20,14 @@
 		 </div>
       <ul>
         <li class="dropdown">
-          <div class="dropdown-menu">공지사항</div>
+          <div class="dropdown-menu">예약하기</div>
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu">이용후기</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/common/rentalInformation';">대여안내</div>
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu">커뮤니티</div>
+          <!-- <div class="dropdown-menu" id="community">커뮤니티</div> -->
+          <a href="<%=request.getContextPath()%>/community">커뮤니티</a>
         </li>
         <li class="dropdown">
           <div class="dropdown-menu">고객센터</div>
@@ -43,6 +44,14 @@
         <li class="login"><a href="#">로그인</a></li>
         <li class="reserCall">예약문의 1544-9970</li>
       </ul>
+      
     </nav>
-				
 		<section id="content">
+	<script>
+		$("#community")
+	</script>
+	
+	
+	
+	
+	
