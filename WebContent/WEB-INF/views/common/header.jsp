@@ -1,16 +1,25 @@
+<%@page import="com.kh.semi.member.model.service.MemberService"%>
+<%@page import="com.kh.semi.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+	Member loginMember = (Member) session.getAttribute("loginMember");
+	// System.out.println("loginMember@header.jsp = " + loginMember);
+	%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>KH렌트</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.js"></script>
 
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.js"></script>
 </head>
+
 <body>
-	 <nav>
+		 <nav>
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
@@ -20,14 +29,13 @@
 		 </div>
       <ul>
         <li class="dropdown">
-          <a href="<%=request.getContextPath()%>/reservation/carSearch">예약하기</div>
+          <div class="dropdown-menu">예약하기</div>
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/common/rentalInformation';">대여안내</div>
+          <div class="dropdown-menu">대여안내</div>
         </li>
         <li class="dropdown">
-          <!-- <div class="dropdown-menu" id="community">커뮤니티</div> -->
-          <a href="<%=request.getContextPath()%>/community">커뮤니티</a>
+          <div class="dropdown-menu">커뮤니티</div>
         </li>
         <li class="dropdown">
           <div class="dropdown-menu">고객센터</div>
@@ -40,18 +48,22 @@
             <a href="#">회사소개</a>
           </div>
         </li>
-        <li class="signUp"><a href="#">회원가입</a></li>
-        <li class="login"><a href="#">로그인</a></li>
+		<%-- 관리자 보임 | 로그인하지 않거나, 일반회원 안보임 --%>
+<% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>
+        <li class="dropdown">
+          <div class="dropdown-menu">관리자</div>
+        </li>
+<% } %>
+
+<% if (loginMember == null) { %>
+        <li class="signUp"><a href="<%= request.getContextPath() %>/member/enroll">회원가입</a></li>
+        <li class="login"><a href="<%= request.getContextPath() %>/member/login">로그인</a></li>
+<% } else { %>
+        <li class="signUp"><a href="<%= request.getContextPath() %>/member/logout">로그아웃</a></li>
+        <li class="login"><a href="<%= request.getContextPath() %>/member/myPage">마이페이지</a></li>
+<% } %>
         <li class="reserCall">예약문의 1544-9970</li>
       </ul>
-      
     </nav>
+				
 		<section id="content">
-	<script>
-		$("#community")
-	</script>
-	
-	
-	
-	
-	
