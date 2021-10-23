@@ -59,7 +59,7 @@ nav ul li {
 	z-index: 100;
 }
 
-h1, .mark {
+.logo, .mark {
 	color: rgb(39, 174, 96);
 	width: 120px;
 	margin: 0 20px 0 20px;
