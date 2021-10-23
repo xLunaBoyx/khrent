@@ -1,4 +1,4 @@
-package com.kh.semi.common;
+package com.kh.semi.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RentalInformation
  */
-@WebServlet("/common/rentalInformation")
+@WebServlet("/board/rentalInformation")
 public class RentalInformationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,7 +28,7 @@ public class RentalInformationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// view단 처리 : session의 loginMember 데이터 활용
 		request
-			.getRequestDispatcher("/WEB-INF/views/common/rentalInformation.jsp")
+			.getRequestDispatcher("/WEB-INF/views/board/rentalInformation.jsp")
 			.forward(request, response);
 	}
 

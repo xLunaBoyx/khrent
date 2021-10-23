@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/lentInfo.css" />
+ <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
+ <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/lentInfo.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
 
-<div action="<%=request.getContextPath()%>/common/rentalInformation"></div>
+<div action="<%=request.getContextPath()%>/board/rentalInformation"></div>
 <div class="rental">
    <h1 id="rentalDaemun">대여안내</h1>
    <p id="rentalDaemun2">차량 대여 전 꼭 읽어보세요.</p>
