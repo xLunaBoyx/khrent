@@ -22,7 +22,7 @@ public class MemberPageServlet extends HttpServlet {
 		
 		// view단 처리: session의 loginMember 데이터 활용
 		request
-			.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")
+			.getRequestDispatcher("/WEB-INF/views/member/memberPage.jsp")
 			.forward(request, response);
 	}
 
