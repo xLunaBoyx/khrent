@@ -155,6 +155,7 @@ hr.memTypeDivider {
 
 .lnb.type03>.menuList li {
 	margin-bottom: 20px;
+	list-style: none;
 }
 
 .lnb.type03>.menuList li.active a {
