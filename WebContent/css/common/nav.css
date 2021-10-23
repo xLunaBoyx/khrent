@@ -75,7 +75,7 @@ section.searchSection .searchLayout .searchRadio input:checked+span {
 
 section.searchSection .searchButton {
 	background-color: rgb(64, 64, 64);
-	border-color: #212326;
+	border-color: rgb(64, 64, 64);
 	width: 10%;
 	border-radius: 3px;
 	color: #fff;
