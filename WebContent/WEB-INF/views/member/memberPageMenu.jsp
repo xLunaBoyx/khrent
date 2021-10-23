@@ -14,7 +14,7 @@
 				<dl class="reservation">
 					<dt>예약</dt>
 					<dd>
-						<a href="#">0</a>
+						<a href="<%= request.getContextPath() %>/member/myPage">0</a>
 					</dd>
 				</dl>
 			</div>
@@ -22,7 +22,7 @@
 			<hr class="memTypeDivider">
 			
 			<ul class="menuList">
-				<li class="active"><a href="#">예약내역</a></li>
+				<li class="active"><a href="<%= request.getContextPath() %>/member/myPage">예약내역</a></li>
 				
 				<li class="">
 				<a href="<%=request.getContextPath()%>/member/memberDetail">내정보</a></li>
