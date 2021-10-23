@@ -46,6 +46,7 @@ div.tab {
 }
 .serviceCenter_lnb ul {
     padding: 0px;
+    list-style: none;
 }
 
 
