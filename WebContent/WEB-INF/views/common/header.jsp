@@ -45,7 +45,7 @@
             <a href="#">공지사항</a>
             <a href="#">대여문의</a>
             <a href="#">대여후기</a>
-            <a href="#">약관/정책</a>
+            <a href="<%= request.getContextPath() %>/board/termsAndConditions">약관/정책</a>
             <a href="#">회사소개</a>
           </div>
         </li>

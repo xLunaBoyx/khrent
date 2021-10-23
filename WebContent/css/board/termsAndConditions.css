@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.content {
+    margin: auto;
+    width: calc(100% - 256px);
+    float: right;
+}
+
+.tit01 {
+    display: block;
+    margin-top: 43px;
+    margin-bottom: 10px;
+    font-size: 38px;
+    font-family: 'spoqa-regular';
+    font-weight: bold;
+    color: #484848;
+    letter-spacing: -1px;
+
+}
+
+.content .terms .tabArea .tabBtn {
+    overflow: hidden;
+}
+
+
+div.tabBtn.clearfix {
+	display: flex;
+    justify-content: center;
+}
+
+div.tab {
+	text-align: center;	
+}
+
+.content .terms .tabArea .tabBtn .tab {
+    float: left;
+    margin-right: 40px;
+}
+
+.serviceCenter_lnb {
+    float: left;
+    width: 166px;
+   	background-color: white;
+    height: 416px;
+    padding: 20px;
+}
+.serviceCenter_lnb ul {
+    padding: 0px;
+}
+
+
+.serviceCenter_lnb ul li a {
+    display: block;
+    font-size: 16px;
+    line-height: 62px;
+    color: black;
+}
+
