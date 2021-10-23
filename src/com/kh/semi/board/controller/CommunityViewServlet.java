@@ -47,6 +47,7 @@ public class CommunityViewServlet extends HttpServlet {
 		 
 		// b. pagebar 영역
 		int totalContents = communityBoardService.selectTotalCommunityContents();
+		System.out.println("totalContents = " + totalContents);
 		String url = request.getRequestURI();
 		System.out.println("url@servlet = " + url);   // /mvc/board/boardList
 		String pagebar = MvcUtils.getPagebar(cPage, numPerPage, totalContents, url);
