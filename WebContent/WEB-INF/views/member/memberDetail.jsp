@@ -11,7 +11,7 @@
 
 <section id="content" style="height: 1200px;">
 <div class="detail_wrap">
-	<div class="wrap clearfix">
+	<div class="wrap clearfix" style="display: flex;">
 
 		<!-- 공통 메뉴 -->
 		<%@ include file="/WEB-INF/views/member/memberPageMenu.jsp"%>

@@ -95,13 +95,8 @@
 }
 
 .clearfix:after {
-	display: block;
 	content: "";
 	clear: both;
-}
-
-.lnb.type03>.menuList li.active a {
-	font-weight: bold;
 }
 
 .lnb.type03>.boxArea {
@@ -156,10 +151,6 @@ hr.memTypeDivider {
 .lnb.type03>.menuList li {
 	margin-bottom: 20px;
 	list-style: none;
-}
-
-.lnb.type03>.menuList li.active a {
-	font-weight: bold;
 }
 
 .lnb.type03>.menuList li a {
