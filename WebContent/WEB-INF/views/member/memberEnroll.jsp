@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/login_enroll.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member/login_enroll.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <form name="checkIdDuplicateFrm"
