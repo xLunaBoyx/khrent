@@ -36,7 +36,7 @@
           <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/rentalInformation';">대여안내</div>
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu">커뮤니티</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/communityList';">커뮤니티</div>
         </li>
         <li class="dropdown">
           <div class="dropdown-menu">고객센터</div>
