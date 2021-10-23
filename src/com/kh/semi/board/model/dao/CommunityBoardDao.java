@@ -79,9 +79,28 @@ public class CommunityBoardDao {
 		return list;
 	}
 
+	
 	public int selectTotalCommunityContents(Connection conn) {
-		// TODO Auto-generated method stub
-		return 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalContents = 0;
+		String sql = prop.getProperty("selectTotalCommunityContents");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				totalContents = rset.getInt("cnt");   // ()안에는 컬럼명 또는 컬럼의 순서
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalContents;
 	}
 
 }
