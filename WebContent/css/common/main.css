@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 /********** content **********/
-
 .section0 {
 	position: relative;
 }
@@ -244,6 +243,7 @@ ol, ul {
 
 .board_area {
 	position: relative;
+	margin-bottom: 75px;
 }
 
 .wrap {
