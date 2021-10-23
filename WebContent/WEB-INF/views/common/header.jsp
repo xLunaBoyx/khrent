@@ -46,7 +46,7 @@
             <a href="#">대여문의</a>
             <a href="#">대여후기</a>
             <a href="<%= request.getContextPath() %>/board/termsAndConditions">약관/정책</a>
-            <a href="#">회사소개</a>
+            <a href="<%= request.getContextPath() %>/board/companyIntroduction">회사소개</a>
           </div>
         </li>
 		<%-- 관리자 보임 | 로그인하지 않거나, 일반회원 안보임 --%>
