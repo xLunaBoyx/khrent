@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common/nav.css" />
 
 <section class="searchSection l-ct">
-	<h1 class="hidden">search</h1>
 	<div class="searchLayout">
 
 		<div class="searchLine vueDateBind">
