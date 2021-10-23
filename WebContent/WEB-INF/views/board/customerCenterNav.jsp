@@ -8,6 +8,6 @@
         <li class=""><a href="#">대여후기</a></li>
         <li class=""><a href="#">공지사항</a></li>
         <li class="" onclick="location.href='<%= request.getContextPath() %>/board/termsAndConditions';"><a href="#">약관/정책</a></li>
-        <li class=""><a href="#">KH렌트 소개</a></li>
+        <li class="" onclick="location.href='<%= request.getContextPath() %>/board/companyIntroduction';"><a href="#">KH렌트 소개</a></li>
     </ul>
 </div>
