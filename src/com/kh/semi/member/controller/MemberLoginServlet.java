@@ -60,6 +60,7 @@ public class MemberLoginServlet extends HttpServlet {
 			// 로그인 성공
 			// session객체에 로그인 정보 기록
 			session.setAttribute("loginMember", member);
+			session.setAttribute("msg", "KH렌트에 오신 것을 환영합니다.");
 			
 			// session유효시간
 			// session.setMaxInactiveInterval(60); // 60초
