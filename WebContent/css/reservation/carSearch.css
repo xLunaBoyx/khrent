@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+.search_wrap {
+	padding: 40px 0 140px;
+	min-height: 787px;
+	box-sizing: border-box;
+}
+
+.wrap {
+	position: relative;
+	width: 1170px;
+	min-width: 1170px;
+	margin: 0 auto;
+}
+
+.searchList_wrap {
+	float: left;
+	width: 1100px;
+}
+
+.searchTermTxt {
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+
+.searchTermTxt .period_txt {
+	color: #de2086;
+}
+
+.searchList_wrap .carType_box {
+	margin-bottom: 16px;
+	padding: 14px 24px;
+	background-color: #f4f6f8;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+.searchList_wrap .sort_option {
+	margin-bottom: 32px;
+}
+
+.searchList_wrap .sort_option .search_reservation_txt {
+	float: left;
+	font-size: 14px;
+}
+
+.searchList_wrap .sort_option .search_reservation_txt .carCount {
+	color: #4889f6;
+}
+
+.sort {
+	margin-bottom: 10px;
+}
+
+.sort ul {
+	float: right;
+	margin: 0;
+}
+
+.sort ul li.tit {
+	margin-left: 0;
+	padding-left: 0;
+	color: #999;
+}
+
+.sort ul li {
+	position: relative;
+	float: left;
+	padding-left: 8px;
+	margin-left: 8px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.sort ul li:nth-child(2) {
+	margin-right: 25px;
+}
+
+.sort ul li:last-child {
+	margin-right: 0;
+}
+
+.sort ul li select {
+	font-size: 14px;
+	padding-right: 20px;
+	border: 0;
+	outline: 0;
+	background: url(../imgs/rentking.w/arrow/arrow04.svg) no-repeat 100%
+		center;
+}
+
+.distanceHelp {
+	float: right;
+}
+
+.distanceHelp img {
+	width: 12px;
+	vertical-align: middle;
+}
+
+.distanceHelp span {
+	color: #de2086;
+}
+
+.searchList_wrap .item_sec {
+	position: relative;
+	margin-bottom: 30px;
+	float: left;
+	width: calc(100%/ 2 - 15px);
+	margin-right: 15px;
+	height: 300px; border : 1px solid #e6e6e6;
+	background-color: white;
+	box-sizing: border-box;
+	opacity: 0.8;
+	border: 1px solid #e6e6e6;
+}
+
+.searchList_wrap .item_sec a {
+	display: block;
+	padding: 23px 20px;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: black;
+}
+
+.searchList_wrap .item_sec .item_tit {
+	position: relative;
+	display: block;
+	margin-bottom: 12px;
+	font-size: 24px;
+	line-height: 36px;
+}
+
+strong {
+	font-weight: normal;
+}
+
+.searchList_wrap .item_sec .item_tit span {
+	position: absolute;
+	top: 50%;
+	margin-top: -9px;
+	display: inline-block;
+	padding: 0 5px;
+	margin-left: 11px;
+	font-size: 13px;
+	line-height: 20px;
+	color: #fff;
+	background: #909eb1;
+}
+
+.searchList_wrap .item_sec .price {
+	margin-bottom: 5px;
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: bold;
+}
+
+.searchList_wrap .item_sec .price * {
+	font-size: 18px;
+	line-height: 27px;
+	font-weight: bold;
+}
+
+.searchList_wrap .item_sec .goToReservation {
+	display: inline-block;
+	padding-right: 15px;
+	font-size: 15px;
+	line-height: 22px;
+	color: #757575;
+}
+
+.searchList_wrap .item_sec .goToReservation span {
+	color: #de2086;
+	font-size: 16px;
+}
+
+.searchList_wrap .item_sec .goToArrow {
+	line-height: 64px;
+	background: url(../imgs/rentking.w/ico/goToPage_arrow.png) no-repeat
+		left center;
+	background-size: 30px auto;
+}
+
+.searchList_wrap .item_sec .goToArrow span {
+	text-indent: -1000px;
+	overflow: hidden;
+	line-height: 0;
+	font-size: 0;
+}
+
+.searchList_wrap .item_sec img {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+}
+
+.searchList_text {
+	border-bottom: 1px solid lightgrey;
+	margin-bottom: 50px;
+	padding-bottom: 20px;
+}
