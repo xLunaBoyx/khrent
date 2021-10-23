@@ -13,7 +13,8 @@
 <head>
 <meta charset="UTF-8">
 <title>KH렌트</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
 
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.js"></script>
 </head>
@@ -29,10 +30,10 @@
 		 </div>
       <ul>
         <li class="dropdown">
-          <div class="dropdown-menu">예약하기</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/reservation/carSearch';">예약하기</div>        
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu">대여안내</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/common/rentalInformation';">대여안내</div>
         </li>
         <li class="dropdown">
           <div class="dropdown-menu">커뮤니티</div>
