@@ -11,7 +11,7 @@
    <p id="rentalDaemun2">차량 대여 전 꼭 읽어보세요.</p>
 </div>
 
-<div class="contents l-ct" style= "padding: 50px;">
+<div class="contents l-ct" style= "padding: 0px 50px;">
    <h1 class="guideTitle">1. 대여자격</h1>
    <table class="guideTable">
       <colgroup>

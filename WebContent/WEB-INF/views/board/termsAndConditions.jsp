@@ -9,7 +9,7 @@
 
 <div action="<%=request.getContextPath()%>/board/termsAndConditions"></div>
 
-<div class="wrap clearfix" style="width: 70%; display:flex;">
+<div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <div class="content">
 				<strong class="tit01">약관/정책</strong>
