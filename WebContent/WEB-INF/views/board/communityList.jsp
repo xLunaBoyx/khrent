@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/community.css" />
+ 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,4 +15,9 @@
 	</section>
 </body>
 </html>
+<style>
+section {
+	
+}
+</style>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
