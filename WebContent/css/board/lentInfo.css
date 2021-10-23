@@ -130,10 +130,13 @@ ul.guideInfo > li:not(:nth-child(1)) > span {
     width: 72px;
     text-align: center;
 }
+
 .guideStep {
-	display: flex;
-	margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
+
 
 .guideStep > .stepSubject > span {
     color: #db252f;
@@ -154,7 +157,9 @@ ul.guideInfo > li:not(:nth-child(1)) > span {
     padding: 15px;
     margin-left: 6px;
 }
-
+ul.guideInfo > li {
+	list-style: none;
+}
 .guideStep > ul > li > p {
     font-size: 16px;
     font-weight: 500;
