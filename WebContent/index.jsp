@@ -138,6 +138,17 @@
 
 <script>
 
+<% 
+String msg = (String) session.getAttribute("msg");
+if(msg != null) session.removeAttribute("msg");
+
+%>
+
+<% if(msg != null) { %>
+// 사용자 메세지 전달
+alert("<%= msg %>");
+<% } %>
+
 	// 	날짜 선택 현재 날짜 기준으로 나타내기
 	document.getElementById('mainSDate').value = new Date().toISOString()
 			.substring(0, 10);
