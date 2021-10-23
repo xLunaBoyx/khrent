@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/main.css" />
 <!-- 문구, 날짜선택, 예약가능차량/차종 시작 -->
 
 <section class="visual_area" style="height: 700px;">

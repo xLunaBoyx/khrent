@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/myPage.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/myPageMenu.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member/myPage.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member/myPageMenu.css" />
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <div class="detail_wrap">
-	<div class="wrap clearfix" style="width: 70%;">
+	<div class="wrap clearfix" style="width: 70%; display: flex;">
 
 <%@ include file="/WEB-INF/views/member/memberPageMenu.jsp"%>
 

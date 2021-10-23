@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/common/nav.css" />
+
 <section class="searchSection l-ct">
 	<h1 class="hidden">search</h1>
 	<div class="searchLayout">
