@@ -8,14 +8,15 @@
 
 section.searchSection {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	justify-content: center;
 }
 
 section.searchSection .searchLayout {
 	background-color: #27ae60;
 	border-radius: 3px;
-	width: 65%;
+	width: 1200px;
+	min-width: 1200px;
 	height: 173px;
 	padding: 20px;
 }
