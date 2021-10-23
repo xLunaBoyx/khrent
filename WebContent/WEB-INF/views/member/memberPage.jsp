@@ -23,4 +23,19 @@
 	</div>
 </div>
 
+<script>
+
+<% 
+String msg = (String) session.getAttribute("msg");
+if(msg != null) session.removeAttribute("msg");
+
+%>
+
+<% if(msg != null) { %>
+// 사용자 메세지 전달
+alert("<%= msg %>");
+<% } %>
+
+</script>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

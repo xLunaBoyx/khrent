@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/member/memberDetail.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/member/myPageMenu.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member/memberDetail.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/member/myPageMenu.css" />
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
@@ -37,7 +35,7 @@
 							<input type="password" data-text-module="" readonly="">
 							</span> 
 						<span class="input-text-outer-wrap__right-section"> 
-						<a href="#" class="btn-pwd-pop">변경</a>
+						<a href="<%= request.getContextPath() %>/member/updatePassword" class="btn-pwd-pop">변경</a>
 						</span>
 						</span>
 					</dd>
