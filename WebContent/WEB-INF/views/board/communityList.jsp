@@ -14,7 +14,7 @@
 	<!-- <div class="board-box"> -->
 		<table id="tbl-board">
 			<thead>
-				<tr>
+				<tr> 
 					<th width="10%">번호</th>
 					<th width="70%">제목</th>
 					<th>작성자</th>

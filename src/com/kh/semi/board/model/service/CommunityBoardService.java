@@ -26,4 +26,14 @@ public class CommunityBoardService {
 		return totalContents;
 	}
 
+	public CommunityBoard selectOneBoard(int no) {
+		Connection conn = getConnection();
+		
+		CommunityBoard communityBoard =  communityBoardDao.selectOneBoard(conn,no);
+		
+		close(conn);
+		
+		return communityBoard;
+	}
+
 }
