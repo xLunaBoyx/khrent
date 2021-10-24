@@ -48,7 +48,7 @@ public class QuestionBoardDao {
 				
 				qnaBoard.setNo(rset.getInt("qna_no"));
 				qnaBoard.setQna_title(rset.getString("qna_title"));
-				qnaBoard.setWriter(rset.getString("member_id"));
+				qnaBoard.setWriter(rset.getString("qna_writer"));
 				qnaBoard.setQna_content(rset.getString("qna_content"));
 				qnaBoard.setAnswer_status(rset.getString("answer_status"));
 				qnaBoard.setRegDate(rset.getDate("reg_date"));
