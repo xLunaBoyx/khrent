@@ -28,7 +28,7 @@
 				 </a>
 			 </h1>
 		 </div>
-      <ul>
+      <ul class="navUl">
         <li class="dropdown">
           <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/reservation/carSearch';">예약하기</div>        
         </li>
@@ -43,16 +43,16 @@
           <div class="dropdown-content">
             <a href="#">자주 묻는 질문</a>
             <a href="#">공지사항</a>
-            <a href="<%= request.getContextPath() %>/board/questionList">대여문의</a>
+            <a href="#">대여문의</a>
             <a href="#">대여후기</a>
-            <a href="<%= request.getContextPath() %>/board/termsAndConditions">약관/정책</a>
-            <a href="<%= request.getContextPath() %>/board/companyIntroduction">회사소개</a>
+            <a href="#">약관/정책</a>
+            <a href="#">회사소개</a>
           </div>
         </li>
 		<%-- 관리자 보임 | 로그인하지 않거나, 일반회원 안보임 --%>
 <% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>
         <li class="dropdown">
-          <div class="dropdown-menu">관리자</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/admin/adminMenu';">관리자</div>
         </li>
 <% } %>
 
