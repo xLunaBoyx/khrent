@@ -71,9 +71,9 @@ public class MemberDao {
 				String phone = rset.getString("phone");
 				int mileage = rset.getInt("mileage");
 				Date regDate = rset.getDate("reg_date");
-				Date issueDate = rset.getDate("issue_date");
+				String issueDate = rset.getString("issue_date");
 				String licenseType = rset.getString("license_type");
-				int licenseNo = rset.getInt("license_no");
+				String licenseNo = rset.getString("license_no");
 				
 				member = new Member(memberId, password, memberRole, memberName, phone, mileage, regDate, issueDate, licenseType, licenseNo);
 			}
@@ -145,6 +145,30 @@ public class MemberDao {
 			
 			pstmt.setString(1, member.getPhone());
 			pstmt.setString(2, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int LicenseRegister(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("licenseRegister"); 
+		System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getIssue_date());
+			pstmt.setString(2, member.getLicense_type());
+			pstmt.setString(3, member.getLicense_no());
+			pstmt.setString(4, member.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			

@@ -67,4 +67,15 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+	public int LicenseRegister(Member member) {
+		Connection conn = getConnection();
+		int result = memberDao.LicenseRegister(conn, member);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
 }
