@@ -32,17 +32,14 @@ public class MemberDao {
 		String query = prop.getProperty("insertMember"); 
 		
 		try {
-			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
-			//쿼리문미완성
+
 			pstmt.setString(1, member.getMemberId());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getMemberRole());
 			pstmt.setString(4, member.getMemberName());
 			pstmt.setString(5, member.getPhone());
 			
-			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
-			//DML은 executeUpdate()
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -62,14 +59,11 @@ public class MemberDao {
 		Member member = null;
 		
 		try {
-			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			
-			// 2.실행 & ResultSet객체 리턴
 			rset = pstmt.executeQuery();
 			
-			// 3.ResultSet -> Member
 			if(rset.next()) {
 				String password = rset.getString("member_pwd");
 				String memberRole = rset.getString("member_role");
@@ -77,8 +71,10 @@ public class MemberDao {
 				String phone = rset.getString("phone");
 				int mileage = rset.getInt("mileage");
 				Date regDate = rset.getDate("reg_date");
+				Date issueDate = rset.getDate("issue_date");
+				String licenseType = rset.getString("license_type");
 				
-				member = new Member(memberId, password, memberRole, memberName, phone, mileage, regDate);
+				member = new Member(memberId, password, memberRole, memberName, phone, mileage, regDate, issueDate, licenseType);
 			}
 			
 			
