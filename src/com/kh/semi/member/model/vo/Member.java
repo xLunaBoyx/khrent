@@ -17,6 +17,8 @@ public class Member implements Serializable {
 	private String phone;
 	private int mileage;
 	private Date regDate;
+	private Date issue_date;
+	private String license_type;
 	
 	public Member() {
 		super();
@@ -24,7 +26,7 @@ public class Member implements Serializable {
 	}
 	
 	public Member(String memberId, String password, String memberRole, String memberName, String phone, int mileage,
-			Date regDate) {
+			Date regDate, Date issue_date, String license_type) {
 		super();
 		this.memberId = memberId;
 		this.password = password;
@@ -33,8 +35,9 @@ public class Member implements Serializable {
 		this.phone = phone;
 		this.mileage = mileage;
 		this.regDate = regDate;
+		this.issue_date = issue_date;
+		this.license_type = license_type;
 	}
-	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -77,14 +80,24 @@ public class Member implements Serializable {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	public Date getIssue_date() {
+		return issue_date;
+	}
+	public void setIssue_date(Date issue_date) {
+		this.issue_date = issue_date;
+	}
+	public String getLicense_type() {
+		return license_type;
+	}
+	public void setLicense_type(String license_type) {
+		this.license_type = license_type;
+	}
 	
 	@Override
 	public String toString() {
 		return "Member [memberId=" + memberId + ", password=" + password + ", memberRole=" + memberRole
 				+ ", memberName=" + memberName + ", phone=" + phone + ", mileage=" + mileage + ", regDate=" + regDate
-				+ "]";
+				+ ", issue_date=" + issue_date + ", license_type=" + license_type + "]";
 	}
 	
-	
-
 }
