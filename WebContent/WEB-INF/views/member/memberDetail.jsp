@@ -65,10 +65,14 @@
 				<div class="topArea clearfix">
 					<strong class="tit04 clearfix"> 운전면허 정보 </strong>
 				</div>
-				<p>등록된 면허 정보가 없습니다.</p>
+				<p><%= loginMember.getLicense_no() == null ? "등록된 면허 정보가 없습니다." : "등록된 면허가 있습니다." %></p>
+<%
+if (loginMember.getLicense_no() == null) {
+%>
 				<div class="btnGroup">
 					<a href="<%= request.getContextPath() %>/member/memberLicenseRegister" class="infoBtn btn-license">면허정보 등록</a>
 				</div>
+<% } %>
 			</div>
 
 			<div class="mypageDesc2">
