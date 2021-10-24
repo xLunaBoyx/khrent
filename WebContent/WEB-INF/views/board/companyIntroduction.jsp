@@ -23,7 +23,7 @@
 		<section class="service_special">
 			<div class="special_header">서비스 특장점</div>
 			<div class="border"></div>
-			<p class="desc">고객님을 위한 렌트킹만의 특별화된 서비스를 소개합니다.</p>
+			<p class="desc">고객님을 위한 KH렌트만의 특별화된 서비스를 소개합니다.</p>
 			쉽고 빠른 가격비교<br>
 			실시간 예약, 결제<br>
 			전국 배달 대여<br>
@@ -52,15 +52,15 @@
 				</div>
 				<div class="info_list">
 					<span class="list_head">사원수</span>
-					<span class="list_desc">7명</span>
+					<span class="list_desc">5명</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">대표번호</span>
-					<span class="list_desc">1234-1234  (Fax. 000-1111-2222)</span>
+					<span class="list_desc">1544-9970  (Fax. 000-1111-2222)</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">주소</span>
-					<span class="list_desc">서울특별시 딩동구 딩동로 302, 딩동빌딩 5층</span>
+					<span class="list_desc">서울특별시 강남구 테헤란로14길 6 남도빌딩</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">이메일</span>
