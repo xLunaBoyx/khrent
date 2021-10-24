@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-nav ul {
+.navUl {
 	background-color: rgb(255, 255, 255);
 	list-style-type: none;
 	/* 마진 패딩 지정하지 않으면 브라우저 기본 스타일을 따라 설정되므로 오버라이딩 필요 */
@@ -59,7 +59,7 @@ nav ul li {
 	z-index: 100;
 }
 
-.logo, .mark {
+h1, .mark {
 	color: rgb(39, 174, 96);
 	width: 120px;
 	margin: 0 20px 0 20px;
