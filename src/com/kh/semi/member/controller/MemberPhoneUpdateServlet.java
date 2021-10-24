@@ -32,7 +32,7 @@ public class MemberPhoneUpdateServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String phone = request.getParameter("phone");
 	
-		Member member = new Member(memberId, null, MemberService.MEMBER_ROLE, null, phone, 0, null, null, null);
+		Member member = new Member(memberId, null, MemberService.MEMBER_ROLE, null, phone, 0, null, null, null, 0);
 
 		System.out.println("member@servlet = " + member);
 
