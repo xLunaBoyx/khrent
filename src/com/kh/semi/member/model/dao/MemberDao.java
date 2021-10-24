@@ -73,8 +73,9 @@ public class MemberDao {
 				Date regDate = rset.getDate("reg_date");
 				Date issueDate = rset.getDate("issue_date");
 				String licenseType = rset.getString("license_type");
+				int licenseNo = rset.getInt("license_no");
 				
-				member = new Member(memberId, password, memberRole, memberName, phone, mileage, regDate, issueDate, licenseType);
+				member = new Member(memberId, password, memberRole, memberName, phone, mileage, regDate, issueDate, licenseType, licenseNo);
 			}
 			
 			

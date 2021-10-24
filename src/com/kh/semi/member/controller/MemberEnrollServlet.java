@@ -43,7 +43,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		String memberName = request.getParameter("memberName");
 		String phone = request.getParameter("phone");
 	
-		Member member = new Member(memberId, password, MemberService.MEMBER_ROLE, memberName, phone, 0, null, null, null);
+		Member member = new Member(memberId, password, MemberService.MEMBER_ROLE, memberName, phone, 0, null, null, null, 0);
 
 		System.out.println("member@servlet = " + member);
 
