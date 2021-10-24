@@ -94,6 +94,7 @@
 	.subject {
 		width: 70%;
 		text-align: left;
+		padding-left: 44px;
 	}
 	#pagebar {
 	    clear: both;
