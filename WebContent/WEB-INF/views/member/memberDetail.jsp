@@ -67,32 +67,8 @@
 				</div>
 				<p>등록된 면허 정보가 없습니다.</p>
 				<div class="btnGroup">
-					<a href="#" class="infoBtn btn-license">면허정보 등록</a>
+					<a href="<%= request.getContextPath() %>/member/memberLicenseRegister" class="infoBtn btn-license">면허정보 등록</a>
 				</div>
-			</div>
-
-			<div class="mypageDesc2 license">
-				<div class="topArea clearfix">
-					<strong class="tit04 clearfix"> 운전면허 정보 </strong>
-				</div>
-
-				<dl>
-					<dt class="license-title">면허 종류</dt>
-					<dd class="license-content"></dd>
-				</dl>
-
-				<dl>
-					<dt>면허 번호</dt>
-					<dd class="license-nums"></dd>
-				</dl>
-				<dl>
-					<dt>적성검사 만료일</dt>
-					<dd class="license-date1"></dd>
-				</dl>
-				<dl>
-					<dt>면허 발급일(갱신일)</dt>
-					<dd class="license-date2"></dd>
-				</dl>
 			</div>
 
 			<div class="mypageDesc2">
