@@ -56,4 +56,15 @@ public class MemberService {
  		close(conn);
  		return result;
  	}
+
+    public int updateMemberPhone(Member member) {
+		Connection conn = getConnection();
+		int result = memberDao.updateMemberPhone(conn, member);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
 }

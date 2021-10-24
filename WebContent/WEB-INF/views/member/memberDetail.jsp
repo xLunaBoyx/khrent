@@ -40,26 +40,26 @@
 						</span>
 					</dd>
 				</dl>
-				
-				<dl>
-					<dt>휴대폰번호</dt>
-					<dd>
-						<form name="frmCpModify" id="frmCpModify" method="post">
-							<input type="hidden" name="_token"
-								value="KUIlaf6wzIPUNwYBCLiUCeU6b3f4PE3MxFgJp2O0"> 
-								<span class="input-text-outer-wrap is-login-text have-right-section">
-								<span class="is-text-inner-wrap is-login-text"> 
-								<input type="text" name="cp" id="cp" value="<%= loginMember.getPhone() %>"
-									data-text-module="" readonly="">
-								</span> 
+					<form name="memberUpdateFrm"
+						action="<%=request.getContextPath()%>/member/memberPhoneUpdate"
+						method="POST">
+						<dl>
+							<dt>휴대폰번호</dt>
+							<dd>
+								<span
+									class="input-text-outer-wrap is-login-text have-right-section">
+									<span class="is-text-inner-wrap is-login-text">
+									<input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>" /> 
+									<input type="text" name="phone" id="phone" value="<%=loginMember.getPhone()%>">
+									</span> 
 								<span class="input-text-outer-wrap__right-section"> 
-								<a href="#" class="btn-cp-modify">변경</a>
+								<input type="submit" value="변경" class="btn-cp-modify" >
 								</span>
 								</span>
-							</form>
-					</dd>
-				</dl>
-			</div>
+							</dd>
+						</dl>
+					</form>
+				</div>
 
 			<div class="mypageDesc2 license active">
 				<div class="topArea clearfix">
@@ -103,12 +103,27 @@
 					KH렌트 이용에 불편하신 점이 있으셨다면, 탈퇴 전 고객센터로 문의 주시면 답변 드리겠습니다. <br>
 				</p>
 				<div class="btnGroup">
-					<a href="#" class="infoBtn">회원탈퇴</a>
+					<a href="<%= request.getContextPath() %>/member/memberDelete" class="infoBtn">회원탈퇴</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 </section>
+
+<script>
+
+<% 
+String msg = (String) session.getAttribute("msg");
+if(msg != null) session.removeAttribute("msg");
+
+%>
+
+<% if(msg != null) { %>
+// 사용자 메세지 전달
+alert("<%= msg %>");
+<% } %>
+
+</script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
