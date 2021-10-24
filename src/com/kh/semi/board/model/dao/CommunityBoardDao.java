@@ -36,6 +36,7 @@ public class CommunityBoardDao {
 		
 		try {
 			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRownum);
 			pstmt.setInt(2, endRownum);
@@ -101,6 +102,43 @@ public class CommunityBoardDao {
 		}
 		
 		return totalContents;
+	}
+
+	public CommunityBoard selectOneBoard(Connection conn, int no) {
+		CommunityBoard communityBoard = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneCommunityBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				communityBoard = new CommunityBoard();
+				
+				communityBoard.setNo(rset.getInt("community_no"));
+				communityBoard.setWriter(rset.getString("member_id"));
+				communityBoard.setTitle(rset.getString("title"));
+				communityBoard.setContent(rset.getString("content"));
+				communityBoard.setRegDate(rset.getDate("reg_date"));
+				communityBoard.setReadCount(rset.getInt("read_count"));				
+				communityBoard.setBoardCommentCount(rset.getInt("bc_count"));
+		
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return communityBoard;
 	}
 
 }
