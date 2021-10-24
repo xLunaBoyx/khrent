@@ -17,16 +17,16 @@ public class Member implements Serializable {
 	private String phone;
 	private int mileage;
 	private Date regDate;
-	private Date issue_date;
+	private String issue_date;
 	private String license_type;
-	private int license_no;
+	private String license_no;
 	
 	public Member() {
 		super();
 	}
 
 	public Member(String memberId, String password, String memberRole, String memberName, String phone, int mileage,
-			Date regDate, Date issue_date, String license_type, int license_no) {
+			Date regDate, String issue_date, String license_type, String license_no) {
 		super();
 		this.memberId = memberId;
 		this.password = password;
@@ -96,11 +96,11 @@ public class Member implements Serializable {
 		this.regDate = regDate;
 	}
 
-	public Date getIssue_date() {
+	public String getIssue_date() {
 		return issue_date;
 	}
 
-	public void setIssue_date(Date issue_date) {
+	public void setIssue_date(String issue_date) {
 		this.issue_date = issue_date;
 	}
 
@@ -112,11 +112,11 @@ public class Member implements Serializable {
 		this.license_type = license_type;
 	}
 
-	public int getLicense_no() {
+	public String getLicense_no() {
 		return license_no;
 	}
 
-	public void setLicense_no(int license_no) {
+	public void setLicense_no(String license_no) {
 		this.license_no = license_no;
 	}
 
