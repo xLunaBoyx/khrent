@@ -99,7 +99,7 @@
 
 
 			<div class="latestBoard">
-				<a href="#" class="boardTitle">
+				<a href="<%= request.getContextPath() %>/board/questionList" class="boardTitle">
 					<p>
 						<span class="titleKr">대여문의</span> <span class="titleEn">travel
 							inquiry</span>
