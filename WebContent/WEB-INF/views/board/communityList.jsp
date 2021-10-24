@@ -42,6 +42,18 @@
 %>       							
 			</tbody>
 		</table>
+
+<%
+	if(loginMember != null) {
+%>	
+	<input 
+	type="button" 
+	value="글쓰기" 
+	id="btn-add" 
+	onclick="location.href='<%=request.getContextPath()%>/board/CommunityboardForm';" />
+<%
+	}
+%>
 		
 		<div id='pageBar'>
 			<%= request.getAttribute("pagebar") %>
@@ -119,3 +131,7 @@
 	}
 	</style>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+
+
