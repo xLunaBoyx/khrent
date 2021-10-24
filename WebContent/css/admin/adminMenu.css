@@ -91,6 +91,7 @@ Sidebar Nav
 .sidebar-nav ul li {
 	margin-left: 0;
 	padding-left: 0;
+	background-color: #19222a;
 	display: inline-block;
 	width: 100%;
 	/* -------------
