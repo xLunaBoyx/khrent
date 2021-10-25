@@ -119,9 +119,9 @@ public class CommunityBoardDao {
 				communityBoard = new CommunityBoard();
 				
 				communityBoard.setNo(rset.getInt("community_no"));
-				communityBoard.setWriter(rset.getString("member_id"));
-				communityBoard.setTitle(rset.getString("title"));
-				communityBoard.setContent(rset.getString("content"));
+				communityBoard.setWriter(rset.getString("community_writer"));
+				communityBoard.setTitle(rset.getString("community_title"));
+				communityBoard.setContent(rset.getString("community_content"));
 				communityBoard.setRegDate(rset.getDate("reg_date"));
 				communityBoard.setReadCount(rset.getInt("read_count"));				
 				communityBoard.setBoardCommentCount(rset.getInt("bc_count"));

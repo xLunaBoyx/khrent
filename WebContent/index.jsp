@@ -34,23 +34,23 @@
 						<!-- 내륙 -->
 						<div class="tab inland active">
 							<div class="search_form">
-								<form action="#" class="clearfix">
+								<form name="carSearchFrm" action="<%= request.getContextPath() %>/reservation/carSearch" class="clearfix" >
 									<div class="sdate">
 										<label for="">대여일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainSDate" autocomplete="off"
+											<input type="date" id="mainSDate" name="mainSDate" autocomplete="off"
 												class="hasDatepicker" />
 										</div>
 									</div>
 									<div class="edate">
 										<label for="">반납일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainEDate" autocomplete="off"
+											<input type="date" id="mainEDate" name="mainEDate" autocomplete="off"
 												class="hasDatepicker" />
 										</div>
 									</div>
 								</form>
-								<button class="search_btn" type="button" onclick=>
+								<button class="search_btn" type="button" onclick="submitForm();"> 
 									<span>차량 검색</span>
 								</button>
 							</div>
@@ -150,13 +150,23 @@ alert("<%= msg %>");
 <% } %>
 
 	// 	날짜 선택 현재 날짜 기준으로 나타내기
+	var now = new Date();
+	var tomorrow = new Date(now.setDate(now.getDate() + 1));
+	//console.log(new Date());
+	//console.log(tomorrow);
+	
 	document.getElementById('mainSDate').value = new Date().toISOString()
 			.substring(0, 10);
 	;
-	document.getElementById('mainEDate').value = new Date().toISOString()
+	document.getElementById('mainEDate').value = tomorrow.toISOString()
 			.substring(0, 10);
 	;
+
 	
+	// 차량 검색 버튼 클릭시 폼 제출
+	function submitForm() {
+		document.carSearchFrm.submit();
+	}	
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

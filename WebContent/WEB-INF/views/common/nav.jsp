@@ -56,7 +56,7 @@
 	document.getElementById('navSDate').value = new Date().toISOString()
 			.substring(0, 10);
 	;
-	document.getElementById('navEDate').value = new Date().toISOString()
+	document.getElementById('navEDate').value = new Date(new Date().setDate(new Date().getDate() + 1)).toISOString()
 			.substring(0, 10);
 	;
 	

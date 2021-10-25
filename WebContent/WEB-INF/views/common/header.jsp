@@ -20,7 +20,7 @@
 </head>
 
 <body>
-		 <nav>
+	 <nav>
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
