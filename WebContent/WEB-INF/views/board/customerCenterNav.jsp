@@ -3,7 +3,7 @@
  
  <div class="serviceCenter_lnb">
     <ul>
-        <li class=""><a href="#">자주 묻는 질문</a></li>
+        <li class="" onclick="location.href='<%= request.getContextPath() %>/board/faq';"><a href="#">자주 묻는 질문</a></li>
         <li class="" onclick="location.href='<%= request.getContextPath() %>/board/questionList';"><a href="#">대여문의</a></li>
         <li class=""><a href="#">대여후기</a></li>
         <li class=""><a href="#">공지사항</a></li>
