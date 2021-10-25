@@ -41,13 +41,12 @@ public class AdminMemberUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String memberId = request.getParameter("memberId");
-		String password = MvcUtils.getEncryptedPassword(request.getParameter("password"));
 		String phone = request.getParameter("phone");
 		String issue_date = request.getParameter("issue_date");
 		String license_type = request.getParameter("license_type");
 		String license_no = request.getParameter("license_no");
 	
-		Member member = new Member(memberId, password, MemberService.MEMBER_ROLE, null, phone, 0, null, issue_date, license_type, license_no);
+		Member member = new Member(memberId, null, MemberService.MEMBER_ROLE, null, phone, 0, null, issue_date, license_type, license_no);
 
 		System.out.println("member@servlet = " + member);
 

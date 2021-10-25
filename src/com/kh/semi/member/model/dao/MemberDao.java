@@ -348,12 +348,11 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getPhone());
-			pstmt.setString(3, member.getLicense_type());
-			pstmt.setString(4, member.getLicense_no());
-			pstmt.setString(5, member.getIssue_date());
-			pstmt.setString(6, member.getMemberId());
+			pstmt.setString(1, member.getPhone());
+			pstmt.setString(2, member.getLicense_type());
+			pstmt.setString(3, member.getLicense_no());
+			pstmt.setString(4, member.getIssue_date());
+			pstmt.setString(5, member.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
