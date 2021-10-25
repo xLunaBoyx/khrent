@@ -37,32 +37,14 @@
 				<span class="">회원관리</span></a>
 					<ul class="nav-flyout">
 						<li><a href="<%= request.getContextPath()%>/admin/adminMemberList"><i class="ion-ios-flame-outline"></i>회원목록조회</a>
-						</li>
-						<li><a href="#"><i class="ion-ios-location-outline"></i>탈퇴회원조회</a>
-						</li>
-						<li><a href="#"><i class="ion-ios-locked-outline"></i>회원권한변경</a>
+						<li><a href="<%= request.getContextPath()%>/admin/adminDeleteMemberList"><i class="ion-ios-location-outline"></i>탈퇴회원조회</a>
 						</li>
 					</ul>
 				</li>
 				
-				<li><a href="#"><i class="ion-ios-analytics-outline"></i> 
-				<span class="">Graphicals</span></a>
-					<ul class="nav-flyout">
-						<li><a href="#"><i class="ion-ios-timer-outline"></i>Timers</a>
-						</li>
-						<li><a href="#"><i class="ion-arrow-graph-down-left"></i>You
-								Lose</a></li>
-						<li><a href="#"><i class="ion-ios-partlysunny-outline"></i>Stormy</a>
-						</li>
-						<li><a href="#"><i class="ion-ios-timer-outline"></i>Lookie
-								Look</a></li>
-						<li><a href="#"><i
-								class="ion-ios-game-controller-a-outline"></i>Dork Mfer</a></li>
-					</ul>
-				</li>
 				
 				<li><a href="#"><i class="ion-ios-medical-outline"></i> <span
-						class="">Cocaine</span></a></li>
+						class="">관리자홈으로</span></a></li>
 			</ul>
 		</nav>
 	</aside>
