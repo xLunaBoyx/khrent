@@ -11,6 +11,7 @@ import java.util.Map;
 
 import com.kh.semi.member.model.dao.MemberDao;
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.member.model.vo.MemberDel;
 
 public class MemberService {
 
@@ -118,5 +119,19 @@ public class MemberService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public List<MemberDel> selectAllDeleteMember(int startRownum, int endRownum) {
+		Connection conn = getConnection();
+		List<MemberDel> list = memberDao.selectAllDeleteMember(conn, startRownum, endRownum);
+		close(conn);
+		return list;
+	}
+
+	public int selectTotalDeleteContents() {
+		Connection conn = getConnection();
+		int totalContent = memberDao.selectTotalDeleteContents(conn);
+		close(conn);
+		return totalContent;
 	}
 }
