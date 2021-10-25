@@ -51,14 +51,15 @@ public class AdminMemberUpdateServlet extends HttpServlet {
 		
 		// 2. 사용자입력값 -> Member객체
 		String memberId = request.getParameter("memberId");
-		String password = request.getParameter("password");
+		String password = MvcUtils.getEncryptedPassword(request.getParameter("password"));
 		String memberName = request.getParameter("memberName");
 		String phone = request.getParameter("phone");
+		String member_role = request.getParameter("member_role");
 		String license_type = request.getParameter("license_type");
 		String license_no = request.getParameter("license_no");
 		String issue_date = request.getParameter("issue_date");
 	
-		Member member = new Member(memberId, null, memberName, MemberService.MEMBER_ROLE, phone, 0, null, license_type, license_no, issue_date);
+		Member member = new Member(memberId, password, member_role, memberName, phone, 0, null, license_type, license_no, issue_date);
 
 		System.out.println("member@servlet = " + member);
 

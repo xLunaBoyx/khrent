@@ -36,7 +36,7 @@
 								class="input-text-outer-wrap is-login-text have-right-section">
 								<span class="is-text-inner-wrap is-login-text"> 
 								<input type="hidden" name="memberId" value="<%= member.getMemberId() %>" />
-								<input type="password" placeholder="" name="password" id="password" value="">
+								<input type="password" placeholder="" name="password" id="password" value="<%= member.getPassword()%>">
 								</span> 
 							</span>
 						</dd>
@@ -48,6 +48,7 @@
 								<span class="input-text-outer-wrap is-login-text have-right-section">
 									<span class="is-text-inner-wrap is-login-text"> 
 									<input type="hidden" name="memberId" value="<%=member.getMemberId()%>" /> 
+									<input type="hidden" name="member_role" value="<%= member.getMemberRole() %>" />
 
 									
 									<input type="text" name="phone" id="phone" value="<%=member.getPhone()%>">
