@@ -7,6 +7,7 @@ import static com.kh.semi.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.semi.member.model.dao.MemberDao;
 import com.kh.semi.member.model.vo.Member;
@@ -90,6 +91,20 @@ public class MemberService {
 	public int selectTotalContents() {
 		Connection conn = getConnection();
 		int totalContent = memberDao.selectTotalContents(conn);
+		close(conn);
+		return totalContent;
+	}
+
+	public List<Member> searchMember(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Member> list = memberDao.searchMember(conn, param);
+		close(conn);
+		return list;
+	}
+
+	public int searchMemberCount(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int totalContent = memberDao.searchMemberCount(conn, param);
 		close(conn);
 		return totalContent;
 	}

@@ -1,4 +1,4 @@
-    package com.kh.semi.member.model.dao;
+package com.kh.semi.member.model.dao;
 
 import static com.kh.semi.common.JdbcTemplate.close;
 
@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.semi.member.model.vo.Member;
@@ -244,6 +245,101 @@ public class MemberDao {
 		}
 		return totalContents;
 	}
+
+	public List<Member> searchMember(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Member> list = new ArrayList<>();
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "memberId":
+			sql = prop.getProperty("searchMemberByMemberId");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		case "memberName":
+			sql = prop.getProperty("searchMemberByMemberName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		}
+		
+		System.out.println("searchType@dao = " + searchType);
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			pstmt.setInt(2, (int) param.get("start"));
+			pstmt.setInt(3, (int) param.get("end"));
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member member = new Member();
+				
+				member.setMemberId(rset.getString("member_id"));
+				member.setPassword(rset.getString("member_pwd"));
+				member.setMemberRole(rset.getString("member_role"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setPhone(rset.getString("phone"));
+				member.setMileage(rset.getInt("mileage"));
+				member.setRegDate(rset.getDate("reg_date"));
+				member.setIssue_date(rset.getString("issue_date"));
+				member.setLicense_type(rset.getString("license_type"));
+				member.setLicense_no(rset.getString("license_no"));
+				
+				list.add(member);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int searchMemberCount(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalContents = 0;
+		
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "memberId":
+			sql = prop.getProperty("searchMemberCountByMemberId");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		case "memberName":
+			sql = prop.getProperty("searchMemberCountByMemberName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		}
+		
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalContents;
+	}
+
 
 }
    
