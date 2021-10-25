@@ -140,6 +140,74 @@ public class QuestionBoardDao {
 		
 		return questionBoard;
 	}
+	public int insertBoard(Connection conn, QuestionBoard questionBoard) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBoard");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, questionBoard.getWriter());
+			pstmt.setString(2, questionBoard.getQna_title());
+			pstmt.setString(3, questionBoard.getQna_content());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시글 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectLastBoardNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLastBoardNo");
+		int boardNo = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				boardNo = rset.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시물번호 조회 오류", e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return boardNo;
+	}
+
+	public int insertAttachment(Connection conn, Attachment attach) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, attach.getBoardNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//throw new BoardException("첨부파일 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 	
 
