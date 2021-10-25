@@ -12,6 +12,13 @@
 %>
 <div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+<% if(loginMember != null){ %>	
+	<input 
+		type="button" 
+		value="글쓰기" 
+		id="btn-add" 
+		onclick="location.href='<%= request.getContextPath() %>/board/questionBoardForm';" />
+<% } %>
 	<div class="board-container">
 	
 	<h1 class="board-title">대여문의</h1>
@@ -24,6 +31,7 @@
 					<th>답변상태</th>
 					<th>작성자</th>
 					<th>작성일</th>
+					<th>첨부파일</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
@@ -41,6 +49,15 @@
 		       		<td><%=board.getAnswer_status() %></td>
 		       		<td><%= board.getWriter() %></td>
 		       		<td><%= board.getRegDate() %></td>
+		       		<td>
+<% 
+		if(board.getAttach() != null){
+%>
+				<img src="<%= request.getContextPath() %>/images/file.png" alt="" width="16px"/>			
+<%
+		}
+%>		
+		       		</td>
 		       		<td><%= board.getReadCount() %></td>
        			</tr>
 <%
@@ -80,7 +97,7 @@
 		color: #434343;
 		font-size: 15px;
 		font-weight: 500;
-		line-height: 66px;
+		line-height: 29px;
 		height: 66px;
 	    
 	}
