@@ -54,6 +54,7 @@
 					<th>면허종류</th>
 					<th>면허번호</th>
 					<th>면허발급일</th>
+					<th></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,6 +79,7 @@
             		<td><%= member.getLicense_type() %></td>
             		<td><%= member.getLicense_no() %></td>
             		<td><%= member.getIssue_date() %></td>
+            		<td><input type="button" value="수정" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberUpdate';"/></td>
             	</tr>
 <%		
 	}
@@ -116,7 +118,7 @@
 		const memberId = $this.data("memberId"); // data-속성의 키값을 camelcasing으로 처리
 		const memberRole = $this.val();
 		// jsp의 EL문법과 js의 String Template 충돌. escaping처리 할것.
-		const msg = `[\${memberId}]회원의 권한을 [\${memberRole}]로 변경하시겠습니까?`;
+		const msg = `[\${memberId}]회원의 권한을 ${memberRole}]%>로 변경하시겠습니까?`;
 		
 		if(confirm(msg)){
 			const $frm = $(document.updateMemberRoleFrm);

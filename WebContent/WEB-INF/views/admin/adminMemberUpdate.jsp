@@ -22,18 +22,6 @@
 						<dt>이름</dt>
 						<dd><%=loginMember.getMemberName()%></dd>
 					</dl>
-
-					<dl>
-						<dt>비밀번호</dt>
-						<dd>
-							<span
-								class="input-text-outer-wrap is-login-text have-right-section">
-								<span class="is-text-inner-wrap is-login-text"> 
-								<input type="password" placeholder="" name="password" id="password" value="<%= loginMember.getPassword() %>">
-								</span> 
-							</span>
-						</dd>
-					</dl>
 					
 						<dl>
 							<dt>휴대폰번호</dt>
