@@ -17,7 +17,7 @@
 		type="button" 
 		value="글쓰기" 
 		id="btn-add" 
-		onclick="location.href='<%= request.getContextPath() %>/board/questionBoardForm';" />
+		onclick="location.href='<%= request.getContextPath() %>/board/qnaBoardEnroll';" />
 <% } %>
 	<div class="board-container">
 	
