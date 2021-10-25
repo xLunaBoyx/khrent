@@ -11,6 +11,7 @@
 	String searchType = request.getParameter("searchType");
 	String searchKeyword = request.getParameter("searchKeyword");
 %>
+
 	<!-- 관리자용 admin.css link -->
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin.css" />
 	
@@ -55,6 +56,7 @@
 					<th>면허번호</th>
 					<th>면허발급일</th>
 					<th></th>
+					<th></th>
                 </tr>
             </thead>
             <tbody>
@@ -76,10 +78,14 @@
             		</td>
             		<td><%= member.getPhone() %></td>
             		<td><%= member.getRegDate() %></td>
-            		<td><%= member.getLicense_type() %></td>
-            		<td><%= member.getLicense_no() %></td>
-            		<td><%= member.getIssue_date() %></td>
-            		<td><input type="button" value="수정" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberUpdate';"/></td>
+            		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
+            		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
+            		<td><%= member.getIssue_date() == null ? "없음" : member.getIssue_date() %></td>
+            		<td>
+            		<input type="button" value="수정" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberUpdate?memberId=<%= member.getMemberId()%>';"/></td>
+            		<td>
+            		<input type="button" value="삭제" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberDelete?memberId=<%= member.getMemberId()%>';"/>
+            		</td>
             	</tr>
 <%		
 	}
@@ -131,6 +137,7 @@
 			$this.find("[selected]").prop("selected", true);
 		}
 	});
+	
 	
 	</script>
 	
