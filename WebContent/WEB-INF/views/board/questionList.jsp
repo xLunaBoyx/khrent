@@ -34,7 +34,7 @@
 				<tr>
 		       		<td><%= board.getNo() %></td>
 		       		<td class="subject">
-		       			<a href="<%= request.getContextPath() %>/board/boardView?no=<%= board.getNo() %>"><%= board.getQna_title() %></a>
+		       			<a href="<%= request.getContextPath() %>/board/questionView?no=<%= board.getNo() %>"><%= board.getQna_title() %></a>
 		       			<!-- 글제목 오른쪽에 댓글수를 표시함 -->
 		       			<%= board.getBoardCommentCount() != 0 ? "(" + board.getBoardCommentCount() + ")" : "" %>
 		       		</td>
