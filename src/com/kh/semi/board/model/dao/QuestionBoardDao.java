@@ -103,6 +103,43 @@ public class QuestionBoardDao {
 		
 		return totalContents;
 	}
+	public QuestionBoard selectOneBoard(Connection conn, int no) {
+		QuestionBoard questionBoard = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneQuestionBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				questionBoard = new QuestionBoard();
+				
+				questionBoard.setNo(rset.getInt("qna_no"));
+				questionBoard.setWriter(rset.getString("qna_writer"));
+				questionBoard.setQna_title(rset.getString("qna_title"));
+				questionBoard.setQna_content(rset.getString("qna_content"));
+				questionBoard.setRegDate(rset.getDate("reg_date"));
+				questionBoard.setReadCount(rset.getInt("read_count"));
+				questionBoard.setAnswer_status(rset.getString("answer_status"));
+				questionBoard.setBoardCommentCount(rset.getInt("bc_count"));
+		
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return questionBoard;
+	}
 
 	
 

@@ -29,5 +29,14 @@ public class QuestionBoardService {
 		return totalContents;
 	}
 	
+	public QuestionBoard selectOneBoard(int no) {
+		Connection conn = getConnection();
+		
+		QuestionBoard questionBoard =  questionBoardDao.selectOneBoard(conn,no);
+		
+		close(conn);
+		
+		return questionBoard;
+	}
 	
 }
