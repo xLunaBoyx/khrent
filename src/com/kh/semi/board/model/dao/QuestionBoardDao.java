@@ -124,8 +124,6 @@ public class QuestionBoardDao {
 				questionBoard.setRegDate(rset.getDate("reg_date"));
 				questionBoard.setReadCount(rset.getInt("read_count"));
 				questionBoard.setAnswer_status(rset.getString("answer_status"));
-				questionBoard.setBoardCommentCount(rset.getInt("bc_count"));
-		
 			}
 			
 			
