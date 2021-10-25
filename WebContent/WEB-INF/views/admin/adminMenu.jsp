@@ -38,13 +38,9 @@
 					<ul class="nav-flyout">
 						<li><a href="<%= request.getContextPath()%>/admin/adminMemberList"><i class="ion-ios-flame-outline"></i>회원목록조회</a>
 						</li>
-						<li><a href="#"><i class="ion-ios-lightbulb-outline"></i>회원정보수정</a>
-						</li>
 						<li><a href="#"><i class="ion-ios-location-outline"></i>탈퇴회원조회</a>
 						</li>
 						<li><a href="#"><i class="ion-ios-locked-outline"></i>회원권한변경</a>
-						</li>
-						<li><a href="#"><i class="ion-ios-navigate-outline"></i>Ghostface</a>
 						</li>
 					</ul>
 				</li>

@@ -340,6 +340,32 @@ public class MemberDao {
 		return totalContents;
 	}
 
+	public int adminMemberUpdate(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminMemberUpdate"); 
+		System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getPhone());
+			pstmt.setString(3, member.getLicense_type());
+			pstmt.setString(4, member.getLicense_no());
+			pstmt.setString(5, member.getIssue_date());
+			pstmt.setString(6, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 }
    
