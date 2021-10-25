@@ -29,6 +29,7 @@ a:hover {
 
 .app {
 	height: 100vh;
+	display: contents;
 }
 
 /* -------------

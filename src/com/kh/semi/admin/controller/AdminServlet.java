@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdminMenuServlet
  */
-@WebServlet("/admin/adminMenu")
-public class AdminMenuServlet extends HttpServlet {
+@WebServlet("/admin/admin")
+public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -19,7 +19,7 @@ public class AdminMenuServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// view단 연결
-		request.getRequestDispatcher("/WEB-INF/views/admin/adminMenu.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/admin/admin.jsp")
 		.forward(request, response);
 	}
 

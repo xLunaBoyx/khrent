@@ -53,7 +53,7 @@
 		<%-- 관리자 보임 | 로그인하지 않거나, 일반회원 안보임 --%>
 <% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>
         <li class="dropdown">
-          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/admin/adminMenu';">관리자</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/admin/admin';">관리자</div>
         </li>
 <% } %>
 

@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/admin/adminMenu.css" />
-
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminMenu.css" />
 
 <section class="app">
 	<aside class="sidebar">
@@ -40,7 +36,7 @@
 				<li><a href="#"><i class="ion-ios-briefcase-outline"></i> 
 				<span class="">회원관리</span></a>
 					<ul class="nav-flyout">
-						<li><a href="#"><i class="ion-ios-flame-outline"></i>회원목록조회</a>
+						<li><a href="<%= request.getContextPath()%>/admin/adminMemberList"><i class="ion-ios-flame-outline"></i>회원목록조회</a>
 						</li>
 						<li><a href="#"><i class="ion-ios-lightbulb-outline"></i>회원정보수정</a>
 						</li>
@@ -75,5 +71,3 @@
 		</nav>
 	</aside>
 </section>
-
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
