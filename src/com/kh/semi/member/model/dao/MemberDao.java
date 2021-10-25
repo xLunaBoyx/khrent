@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.member.model.vo.MemberDel;
 
 public class MemberDao {
 	
@@ -348,11 +349,12 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, member.getPhone());
-			pstmt.setString(2, member.getLicense_type());
-			pstmt.setString(3, member.getLicense_no());
-			pstmt.setString(4, member.getIssue_date());
-			pstmt.setString(5, member.getMemberId());
+			pstmt.setString(1, member.getPassword());
+			pstmt.setString(2, member.getPhone());
+			pstmt.setString(3, member.getLicense_type());
+			pstmt.setString(4, member.getLicense_no());
+			pstmt.setString(5, member.getIssue_date());
+			pstmt.setString(6, member.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -363,6 +365,69 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+
+	public List<MemberDel> selectAllDeleteMember(Connection conn, int startRownum, int endRownum) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAllDeleteMember"); 
+		
+		ResultSet rset = null;
+		List<MemberDel> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRownum);
+			pstmt.setInt(2, endRownum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				MemberDel memberDel = new MemberDel();
+				memberDel.setMemberId(rset.getString("member_id"));
+				memberDel.setPassword(rset.getString("member_pwd"));
+				memberDel.setMemberRole(rset.getString("member_role"));
+				memberDel.setMemberName(rset.getString("member_name"));
+				memberDel.setPhone(rset.getString("phone"));
+				memberDel.setMileage(rset.getInt("mileage"));
+				memberDel.setRegDate(rset.getDate("reg_date"));
+				memberDel.setIssue_date(rset.getString("issue_date"));
+				memberDel.setLicense_type(rset.getString("license_type"));
+				memberDel.setLicense_no(rset.getString("license_no"));
+				memberDel.setDelDate(rset.getDate("del_date"));
+			
+				list.add(memberDel);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원반납
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectTotalDeleteContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTotalDeleteContents");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
 	}
 
 
