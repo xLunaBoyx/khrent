@@ -79,7 +79,7 @@ public class AdminMemberUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("msg", msg);
 		
-		String location = request.getContextPath() + "/";
+		String location = request.getContextPath() + "/admin/adminMemberList";
 		response.sendRedirect(location);
 	}
 }
