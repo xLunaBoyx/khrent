@@ -134,4 +134,14 @@ public class MemberService {
 		close(conn);
 		return totalContent;
 	}
+
+	public int updateMemberRole(String memberId, String memberRole) {
+		Connection conn = getConnection();
+		int result = memberDao.updateMemberRole(conn, memberId, memberRole);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

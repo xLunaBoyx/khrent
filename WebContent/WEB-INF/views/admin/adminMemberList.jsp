@@ -6,10 +6,15 @@
     
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/admin/adminMenu.jsp"%>
+
 <%
 	List<Member> list = (List<Member>) request.getAttribute("list");
 	String searchType = request.getParameter("searchType");
 	String searchKeyword = request.getParameter("searchKeyword");
+%>
+
+<%
+	Member newMember = (Member) request.getAttribute("member");
 %>
 
 	<!-- 관리자용 admin.css link -->
@@ -21,7 +26,8 @@
     </style>	
     
     <section id="memberList-container">
-        <h2>회원목록조회</h2>
+        <h2>회원 목록 조회</h2>
+        
 	    <div id="search-container">
 	        검색타입 : 
 	        <select id="searchType">
@@ -98,6 +104,7 @@
         </div>
     	    
     </section>
+    
     <form 
     	action="<%= request.getContextPath() %>/admin/updateMemberRole" 
     	method="POST" 
@@ -138,6 +145,17 @@
 		}
 	});
 	
+	
+	<% 
+	String msg = (String) session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg");
+
+	%>
+
+	<% if(msg != null) { %>
+	// 사용자 메세지 전달
+	alert("<%= msg %>");
+	<% } %>
 	
 	</script>
 	

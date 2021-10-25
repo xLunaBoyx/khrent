@@ -121,7 +121,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("deleteMember"); 
-
+		System.out.println("query@deleteMember@Dao = " + query);
 		try {
 			
 			pstmt = conn.prepareStatement(query);
@@ -429,6 +429,26 @@ public class MemberDao {
 		}
 		return totalContents;
 	}
+
+	   public int updateMemberRole(Connection conn, String memberId, String memberRole) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String query = prop.getProperty("adminUpdateMemberRole"); 
+
+			try {
+				pstmt = conn.prepareStatement(query);
+				
+				pstmt.setString(1, memberRole);
+				pstmt.setString(2, memberId);
+
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
 
 
 }

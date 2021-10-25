@@ -21,7 +21,7 @@
     </style>	
     
     <section id="memberList-container">
-        <h2>탈퇴회원 목록조회</h2>
+        <h2>탈퇴 회원 목록 조회</h2>
 	    <div id="search-container">
 	        검색타입 : 
 	        <select id="searchType">
@@ -55,8 +55,6 @@
 					<th>면허종류</th>
 					<th>면허번호</th>
 					<th>면허발급일</th>
-					<th></th>
-					<th></th>
                 </tr>
             </thead>
             <tbody>
@@ -81,11 +79,6 @@
             		<td><%= member.getLicense_type() %></td>
             		<td><%= member.getLicense_no() %></td>
             		<td><%= member.getIssue_date() %></td>
-            		<td>
-            		<input type="button" value="수정" class="adminMemberUpdateBtn" onclick="#"/></td>
-            		<td>
-            		<input type="button" value="삭제" class="adminMemberUpdateBtn" onclick="#"/>
-            		</td>
             	</tr>
 <%		
 	}
@@ -138,6 +131,17 @@
 		}
 	});
 	
+	<% 
+	String msg = (String) session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg");
+
+	%>
+
+	<% if(msg != null) { %>
+	// 사용자 메세지 전달
+	alert("<%= msg %>");
+	<% } %>
+
 	
 	</script>
 	
