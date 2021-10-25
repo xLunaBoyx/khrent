@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.kh.semi.board.model.vo.Attachment;
 import com.kh.semi.board.model.vo.CommunityBoard;
+import com.kh.semi.board.model.vo.CommunityBoardComment;
 
 public class CommunityBoardDao {
 	
@@ -123,9 +124,7 @@ public class CommunityBoardDao {
 				communityBoard.setTitle(rset.getString("community_title"));
 				communityBoard.setContent(rset.getString("community_content"));
 				communityBoard.setRegDate(rset.getDate("reg_date"));
-				communityBoard.setReadCount(rset.getInt("read_count"));				
-				communityBoard.setBoardCommentCount(rset.getInt("bc_count"));
-		
+				communityBoard.setReadCount(rset.getInt("read_count"));						
 			}
 			
 			
@@ -139,6 +138,31 @@ public class CommunityBoardDao {
 		
 		
 		return communityBoard;
+	}
+
+	public int insertCommunityComment(Connection conn, CommunityBoardComment communityBoardComment) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommunityBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,communityBoardComment.getBoardNo());
+			pstmt.setString(2, communityBoardComment.getWriter());
+			pstmt.setString(3, communityBoardComment.getContent());
+			pstmt.setInt(4,communityBoardComment.getCommentLevel());
+			pstmt.setObject(5, communityBoardComment.getCommentRef() == 0 ? null : communityBoardComment.getCommentRef());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 }

@@ -49,6 +49,8 @@ tr, td{
 
 <%
 	CommunityBoard communityBoard = (CommunityBoard)request.getAttribute("communityBoard");
+	String msg = (String)session.getAttribute("msg");
+	if(msg != null) session.removeAttribute("msg");
 %>
 	<table>
 		<thead>
@@ -71,15 +73,15 @@ tr, td{
 	<div id=comment-container>
 		<div class="comment-editor">
 			<form 
-				action="<%= request.getContextPath() %>/board/boardCommentEnroll" 
+				action="<%= request.getContextPath() %>/board/communityBoardCommentEnroll" 
 				name="boardCommentFrm" 
 				method="POST">
 				<textarea name="content" cols="60" rows="3"></textarea>
 				<button id="btn-insert">등록</button>
 				
 				<input type="hidden" name="commentLevel" value="1" />
-				<input type="hidden" name="writer" value="" />
-				<input type="hidden" name="boardNo" value="" />
+				<input type="hidden" name="writer" value="<%=loginMember != null ? loginMember.getMemberId() : "" %>" />
+				<input type="hidden" name="boardNo" value="<%=communityBoard.getNo() %>" />
 				<input type="hidden" name="commentRef" value="0" />
 			</form>
 		</div>
@@ -87,6 +89,15 @@ tr, td{
 	
 
 		
+<script>
+
+<% if(msg !=null){ %>
+
+	alert("<%=msg%>");
+
+<% } %>
+
+</script>
 
 </body>
 </html>
