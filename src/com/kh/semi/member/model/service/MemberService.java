@@ -108,4 +108,15 @@ public class MemberService {
 		close(conn);
 		return totalContent;
 	}
+
+	public int adminMemberUpdate(Member member) {
+		Connection conn = getConnection();
+		int result = memberDao.adminMemberUpdate(conn, member);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
 }
