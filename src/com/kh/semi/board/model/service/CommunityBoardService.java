@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 import com.kh.semi.board.model.dao.CommunityBoardDao;
 import com.kh.semi.board.model.vo.CommunityBoard;
+import com.kh.semi.board.model.vo.CommunityBoardComment;
 
 public class CommunityBoardService {
 	
@@ -34,6 +35,21 @@ public class CommunityBoardService {
 		close(conn);
 		
 		return communityBoard;
+	}
+
+	public int insertCommunityComment(CommunityBoardComment communityBoardComment) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = communityBoardDao.insertCommunityComment(conn,communityBoardComment);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
+		
 	}
 
 }
