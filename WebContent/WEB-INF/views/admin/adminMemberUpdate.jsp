@@ -1,5 +1,11 @@
+<%@page import="com.kh.semi.member.model.vo.Member"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+    <%
+	Member member = (Member) request.getAttribute("member");
+	%>
 	
 	 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminMemberUpdate.css" />
 
@@ -20,7 +26,20 @@
 				<div class="info_content">
 					<dl>
 						<dt>이름</dt>
-						<dd><%=loginMember.getMemberName()%></dd>
+						<dd><%= member.getMemberName()%></dd>
+					</dl>
+
+					<dl>
+						<dt>비밀번호</dt>
+						<dd>
+							<span
+								class="input-text-outer-wrap is-login-text have-right-section">
+								<span class="is-text-inner-wrap is-login-text"> 
+								<input type="hidden" name="memberId" value="<%= member.getMemberId() %>" />
+								<input type="password" placeholder="" name="password" id="password" value="">
+								</span> 
+							</span>
+						</dd>
 					</dl>
 					
 						<dl>
@@ -28,10 +47,10 @@
 							<dd>
 								<span class="input-text-outer-wrap is-login-text have-right-section">
 									<span class="is-text-inner-wrap is-login-text"> 
-									<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>" /> 
+									<input type="hidden" name="memberId" value="<%=member.getMemberId()%>" /> 
 
 									
-									<input type="text" name="phone" id="phone" value="<%=loginMember.getPhone()%>">
+									<input type="text" name="phone" id="phone" value="<%=member.getPhone()%>">
 									</span> 
 								</span>
 							</dd>
@@ -67,7 +86,7 @@
 							<dd>
 								<span class="input-text-outer-wrap is-login-text have-right-section">
 									<span class="is-text-inner-wrap is-login-text"> 
-									<input type="text" name="license_no" id="license_no" value="<%=loginMember.getLicense_no()%>">
+									<input type="text" name="license_no" id="license_no" value="<%= member.getLicense_no() %>">
 									</span> 
 								</span>
 							</dd>
@@ -78,7 +97,7 @@
 							<dd>
 								<span class="input-text-outer-wrap is-login-text have-right-section">
 									<span class="is-text-inner-wrap is-login-text"> 
-									<input type="text" name="issue_date" id="issue_date" value="<%=loginMember.getIssue_date()%>">
+									<input type="text" name="issue_date" id="issue_date" value="<%=member.getIssue_date()%>">
 									</span> 
 								</span>
 							</dd>
@@ -118,7 +137,7 @@ $("[name=frmDomestic]").submit((e) => {
 	return true;
 });
 
-$('input:radio[name="license_type"][value="<%= loginMember.getLicense_type()%>"]').prop('checked', true);
+$('input:radio[name="license_type"][value="<%= member.getLicense_type()%>"]').prop('checked', true);
 
 
 </script>

@@ -27,7 +27,15 @@ public class AdminMemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String memberId = request.getParameter("memberId");
+		
+		Member member = memberService.selectOneMember(memberId);
+		
+		System.out.println("member@servlet = " + member);
+		
 		// view단 연결
+		request.setAttribute("member", member);
 		request.getRequestDispatcher("/WEB-INF/views/admin/adminMemberUpdate.jsp")
 		.forward(request, response);
 	}
@@ -37,34 +45,7 @@ public class AdminMemberUpdateServlet extends HttpServlet {
 	 */
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1.encoding처리
-		request.setCharacterEncoding("UTF-8");
-		
-		String memberId = request.getParameter("memberId");
-		String phone = request.getParameter("phone");
-		String issue_date = request.getParameter("issue_date");
-		String license_type = request.getParameter("license_type");
-		String license_no = request.getParameter("license_no");
-	
-		Member member = new Member(memberId, null, MemberService.MEMBER_ROLE, null, phone, 0, null, issue_date, license_type, license_no);
 
-		System.out.println("member@servlet = " + member);
 
-		
-		int result = memberService.adminMemberUpdate(member);
-		String msg = result > 0 ? "회원 정보 변경 성공" : "회원 정보 변경 실패";
-		
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			Member newMember = memberService.selectOneMember(memberId);
-			session.setAttribute("loginMember", newMember);
-		}
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("msg", msg);
-		
-		String location = request.getContextPath() + "/admin/adminMemberUpdate";
-		response.sendRedirect(location);
 	}
-
 }
