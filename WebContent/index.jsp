@@ -5,9 +5,9 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/common/main.css" />
-<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.js"></script>
-<!-- 문구, 날짜선택, 예약가능차량/차종 시작 -->
 
+
+<!-- 문구, 날짜선택, 예약가능차량/차종 시작 -->
 <section class="visual_area" style="height: 700px;">
 	<div class="section section0" id="section0"
 		style="height: 700px; z-index: 1;">
@@ -44,16 +44,20 @@
 									<div class="sdate">
 										<label for="">대여일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainSDate" name="mainSDate"
-												autocomplete="off" class="hasDatepicker" />
+											<input type="text" id="start_date" placeholder="날짜 선택">
 										</div>
 									</div>
 									<div class="edate">
 										<label for="">반납일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainEDate" name="mainEDate"
-												autocomplete="off" class="hasDatepicker" />
+											<input type="text" id="end_date" placeholder="날짜 선택">
 										</div>
+										
+<script type="text/javascript">
+$(document).ready(function() {
+		$("#datepicker").datepicker();
+});
+</script>
 									</div>
 								</form>
 								<button class="search_btn" type="button" onclick="submitForm();">
@@ -169,18 +173,6 @@ if (msg != null)
 alert("<%=msg%>
 	");
 <%}%>
-	//	날짜 선택 현재 날짜 기준으로 나타내기
-	var now = new Date();
-	var tomorrow = new Date(now.setDate(now.getDate() + 1));
-	//console.log(new Date());
-	//console.log(tomorrow);
-
-	document.getElementById('mainSDate').value = new Date().toISOString()
-			.substring(0, 10);
-	;
-	document.getElementById('mainEDate').value = tomorrow.toISOString()
-			.substring(0, 10);
-	;
 
 	// 차량 검색 버튼 클릭시 폼 제출
 	function submitForm() {
