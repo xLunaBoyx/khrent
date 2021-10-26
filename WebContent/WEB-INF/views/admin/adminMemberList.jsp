@@ -28,27 +28,6 @@
     <section id="memberList-container">
         <h2>회원 목록 조회</h2>
         
-	    <div id="search-container">
-	        검색타입 : 
-	        <select id="searchType">
-	            <option value="memberId" <%= "memberId".equals(searchType) ? "selected" : "" %>>아이디</option>		
-	            <option value="memberName" <%= "memberName".equals(searchType) ? "selected" : "" %>>회원명</option>
-	        </select>
-	        <div id="search-memberId" class="search-type">
-	            <form action="<%=request.getContextPath()%>/admin/memberFinder">
-	                <input type="hidden" name="searchType" value="memberId"/>
-	                <input type="text" name="searchKeyword"  size="25" placeholder="검색할 아이디를 입력하세요." value="<%= "memberId".equals(searchType) ? searchKeyword : "" %>"/>
-	                <button type="submit">검색</button>			
-	            </form>	
-	        </div>
-	        <div id="search-memberName" class="search-type">
-	            <form action="<%=request.getContextPath()%>/admin/memberFinder">
-	                <input type="hidden" name="searchType" value="memberName"/>
-	                <input type="text" name="searchKeyword" size="25" placeholder="검색할 이름을 입력하세요." value="<%= "memberName".equals(searchType) ?  searchKeyword : "" %>"/>
-	                <button type="submit" class="memberSearchBtn">검색</button>			
-	            </form>	
-	        </div>
-	    </div>
 	        
         <table id="tbl-member">
             <thead>
@@ -57,12 +36,12 @@
 					<th>이름</th>
 					<th>회원권한</th>
 					<th>전화번호</th>
+					<th>마일리지</th>
 					<th>가입날짜</th>
 					<th>면허종류</th>
 					<th>면허번호</th>
 					<th>면허발급일</th>
-					<th></th>
-					<th></th>
+					<th colspan="3"></th>
                 </tr>
             </thead>
             <tbody>
@@ -83,6 +62,7 @@
             			</select>
             		</td>
             		<td><%= member.getPhone() %></td>
+            		<td><%= member.getMileage() %></td>
             		<td><%= member.getRegDate() %></td>
             		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
             		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
@@ -92,6 +72,9 @@
             		<td>
             		<input type="button" value="삭제" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberDelete?memberId=<%= member.getMemberId()%>';"/>
             		</td>
+            		<td>
+            		<input type="button" value="마일리지 관리" class="adminMemberUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminMemberUpdateMileage?memberId=<%= member.getMemberId()%>';"/>
+            		</td>
             	</tr>
 <%		
 	}
@@ -99,9 +82,31 @@
             </tbody>
         </table>
         
+	    <div id="search-container">
+	        검색타입 : 
+	        <select id="searchType">
+	            <option value="memberId" <%= "memberId".equals(searchType) ? "selected" : "" %>>아이디</option>		
+	            <option value="memberName" <%= "memberName".equals(searchType) ? "selected" : "" %>>회원명</option>
+	        </select>
+	        <div id="search-memberId" class="search-type">
+	            <form action="<%=request.getContextPath()%>/admin/memberFinder">
+	                <input type="hidden" name="searchType" value="memberId"/>
+	                <input type="text" name="searchKeyword"  size="25" placeholder="검색할 아이디를 입력하세요." value="<%= "memberId".equals(searchType) ? searchKeyword : "" %>"/>
+	                <button type="submit">검색</button>			
+	            </form>	
+	        </div>
+	        <div id="search-memberName" class="search-type">
+	            <form action="<%=request.getContextPath()%>/admin/memberFinder">
+	                <input type="hidden" name="searchType" value="memberName"/>
+	                <input type="text" name="searchKeyword" size="25" placeholder="검색할 이름을 입력하세요." value="<%= "memberName".equals(searchType) ?  searchKeyword : "" %>"/>
+	                <button type="submit" class="memberSearchBtn">검색</button>			
+	            </form>	
+	        </div>
+	        
         <div id="pageBar">
         	<%= request.getAttribute("pagebar") %>
         </div>
+	    </div>
     	    
     </section>
     

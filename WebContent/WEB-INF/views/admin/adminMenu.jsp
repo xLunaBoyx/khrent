@@ -36,7 +36,7 @@
 				<li><a href="#"><i class="ion-ios-briefcase-outline"></i> 
 				<span class="">회원관리</span></a>
 					<ul class="nav-flyout">
-						<li><a href="<%= request.getContextPath()%>/admin/adminMemberList"><i class="ion-ios-flame-outline"></i>회원목록조회</a>
+						<li><a href="<%= request.getContextPath()%>/admin/adminMemberList"><i class="ion-ios-flame-outline"></i>전체회원관리</a>
 						<li><a href="<%= request.getContextPath()%>/admin/adminDeleteMemberList"><i class="ion-ios-location-outline"></i>탈퇴회원조회</a>
 						</li>
 					</ul>
