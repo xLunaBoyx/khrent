@@ -18,6 +18,10 @@
 	NoticeBoard noticeBoard = (NoticeBoard)request.getAttribute("noticeBoard");
 	boolean editable = loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole());
 	//System.out.println("ediatable@boardView.jsp = " + editable);
+	
+	String msg = (String) session.getAttribute("msg");
+	// System.out.println("msg@header.jsp = " + msg);
+	if(msg != null) session.removeAttribute("msg");
 %>
 	<div class="board-container">
 		<table id="tbl-board">
@@ -63,6 +67,12 @@ const deleteBoard = () => {
 		$(document.deleteBoardFrm).submit();
 	}
 };
+
+<% if(msg != null) { %>
+alert("<%= msg %>");
+<% } %>
+
+
 </script>
 <% } %>
 	<style>

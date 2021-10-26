@@ -16,7 +16,7 @@ import com.kh.semi.board.model.vo.QuestionBoard;
  * Servlet implementation class QuestionDetailViewServlet
  */
 @WebServlet("/board/noticeView")
-public class NoticeDetailViewServlet extends HttpServlet {
+public class NoticeViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	NoticeBoardService noticeBoardService = new NoticeBoardService();

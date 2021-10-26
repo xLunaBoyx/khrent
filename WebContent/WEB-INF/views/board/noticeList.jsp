@@ -10,7 +10,18 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
 <%
 	List<NoticeBoard> list = (List<NoticeBoard>) request.getAttribute("list");
+
+	String msg = (String) session.getAttribute("msg");
+	// System.out.println("msg@header.jsp = " + msg);
+	if(msg != null) session.removeAttribute("msg");
 %>
+
+<script>
+<% if(msg != null) { %>
+    alert("<%= msg %>");
+<% } %>
+</script>
+
 <div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 
