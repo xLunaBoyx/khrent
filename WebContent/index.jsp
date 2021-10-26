@@ -91,7 +91,7 @@
 		
 		<!-- .latestBoard -->
 			<div class="latestBoard">
-				<a href="<%= request.getContextPath() %>/board/questionList" class="boardTitle">
+				<a href="<%= request.getContextPath() %>/board/notice" class="boardTitle">
 					<p>
 						<span class="titleKr">공지사항</span> <span class="titleEn">Notice</span>
 					</p> 
