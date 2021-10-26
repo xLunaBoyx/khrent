@@ -52,4 +52,19 @@ public class CommunityBoardService {
 		
 	}
 
+	public List<CommunityBoardComment> selectCommentList(int no) {
+		Connection conn = getConnection();
+		List<CommunityBoardComment> list = null;
+		
+		list = communityBoardDao.selectCommentList(conn,no);
+		
+		close(conn);
+		
+		return list;
+	}
+
 }
+
+
+
+
