@@ -1,8 +1,8 @@
 package com.kh.semi.board.model.service;
 
 import static com.kh.semi.common.JdbcTemplate.close;
-import static com.kh.semi.common.JdbcTemplate.getConnection;
 import static com.kh.semi.common.JdbcTemplate.commit;
+import static com.kh.semi.common.JdbcTemplate.getConnection;
 import static com.kh.semi.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
@@ -33,18 +33,26 @@ public class QuestionBoardService {
 		return totalContents;
 	}
 	
-
+	public QuestionBoard selectOneBoard(int no) {
+		Connection conn = getConnection();
+		
+		QuestionBoard questionBoard =  questionBoardDao.selectOneBoard(conn,no);
+		
+		close(conn);
+		
+		return questionBoard;
+	}
 	
-	public int insertQnaBoard(QuestionBoard questionBoard) {
+	public int insertBoard(QuestionBoard questionBoard) {
 		Connection conn = getConnection();
 		int result = 0;
 		
 		try {
 			// board테이블 행추가
-			result = questionBoardDao.insertQnaBoard(conn, questionBoard);
+			result = questionBoardDao.insertBoard(conn, questionBoard);
 			
 			// 생성된 board_no 가져오기
-			int questionBoardNo = questionBoardDao.selectLastQnaBoardNo(conn);
+			int questionBoardNo = questionBoardDao.selectLastBoardNo(conn);
 			System.out.println("questionBoardNo@service = " + questionBoardNo);
 			
 			// board객체에 set -> servlet에서 참조
@@ -54,7 +62,7 @@ public class QuestionBoardService {
 			Attachment attach = questionBoard.getAttach();
 			if(attach != null) {
 				attach.setBoardNo(questionBoardNo);
-				result = questionBoardDao.insertQnaAttachment(conn, attach);
+				result = questionBoardDao.insertAttachment(conn, attach);
 			}
 			commit(conn);
 		} catch(Exception e) {
@@ -65,62 +73,14 @@ public class QuestionBoardService {
 		close(conn);
 		return result;
 	}
-	
-	public QuestionBoard selectOneQnaBoard(int no) {
+
+	public List<QuestionBoard> ajaxMainQuestionBoardList() {
 		Connection conn = getConnection();
-		
-		QuestionBoard questionBoard =  questionBoardDao.selectOneQnaBoard(conn,no);
-		
+		List<QuestionBoard> list = questionBoardDao.ajaxMainQuestionBoardList(conn);
 		close(conn);
 		
-		return questionBoard;
+		return list;
 	}
 
-	public Attachment selectOneQnaAttachment(int no) {
-		Connection conn = getConnection();
-		Attachment attach = questionBoardDao.selectOneQnaAttachment(conn, no);;
-		
-		close(conn);
-		return attach;
-	}
 
-	public int updateQnaReadCount(int no) {
-		Connection conn = getConnection();
-		int result = 0;
-		result = questionBoardDao.updateQnaReadCount(conn, no);
-		
-		if(result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		
-		close(conn);
-		return result;
-	}
-
-	public List<QuestionBoardComment> selectQnaCommentList(int no) {
-		Connection conn = getConnection();
-		List<QuestionBoardComment> commentList = questionBoardDao.selectQnaCommentList(conn, no);
-		
-		close(conn);
-		return commentList;
-	}
-
-	public int insertQnaBoardComment(QuestionBoardComment bc) {
-		Connection conn = getConnection();
-		int result = 0;
-		
-		try {
-			result = questionBoardDao.insertQnaBoardComment(conn, bc);
-			
-			commit(conn);
-		} catch (Exception e) {
-			rollback(conn);
-			throw e;
-		} finally {
-			close(conn);
-		}
-		
-		return result;
-	}
 }
