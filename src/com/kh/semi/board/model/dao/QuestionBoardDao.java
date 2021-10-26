@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.board.model.vo.Attachment;
-import com.kh.semi.board.model.vo.CommunityBoard;
 import com.kh.semi.board.model.vo.QuestionBoard;
+import com.kh.semi.board.model.vo.QuestionBoardComment;
 
 public class QuestionBoardDao {
 	
@@ -103,7 +103,7 @@ public class QuestionBoardDao {
 		
 		return totalContents;
 	}
-	public QuestionBoard selectOneBoard(Connection conn, int no) {
+	public QuestionBoard selectOneQnaBoard(Connection conn, int no) {
 		QuestionBoard questionBoard = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -122,8 +122,18 @@ public class QuestionBoardDao {
 				questionBoard.setQna_title(rset.getString("qna_title"));
 				questionBoard.setQna_content(rset.getString("qna_content"));
 				questionBoard.setRegDate(rset.getDate("reg_date"));
-				questionBoard.setReadCount(rset.getInt("read_count"));
 				questionBoard.setAnswer_status(rset.getString("answer_status"));
+				questionBoard.setReadCount(rset.getInt("read_count"));
+				if(rset.getInt("attach_no") != 0) {
+					Attachment attach = new Attachment();
+					attach.setNo(rset.getInt("attach_no"));
+					attach.setBoardNo(rset.getInt("attach_no"));
+					attach.setOriginalFilename(rset.getString("original_filename"));
+					attach.setRenamedFilename(rset.getString("renamed_filename"));
+					attach.setRegDate(rset.getDate("attach_reg_date"));
+					
+					questionBoard.setAttach(attach);
+				}
 			}
 			
 			
@@ -138,9 +148,9 @@ public class QuestionBoardDao {
 		
 		return questionBoard;
 	}
-	public int insertBoard(Connection conn, QuestionBoard questionBoard) {
+	public int insertQnaBoard(Connection conn, QuestionBoard questionBoard) {
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertBoard");
+		String sql = prop.getProperty("insertQnaBoard");
 		int result = 0;
 		
 		try {
@@ -161,10 +171,10 @@ public class QuestionBoardDao {
 		return result;
 	}
 
-	public int selectLastBoardNo(Connection conn) {
+	public int selectLastQnaBoardNo(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectLastBoardNo");
+		String sql = prop.getProperty("selectLastQnaBoardNo");
 		int boardNo = 0;
 		
 		try {
@@ -184,9 +194,9 @@ public class QuestionBoardDao {
 		return boardNo;
 	}
 
-	public int insertAttachment(Connection conn, Attachment attach) {
+	public int insertQnaAttachment(Connection conn, Attachment attach) {
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAttachment");
+		String sql = prop.getProperty("insertQnaAttachment");
 		int result = 0;
 		
 		try {
@@ -207,6 +217,117 @@ public class QuestionBoardDao {
 		return result;
 	}
 
+	public Attachment selectOneQnaAttachment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Attachment attach = null;
+		String sql = prop.getProperty("selectOneQnaAttachment");
+		
+		try {
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				attach = new Attachment();
+				attach.setNo(rset.getInt("no"));
+				attach.setBoardNo(rset.getInt("qna_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attach;
+	}
+
+	public int updateQnaReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateQnaReadCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<QuestionBoardComment> selectQnaCommentList(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<QuestionBoardComment> commentList = new ArrayList<>();
+		String sql = prop.getProperty("selectQnaCommentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				QuestionBoardComment boardComment = new QuestionBoardComment();
+				
+				boardComment.setNo(rset.getInt("no"));
+				boardComment.setBoardNo(rset.getInt("qna_no"));
+				boardComment.setWriter(rset.getString("writer"));
+				boardComment.setContent(rset.getString("content"));
+				boardComment.setRegDate(rset.getDate("reg_date"));
+				boardComment.setCommentLevel(rset.getInt("comment_level"));
+				boardComment.setCommentRef(rset.getInt("comment_ref"));
+				
+				commentList.add(boardComment);
+			}
+			
+		} catch (SQLException e) {
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return commentList;
+	}
+
+	public int insertQnaBoardComment(Connection conn, QuestionBoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertQnaBoardComment");
+		System.out.println("QuestionBoardDao@sql = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bc.getBoardNo());
+			pstmt.setString(2, bc.getWriter());
+			pstmt.setString(3, bc.getContent());
+			pstmt.setInt(4, bc.getCommentLevel());
+			pstmt.setObject(5, bc.getCommentRef() == 0 ? null : bc.getCommentRef());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
 	public List<QuestionBoard> ajaxMainQuestionBoardList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -225,7 +346,7 @@ public class QuestionBoardDao {
 				
 				qnaBoard.setQna_title(rset.getString("qna_title"));
 				qnaBoard.setRegDate(rset.getDate("reg_date"));
-
+				
 				System.out.println("qnaBoard = " + qnaBoard);
 				
 				list.add(qnaBoard);
@@ -242,3 +363,4 @@ public class QuestionBoardDao {
 	}
 
 }
+	
