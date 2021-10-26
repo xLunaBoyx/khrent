@@ -9,6 +9,10 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
+    <%
+	Member member = (Member) request.getAttribute("member");
+	%>
+
 <div class="delete_wrap">
 	<div class="wrap clearfix">
 
@@ -16,27 +20,26 @@
 
 
 		<div class="pop_header">
-			<strong>회원탈퇴 <br />
-			<p class="deleteNotice">비밀번호 입력이 완료되면, 탈퇴가 진행됩니다.</p>
+			<strong>회원 비밀번호 변경 <br />
 			</strong>
 
 		</div>
 
 		<div class="pop_cont">
-			<form name="memberDelFrm" id="memberDelFrm" method="POST"
-				action="<%=request.getContextPath()%>/member/memberDelete">
+			<form name="memberUpdatePasswordFrm" id="memberUpdatePasswordFrm" method="POST"
+				action="<%=request.getContextPath()%>/admin/adminMemberUpdatePassword">
 
 				<div class="inputWrap">
 					<ul>
-						<input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>" />
+						<input type="hidden" name="memberId" value="<%= member.getMemberId() %>" />
 						<li>
-						<label for="name">현재 비밀번호</label> 
+						<label for="name">변경할 비밀번호</label> 
 						<input type="password" placeholder="" name="password" id="password" required>
 						</li>						
 					</ul>
 				</div>
 				<div class="pop_footer">
-					<input type="submit" value="탈퇴" class="deletePwdBtn" onclick="deleteMember();" />
+					<input type="submit" value="변경" class="deletePwdBtn" onclick="adminMemberUpdatePassword();" />
 				</div>
 			</form>
 		</div>
@@ -57,11 +60,21 @@ if(msg != null) session.removeAttribute("msg");
 alert("<%= msg %>");
 <% } %>
 
-
-function deleteMember(){
-		$(document.memberDelFrm).submit();
+function adminMemberUpdatePassword(){
+		$(document.memberUpdatePasswordFrm).submit();
 	}
 }
+
+$("[memberUpdatePasswordFrm]").submit(function() {
+	const $password = $("#password");
+	
+	if(/^[a-zA-Z0-9!@#$$%^&*()]{8,}/.test($password.val()) == false){
+		alert("유효한 비밀번호를 입력해주세요.");
+		$password.select();
+		return false;
+	}
+	return true;
+)};
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
