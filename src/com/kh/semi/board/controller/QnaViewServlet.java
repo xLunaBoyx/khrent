@@ -15,7 +15,7 @@ import com.kh.semi.board.model.vo.QuestionBoard;
  * Servlet implementation class QuestionDetailViewServlet
  */
 @WebServlet("/board/questionView")
-public class QuestionViewServlet extends HttpServlet {
+public class QnaViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	QuestionBoardService questionBoardService = new QuestionBoardService();
@@ -29,7 +29,7 @@ public class QuestionViewServlet extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
-		QuestionBoard questionBoard = questionBoardService.selectOneBoard(no);
+		QuestionBoard questionBoard = questionBoardService.selectOneQnaBoard(no);
 		System.out.println("questionBoard@servlet = "+ questionBoard);
 		
 		request.setAttribute("questionBoard", questionBoard);

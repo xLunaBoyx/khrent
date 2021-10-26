@@ -1,8 +1,8 @@
 package com.kh.semi.board.model.service;
 
 import static com.kh.semi.common.JdbcTemplate.close;
-import static com.kh.semi.common.JdbcTemplate.commit;
 import static com.kh.semi.common.JdbcTemplate.getConnection;
+import static com.kh.semi.common.JdbcTemplate.commit;
 import static com.kh.semi.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
@@ -32,26 +32,18 @@ public class QuestionBoardService {
 		return totalContents;
 	}
 	
-	public QuestionBoard selectOneBoard(int no) {
-		Connection conn = getConnection();
-		
-		QuestionBoard questionBoard =  questionBoardDao.selectOneBoard(conn,no);
-		
-		close(conn);
-		
-		return questionBoard;
-	}
+
 	
-	public int insertBoard(QuestionBoard questionBoard) {
+	public int insertQnaBoard(QuestionBoard questionBoard) {
 		Connection conn = getConnection();
 		int result = 0;
 		
 		try {
 			// board테이블 행추가
-			result = questionBoardDao.insertBoard(conn, questionBoard);
+			result = questionBoardDao.insertQnaBoard(conn, questionBoard);
 			
 			// 생성된 board_no 가져오기
-			int questionBoardNo = questionBoardDao.selectLastBoardNo(conn);
+			int questionBoardNo = questionBoardDao.selectLastQnaBoardNo(conn);
 			System.out.println("questionBoardNo@service = " + questionBoardNo);
 			
 			// board객체에 set -> servlet에서 참조
@@ -61,7 +53,7 @@ public class QuestionBoardService {
 			Attachment attach = questionBoard.getAttach();
 			if(attach != null) {
 				attach.setBoardNo(questionBoardNo);
-				result = questionBoardDao.insertAttachment(conn, attach);
+				result = questionBoardDao.insertQnaAttachment(conn, attach);
 			}
 			commit(conn);
 		} catch(Exception e) {
@@ -71,5 +63,23 @@ public class QuestionBoardService {
 		
 		close(conn);
 		return result;
+	}
+	
+	public QuestionBoard selectOneQnaBoard(int no) {
+		Connection conn = getConnection();
+		
+		QuestionBoard questionBoard =  questionBoardDao.selectOneQnaBoard(conn,no);
+		
+		close(conn);
+		
+		return questionBoard;
+	}
+
+	public Attachment selectOneQnaAttachment(int no) {
+		Connection conn = getConnection();
+		Attachment attach = questionBoardDao.selectOneQnaAttachment(conn, no);;
+		
+		close(conn);
+		return attach;
 	}
 }
