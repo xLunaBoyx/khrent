@@ -1,13 +1,17 @@
+<%@page import="com.kh.semi.board.model.vo.QuestionBoard"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/main.css" />
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/common/main.css" />
+<script src="<%=request.getContextPath()%>/js/jquery-3.6.0.js"></script>
 <!-- 문구, 날짜선택, 예약가능차량/차종 시작 -->
 
 <section class="visual_area" style="height: 700px;">
 	<div class="section section0" id="section0"
 		style="height: 700px; z-index: 1;">
-		
+
 		<div class="visual_cont">
 			<div class="wrap">
 				<div class="subs">
@@ -34,19 +38,21 @@
 						<!-- 내륙 -->
 						<div class="tab inland active">
 							<div class="search_form">
-								<form action="<%= request.getContextPath() %>/reservation/carSearch" name="carSearchFrm" class="clearfix">
+								<form
+									action="<%=request.getContextPath()%>/reservation/carSearch"
+									name="carSearchFrm" class="clearfix">
 									<div class="sdate">
 										<label for="">대여일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainSDate" name="mainSDate" autocomplete="off"
-												class="hasDatepicker" />
+											<input type="date" id="mainSDate" name="mainSDate"
+												autocomplete="off" class="hasDatepicker" />
 										</div>
 									</div>
 									<div class="edate">
 										<label for="">반납일시</label>
 										<div class="searchBox clearfix">
-											<input type="date" id="mainEDate" name="mainEDate" autocomplete="off"
-												class="hasDatepicker" />
+											<input type="date" id="mainEDate" name="mainEDate"
+												autocomplete="off" class="hasDatepicker" />
 										</div>
 									</div>
 								</form>
@@ -59,12 +65,10 @@
 
 					<div>
 						<ul class="data clearfix">
-							<li><strong>예약가능차량</strong> <span
-								class="counter" data-counter="16986"
-								style="font-weight: 900;">0</span></li>
-							<li><strong>예약가능차종</strong> <span
-								class="counter" data-counter="532"
-								style="font-weight: 900;">0</span></li>
+							<li><strong>예약가능차량</strong> <span class="counter"
+								data-counter="16986" style="font-weight: 900;">0</span></li>
+							<li><strong>예약가능차종</strong> <span class="counter"
+								data-counter="532" style="font-weight: 900;">0</span></li>
 						</ul>
 					</div>
 				</div>
@@ -77,97 +81,111 @@
 
 <!-- 게시판 시작 -->
 
-<section class="board_area">
+<section class="board_area" id="board_area">
 	<div class="wrap">
-		<h1 class="hidden">latest list</h1>
-		<div class="latestList l-ct">
-			<div class="latestBoard">
-				<a href="#" class="boardTitle">
-					<p>
-						<span class="titleKr">공지사항</span> <span class="titleEn">notice
-						</span>
-					</p> <i class="fas fa-plus"></i>
-				</a>
-				<div class="boardList">
-					<a href="#" class="listItem">
-						<p class="itemTitle">[공지] KH렌트 이용 변경사항 안내</p>
-						<p class="itemDate">2021.09.24</p>
-					</a>
-				</div>
-			</div>
-			<!-- .latestBoard -->
-
-
+		<h1 class="hidden" id="hidden">latest list</h1>
+		<div class="latestList l-ct" id="wrap">
+		
+		
+		
+		
+		<!-- .latestBoard -->
 			<div class="latestBoard">
 				<a href="<%= request.getContextPath() %>/board/questionList" class="boardTitle">
 					<p>
-						<span class="titleKr">대여문의</span> <span class="titleEn">travel
-							inquiry</span>
-					</p> <i class="fas fa-plus"></i>
+						<span class="titleKr">공지사항</span> <span class="titleEn">Notice</span>
+					</p> 
+					<i class="fas fa-plus"></i>
 				</a>
-				<div class="boardList">
-					<a href="#" class="listItem">
-						<p class="itemTitle">[문의] 예약확인 문자</p>
-						<p class="itemDate">2021.10.19</p>
-					</a>
+				<div class="boardList" id="boardList1">	
 				</div>
 			</div>
-			<!-- .latestBoard -->
-
-
+			
+			<div class="latestBoard">
+				<a href="<%= request.getContextPath() %>/board/questionList" class="boardTitle">
+					<p>
+						<span class="titleKr">대여문의</span> <span class="titleEn">Travel inquiry</span>
+					</p> <i class="fas fa-plus"></i>
+				</a>
+				<div class="boardList" id="boardList2">
+				</div>
+			</div>
+			
 			<div class="latestBoard">
 				<a href="#" class="boardTitle">
 					<p>
-						<span class="titleKr">대여후기</span> <span class="titleEn">travel
-							reviews</span>
+						<span class="titleKr">대여후기</span> <span class="titleEn">Travel Reviews</span>
 					</p> <i class="fas fa-plus"></i>
 				</a>
-				<div class="boardList">
-					<a href="#" class="listItem">
-						<p class="itemTitle">[후기] 짱입니다!</p>
-						<p class="itemDate">2021.10.17</p>
-					</a>
+				<div class="boardList" id="boardList3">
 				</div>
 			</div>
-			<!-- .latestBoard -->
+					
 		</div>
 	</div>
+
 </section>
 
 <!-- 게시판 끝 -->
 
 <script>
+	$(document).ready(function () {
+		$.ajax({
+			url:"<%=request.getContextPath()%>/board/ajaxMainNoticeBoard",
+			method: "GET",
+			success: function(data) {
+				$("#boardList1").html(data);
+			},
+			complete: function() {
+				console.log("complete")
+			}
+		});
+	});
+</script>
 
-<% 
-String msg = (String) session.getAttribute("msg");
-if(msg != null) session.removeAttribute("msg");
+<script>
+$(document).ready(function () {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/board/ajaxMainQuestionBoard",
+		method: "GET",
+		success: function(data) {
+			$("#boardList2").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
 
-%>
+<script>
 
-<% if(msg != null) { %>
+<%String msg = (String) session.getAttribute("msg");
+if (msg != null)
+	session.removeAttribute("msg");%>
+
+<%if (msg != null) {%>
 // 사용자 메세지 전달
-alert("<%= msg %>");
-<% } %>
-
+alert("<%=msg%>
+	");
+<%}%>
 	//	날짜 선택 현재 날짜 기준으로 나타내기
 	var now = new Date();
 	var tomorrow = new Date(now.setDate(now.getDate() + 1));
 	//console.log(new Date());
 	//console.log(tomorrow);
-	
+
 	document.getElementById('mainSDate').value = new Date().toISOString()
 			.substring(0, 10);
 	;
 	document.getElementById('mainEDate').value = tomorrow.toISOString()
 			.substring(0, 10);
 	;
-	
 
 	// 차량 검색 버튼 클릭시 폼 제출
 	function submitForm() {
 		document.carSearchFrm.submit();
-	}	
-	
+	}
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
