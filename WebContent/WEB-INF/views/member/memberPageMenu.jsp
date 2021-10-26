@@ -1,6 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% DecimalFormat fomatter = new DecimalFormat("###,###.##"); %>
     
     		<div class="lnb type03 borderNone clearfix">
 
@@ -16,6 +17,9 @@
 					<dd>
 						<a href="<%= request.getContextPath() %>/member/myPage">0</a>
 					</dd>
+					
+					<dt>내 마일리지</dt>
+					<dd style="text-decoration: underline; color: #2980b9;"><%= loginMember.getMileage() %></dd>
 				</dl>
 			</div>
 			

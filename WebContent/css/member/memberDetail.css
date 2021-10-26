@@ -37,13 +37,13 @@
 	margin-bottom: 0;
 }
 
-dl {
+.mypageDesc2 dl {
 	position: relative;
 	padding-left: 150px;
 	margin-bottom: 25px;
 }
 
-dl dt {
+.mypageDesc2 dl dt {
 	position: absolute;
 	left: 0;
 	top: 50%;
