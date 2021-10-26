@@ -56,6 +56,8 @@ $(document.boardUpdateFrm).submit(function (){
 	}
 	return true;
 });
+
+
 </script>
 <style>
 	.board-title {
