@@ -21,7 +21,7 @@
     </style>	
     
     <section id="memberList-container">
-        <h2>탈퇴 회원 목록 조회</h2>
+        <h2>탈퇴회원 목록조회</h2>
 	    <div id="search-container">
 	        검색타입 : 
 	        <select id="searchType">
@@ -76,9 +76,9 @@
             		</td>
             		<td><%= member.getPhone() %></td>
             		<td><%= member.getRegDate() %></td>
-            		<td><%= member.getLicense_type() %></td>
-            		<td><%= member.getLicense_no() %></td>
-            		<td><%= member.getIssue_date() %></td>
+            		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
+            		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
+            		<td><%= member.getIssue_date() == null ? "없음" : member.getIssue_date() %></td>
             	</tr>
 <%		
 	}

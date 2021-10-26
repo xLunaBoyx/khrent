@@ -65,15 +65,4 @@ $("[name=memberDelFrm]").submit(function() {
 	return true;
 )};
 
-
-function passwordValidate() {
-	var $password = $("#password");
-
-	if ($password.val() != <%= loginMember.getPassword() %>) {
-		alert("입력한 비밀번호가 일치하지 않습니다.");
-		return false;
-	}
-	return true;
-}
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
