@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.board.model.vo.Attachment;
-import com.kh.semi.board.model.vo.CommunityBoard;
 import com.kh.semi.board.model.vo.QuestionBoard;
+import com.kh.semi.board.model.vo.QuestionBoardComment;
 
 public class QuestionBoardDao {
 	
@@ -247,6 +247,83 @@ public class QuestionBoardDao {
 		}
 		
 		return attach;
+	}
+
+	public int updateReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateQnaReadCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<QuestionBoardComment> selectQnaCommentList(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<QuestionBoardComment> commentList = new ArrayList<>();
+		String sql = prop.getProperty("selectQnaCommentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				QuestionBoardComment boardComment = new QuestionBoardComment();
+				
+				boardComment.setNo(rset.getInt("no"));
+				boardComment.setBoardNo(rset.getInt("qna_no"));
+				boardComment.setWriter(rset.getString("writer"));
+				boardComment.setContent(rset.getString("content"));
+				boardComment.setRegDate(rset.getDate("reg_date"));
+				boardComment.setCommentLevel(rset.getInt("comment_level"));
+				boardComment.setCommentRef(rset.getInt("comment_ref"));
+				
+				commentList.add(boardComment);
+			}
+			
+		} catch (SQLException e) {
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return commentList;
+	}
+
+	public int insertQnaBoardComment(Connection conn, QuestionBoardComment bc) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertQnaBoardComment");
+		System.out.println("QuestionBoardDao@sql = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bc.getBoardNo());
+			pstmt.setString(2, bc.getWriter());
+			pstmt.setString(3, bc.getContent());
+			pstmt.setInt(4, bc.getCommentLevel());
+			pstmt.setObject(5, bc.getCommentRef() == 0 ? null : bc.getCommentRef());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	
