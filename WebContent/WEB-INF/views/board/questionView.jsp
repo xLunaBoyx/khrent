@@ -48,7 +48,15 @@
 			
 			<tr>
 				<td colspan = "4" id="questionViewContent">
-
+<%
+	if(attachment != null) {
+%>	
+				<br />
+				<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" height="400px;" alt="" />
+				<br />
+<%
+	}
+%>	
 				<%=questionBoard.getQna_content()%>
 				</td>
 			</tr>
@@ -91,7 +99,6 @@
 	.board-container {
 		display: flex;
 		flex-direction: column;
-		height: 1050px;
 		margin: 0 auto;
 		background-color: white;
 		align-items: center;
