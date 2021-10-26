@@ -155,7 +155,7 @@ public class CarInfo implements Serializable {
 		return "CarInfo [carInfoNo=" + carInfoNo + ", carName=" + carName + ", fuel=" + fuel + ", backCamera="
 				+ backCamera + ", navigation=" + navigation + ", blackbox=" + blackbox + ", smoke=" + smoke + ", maker="
 				+ maker + ", release=" + release + ", capacity=" + capacity + ", price=" + price + ", carSize="
-				+ carSize + ", img=" + img + "]";
+				+ carSize + ", img=" + img + "]\n";
 	}
 	
 	
