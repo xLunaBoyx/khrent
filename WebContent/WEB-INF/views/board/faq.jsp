@@ -27,7 +27,7 @@
 								<p class="tab-link">반납/연장</p>
 							</div>
 							<div class="tab" id="tab5">
-								<p class="tab-link">사고/보험</p>
+								<p class="tab-link">사고/보험ss</p>
 							</div>
 						</div>
 				<hr />
