@@ -244,6 +244,7 @@ ol, ul {
 .board_area {
 	position: relative;
 	margin-bottom: 75px;
+	height: 360px;
 }
 
 .wrap {
@@ -290,8 +291,8 @@ ol, ul {
 
 .latestBoard .boardList {
 	background-color: #fff;
-	height: 150px;
-	padding: 24px 20px 0;
+	height: 230px;
+	padding: 1px 20px 0;
 	border-radius: 5px;
 }
 
@@ -301,7 +302,6 @@ ol, ul {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	line-height: 22px;
 	margin-bottom: 14px;
 	text-decoration: none;
 }
