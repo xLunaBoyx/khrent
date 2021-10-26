@@ -115,7 +115,7 @@
 
 .lnb.type03>.boxArea dl {
 	float: left;
-	width: 50%;
+	margin-top: 0;
 }
 
 .lnb.type03>.boxArea dl dt {
@@ -124,10 +124,15 @@
 	line-height: 22px;
 }
 
+.lnb.type03>.boxArea dt {
+	font-weight: bolder;
+}
+
 .lnb.type03>.boxArea dl dd {
 	font-size: 15px;
 	line-height: 22px;
 	font-weight: bold;
+	margin-bottom: 15px;
 }
 
 dd {
@@ -136,6 +141,7 @@ dd {
 
 .lnb.type03>.boxArea dl dd a {
 	text-decoration: underline;
+	color: #2980b9;
 }
 
 hr.memTypeDivider {
