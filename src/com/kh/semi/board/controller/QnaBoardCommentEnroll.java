@@ -45,7 +45,7 @@ public class QnaBoardCommentEnroll extends HttpServlet {
 			msg = "댓글 등록 실패!";
 		
 		request.getSession().setAttribute("msg", msg);
-		String location = request.getContextPath()+"/board/questionView?no="+boardNo;
+		String location = request.getContextPath()+"/board/questionView?no=" + boardNo;
 		response.sendRedirect(location);
 	}
 
