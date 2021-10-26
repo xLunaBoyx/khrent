@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +11,8 @@
 	List<Member> list = (List<Member>) request.getAttribute("list");
 	String searchType = request.getParameter("searchType");
 	String searchKeyword = request.getParameter("searchKeyword");
+	
+	DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 	<!-- 관리자용 admin.css link -->
@@ -46,7 +49,7 @@
             		<td><%= member.getMemberName() %></td>
             		<td><%= "A".equals(member.getMemberRole()) ? "관리자" : "일반회원" %></td>
             		<td><%= member.getPhone() %></td>
-            		<td><%= member.getMileage() %></td>
+            		<td><%= fomatter.format(member.getMileage()) %></td>
             		<td><%= member.getRegDate() %></td>
             		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
             		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>

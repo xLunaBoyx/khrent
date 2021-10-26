@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,6 +16,7 @@
 
 <%
 	Member newMember = (Member) request.getAttribute("member");
+	DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 	<!-- 관리자용 admin.css link -->
@@ -62,7 +64,7 @@
             			</select>
             		</td>
             		<td><%= member.getPhone() %></td>
-            		<td><%= member.getMileage() %></td>
+            		<td><%= fomatter.format(member.getMileage()) %></td>
             		<td><%= member.getRegDate() %></td>
             		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
             		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
