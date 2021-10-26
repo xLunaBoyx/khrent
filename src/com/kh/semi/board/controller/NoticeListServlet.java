@@ -17,7 +17,7 @@ import com.kh.semi.common.MvcUtils;
  * Servlet implementation class NoticeViewServlet
  */
 @WebServlet("/board/notice")
-public class NoticeViewServlet extends HttpServlet {
+public class NoticeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	NoticeBoardService noticeBoardService = new NoticeBoardService();

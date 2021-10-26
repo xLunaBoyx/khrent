@@ -26,17 +26,18 @@ public class CarSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 사용자입력값 처리
+		// 사용자입력값 처리 - 날짜검색에서 받아온 예약시작일과 종료일
 		String startDate = request.getParameter("mainSDate");
 		String endDate = request.getParameter("mainEDate");
+//		System.out.println(startDate);
+//		System.out.println(endDate);
 		
-		System.out.println(startDate);
-		System.out.println(endDate);
-		
+		// 업무로직 - 받아온 시작일부터 종료일까지 대여가능한 차량을 조회  
 		List<CarInfo> list = reservationService.searchCar(startDate, endDate);
 		System.out.println(list);
 		
 		// view단 연결
+		request.setAttribute("list", list);
 		request
 			.getRequestDispatcher("/WEB-INF/views/reservation/carSearch.jsp")
 			.forward(request, response);
