@@ -89,5 +89,85 @@ public class NoticeBoardDao {
 		
 		return totalContents;
 	}
+	
+	public NoticeBoard selectOneBoard(Connection conn, int no) {
+		NoticeBoard noticeBoard = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneNoticeBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				noticeBoard = new NoticeBoard();
+				
+				noticeBoard.setNoticeNo(rset.getInt("notice_no"));
+				noticeBoard.setNoticeTitle(rset.getString("notice_title"));
+				noticeBoard.setNoticeContent(rset.getString("notice_content"));
+				noticeBoard.setRegDate(rset.getDate("reg_date"));
+				noticeBoard.setReadCount(rset.getInt("read_count"));
+		
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return noticeBoard;
+	}
+
+	public int insertNoticeBoard(Connection conn, NoticeBoard noticeBoard) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNoticeBoard");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeBoard.getNoticeTitle());
+			pstmt.setString(2, noticeBoard.getNoticeContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시글 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectLastNoticeBoardNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLastNoticeBoardNo");
+		int boardNo = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				boardNo = rset.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시물번호 조회 오류", e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return boardNo;
+	}
 }
 
