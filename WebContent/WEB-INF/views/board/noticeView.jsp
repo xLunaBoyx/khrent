@@ -52,7 +52,7 @@
 	<input type="hidden" name="no" value="<%= noticeBoard.getNoticeNo() %>" />
 </form>
 <script>
-const updateNoticeBoard = 
+const updateBoard = 
 () => location.href = "<%= request.getContextPath() %>/board/noticeBoardUpdate?no=<%= noticeBoard.getNoticeNo() %>";
 /**
  * 삭제할 때 저장된 첨부파일이 있다면, 파일삭제!

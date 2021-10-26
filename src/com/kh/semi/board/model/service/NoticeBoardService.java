@@ -82,6 +82,22 @@ public class NoticeBoardService {
 		return result;
 	}
 	
+	public int updateNoticeBoard(NoticeBoard noticeBoard) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1.게시글 수정 update board문
+			result = noticeBoardDao.updateNoticeBoard(conn, noticeBoard);
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
 	
 	
 }
