@@ -22,6 +22,42 @@
     
     <section id="memberList-container">
         <h2>탈퇴회원 목록조회</h2>
+	        
+        <table id="tbl-member">
+            <thead>
+                <tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>회원권한</th>
+					<th>전화번호</th>
+					<th>마일리지</th>
+					<th>가입날짜</th>
+					<th>면허종류</th>
+					<th>면허번호</th>
+					<th>면허발급일</th>
+                </tr>
+            </thead>
+            <tbody>
+<%
+	for(Member member : list){
+%>
+				<tr>
+            		<td><%= member.getMemberId() %></td>
+            		<td><%= member.getMemberName() %></td>
+            		<td><%= "A".equals(member.getMemberRole()) ? "관리자" : "일반회원" %></td>
+            		<td><%= member.getPhone() %></td>
+            		<td><%= member.getMileage() %></td>
+            		<td><%= member.getRegDate() %></td>
+            		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
+            		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
+            		<td><%= member.getIssue_date() == null ? "없음" : member.getIssue_date() %></td>
+            	</tr>
+<%		
+	}
+%>            
+            </tbody>
+        </table>
+        
 	    <div id="search-container">
 	        검색타입 : 
 	        <select id="searchType">
@@ -42,53 +78,10 @@
 	                <button type="submit" class="memberSearchBtn">검색</button>			
 	            </form>	
 	        </div>
-	    </div>
-	        
-        <table id="tbl-member">
-            <thead>
-                <tr>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>회원권한</th>
-					<th>전화번호</th>
-					<th>가입날짜</th>
-					<th>면허종류</th>
-					<th>면허번호</th>
-					<th>면허발급일</th>
-                </tr>
-            </thead>
-            <tbody>
-<%
-	for(Member member : list){
-%>
-				<tr>
-            		<td><%= member.getMemberId() %></td>
-            		<td><%= member.getMemberName() %></td>
-            		<td>
-            			<select class="member-role" data-member-id="<%= member.getMemberId() %>">
-            				<option 
-            					value="<%= MemberService.MEMBER_ROLE %>" 
-            					<%= MemberService.MEMBER_ROLE.equals(member.getMemberRole()) ? "selected" : "" %>>일반</option>
-            				<option 
-            					value="<%= MemberService.ADMIN_ROLE %>"
-            					<%= MemberService.ADMIN_ROLE.equals(member.getMemberRole()) ? "selected" : "" %>>관리자</option>
-            			</select>
-            		</td>
-            		<td><%= member.getPhone() %></td>
-            		<td><%= member.getRegDate() %></td>
-            		<td><%= member.getLicense_type() == null ? "없음" : member.getLicense_type() %></td>
-            		<td><%= member.getLicense_no() == null ? "없음" : member.getLicense_no() %></td>
-            		<td><%= member.getIssue_date() == null ? "없음" : member.getIssue_date() %></td>
-            	</tr>
-<%		
-	}
-%>            
-            </tbody>
-        </table>
-        
         <div id="pageBar">
         	<%= request.getAttribute("pagebar") %>
         </div>
+	    </div>
     	    
     </section>
     <form 
