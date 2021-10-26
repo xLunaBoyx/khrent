@@ -13,9 +13,18 @@
 %>
 <div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+
+
 	<div class="board-container">
 	
 	<h1 class="board-title">공지사항</h1>
+<% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>	
+	<input 
+		type="button" 
+		value="글쓰기" 
+		id="btn-add" 
+		onclick="location.href='<%= request.getContextPath() %>/board/noticeBoardForm';" />
+<% } %>
 	<!-- <div class="board-box"> -->
 		<table id="tbl-board">
 			<thead>
@@ -64,9 +73,11 @@
 		background-color: white;
 		align-items: center;
 	}
+	
 	table {
 		width: 1057px;
 		border-collapse: collapse;
+		
 	}
 	th {
 	    border-top: 1px solid #989898;
@@ -77,7 +88,11 @@
 		font-weight: 500;
 		line-height: 66px;
 		height: 66px;
-	    
+	}
+	#btn-add {
+		width: 100px;
+    	background-color: #d1d1d1;
+    	margin: 10px 0px 10px 938px;
 	}
 	td {
 	    border-bottom: 1px solid #e3e3e3;
