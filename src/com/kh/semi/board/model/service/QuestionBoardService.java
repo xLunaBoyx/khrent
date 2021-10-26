@@ -11,7 +11,6 @@ import java.util.List;
 import com.kh.semi.board.model.dao.QuestionBoardDao;
 import com.kh.semi.board.model.vo.Attachment;
 import com.kh.semi.board.model.vo.QuestionBoard;
-import com.kh.semi.board.model.vo.QuestionBoardComment;
 
 public class QuestionBoardService {
 
@@ -82,45 +81,5 @@ public class QuestionBoardService {
 		
 		close(conn);
 		return attach;
-	}
-
-	public int updateReadCount(int no) {
-		Connection conn = getConnection();
-		int result = 0;
-		result = questionBoardDao.updateReadCount(conn, no);
-		
-		if(result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		
-		close(conn);
-		return result;
-	}
-
-	public List<QuestionBoardComment> selectQnaCommentList(int no) {
-		Connection conn = getConnection();
-		List<QuestionBoardComment> commentList = questionBoardDao.selectQnaCommentList(conn, no);
-		
-		close(conn);
-		return commentList;
-	}
-
-	public int insertQnaBoardComment(QuestionBoardComment bc) {
-		Connection conn = getConnection();
-		int result = 0;
-		
-		try {
-			result = questionBoardDao.insertQnaBoardComment(conn, bc);
-			
-			commit(conn);
-		} catch (Exception e) {
-			rollback(conn);
-			throw e;
-		} finally {
-			close(conn);
-		}
-		
-		return result;
 	}
 }
