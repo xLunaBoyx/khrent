@@ -144,4 +144,15 @@ public class MemberService {
 		return result;
 	}
 
+	public int adminMemberUpdatePassword(Member member) {
+		Connection conn = getConnection();
+		int result = memberDao.adminMemberUpdatePassword(conn, member);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }
