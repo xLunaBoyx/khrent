@@ -59,7 +59,7 @@
 
 <% if (loginMember == null) { %>
         <li class="signUp"><a href="<%= request.getContextPath() %>/member/enroll">회원가입</a></li>
-        <li class="login"><a href="<%= request.getContextPath() %>/member/login">로그인</a></li>
+        <li class="login"><a href="<%= request.getContextPath() %>/member/login" id="login">로그인</a></li>
 <% } else { %>
         <li class="signUp"><a href="<%= request.getContextPath() %>/member/logout">로그아웃</a></li>
         <li class="login"><a href="<%= request.getContextPath() %>/member/myPage">마이페이지</a></li>

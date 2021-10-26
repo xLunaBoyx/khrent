@@ -165,4 +165,45 @@ public class CommunityBoardDao {
 		return result;
 	}
 
+	public List<CommunityBoardComment> selectCommentList(Connection conn, int no) {
+		List<CommunityBoardComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCommentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				CommunityBoardComment cb = new CommunityBoardComment();
+				cb.setNo(rset.getInt("no"));
+				cb.setCommentLevel(rset.getInt("comment_level"));
+				cb.setWriter(rset.getString("writer"));
+				cb.setContent(rset.getString("content"));
+				cb.setBoardNo(rset.getInt("community_no"));
+				cb.setCommentRef(rset.getInt("comment_ref"));
+				cb.setRegDate(rset.getDate("reg_date"));
+				list.add(cb);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}		
+		
+		return list;
+	}
+
 }
+
+
+
+
+
+

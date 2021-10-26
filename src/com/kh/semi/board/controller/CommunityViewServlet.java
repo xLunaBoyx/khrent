@@ -1,14 +1,18 @@
 package com.kh.semi.board.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.kh.semi.board.model.service.CommunityBoardService;
 import com.kh.semi.board.model.vo.CommunityBoard;
+import com.kh.semi.board.model.vo.CommunityBoardComment;
 
 /**
  * Servlet implementation class CommunityDetailViewServlet
@@ -32,8 +36,14 @@ public class CommunityViewServlet extends HttpServlet {
 		CommunityBoard communityBoard = boardService.selectOneBoard(no);
 		System.out.println("selectOneBoard@servlet = "+ communityBoard);
 		
+		// 댓글목록 가져오기
+		List<CommunityBoardComment> commentList = boardService.selectCommentList(no);
+		System.out.println("commentList@servlet = " + commentList);
+		
+		request.setAttribute("list", commentList);
 		request.setAttribute("communityBoard", communityBoard);
 		request.getRequestDispatcher("/WEB-INF/views/board/communityView.jsp").forward(request, response);
+				
 	}
 
 	/**

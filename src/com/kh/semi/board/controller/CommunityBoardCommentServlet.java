@@ -31,7 +31,7 @@ public class CommunityBoardCommentServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		
 		
-		CommunityBoardComment communityBoardComment = new CommunityBoardComment(0,commentLevel,writer,content,boardNo,commentLevel,null);		
+		CommunityBoardComment communityBoardComment = new CommunityBoardComment(0,commentLevel,writer,content,boardNo,commentRef,null);		
 		System.out.println("communityBoardComment = " +communityBoardComment);
 		//업무로직
 		int result = boardService.insertCommunityComment(communityBoardComment);

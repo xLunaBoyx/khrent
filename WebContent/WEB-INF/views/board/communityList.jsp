@@ -11,6 +11,11 @@
 %>
 	<div class="board-container">
 	<h1 class="board-title">커뮤니티</h1>
+	<% if(loginMember != null) { %>
+	<div id="writing-container" >
+		<input type="button" value="글쓰기" id="writing"/>
+	</div>
+	<% } %>
 	<!-- <div class="board-box"> -->
 		<table id="tbl-board">
 			<thead>
@@ -117,5 +122,24 @@
 	    line-height: 27px;
 	    vertical-align: middle;
 	}
+	
+	/* 글쓰기 스타일  */
+	#writing-container{
+		width:1200px;
+		text-align: end;
+		margin-bottom: 15px;
+	}
+	#writing{
+		width: 111px;
+   		height: 40px;
+    	line-height: 40px;
+    	background-color: #2fad0c;
+    	border: 1px solid #ff9826;
+	    text-align: center;
+	    color: #fff !important;
+	    font-size: 13px;
+	}
+	
+	
 	</style>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
