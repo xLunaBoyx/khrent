@@ -82,16 +82,17 @@ public class QnaBoardEnrollServlet extends HttpServlet {
 			Attachment attach = new Attachment();
 			attach.setOriginalFilename(originalFilename);
 			attach.setRenamedFilename(renamedFilename);
+			System.out.println("QnaBoardEnrollServlet@attach = " + attach);
 			questionBoard.setAttach(attach);
 		}
 		
-		System.out.println("questionBoard@servlet = " + questionBoard);
+		System.out.println("QnaBoardEnrollServlet@servlet = " + questionBoard);
 		
 		// 2. 업무로직
-		int result = questionBoardService.insertBoard(questionBoard);
+		int result = questionBoardService.insertQnaBoard(questionBoard);
 //		String msg = result > 0 ? "게시물 등록 성공!" : "게시물 등록 실패!";
 //		session.setAttribute("msg", msg);
-		System.out.println("board@servlet = " + questionBoard);
+		System.out.println("QnaBoardEnrollServlet@servlet = " + questionBoard);
 		
 		// 3. 응답처리 : redirect
 		HttpSession session = request.getSession();

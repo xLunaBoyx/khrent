@@ -17,7 +17,7 @@ import com.kh.semi.common.MvcUtils;
  * Servlet implementation class CommunityServlet
  */
 @WebServlet("/board/questionList")
-public class QuestionListServlet extends HttpServlet {
+public class QnaBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	QuestionBoardService questionBoardService = new QuestionBoardService();

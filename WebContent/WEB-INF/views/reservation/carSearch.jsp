@@ -1,3 +1,5 @@
+<%@page import="com.kh.semi.reservation.model.vo.CarInfo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -6,8 +8,51 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
+<%
+	List<CarInfo> list = (List<CarInfo>) request.getAttribute("list");
+%>
+	
+	<section class="car-container">
+	
+<%
+	if(list.size() == 0) {
+%>
+	
+	<h2>조건에 맞는 차량이 없습니다.</h2>
+	
+<%
+	}
+	else {
+%>
+	
+	<h2>대여 가능한 차량 목록</h2>
+	<ul>
+	
+<%
+		for(CarInfo car : list) {
+%>	
 
-<div class="search_wrap">
+	<li>
+		<div class="carBox">
+		
+		</div>
+	</li>
+		
+	
+	
+<%
+		}
+%>
+
+	</ul>
+	
+<%
+	}
+%>	
+	</section>
+
+
+<!-- <div class="search_wrap">
 		<div class="wrap">
 			<div class="search_wrap clearfix">
 				<div class="searchList_wrap">
@@ -78,6 +123,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

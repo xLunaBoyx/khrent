@@ -160,7 +160,7 @@ $(document.communityBoardEnroll).submit((e) => {
 
 const loginAlert = () => {
 	alert("로그인 후 이용 바랍니다.");
-	$("#login").get(0).click();
+	$("#login").click();
 }
 
 

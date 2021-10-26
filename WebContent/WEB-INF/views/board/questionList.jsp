@@ -10,7 +10,7 @@
 <%
 	List<QuestionBoard> list = (List<QuestionBoard>) request.getAttribute("list");
 %>
-<div class="wrap clearfix" style="width: 70%; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <% if(loginMember != null){ %>	
 	<input 
@@ -26,10 +26,10 @@
 		<table id="tbl-board">
 			<thead>
 				<tr>
-					<th style="width:30px;">번호</th>
+					<th style="width: 30px;">번호</th>
 					<th>제목</th>
-					<th>답변상태</th>
-					<th>작성자</th>
+					<th style="width: 70px;">답변상태</th>
+					<th style="width: 70px;">작성자</th>
 					<th>작성일</th>
 					<th>첨부파일</th>
 					<th>조회수</th>
