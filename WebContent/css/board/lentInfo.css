@@ -134,13 +134,13 @@ ul.guideInfo>li:not(:nth-child(1))>span {
 	letter-spacing: -1px;
 	margin-top: 80px;
 	width: 72px;
-	justify-content: space-evenly;
 	text-align: center;
 }
 
 .guideStep {
 	display: flex;
 	justify-content: center;
+	justify-content: space-evenly;
 	align-items: flex-start;
 }
 
