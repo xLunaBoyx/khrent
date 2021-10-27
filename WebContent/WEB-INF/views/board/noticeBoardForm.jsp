@@ -69,7 +69,7 @@ $(() => {
 	.board-container {
 		display: flex;
 		flex-direction: column;
-		height: auto;
+		height: 1070px;
 		margin: 0 auto;
 		background-color: white;
 		align-items: center;
