@@ -5,7 +5,6 @@
  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.js"></script>
 
 <div action="<%=request.getContextPath()%>/board/termsAndConditions"></div>
 
