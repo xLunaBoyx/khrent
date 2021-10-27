@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi.common.MvcUtils;
 import com.kh.semi.board.model.service.QuestionBoardService;
 import com.kh.semi.board.model.vo.QuestionBoard;
 import com.kh.semi.board.model.vo.QuestionBoardComment;
+import com.kh.semi.common.MvcUtils;
+import com.kh.semi.member.model.service.MemberService;
+import com.kh.semi.member.model.vo.Member;
 
 /**
  * Servlet implementation class QuestionDetailViewServlet
@@ -22,7 +24,8 @@ import com.kh.semi.board.model.vo.QuestionBoardComment;
 public class QnaBoardViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	QuestionBoardService questionBoardService = new QuestionBoardService();
+	private QuestionBoardService questionBoardService = new QuestionBoardService();
+	private MemberService memberService = new MemberService();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +36,7 @@ public class QnaBoardViewServlet extends HttpServlet {
 		try {
 			// 1. 사용자 입력값 처리
 			int no = Integer.parseInt(request.getParameter("no"));
-			System.out.println("no@BoardViewServlet = " + no);
+			System.out.println("no@QnaBoardViewServlet = " + no);
 			
 			
 			// 2. 업무로직 : 
@@ -64,7 +67,7 @@ public class QnaBoardViewServlet extends HttpServlet {
 				// 게시글 Cookie
 				Cookie cookie = new Cookie("board", boardValue + "|" + no + "|");   // 그냥 no만 적으면 혼동된다고? 하시면서 패딩(|)을 넣었다고 하셨다.
 				cookie.setMaxAge(354 * 24 * 60 * 60);   // 1년
-				cookie.setPath(request.getContextPath() + "/board/boardView");   // 해당 요청시에만 이 cookie를 전송하겠다는 뜻
+				cookie.setPath(request.getContextPath() + "/board/questionView");   // 해당 요청시에만 이 cookie를 전송하겠다는 뜻
 				response.addCookie(cookie);
 				
 				
@@ -72,6 +75,34 @@ public class QnaBoardViewServlet extends HttpServlet {
 				int result = questionBoardService.updateQnaReadCount(no);
 			}
 		
+			
+			// 댓글목록 가져오기 
+			List<QuestionBoardComment> commentList = questionBoardService.selectQnaCommentList(no);
+			System.out.println("commentList@QnaBoardViewServlet = " + commentList);
+			
+			
+			// 댓글 작성자 중에 관리자가 있으면 이 글의 답변여부를 Y로 업데이트
+			// 모든 댓글의 작성자를 가져와서 회원권한이 어드민이면 체크용 변수를 y로 변경
+			String isThereAdmin = "N";
+			for(QuestionBoardComment bc : commentList) {
+				String writer = bc.getWriter();
+				Member member = memberService.selectOneMember(writer);
+				if(MemberService.ADMIN_ROLE.equals(member.getMemberRole())) {
+					isThereAdmin =  "Y";
+				}
+			}
+			
+//			int result2 = 0;
+//			// 체크용 변수가 y이면 관리자 댓글이 있다는 뜻이므로 글의 답변여부를 Y로 업데이트
+//			if("y".equals(isThereAdmin)) 
+//				result2 = questionBoardService.updateQnaAnswerStatus("Y");
+//			
+//			// 체크용 변수가 n이면 답변여부를 N으로 업데이트
+//			else
+//				result2 = questionBoardService.updateQnaAnswerStatus("Y");
+			int result2 = questionBoardService.updateQnaAnswerStatus(isThereAdmin, no);
+			
+			
 			// 전달된 no를 이용해서 게시글 불러오기
 			QuestionBoard questionBoard = questionBoardService.selectOneQnaBoard(no);
 			System.out.println("questionBoard@servlet = "+ questionBoard);
@@ -86,11 +117,6 @@ public class QnaBoardViewServlet extends HttpServlet {
 			content = MvcUtils.convertLineFeedToBr(content);
 			
 			questionBoard.setQna_content(content);
-			
-			
-			// 댓글목록 가져오기 
-			List<QuestionBoardComment> commentList = questionBoardService.selectQnaCommentList(no);
-			System.out.println("commentList@QnaBoardViewServlet = " + commentList);
 			
 			// 3. view단 처리 위임
 			request.setAttribute("questionBoard", questionBoard);

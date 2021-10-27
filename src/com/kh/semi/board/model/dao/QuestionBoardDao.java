@@ -455,5 +455,32 @@ public class QuestionBoardDao {
 		return result;
 	}
 
+	public int updateQnaAnswerStatus(Connection conn, String string, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateQnaAnswerStatus");
+		System.out.println(sql);
+		System.out.println(string + "," + no);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setString(1, string);
+			pstmt.setInt(2, no);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
 	
