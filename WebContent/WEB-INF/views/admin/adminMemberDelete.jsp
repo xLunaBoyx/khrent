@@ -30,7 +30,7 @@
 						<div class="adminMemberUpdateBtn">
 					<span class="input-text-outer-wrap__right-section"> 
 						<input type="submit" value="삭제" class="btn-cp-modify">
-						<input type="reset" value="취소" class="btn-cp-modify">
+						<input type="button" value="취소" class="btn-cp-modify" onclick="goBack()">
 					</span>
 						</div>
 					</form>
@@ -38,6 +38,10 @@
 				</div>
 				
 <script>
+
+function goBack() {
+	window.history.back();
+}
 
 <% 
 String msg = (String) session.getAttribute("msg");
