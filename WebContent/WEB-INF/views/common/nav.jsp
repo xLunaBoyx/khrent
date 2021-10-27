@@ -22,30 +22,6 @@
 				<i class="kit-search-time"></i> 
 			</p>
 		</div>
-
-		<div class="searchBorder">
-			<hr>
-		</div>
-		<div class="searchLine">
-			<p class="searchContent searchLabel">차&nbsp;&nbsp;&nbsp;종</p>
-			<div class="searchContent searchCar">
-				<label class="searchRadio active"> <input type="radio" value="" name="carSelect" checked="checked"> 
-				<span>전체</span>
-				</label> <label class="searchRadio"> <input type="radio" value="경차" name="carSelect">
-					<span>경차</span>
-				</label> <label class="searchRadio"> <input type="radio" value="소형/준중형" name="carSelect"> 
-					<span>소형/준중형</span>
-				</label> <label class="searchRadio"> <input type="radio" value="중형" name="carSelect">
-					<span>중형</span>
-				</label> <label class="searchRadio"> <input type="radio" value="SUV" name="carSelect">
-					<span>SUV</span>
-				</label> <label class="searchRadio"> <input type="radio" value="고급" name="carSelect">
-					<span>고급</span>
-				</label> <label class="searchRadio"> <input type="radio" value="승합" name="carSelect">
-					<span>승합</span>
-				</label>
-			</div>
-		</div>
 	</div>
 	<button type="button" class="searchButton">검색하기</button>
 </section>
