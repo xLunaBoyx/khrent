@@ -55,7 +55,7 @@ public class NoticeViewServlet extends HttpServlet {
 			}
 		}
 		System.out.printf("hasRead = %b, noticeBoardValue = %s%n", hasRead, noticeBoardValue);
-		
+		int result = 2;
 		// 게시글을 처음 읽는 경우
 		if(!hasRead) {
 			// 게시글 Cookie
@@ -65,8 +65,9 @@ public class NoticeViewServlet extends HttpServlet {
 			response.addCookie(cookie);
 			
 			//조회수 증가
-			int result = noticeBoardService.updateNoticeBoardReadCount(no);			
+			result = noticeBoardService.updateNoticeBoardReadCount(no);			
 		}
+		System.out.println("조회수 등록 여부 : " + result);
 		
 		// 게시글 하나 가져오기
 		NoticeBoard noticeBoard = noticeBoardService.selectOneBoard(no);
