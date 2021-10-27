@@ -324,7 +324,7 @@ AIG 손해보험<br />
 .board-container {
 		display: flex;
 		flex-direction: column;
-		height: 1000px;
+		height: auto;
 		margin: 0 auto;
 		background-color: white;
 		align-items: center;

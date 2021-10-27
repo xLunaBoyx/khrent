@@ -1099,7 +1099,7 @@ d), 이메일(E-mail)정보를 보관하며, 로그기록, 접속아이피(IP)�
 .board-container {
 		display: flex;
 		flex-direction: column;
-		height: 1000px;
+		height: auto;
 		margin: 0 auto;
 		background-color: white;
 		align-items: center;
