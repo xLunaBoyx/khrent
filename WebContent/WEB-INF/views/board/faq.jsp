@@ -56,14 +56,14 @@
 운전면허증 정보 전화 확인: 본인 명의 휴대폰으로 국번없이 '182'로 연락하여 확인, 평일 09:00~18:00, 면허종류/면허번호/적성검사만료일/면허증발급일</p>
 							        </li>
 							        <li class="article" id="a3">
-							            <p class="q"><a href="#a3">Q. 내가 예약하고 대여한 차량을 다른 사람이운전해도 되나요?</a></p>
+							            <p class="q"><a href="#a3">Q. 내가 예약하고 대여한 차량을 다른 사람이 운전해도 되나요?</a></p>
 							            <p class="a">KH렌트는 예약하신 회원님이 제 1운전자가 되어야 합니다.<br />
 또한, 다른 분이 운전하신다면 제 2운전자로 등록하시고 대여업체에 운전면허증을 함께 제시하여야 보험 혜택을 받을 수 있습니다.<br />
 <br />
 만약 제2운전자 등록하지 않거나 대여업체에 통보하지 않은 상태에서 다른 사람이 운전을 하다 사고가 나면 보험 적용을 받을수 없으며, 사고처리의 제반비용 전체를 대여 계약 당사자(제1운전자) 개인이 부담하셔야 합니다.</p>
 							        </li>
 							         <li class="article" id="a4">
-							            <p class="q"><a href="#a4">Q. 렌트 시 예약자 본인이아닌 대리인의 인수가 가능한가요?</a></p>
+							            <p class="q"><a href="#a4">Q. 렌트 시 예약자 본인이 아닌 대리인의 인수가 가능한가요?</a></p>
 							            <p class="a">렌트카는 예약자 본인확인을 하여 직접 인수하는 것을 원칙으로 하며, 대리인이 방문 시에는 원칙적으로 차량인수가 불가능합니다.<br />
 <br />
 대여 전에 해당 대여업체에 대리인 정보를 제공하고 대여업체에서 추가 고객정보를 확인하고 제2운전자 등록을 완료한 경우는 가능하십니다.</p>
@@ -197,23 +197,6 @@
 							            <p class="q"><a href="#a1">Q. 탈퇴는 어떻게 하나요?</a></p>
 							            <p class="a">회원탈퇴는 PC에서만 진행이 가능하오며, 로그인 후 '마이페이지' - '내정보'에서 회원 탈퇴 가능합니다.</p>
 							        </li>
-							        <li class="article" id="a2">
-							            <p class="q"><a href="#a2">Q. 회원가입시 법인폰 본인인증이 되지 않습니다.</a></p>
-							            <p class="a">법인명의의 휴대폰의 경우, 해당 통신사의 법인폰 본인인증 서비스를 가입하신 후에 가능합니다. <br />
-<br />
-주요 통신사의 법인폰 본인인증 서비스에 대한 안내는 아래의 페이지를 참고해주시기 바랍니다. <br />
-<br />
-KT 법인명의 본인확인서비스<br />
-- https://biz.kt.com/html/product/bz_product_com.html?pc=3CDBG0<br />
-<br />
-SKT 법인명의 본인확인서비스<br />
-- http://b2b.tworld.co.kr/cs/counsel/certServiceInfo.bc<br />
-<br />
-LGT 법인명의 본인확인서비스<br />
-- http://www.uplus.co.kr/css/pord/cosv/cosv/RetrievePsMbSDmsgInfo.hpi?catgCd=50901&prodCdKey=Z100001128<br />
-<br />
-법인폰 회원가입이 어려우신 분들은, KH렌트 고객센터로 문의 주시면, 예약을 도와드리겠습니다.<br /></p>
-							        </li>
 							        <li class="article" id="a3">
 							            <p class="q"><a href="#a3">Q. 회원가입을 하지 않고 서비스 이용하는 방법은 없나요?</a></p>
 							            <p class="a">저희 KH렌트는 현재 비회원 예약이 가능하지 않습니다. <br /> 감사합니다. <br /></p>
@@ -221,13 +204,6 @@ LGT 법인명의 본인확인서비스<br />
 							         <li class="article" id="a4">
 							            <p class="q"><a href="#a4">Q. 연회비가 있나요?</a></p>
 							            <p class="a">KH렌트의 회원가입비 및 연회비는 무료입니다.</p>
-							        </li>
-							        <li class="article" id="a3">
-							            <p class="q"><a href="#a3"></a></p>
-							            <p class="a"></p>
-							        </li><li class="article" id="a3">
-							            <p class="q"></p>
-							            <p class="a"></p>
 							        </li>
 							        
 							</div>

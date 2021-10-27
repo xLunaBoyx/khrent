@@ -23,7 +23,7 @@
 
 div.tabBtn.clearfix {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 
 div.tab {
@@ -33,6 +33,11 @@ div.tab {
 .tab-link {
 	font-size: 18px;
 	color: #4889f6;
+	font-weight: bolder;
+}
+
+.tab-link:hover {
+	cursor: pointer;
 }
 
 .content .terms .tabArea .tabBtn .tab {
