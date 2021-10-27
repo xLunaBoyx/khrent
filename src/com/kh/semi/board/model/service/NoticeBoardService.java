@@ -107,6 +107,14 @@ public class NoticeBoardService {
 		return list;
 	}
 	
+	public int updateNoticeBoardReadCount(int no) {
+		Connection conn = getConnection();
+		int result = noticeBoardDao.updateNoticeBoardReadCount(conn, no);
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }
 	
 	

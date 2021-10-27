@@ -255,5 +255,27 @@ public class NoticeBoardDao {
 		
 		return list;
 	}
+	
+	
+	public int updateNoticeBoardReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNoticeBoardReadCount");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//throw new BoardException("조회수1증가 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
 
