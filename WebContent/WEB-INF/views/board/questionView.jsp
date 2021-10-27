@@ -17,28 +17,47 @@
 	
 	List<QuestionBoardComment> commentList = (List<QuestionBoardComment>) request.getAttribute("commentList");
 %>
+
+<script>
+<% 
+	String msg = (String) session.getAttribute("msg");
+	
+	// 그냥 두면 페이지 새로 띄울때마다 alert 메시지가 계속 뜨기 때문에, 한번만 할 수 있도록 메시지 띄우고 나면 msg가 삭제되도록 한다.
+	if(msg != null) session.removeAttribute("msg");
+%>
+
+<% 
+	if(msg != null) { 
+%>
+	// 사용자 메시지 전달
+	alert("<%= msg %>");
+<% 
+	} 
+%>
+</script>
+
+
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<div class="board-container">
 		<table id="tbl-board">
 			<thead>
-				<tr><th colspan = "4"><%=questionBoard.getQna_title()%></th></tr>
+				<tr><th colspan = "4">제목 : <%=questionBoard.getQna_title()%></th></tr>
 			</thead>
 			<tbody>
-				<tr>
+				<tr style="text-align: center;">
 					<td> 작성자 : <%=questionBoard.getWriter() %></td>
 					<td> 작성일 : <%=questionBoard.getRegDate()%></td>
 					<td> 조회수 : <%=questionBoard.getReadCount() %></td>
 					<td> 답변여부 : <%=questionBoard.getAnswer_status() %></td>
 				</tr>
-				<tr>
+				<tr style="text-align: center;">
 					<td>첨부파일</td>
 					<td colspan = "3">
 <%
 	if(attachment != null) {
 %>			
 				<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
-				<!-- 숙제인줄 알고 했던 것. 첨부파일 주소를 적어서 첨부파일 제목 클릭시 첨부파일을 볼 수 있도록 했다. 아래 코드는 수업에서 한 다운로드 기능 <a href="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>"><%= attachment.getOriginalFilename() %></a>  -->
 				<img alt="첨부파일" src="<%= request.getContextPath() %>/images/file.png" width=16px>
 				<a href="<%= request.getContextPath() %>/qnaboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>
 <%
@@ -178,7 +197,22 @@
 	</div> <!-- </div> .board-container -->
 </div> <!-- </div> .wrap clearfix -->	
 	
+<!-- 게시글 삭제용 폼 -->
+<form action="<%= request.getContextPath() %>/board/qnaBoardDelete" name="deleteQnaBoardFrm" method="POST">
+	<input type="hidden" name="no" value="<%= questionBoard.getNo() %>" />
+</form>
+	
 <script>
+const updateBoard = () => {
+	location.href = "<%= request.getContextPath() %>/board/qnaBoardUpdate?no=<%= questionBoard.getNo() %>";
+};
+
+const deleteBoard = () => {
+	if(confirm("정말 이 게시물을 삭제하시겠습니까?")) {
+		document.deleteQnaBoardFrm.submit();
+	}
+}
+
 /* 대댓글 등록 버튼 */
 $(".btn-reply").click((e) => {
 	const commentRef = $(e.target).val();
@@ -236,6 +270,7 @@ $(".btn-reply").click((e) => {
 });
 
 
+// 댓글삭제버튼
 $(".btn-delete").click(function(){
 	if(confirm("해당 댓글을 삭제하시겠습니까?")){
 		var $frm = $(document.qnaBoardCommentDelFrm);
@@ -319,7 +354,6 @@ th {
 }
 td {
     border-bottom: 1px solid #e3e3e3;
-    text-align: center;
     color: #434343;
     font-size: 15px;
     line-height: 58px;

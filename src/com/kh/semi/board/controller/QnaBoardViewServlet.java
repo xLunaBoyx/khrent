@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi.common.MvcUtils;
 import com.kh.semi.board.model.service.QuestionBoardService;
 import com.kh.semi.board.model.vo.QuestionBoard;
 import com.kh.semi.board.model.vo.QuestionBoardComment;
@@ -74,6 +75,18 @@ public class QnaBoardViewServlet extends HttpServlet {
 			// 전달된 no를 이용해서 게시글 불러오기
 			QuestionBoard questionBoard = questionBoardService.selectOneQnaBoard(no);
 			System.out.println("questionBoard@servlet = "+ questionBoard);
+			
+			
+			// XSS 공격 대비
+			// cross-site script 공격. 악성코드를 웹페이지에 삽입하여 클라이언트의 개인정보를 탈취하는 공격법
+			// < > 이것들을 문자열로 써서 태그로 처리되지 않게 한다. &lt &gt 이것들은 vscode에서 html수업할때 배운 기억이 난다.
+			String content = MvcUtils.escapeHtml(questionBoard.getQna_content());
+			
+			// 개행문자 br태그 변환처리
+			content = MvcUtils.convertLineFeedToBr(content);
+			
+			questionBoard.setQna_content(content);
+			
 			
 			// 댓글목록 가져오기 
 			List<QuestionBoardComment> commentList = questionBoardService.selectQnaCommentList(no);
