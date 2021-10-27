@@ -12,7 +12,7 @@
 
 <div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
-<div class="content">
+<div class="board-container">
 				<strong class="tit01">FAQ</strong>
 				<div class="terms">
 					<div class="tabArea">
@@ -320,6 +320,16 @@ AIG 손해보험<br />
 				</div>
 			</div>
 </div><!-- .wrap clearfix 끝 -->
+<style>
+.board-container {
+		display: flex;
+		flex-direction: column;
+		height: 1000px;
+		margin: 0 auto;
+		background-color: white;
+		align-items: center;
+	}
+</style>
 <script>
 jQuery(function($){
     // Frequently Asked Question
