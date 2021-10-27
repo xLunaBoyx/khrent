@@ -23,10 +23,11 @@
 			<thead>
 				<tr> 
 					<th width="10%">번호</th>
-					<th width="70%">제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
+					<th>제목</th>
+					<th>첨부파일</th>
+					<th width="5%">작성자</th>
+					<th width="15%">작성일</th>
+					<th width="5%">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +40,15 @@
 		       			<a href="<%= request.getContextPath() %>/board/boardView?no=<%= board.getNo() %>"><%= board.getTitle() %></a>
 		       			<!-- 글제목 오른쪽에 댓글수를 표시함 -->
 		       			<%= board.getBoardCommentCount() != 0 ? "(" + board.getBoardCommentCount() + ")" : "" %>
+		       		</td>
+		       		<td>
+<% 
+		if(board.getAttach() != null){
+%>
+				<img src="<%= request.getContextPath() %>/images/file.png" alt="" width="16px"/>			
+<%
+		}
+%>			       		
 		       		</td>
 		       		<td><%= board.getWriter() %></td>
 		       		<td><%= board.getRegDate() %></td>
@@ -92,7 +102,7 @@
 	    line-height: 58px;
 	}
 	.subject {
-		width: 70%;
+		width: 55%;
 		text-align: left;
 	}
 	#pagebar {

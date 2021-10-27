@@ -71,10 +71,9 @@ tr, td{
 		</thead>
 		<tbody>
 			<tr>
-				<td> 작성자 : <%=communityBoard.getWriter() %></td>
-				<td> 작성일 : <%=communityBoard.getRegDate()%></td>
-				<td> 조회수 : <%=communityBoard.getReadCount() %></td>
-				<td> 댓글 : <%=communityBoard.getBoardCommentCount() %></td>
+				<td width="33%"> 작성자 : <%=communityBoard.getWriter() %></td>
+				<td width="33%"> 작성일 : <%=communityBoard.getRegDate()%></td>
+				<td width="33%"> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
 			<tr><td colspan = "4" id="content"><%=communityBoard.getContent()%></td></tr>
 		</tbody>
@@ -161,7 +160,7 @@ $(document.communityBoardEnroll).submit((e) => {
 
 const loginAlert = () => {
 	alert("로그인 후 이용 바랍니다.");
-	$("#login").click();
+	$("#login").get(0).click();
 }
 
 
