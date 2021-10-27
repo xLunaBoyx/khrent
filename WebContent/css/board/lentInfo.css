@@ -2,87 +2,90 @@
 
 /********** 예약하기 상단 바 ****/
 #searchContent {
-   color: green;
-   line-geight: 57px;
-   width: 85px;
-   text-align: center;
+	color: green;
+	line-geight: 57px;
+	width: 85px;
+	text-align: center;
 }
+
 .rental {
-   background-color: rgb(39 105 168);
-   height: 100px;
-   width: 380px;
-   margin: 50px auto 0px
-   
+	background-color: rgb(39, 105, 168);
+	height: 100px;
+	width: 380px;
+	padding-bottom: 15px;
+	margin: 50px auto 0px
 }
+
 #rentalDaemun {
-   color: white;
-   text-align: center;
-   margin: auto;
-   width: 380;
-   font-size: 42px;
-   margin: auto;
-   padding: 8px 0px 0px 0px;
+	color: white;
+	text-align: center;
+	margin: auto;
+	width: 380;
+	font-size: 42px;
+	margin: auto;
+	padding: 8px 0px 0px 0px;
 }
+
 #rentalDaemun2 {
-   color: white;
-   margin: 7px;
-   text-align: center;
+	color: white;
+	margin: 7px;
+	text-align: center;
 }
 
 /******밑에..****/
 table.guideTable {
-   width: 100%;
+	width: 100%;
 }
+
 table {
-   border-collapse: collapse;
-    border-spacing: 0;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    display: table;
-    text-indent: initial;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	box-sizing: border-box;
+	display: table;
+	text-indent: initial;
 }
+
 table.guideTable thead th, table.guideTable tbody td {
-    color: #808080;
-    padding-left: 15px;
-    text-align: left;
-   	border-right: 1px dashed;
+	color: #808080;
+	padding-left: 15px;
+	text-align: left;
+	border-right: 1px dashed;
 }
+
 table.guideTable tbody td:nth-child(3) {
 	border-right: #ffffff00;
-	
 }
 
 table.guideTable thead th {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 60px;
-    background-color: #dae5f0;
-    border-top: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    margin: 0;
-    padding: 15px;
-    border: 0;
-    vertical-align: baseline;
-
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 60px;
+	background-color: #dae5f0;
+	border-top: 1px solid #dadada;
+	border-bottom: 1px solid #dadada;
+	margin: 0;
+	padding: 15px;
+	border: 0;
+	vertical-align: baseline;
 }
 
 h1.guideTitle {
-    margin: 30px 0 35px;
-    display: inline-block;
-    width: 100%;
-    border-bottom: 2px solid #222222;
-    line-height: 42px;
-    padding: 0 0 12px 4px;
-    color: #606060;
-    font-size: 30px;
-    font-weight: 500;
-    letter-spacing: -1.5px;
+	margin: 30px 0 35px;
+	display: inline-block;
+	width: 100%;
+	border-bottom: 2px solid #222222;
+	line-height: 42px;
+	padding: 0 0 12px 4px;
+	color: #606060;
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: -1.5px;
 }
-
 
 ul.guideInfo {
 	border: 0.5px solid grey;
@@ -94,95 +97,103 @@ span.infoSubject {
 	font-size: 20px;
 	color: red;
 }
+
 span.infoContent {
 	font-size: 20px;
 	color: black;
 }
 
-ul.guideInfo > li > span.infoSubject {
-    display: table-cell;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 26px;
-    /*padding: 13px 0;*/
-    color: #db252f;
-    width: 120px;
-    border-right: 1px dashed #dadada;
-    text-align: center;
-
-}
-ul.guideInfo > li > span.infoContent {
+ul.guideInfo>li>span.infoSubject {
 	display: table-cell;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 26px;
-    padding: 13px 13px;
-}
-ul.guideInfo > li:not(:nth-child(1)) > span {
-    border-top: 1px dashed #dadada;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 26px;
+	/*padding: 13px 0;*/
+	color: #db252f;
+	width: 120px;
+	border-right: 1px dashed #dadada;
+	text-align: center;
 }
 
-.guideStep > .stepSubject {
-    color: #606060;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -1px;
-    width: 72px;
-    text-align: center;
+ul.guideInfo>li>span.infoContent {
+	display: table-cell;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 26px;
+	padding: 13px 13px;
+}
+
+ul.guideInfo>li:not(:nth-child(1))>span {
+	border-top: 1px dashed #dadada;
+}
+
+.guideStep>.stepSubject {
+	color: #606060;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -1px;
+	margin-top: 80px;
+	width: 72px;
+	justify-content: space-evenly;
+	text-align: center;
 }
 
 .guideStep {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
+.guideStep>.stepSubject>span {
+	color: #db252f;
+}
 
-.guideStep > .stepSubject > span {
-    color: #db252f;
+.guideStep>ul {
+	display: contents;
+	margin: 25px 0;
 }
-.guideStep > ul {
-    display: contents;
-    margin: 25px 0;
+
+.guideStep>ul>li {
+	display: inline-block;
+	width: 254px;
+	height: 214px;
+	vertical-align: top;
+	background-color: #fff;
+	border: 1px solid #dadada;
+	border-radius: 70px;
+	text-align: center;
+	padding: 15px;
+	margin-left: 6px;
 }
-.guideStep > ul > li {
-    display: inline-block;
-    width: 254px;
-    height: 214px;
-    vertical-align: top;
-    background-color: #fff;
-    border: 1px solid #dadada;
-    border-radius: 70px;
-    text-align: center;
-    padding: 15px;
-    margin-left: 6px;
-}
-ul.guideInfo > li {
+
+ul.guideInfo>li {
 	list-style: none;
 }
-.guideStep > ul > li > p {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -1px;
-    color: #404040;
-    line-height: 30px;
-    margin-top: 15px
+
+.guideStep>ul>li>p {
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: -1px;
+	color: #404040;
+	line-height: 30px;
+	margin-top: 15px
 }
+
 .iconImg {
 	height: 110px;
 }
 
-.guideRefund > p.subject {
-    color: #404040;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -1px;
-    margin-bottom: 12px;
+.guideRefund>p.subject {
+	color: #404040;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: -1px;
+	margin-bottom: 12px;
 }
 
-.guideRefund > .equipment-content {
-    color: #808080;
-    border: 1px solid #dadada;
-    margin-bottom: 20px;
-    padding: 10px;
+.guideRefund>.equipment-content {
+	color: #808080;
+	border: 1px solid #dadada;
+	margin-bottom: 20px;
+	padding: 10px;
 }
