@@ -9,9 +9,27 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
 <%
 	List<QuestionBoard> list = (List<QuestionBoard>) request.getAttribute("list");
+	
+	String msg = (String) session.getAttribute("msg");
+	
+	// 그냥 두면 페이지 새로 띄울때마다 alert 메시지가 계속 뜨기 때문에, 한번만 할 수 있도록 메시지 띄우고 나면 msg가 삭제되도록 한다.
+	if(msg != null) session.removeAttribute("msg");
 %>
+
+<script>
+<% if(msg != null) { %>
+	// 사용자 메시지 전달
+	alert("<%= msg %>");
+<% } %>
+</script>
+
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+
+	<div class="board-container">
+	
+	<h1 class="board-title">대여문의</h1>
+	
 <% if(loginMember != null){ %>	
 	<input 
 		type="button" 
@@ -19,10 +37,7 @@
 		id="btn-add" 
 		onclick="location.href='<%= request.getContextPath() %>/board/questionBoardForm';" />
 <% } %>
-	<div class="board-container">
-	
-	<h1 class="board-title">대여문의</h1>
-	<!-- <div class="board-box"> -->
+
 		<table id="tbl-board">
 			<thead>
 				<tr>
@@ -73,73 +88,77 @@
 </div>
 	<!-- </div> -->
 	
-	<style>
-	.board-title {
-		position: relative;
-		font-size: 3em;
-	}
-	.board-container {
-		display: flex;
-		flex-direction: column;
-		margin: 0 auto;
-		background-color: white;
-		align-items: center;
-	}
-	table {
-		width: 1057px;
-		border-collapse: collapse;
-	}
-	th {
-	    border-top: 1px solid #989898;
-    	border-bottom: 1px solid #e3e3e3;
-		text-align: center;
-		color: #434343;
-		font-size: 15px;
-		font-weight: 500;
-		line-height: 29px;
-		height: 66px;
-	    
-	}
-	td {
-	    border-bottom: 1px solid #e3e3e3;
-	    text-align: center;
-	    color: #434343;
-	    font-size: 15px;
-	    line-height: 58px;
-	}
-	.subject {
-		width: 70%;
-		text-align: left;
-		padding-left: 44px;
-	}
-	#pagebar {
-	    clear: both;
-	    text-align: center;
-	    margin: 20px 0;
-	}
-	.cPage {
-	    display: inline-block;
-	    background: #ff9826;
-	    border: 1px solid #ff9826;
-	    color: #fff;
-	    font-weight: normal;
-	    width: 27px;
-	    vertical-align: middle;
-	}
-	#pagebar a {
-		background: #fff;
-	    text-decoration: none;
-	    display: inline-block;
-	    min-width: 27px;
-	    height: 27px;
-	    border: 1px solid #e3e3e3;
-	    padding: 0;
-	    height: 27px;
-	    color: #414141;
-	    font-size: 14px;
-	    letter-spacing: 0;
-	    line-height: 27px;
-	    vertical-align: middle;
-	}
-	</style>
+<style>
+#btn-add {
+   	width: 100px;
+    background-color: #d1d1d1;
+    margin: 10px 0px 10px 938px;
+}
+.board-title {
+	position: relative;
+	font-size: 3em;
+}
+.board-container {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	background-color: white;
+	align-items: center;
+}
+table {
+	width: 1057px;
+	border-collapse: collapse;
+}
+th {
+    border-top: 1px solid #989898;
+   	border-bottom: 1px solid #e3e3e3;
+	text-align: center;
+	color: #434343;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 29px;
+	height: 66px;
+    
+}
+td {
+    border-bottom: 1px solid #e3e3e3;
+    text-align: center;
+    color: #434343;
+    font-size: 15px;
+    line-height: 58px;
+}
+.subject {
+	text-align: left;
+	padding-left: 44px;
+}
+#pagebar {
+    clear: both;
+    text-align: center;
+    margin: 20px 0;
+}
+.cPage {
+    display: inline-block;
+    background: #ff9826;
+    border: 1px solid #ff9826;
+    color: #fff;
+    font-weight: normal;
+    width: 27px;
+    vertical-align: middle;
+}
+#pagebar a {
+	background: #fff;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 27px;
+    height: 27px;
+    border: 1px solid #e3e3e3;
+    padding: 0;
+    height: 27px;
+    color: #414141;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 27px;
+    vertical-align: middle;
+}
+</style>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

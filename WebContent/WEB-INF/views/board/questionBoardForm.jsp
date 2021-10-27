@@ -34,7 +34,7 @@ $(() => {
 	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
-<div class="wrap clearfix" style="width: 70%; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
 	<h2>문의사항 작성</h2>
@@ -81,7 +81,6 @@ $(() => {
 	.board-container {
 		display: flex;
 		flex-direction: column;
-		height: 1000px;
 		margin: 0 auto;
 		background-color: white;
 		align-items: center;

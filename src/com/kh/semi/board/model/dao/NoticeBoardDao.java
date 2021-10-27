@@ -260,6 +260,7 @@ public class NoticeBoardDao {
 	public int updateNoticeBoardReadCount(Connection conn, int no) {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateNoticeBoardReadCount");
+		System.out.println(sql);
 		int result = 0;
 		
 		try {

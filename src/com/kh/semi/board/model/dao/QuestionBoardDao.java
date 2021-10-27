@@ -198,6 +198,7 @@ public class QuestionBoardDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertQnaAttachment");
 		int result = 0;
+		System.out.println(attach);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -360,6 +361,98 @@ public class QuestionBoardDao {
 		}
 		
 		return list;
+	}
+
+	public int deleteQnaAttachment(Connection conn, int attachNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteQnaAttachment");
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setInt(1, attachNo);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateQnaBoard(Connection conn, QuestionBoard questionBoard) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateQnaBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, questionBoard.getQna_title());
+			pstmt.setString(2, questionBoard.getQna_content());
+			pstmt.setInt(3, questionBoard.getNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteQnaBoardComment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteQnaBoardComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteQnaBoard(Connection conn, int no) {
+		// board의 행이 삭제되면 그 행의 no를 참조하는 attachment의 행도 따라서 삭제된다. on delete cascade 이기 때문에
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteQnaBoard");
+		System.out.println(sql);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setInt(1, no);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
