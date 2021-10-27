@@ -77,7 +77,7 @@
 </head>
 
 <body>
-		 <nav style="padding: 0 0 5px 0;">
+		 <nav>
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
