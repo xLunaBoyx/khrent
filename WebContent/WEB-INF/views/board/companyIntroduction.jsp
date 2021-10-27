@@ -25,8 +25,6 @@
 			<p class="desc">고객님을 위한 KH렌트만의 특별화된 서비스를 소개합니다.</p>
 			쉽고 빠른 가격비교<br>
 			실시간 예약, 결제<br>
-			전국 배달 대여<br>
-			맞춤형 장기렌트<br>
 
 		</section>
 		<section class="company_info">
