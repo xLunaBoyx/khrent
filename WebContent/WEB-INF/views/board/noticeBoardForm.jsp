@@ -12,7 +12,7 @@
 <%
 	NoticeBoard noticeBoard = (NoticeBoard) request.getAttribute("noticeBoard");
 %>
-<div class="wrap clearfix" style="width: 70%; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <section id="board-container">
 <h2>게시판 수정</h2>
