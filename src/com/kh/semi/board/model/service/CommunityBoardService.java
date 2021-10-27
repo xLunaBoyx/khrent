@@ -4,6 +4,7 @@ import static com.kh.semi.common.JdbcTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 import com.kh.semi.board.model.dao.CommunityBoardDao;
+import com.kh.semi.board.model.vo.Attachment;
 import com.kh.semi.board.model.vo.CommunityBoard;
 import com.kh.semi.board.model.vo.CommunityBoardComment;
 
@@ -71,6 +72,37 @@ public class CommunityBoardService {
 		else rollback(conn);
 		close(conn);
 		
+		return result;
+	}
+
+	public int insertCommunityBoard(CommunityBoard communityBoard) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			// board테이블 행추가
+			result = communityBoardDao.insertCommunityBoard(conn, communityBoard);
+			
+			// 생성된 board_no 가져오기
+			int communityBoardNo = communityBoardDao.selectLastCommunityBoardNo(conn);
+			System.out.println("questionBoardNo@service = " + communityBoardNo);
+			
+			// board객체에 set -> servlet에서 참조
+			communityBoard.setNo(communityBoardNo);
+			
+			// attachment테이블 행추가
+			Attachment attach = communityBoard.getAttach();
+			if(attach != null) {
+				attach.setBoardNo(communityBoardNo);
+				result = communityBoardDao.insertCommunityAttachment(conn, attach);
+			}
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			result = 0;
+		}
+		
+		close(conn);
 		return result;
 	}
 
