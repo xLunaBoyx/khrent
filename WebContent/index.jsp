@@ -24,7 +24,7 @@
 					<p class="point">모두 실시간 예약 가능합니다.</p>
 				</div>
 				<div class="home_img">
-					<img src="https://i.ibb.co/VB4tMYF/main.png" id="home_car_img"
+					<img src="https://i.ibb.co/3NDdHRg/main.png" id="home_car_img"
 						alt="car" />
 				</div>
 			</div>
