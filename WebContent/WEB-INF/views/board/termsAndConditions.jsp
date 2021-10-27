@@ -11,7 +11,7 @@
 
 <div class="wrap clearfix" style="width: 70%; margin:auto;">
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
-<div class="board-container">
+<div class="content">
 				<strong class="tit01">약관/정책</strong>
 				<div class="terms">
 					<div class="tabArea">
