@@ -104,13 +104,22 @@ alert("<%= msg %>");
 		height: 66px;
 	    
 	}
-	td {
+	td{
 	    border-bottom: 1px solid #e3e3e3;
 	    text-align: center;
 	    color: #434343;
 	    font-size: 15px;
-	    line-height: 58px;
+	    line-height: 36px;
         width: 40px;
+	}
+	
+	td#content {
+		border-bottom: 1px solid #e3e3e3;
+	    text-align: left;
+	    color: #434343;
+	    font-size: 15px;
+	    line-height: 36px;
+        width: 40px;	
 	}
 	.subject {
 		width: 70%;
