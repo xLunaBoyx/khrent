@@ -19,11 +19,14 @@ public class CommunityBoard implements Serializable {
 	private int boardCommentCount;
 	
 	private Attachment attach;
-
+	
 	public CommunityBoard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
 
 	public CommunityBoard(int no, String writer, String title, String content, Date regDate, int readCount,
 			int boardCommentCount, Attachment attach) {

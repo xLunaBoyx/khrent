@@ -34,13 +34,13 @@ $(() => {
 	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
-<div class="wrap clearfix" style="width: 70%; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
-	<h2>문의사항 작성</h2>
+	<h2>게시글 작성</h2>
 	<form
 		name="boardEnrollFrm"
-		action="<%=request.getContextPath() %>/board/commentBoardEnroll" 
+		action="<%=request.getContextPath() %>/board/communityBoardEnroll" 
 		method="post"
 		enctype="multipart/form-data">
 		<table id="tbl-board-view">
@@ -91,7 +91,6 @@ $(() => {
 		border-collapse: collapse;
 	}
 	th {
-	    border-top: 1px solid #989898;
     	border-bottom: 1px solid #e3e3e3;
 		text-align: center;
 		color: #434343;
@@ -144,6 +143,9 @@ $(() => {
 	}
 	h2{
 		text-align: center;
+	}
+	.clearfix{
+		width: 1417px;
 	}
 	</style>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
