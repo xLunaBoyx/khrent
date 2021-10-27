@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 /* nav 시작 */
-
 .hidden {
 	opacity: 0;
 }
@@ -15,12 +14,12 @@ section.searchSection {
 
 section.searchSection .searchLayout {
 	background-color: #27ae60;
-	border-radius: 3px;
-	width: 1200px;
+	width: 100%;
 	min-width: 1200px;
-	height: 173px;
-	padding: 20px;
+	height: 67px;
+	padding: 10px;
 }
+
 section.searchSection l-ct {
 	margin-top: 10px;
 }
@@ -78,7 +77,6 @@ section.searchSection .searchButton {
 	background-color: rgb(64, 64, 64);
 	border-color: rgb(64, 64, 64);
 	width: 10%;
-	border-radius: 3px;
 	color: #fff;
 	font-size: 17px;
 	font-weight: 500;
@@ -98,7 +96,6 @@ section.searchSection .searchLayout .searchRadio span {
 	font-size: 17px;
 	font-weight: 500;
 	background-color: #fff;
-	border-radius: 3px;
 	text-align: center;
 	cursor: pointer;
 }
@@ -106,7 +103,7 @@ section.searchSection .searchLayout .searchRadio span {
 .hasNavDatepicker {
 	display: inline-block;
 	height: 48px;
-	width: 390px;
+	width: 450px;
 	line-height: 57px;
 	min-width: 86px;
 	padding: 0 10px;
@@ -114,7 +111,6 @@ section.searchSection .searchLayout .searchRadio span {
 	font-size: 17px;
 	font-weight: 500;
 	background-color: #fff;
-	border-radius: 3px;
 	text-align: center;
 	cursor: pointer;
 	border: 0;
