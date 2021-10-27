@@ -1,5 +1,6 @@
 package com.kh.semi.board.model.dao;
 
+
 import static com.kh.semi.common.JdbcTemplate.close;
 
 import java.io.FileReader;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
 
 import com.kh.semi.board.model.vo.Attachment;
 import com.kh.semi.board.model.vo.CommunityBoard;
@@ -198,6 +200,26 @@ public class CommunityBoardDao {
 		}		
 		
 		return list;
+	}
+
+	public int updateReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommunityReadCount");
+		System.out.println("query@dao = " + sql);
+		int result = 0;
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

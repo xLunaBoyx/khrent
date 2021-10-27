@@ -20,7 +20,7 @@ public class CommunityBoardComment implements Serializable {
 	
 	public CommunityBoardComment() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public CommunityBoardComment(int no, int commentLevel, String writer, String content, int boardNo, int commentRef,

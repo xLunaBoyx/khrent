@@ -145,6 +145,7 @@ tr, td{
 		
 	</div>
 		
+<br /><br />
 <script>
 
 <% if(msg !=null){ %>
@@ -210,9 +211,6 @@ console.log(tr);
 	// 현재버튼의 handler 제거
 	$(e.target).off('click');
 });
-
-
-
 
 </script>
 
