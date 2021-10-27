@@ -1,5 +1,4 @@
-﻿<%@page import="com.kh.semi.board.model.vo.NoticeBoard"%>
-<%@page import="java.util.List"%>
+﻿<%@page import="java.util.List"%>
 <%@page import="com.kh.semi.board.model.vo.QuestionBoard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,40 +8,12 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
 
-<%
-	NoticeBoard noticeBoard = (NoticeBoard) request.getAttribute("noticeBoard");
-%>
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
-	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
-<section id="board-container">
-<h2>게시판 수정</h2>
-<form 
-	name="boardUpdateFrm" 
-	action="<%=request.getContextPath() %>/board/noticeBoardUpdate"
-	method="post">
-	<input type="hidden" name="no" value="<%= noticeBoard.getNoticeNo() %>" />
-	<table id="tbl-board-view">
-		<tr>
-			<th>제 목</th>
-			<td><input type="text" name="title" value="<%= noticeBoard.getNoticeTitle() %>" required></td>
-		</tr>
-		<tr>
-			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"><%= noticeBoard.getNoticeContent() %></textarea></td>
-		</tr>
-		<tr>
-			<th colspan="2">
-				<input type="submit" value="수정하기"/>
-				<input type="button" value="취소" onclick="history.go(-1);"/>
-			</th>
-		</tr>
-	</table>
-</form>
-</section>
-</div>
-<script>
 
-$(document.boardUpdateFrm).submit(function (){
+<script>
+/**
+* boardEnrollFrm 유효성 검사
+*/
+function boardValidate(e){
 	const $title = $("[name=title]");
 	const $content = $("[name=content]");
 	//제목을 작성하지 않은 경우 폼제출할 수 없음.
@@ -58,8 +29,38 @@ $(document.boardUpdateFrm).submit(function (){
 		return false;
 	}
 	return true;
+}
+
+$(() => {
+	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+	<section id="board-container">
+	<h2>공지사항 작성</h2>
+	<form
+		name="boardEnrollFrm"
+		action="<%=request.getContextPath() %>/board/noticeBoardEnroll" 
+		method="post">
+		<table id="tbl-board-view">
+		<tr>
+			<th>제 목</th>
+			<td><input type="text" name="title" required></td>
+		</tr>
+		<tr>
+			<th>내 용</th>
+			<td><textarea rows="5" cols="40" name="content"></textarea></td>
+		</tr>
+		<tr>
+			<th colspan="2">
+				<input type="submit" value="등록하기">
+			</th>
+		</tr>
+	</table>
+	</form>
+	</section>
+</div>
 <style>
 	.board-title {
 		position: relative;
