@@ -249,6 +249,7 @@ public class CommunityBoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectLastCommunityBoardNo");
+		System.out.println(sql);
 		int boardNo = 0;
 		
 		try {
