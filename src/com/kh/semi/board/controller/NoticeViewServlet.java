@@ -87,6 +87,7 @@ public class NoticeViewServlet extends HttpServlet {
 		// 개행문자 br태그 변환처리
 		content = MvcUtils.convertLineFeedToBr(content);
 		noticeBoard.setNoticeContent(content);
+		System.out.println(content);
 		
 		
 		request.setAttribute("noticeBoard", noticeBoard);
