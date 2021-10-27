@@ -208,6 +208,23 @@ public class QuestionBoardService {
 		}
 		return result;
 	}
+
+	public int updateQnaAnswerStatus(String string, int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = questionBoardDao.updateQnaAnswerStatus(conn, string, no);
+			if(result == 0)
+				throw new IllegalArgumentException();
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
 	
 }
 

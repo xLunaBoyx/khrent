@@ -23,7 +23,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 public class QnaBoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	QuestionBoardService questionBoardService = new QuestionBoardService();
+	private QuestionBoardService questionBoardService = new QuestionBoardService();
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
