@@ -22,8 +22,7 @@ public class QnaBoardFormServlet extends HttpServlet {
 		request
 			.getRequestDispatcher("/WEB-INF/views/board/questionBoardForm.jsp")
 			.forward(request, response);
-			
-		
+				
 	}
 
 }

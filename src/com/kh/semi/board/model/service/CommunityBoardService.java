@@ -63,6 +63,17 @@ public class CommunityBoardService {
 		return list;
 	}
 
+	public int updateReadCount(int no) {
+		Connection conn = getConnection();
+		int result = communityBoardDao.updateReadCount(conn,no);
+	
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		
+		return result;
+	}
+
 }
 
 
