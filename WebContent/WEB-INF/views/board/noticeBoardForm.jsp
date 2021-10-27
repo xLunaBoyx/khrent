@@ -50,7 +50,7 @@ $(() => {
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea wrap="hard" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
