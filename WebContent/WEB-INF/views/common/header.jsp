@@ -77,11 +77,11 @@
 </head>
 
 <body>
-		 <nav>
+		 <nav style="padding: 0 0 5px 0;">
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
-				 <img src="https://i.ibb.co/4fPNmks/mark.png" alt="mark" class="mark"/>
+				 <img src="https://i.ibb.co/0Jf8Kxg/mark.png" alt="mark" class="mark"/>
 				 </a>
 			 </h1>
 		 </div>
