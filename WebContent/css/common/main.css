@@ -19,7 +19,8 @@
 }
 
 .home_img>#home_car_img {
-	height: 200px;
+	height: 220px;
+	width: 480px;
 	position: relative;
 	z-index: 0;
 }
