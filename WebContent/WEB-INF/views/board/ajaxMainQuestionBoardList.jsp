@@ -11,7 +11,7 @@
 <%
 	for(QuestionBoard board : list) {
 %>
-						<p class="itemTitle"><%= board.getQna_title() %></p>
+						<p class="itemTitle">[문의] <%= board.getQna_title() %></p>
 						<p class="itemDate"><%= board.getRegDate() %></p>
 <% } %>
 					</a>

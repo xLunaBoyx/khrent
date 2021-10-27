@@ -11,7 +11,7 @@
 <%
 	for(NoticeBoard board : list) {
 %>
-						<p class="itemTitle"><%= board.getNoticeTitle() %></p>
+						<p class="itemTitle">[공지] <%= board.getNoticeTitle() %></p>
 						<p class="itemDate"><%= board.getRegDate() %></p>
 <% } %>
 
