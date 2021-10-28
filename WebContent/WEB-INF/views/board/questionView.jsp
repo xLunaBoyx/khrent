@@ -403,6 +403,7 @@ td {
 #insertText {
 	width: 885px;
     border: 1px solid #0000001f;
+    resize:none;
 }
 div.comment-container button#btn-insert {
 	width:66px; 
