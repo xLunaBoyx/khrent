@@ -1,3 +1,6 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.kh.semi.reservation.model.vo.Car"%>
 <%@page import="com.kh.semi.reservation.model.vo.CarInfo"%>
 <%@page import="java.util.List"%>
@@ -15,9 +18,24 @@
 
 <%
 	List<Car> list = (List<Car>) request.getAttribute("list");
+	String startDate = (String) request.getAttribute("start_date");
+	String endDate = (String) request.getAttribute("end_date");
+	System.out.println("startDate = " + startDate);
+	System.out.println("endDate = " + endDate);
+	
+	SimpleDateFormat fm = new SimpleDateFormat("yyyy-mm-dd");
+	Date start = fm.parse(startDate);
+	Date end = fm.parse(endDate);
+	int days = (int) (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
+	System.out.println(days);
+	
+	DecimalFormat df = new DecimalFormat("###,###"); 
 %>
 
-<!-- <div id="allSection"> -->
+<script>
+$("#start_date").val(<%= startDate %>);
+$("#end_date").val(<%= endDate %>);
+</script>
 
 <%
 	if(list.size() == 0) {
@@ -66,7 +84,7 @@
 					<div class="priceArea">
 						<div class="totalPrice">
 							<strong>차량대여료</strong>
-							<span><%= car.getPrice() %></span>원
+							<span><%= df.format(car.getPrice() * days) %></span>원
 						</div>
 						<dl data-calculation="carInsurance01" class="clearfix">
 							<dt>자차1
