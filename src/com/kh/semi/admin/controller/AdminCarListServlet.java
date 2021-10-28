@@ -30,6 +30,7 @@ public class AdminCarListServlet extends HttpServlet {
 	 */
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// 1.사용자입력값처리
 		int cPage = 1;
 		int numPerPage = 10;
