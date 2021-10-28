@@ -81,6 +81,8 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		System.out.println("CommunityBoardEnrollServlet@servlet = " + CommunityBoard);
 				
 		// 3. 응답처리 : redirect
+		HttpSession session = request.getSession();
+		session.setAttribute("msg", msg);
 		String location = request.getContextPath() + "/board/communityList";
 		response.sendRedirect(location);
 	}
