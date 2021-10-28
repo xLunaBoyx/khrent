@@ -87,7 +87,7 @@
 		 </div>
       <ul class="navUl">
         <li class="dropdown">
-          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/reservation/carSearch';">예약하기</div>        
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/bestFive';">BEST 5</div>         
         </li>
         <li class="dropdown">
           <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/rentalInformation';">대여안내</div>
