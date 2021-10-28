@@ -28,6 +28,7 @@ public class CommunityBoardCommentDeleteServlet extends HttpServlet {
 			// 1. 사용자입력값 처리
 			int no = Integer.parseInt(request.getParameter("no"));
 			
+			
 			// 2. 업무로직
 			int result = communityBoardService.deleteCommunityBoardComment(no);
 			String msg = result > 0 ? "댓글이 삭제되었습니다." : "댓글 삭제에 실패했습니다.";
