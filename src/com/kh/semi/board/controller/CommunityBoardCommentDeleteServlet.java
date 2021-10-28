@@ -33,6 +33,7 @@ public class CommunityBoardCommentDeleteServlet extends HttpServlet {
 			int result = communityBoardService.deleteCommunityBoardComment(no);
 			String msg = result > 0 ? "댓글이 삭제되었습니다." : "댓글 삭제에 실패했습니다.";
 			request.getSession().setAttribute("msg", msg);
+			System.out.println();
 			
 			// 3. 리다이렉트
 			String location = request.getHeader("Referer");   
