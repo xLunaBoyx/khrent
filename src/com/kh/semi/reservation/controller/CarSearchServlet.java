@@ -36,6 +36,8 @@ public class CarSearchServlet extends HttpServlet {
 		System.out.println(list);
 		
 		// view단 연결
+		request.setAttribute("start_date", startDate);
+		request.setAttribute("end_date", endDate);
 		request.setAttribute("list", list);
 		request
 			.getRequestDispatcher("/WEB-INF/views/reservation/carSearch.jsp")

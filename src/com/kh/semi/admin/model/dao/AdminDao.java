@@ -16,6 +16,7 @@ import java.util.Properties;
 import com.kh.semi.member.model.dao.MemberDao;
 import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.CarInfo;
+import com.kh.semi.reservation.model.vo.CarInfoAttach;
 import com.kh.semi.reservation.model.vo.CarList;
 
 public class AdminDao {
@@ -23,7 +24,7 @@ public class AdminDao {
 	private Properties prop = new Properties();
 	
 	public AdminDao() {
-		String filepath = MemberDao.class.getResource("/sql/admin/admin-query.properties").getPath();
+		String filepath = AdminDao.class.getResource("/sql/admin/admin-query.properties").getPath();
 		try {
 			prop.load(new FileReader(filepath));
 		} catch (IOException e) {
@@ -342,6 +343,103 @@ public class AdminDao {
 			close(pstmt);
 		}
 		
+		return totalContents;
+	}
+
+	public int selectLastCarInfoNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLastCarInfoNo");
+		int carInfoNo = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				carInfoNo = rset.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시물번호 조회 오류", e);
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return carInfoNo;
+	}
+
+	public int insertCarInfo(Connection conn, CarInfo carInfo) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCarInfo");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, carInfo.getCarName());
+			pstmt.setString(2, carInfo.getMaker());
+			pstmt.setString(3, carInfo.getFuel());
+			pstmt.setString(4, carInfo.getCarSize());
+			pstmt.setString(5, carInfo.getImg());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			//throw new BoardException("게시글 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertCarInfoAttach(Connection conn, CarInfoAttach attach) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCarInfoAttach");
+		int result = 0;
+		System.out.println(attach);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, attach.getCarInfoNo());
+			pstmt.setString(2, attach.getOriginalFileName());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//throw new BoardException("첨부파일 등록 오류", e);
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectCarInfoTotalContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCarInfoTotalContents");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		return totalContents;
 	}
 
