@@ -1,4 +1,4 @@
-<%@page import="com.kh.semi.board.model.vo.QuestionBoard"%>
+`<%@page import="com.kh.semi.board.model.vo.QuestionBoard"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -24,7 +24,7 @@
 					<p class="point">모두 실시간 예약 가능합니다.</p>
 				</div>
 				<div class="home_img">
-					<img src="https://i.ibb.co/3NDdHRg/main.png" id="home_car_img"
+					<img src="https://i.ibb.co/VB4tMYF/main.png" id="home_car_img"
 						alt="car" />
 				</div>
 			</div>

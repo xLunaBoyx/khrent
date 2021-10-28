@@ -91,15 +91,7 @@ public class QnaBoardViewServlet extends HttpServlet {
 					isThereAdmin =  "Y";
 				}
 			}
-			
-//			int result2 = 0;
-//			// 체크용 변수가 y이면 관리자 댓글이 있다는 뜻이므로 글의 답변여부를 Y로 업데이트
-//			if("y".equals(isThereAdmin)) 
-//				result2 = questionBoardService.updateQnaAnswerStatus("Y");
-//			
-//			// 체크용 변수가 n이면 답변여부를 N으로 업데이트
-//			else
-//				result2 = questionBoardService.updateQnaAnswerStatus("Y");
+
 			int result2 = questionBoardService.updateQnaAnswerStatus(isThereAdmin, no);
 			
 			
