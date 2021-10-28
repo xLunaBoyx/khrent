@@ -47,7 +47,7 @@ $("#end_date").val(<%= endDate %>);
 	}
 	else {
 %>
-	<h2 style="margin: 0 auto;">대여 가능한 차량 목록</h2>
+	<h2 style="margin: 0 auto;"><span style="color: #6EB1EC"><%= list.size() %></span>대의 차량이 예약 가능합니다.</h2>
 	
 	<section class="bfSection" style="margin: 0 auto;">
 <%
