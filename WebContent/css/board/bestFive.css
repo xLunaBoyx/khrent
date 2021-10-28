@@ -7,7 +7,7 @@
 }
 .bfSection {
 	background: white;
-    height: 2000px;
+    height: auto;
     /* float: left; */
     width: 1000px;
 }
@@ -28,9 +28,10 @@ h2.top {
 }
 .item-list {
     float: right;
-    width: calc(110% - 135px);
+    /* width: calc(110% - 135px); */
     padding-left: 0;
     margin-right: 13px;
+    width:918px;
 }
 .item-list > li:last-child {
     margin-bottom: 0;
