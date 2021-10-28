@@ -8,7 +8,17 @@
 
 <%
 	List<CommunityBoard> list = (List<CommunityBoard>) request.getAttribute("list");
+	String msg = (String)session.getAttribute("msg");
+	
+	// 그냥 두면 페이지 새로 띄울때마다 alert 메시지가 계속 뜨기 때문에, 한번만 할 수 있도록 메시지 띄우고 나면 msg가 삭제되도록 한다.
+		if(msg != null) session.removeAttribute("msg");
 %>
+<script>
+	<% if(msg != null) { %>
+	// 사용자 메시지 전달
+	alert("<%= msg %>");
+	<% } %>
+</script>
 	<div class="board-container">
 	<h1 class="board-title">커뮤니티</h1>
 	<% if(loginMember != null) { %>
@@ -66,6 +76,7 @@
 	
 
 	<!-- </div> -->
+	
 	
 	<style>
 	.board-title {

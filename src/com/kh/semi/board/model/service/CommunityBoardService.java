@@ -32,7 +32,8 @@ public class CommunityBoardService {
 		Connection conn = getConnection();
 		
 		CommunityBoard communityBoard =  communityBoardDao.selectOneBoard(conn,no);
-		
+		Attachment attach = communityBoardDao.selectOneAttachmentByCommunityBoardNo(conn, no);
+		communityBoard.setAttach(attach);
 		close(conn);
 		
 		return communityBoard;
@@ -103,6 +104,30 @@ public class CommunityBoardService {
 		}
 		
 		close(conn);
+		return result;
+	}
+
+	public Attachment selectOneCommunityAttachment(int no) {
+		Connection conn = getConnection();
+		Attachment attach = communityBoardDao.selectOneCommunityAttachment(conn, no);
+		close(conn);
+		return attach;
+	}
+
+	public int deleteCommunityBoard(int no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = communityBoardDao.deleteCommunityBoard(conn, no);
+			if(result == 0)
+				throw new IllegalArgumentException("해당 게시글이 존재하지 않습니다. : " + no );
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
 		return result;
 	}
 

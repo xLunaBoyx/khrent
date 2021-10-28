@@ -69,8 +69,8 @@ public class CommunityViewServlet extends HttpServlet {
 			// 조회수 증가
 			result = boardService.updateReadCount(no);		
 		}
-		System.out.println("조회수 등록 여부 ::" + result);
 		
+		System.out.println("조회수 등록 여부 ::" + result);
 				
 		CommunityBoard communityBoard = boardService.selectOneBoard(no);
 		System.out.println("selectOneBoard@servlet = "+ communityBoard);

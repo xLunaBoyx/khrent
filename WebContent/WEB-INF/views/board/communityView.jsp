@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi.board.model.vo.Attachment"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.semi.board.model.vo.CommunityBoardComment"%>
 <%@page import="com.kh.semi.board.model.vo.CommunityBoard"%>
@@ -9,7 +10,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <style>
+
 #content{
 	display:flex;
 	flex-direction:column;
@@ -17,8 +20,9 @@
 	
 }
 
-#container{
+#comment-container{
 	width:1410px;
+	background-color: white;
 }
 
 table{
@@ -28,7 +32,7 @@ table{
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
-	width:1410px;		   
+	width:1200px;		   
 }
 
 
@@ -41,14 +45,17 @@ tr, td{
     line-height: 58px;
 }
 
-#content{text-align:left}
-
 #comment-container{
 	text-align:center;
 	width:1400px;
 }
-#btn-insert{
- 
+.buttons{
+	position: relative;
+    right: -500px;
+}
+
+#tableContent{
+	height:200px;
 }
 
 
@@ -62,12 +69,14 @@ tr, td{
 	CommunityBoard communityBoard = (CommunityBoard)request.getAttribute("communityBoard");
 	String msg = (String)session.getAttribute("msg");
 	if(msg != null) session.removeAttribute("msg");
+	Attachment attachment = communityBoard.getAttach();
 	List<CommunityBoardComment>commentList = (List<CommunityBoardComment>)request.getAttribute("list");
+	boolean editable = loginMember != null && (communityBoard.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()));
 %>
 <div id=comment-container>
 	<table>
 		<thead>
-			<tr><th colspan = "4"><%=communityBoard.getTitle()%></th></tr>
+			<tr><th colspan = "4">제목 : <%=communityBoard.getTitle()%></th></tr>
 		</thead>
 		<tbody>
 			<tr>
@@ -75,13 +84,44 @@ tr, td{
 				<td width="33%"> 작성일 : <%=communityBoard.getRegDate()%></td>
 				<td width="33%"> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
-			<tr><td colspan = "4" id="content"><%=communityBoard.getContent()%></td></tr>
+			<tr>
+				<td>첨부 파일 </td>
+				<td colspan = "2">
+<%
+	if(attachment != null) {
+%>			
+				<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
+				<img alt="첨부파일" src="<%= request.getContextPath() %>/images/file.png" width=16px>
+				<a href="<%= request.getContextPath() %>/communityboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>			
+<%
+	}
+%>
+				</td>
+			</tr>
+			<tr>
+				<td id="tableContent"><%=communityBoard.getContent()%></td>	
+				</td>
+			</tr>
 		</tbody>
 		<tfoot>
 			<tr><td colspan = "4">댓글</td></tr>
 		</tfoot>
 	</table>
 	<br />
+		
+		<div class="buttons">
+<%
+	if(editable) {
+%>		
+		<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
+			<input type="button" value="수정하기" onclick="updateBoard()">
+			<input type="button" value="삭제하기" onclick="deleteBoard()">
+<%
+	}
+%>				
+		</div>
+		<br />
+		
 	
 		<div class="comment-editor">
 			<form 
@@ -145,7 +185,25 @@ tr, td{
 	</div>
 		
 <br /><br />
+
+<!-- 게시글 삭제용 폼 -->
+<form action="<%= request.getContextPath() %>/board/communityBoardDelete" name="deleteCommunityBoardFrm" method="POST">
+	<input type="hidden" name="no" value="<%= communityBoard.getNo() %>" />
+</form>
+
 <script>
+/* 게시물 업데이트 & 수정 */
+const updateBoard = () => {
+	location.href = "<%= request.getContextPath() %>/board/communityBoardUpdate?no=<%= communityBoard.getNo() %>";
+};
+
+const deleteBoard = () => {
+	if(confirm("정말 이 게시물을 삭제하시겠습니까?")) {
+		document.deleteCommunityBoardFrm.submit();
+	}
+}
+
+
 
 <% if(msg !=null){ %>
 	alert("<%=msg%>");

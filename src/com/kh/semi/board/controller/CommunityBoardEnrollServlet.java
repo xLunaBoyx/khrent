@@ -71,17 +71,16 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 			System.out.println("CommunityBoardEnrollServlet@attach = " + attach);
 			CommunityBoard.setAttach(attach);
 		}
-				
+		
+		
 		System.out.println("CommunityBoardEnrollServlet@servlet = " + CommunityBoard);
 				
 		// 2. 업무로직
 		int result = boardService.insertCommunityBoard(CommunityBoard);
-//		String msg = result > 0 ? "게시물 등록 성공!" : "게시물 등록 실패!";
-//		session.setAttribute("msg", msg);
+		String msg = result > 0 ? "게시물 등록 성공!" : "게시물 등록 실패!";
 		System.out.println("CommunityBoardEnrollServlet@servlet = " + CommunityBoard);
 				
 		// 3. 응답처리 : redirect
-		HttpSession session = request.getSession();
 		String location = request.getContextPath() + "/board/communityList";
 		response.sendRedirect(location);
 	}
