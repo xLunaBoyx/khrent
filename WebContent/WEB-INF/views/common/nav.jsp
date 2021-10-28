@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common/nav.css" />
 
 <section class="searchSection l-ct">
-	<div class="searchLayout">
+	<form action="/reservation/carSearch">
+		<div class="searchLayout">
 
 		<div class="searchLine vueDateBind">
 			<p class="searchContent searchLabel">대여일</p>
@@ -23,7 +24,8 @@
 			</p>
 		</div>
 	</div>
-	<button type="button" class="searchButton">검색하기</button>
+	<button type="submit" class="searchButton">검색하기</button>
+	</form>
 </section>
 
 <script>
