@@ -11,152 +11,100 @@ public class CarInfo implements Serializable {
 
 	private int carInfoNo;
 	private String carName;
-	private String fuel;
-	private String backCamera;
-	private String navigation;
-	private String blackbox;
-	private String smoke;
 	private String maker;
-	private String release;
-	private String capacity;
-	private int price;
+	private String fuel;
 	private String carSize;
 	private String img;
+	private int assessCnt;
+	private int avgScore;
+	private int reservCnt;
 	
 	public CarInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public CarInfo(int carInfoNo, String carName, String fuel, String backCamera, String navigation, String blackbox,
-			String smoke, String maker, String release, String capacity, int price, String carSize, String img) {
+	public CarInfo(int carInfoNo, String carName, String maker, String fuel, String carSize, String img, int assessCnt,
+			int avgScore, int reservCnt) {
 		super();
 		this.carInfoNo = carInfoNo;
 		this.carName = carName;
-		this.fuel = fuel;
-		this.backCamera = backCamera;
-		this.navigation = navigation;
-		this.blackbox = blackbox;
-		this.smoke = smoke;
 		this.maker = maker;
-		this.release = release;
-		this.capacity = capacity;
-		this.price = price;
+		this.fuel = fuel;
 		this.carSize = carSize;
 		this.img = img;
+		this.assessCnt = assessCnt;
+		this.avgScore = avgScore;
+		this.reservCnt = reservCnt;
 	}
-
 	public int getCarInfoNo() {
 		return carInfoNo;
 	}
-
 	public void setCarInfoNo(int carInfoNo) {
 		this.carInfoNo = carInfoNo;
 	}
-
 	public String getCarName() {
 		return carName;
 	}
-
 	public void setCarName(String carName) {
 		this.carName = carName;
 	}
-
-	public String getFuel() {
-		return fuel;
-	}
-
-	public void setFuel(String fuel) {
-		this.fuel = fuel;
-	}
-
-	public String getBackCamera() {
-		return backCamera;
-	}
-
-	public void setBackCamera(String backCamera) {
-		this.backCamera = backCamera;
-	}
-
-	public String getNavigation() {
-		return navigation;
-	}
-
-	public void setNavigation(String navigation) {
-		this.navigation = navigation;
-	}
-
-	public String getBlackbox() {
-		return blackbox;
-	}
-
-	public void setBlackbox(String blackbox) {
-		this.blackbox = blackbox;
-	}
-
-	public String getSmoke() {
-		return smoke;
-	}
-
-	public void setSmoke(String smoke) {
-		this.smoke = smoke;
-	}
-
 	public String getMaker() {
 		return maker;
 	}
-
 	public void setMaker(String maker) {
 		this.maker = maker;
 	}
-
-	public String getRelease() {
-		return release;
+	public String getFuel() {
+		return fuel;
 	}
-
-	public void setRelease(String release) {
-		this.release = release;
+	public void setFuel(String fuel) {
+		this.fuel = fuel;
 	}
-
-	public String getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(String capacity) {
-		this.capacity = capacity;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
 	public String getCarSize() {
 		return carSize;
 	}
-
 	public void setCarSize(String carSize) {
 		this.carSize = carSize;
 	}
-
 	public String getImg() {
 		return img;
 	}
-
 	public void setImg(String img) {
 		this.img = img;
 	}
-
+	public int getAssessCnt() {
+		return assessCnt;
+	}
+	public void setAssessCnt(int assessCnt) {
+		this.assessCnt = assessCnt;
+	}
+	public int getAvgScore() {
+		return avgScore;
+	}
+	public void setAvgScore(int avgScore) {
+		this.avgScore = avgScore;
+	}
+	public int getReservCnt() {
+		return reservCnt;
+	}
+	public void setReservCnt(int reservCnt) {
+		this.reservCnt = reservCnt;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	@Override
 	public String toString() {
-		return "CarInfo [carInfoNo=" + carInfoNo + ", carName=" + carName + ", fuel=" + fuel + ", backCamera="
-				+ backCamera + ", navigation=" + navigation + ", blackbox=" + blackbox + ", smoke=" + smoke + ", maker="
-				+ maker + ", release=" + release + ", capacity=" + capacity + ", price=" + price + ", carSize="
-				+ carSize + ", img=" + img + "]\n";
+		return "CarInfo [carInfoNo=" + carInfoNo + ", carName=" + carName + ", maker=" + maker + ", fuel=" + fuel
+				+ ", carSize=" + carSize + ", img=" + img + ", assessCnt=" + assessCnt + ", avgScore=" + avgScore
+				+ ", reservCnt=" + reservCnt + "]";
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }
