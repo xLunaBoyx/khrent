@@ -19,15 +19,13 @@ public class CarInfo implements Serializable {
 	private int avgScore;
 	private int reservCnt;
 	
-	private CarInfoAttach attach;
-
 	public CarInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public CarInfo(int carInfoNo, String carName, String maker, String fuel, String carSize, String img, int assessCnt,
-			int avgScore, int reservCnt, CarInfoAttach attach) {
+			int avgScore, int reservCnt) {
 		super();
 		this.carInfoNo = carInfoNo;
 		this.carName = carName;
@@ -38,7 +36,6 @@ public class CarInfo implements Serializable {
 		this.assessCnt = assessCnt;
 		this.avgScore = avgScore;
 		this.reservCnt = reservCnt;
-		this.attach = attach;
 	}
 
 	public int getCarInfoNo() {
@@ -113,19 +110,12 @@ public class CarInfo implements Serializable {
 		this.reservCnt = reservCnt;
 	}
 
-	public CarInfoAttach getAttach() {
-		return attach;
-	}
-
-	public void setAttach(CarInfoAttach attach) {
-		this.attach = attach;
-	}
-
 	@Override
 	public String toString() {
 		return "CarInfo [carInfoNo=" + carInfoNo + ", carName=" + carName + ", maker=" + maker + ", fuel=" + fuel
 				+ ", carSize=" + carSize + ", img=" + img + ", assessCnt=" + assessCnt + ", avgScore=" + avgScore
-				+ ", reservCnt=" + reservCnt + ", attach=" + attach + "]";
+				+ ", reservCnt=" + reservCnt + "]";
 	}
+
 	
 }
