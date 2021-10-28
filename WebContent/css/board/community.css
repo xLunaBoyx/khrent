@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-#btn-add {
-	width: 100px;
-	background-color: #d1d1d1;
-	margin: 10px 0px 10px 938px;
-}
-
 .board-title {
 	position: relative;
 	font-size: 3em;
@@ -14,11 +8,10 @@
 .board-container {
 	display: flex;
 	flex-direction: column;
-	height: 1070px;
+	height: 1000px;
 	margin: 0 auto;
 	background-color: white;
 	align-items: center;
-	padding-top: 30px;
 }
 
 #tbl-board {
@@ -37,12 +30,6 @@
 	height: 66px;
 }
 
-#btn-add {
-	width: 100px;
-	background-color: #d1d1d1;
-	margin: 10px 0px 10px 938px;
-}
-
 .board-tr>td {
 	border-bottom: 1px solid #e3e3e3;
 	text-align: center;
@@ -52,9 +39,8 @@
 }
 
 .subject {
-	width: 70%;
+	width: 55%;
 	text-align: left;
-	padding-left: 44px;
 }
 
 #pagebar {
@@ -87,4 +73,68 @@
 	letter-spacing: 0;
 	line-height: 27px;
 	vertical-align: middle;
+}
+
+/* 글쓰기 스타일  */
+#writing-container {
+	text-align: end;
+	width: 1000px;
+	margin-bottom: 15px;
+}
+
+#writing {
+	width: 100px;
+	height: 26px;
+	line-height: 26px;
+	background-color: #d1d1d1;
+	border: 1px solid black;
+	text-align: center;
+	color: #000 !important;
+	font-size: 12px;
+}
+
+/* community-view */
+
+#content{
+	flex-direction:column;
+	align-items: center;
+	
+}
+
+#comment-container{
+	width:1410px;
+	background-color: white;
+}
+
+table{
+	border-top:1px solid #4343436b;
+	border-bottom:1px solid #4343436b;
+	
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	width:1200px;		   
+}
+
+
+tr, td{
+	border-top:1px solid #4343436b;
+    text-align: center;
+    color: black;
+    font-size: 15px;
+    line-height: 58px;
+}
+
+#comment-container{
+	text-align:center;
+	width:1400px;
+	margin: 0 auto;
+}
+.buttons{
+	position: relative;
+    right: -500px;
+}
+
+#tableContent{
+	height:200px;
 }
