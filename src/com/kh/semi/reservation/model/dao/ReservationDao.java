@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi.board.model.dao.CommunityBoardDao;
+import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
 
@@ -30,10 +31,10 @@ public class ReservationDao {
 		}
 	}
 
-	public List<CarInfo> searchCar(Connection conn, String startDate, String endDate) {
+	public List<Car> searchCar(Connection conn, String startDate, String endDate) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		List<CarInfo> list = new ArrayList<>();
+		List<Car> list = new ArrayList<>();
 		String sql = prop.getProperty("searchCar");
 		System.out.println(sql);
 		System.out.println("sdate = " + startDate);
@@ -48,21 +49,21 @@ public class ReservationDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				CarInfo car = new CarInfo();
+				Car car = new Car();
 				
-				car.setCarInfoNo(rset.getInt("car_info_no"));
+				car.setCarCode(rset.getString("car_code"));
 				car.setCarName(rset.getString("car_name"));
-				car.setFuel(rset.getString("fuel"));
-				car.setBackCamera(rset.getString("back_camera"));
-				car.setNavigation(rset.getString("navigation"));
-				car.setBlackbox(rset.getString("blackbox"));
-				car.setSmoke(rset.getString("smoke"));
+				car.setReleaseYear(rset.getString("release_year"));
 				car.setMaker(rset.getString("maker"));
-				car.setRelease(rset.getString("release"));
-				car.setCapacity(rset.getString("capacity"));
-				car.setPrice(rset.getInt("price"));
+				car.setFuel(rset.getString("fuel"));
 				car.setCarSize(rset.getString("car_size"));
+				car.setCarOption(rset.getString("car_option"));
+				car.setNumberPlate(rset.getString("number_plate"));
+				car.setPrice(rset.getInt("price"));
 				car.setImg(rset.getString("img"));
+				car.setAssessCnt(rset.getInt("assess_cnt"));
+				car.setAvgScore(rset.getInt("avg_score"));
+				car.setReservCnt(rset.getInt("reserv_cnt"));
 				
 				list.add(car);
 			}

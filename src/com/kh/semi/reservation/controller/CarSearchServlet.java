@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.reservation.model.service.ReservationService;
-import com.kh.semi.reservation.model.vo.CarInfo;
-import com.kh.semi.reservation.model.vo.CarList;
+import com.kh.semi.reservation.model.vo.Car;
 
 /**
  * Servlet implementation class CarSearchServlet
@@ -27,13 +26,13 @@ public class CarSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 사용자입력값 처리 - 날짜검색에서 받아온 예약시작일과 종료일
-		String startDate = request.getParameter("mainSDate");
-		String endDate = request.getParameter("mainEDate");
-//		System.out.println(startDate);
-//		System.out.println(endDate);
+		String startDate = request.getParameter("start_date");
+		String endDate = request.getParameter("end_date");
+		System.out.println(startDate);
+		System.out.println(endDate);
 		
 		// 업무로직 - 받아온 시작일부터 종료일까지 대여가능한 차량을 조회  
-		List<CarInfo> list = reservationService.searchCar(startDate, endDate);
+		List<Car> list = reservationService.searchCar(startDate, endDate);
 		System.out.println(list);
 		
 		// view단 연결
@@ -50,5 +49,4 @@ public class CarSearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

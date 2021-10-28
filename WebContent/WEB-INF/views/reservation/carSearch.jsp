@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi.reservation.model.vo.Car"%>
 <%@page import="com.kh.semi.reservation.model.vo.CarInfo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,15 +6,19 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/footer.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/nav.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/bestFive.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
 <%
-	List<CarInfo> list = (List<CarInfo>) request.getAttribute("list");
+	List<Car> list = (List<Car>) request.getAttribute("list");
 %>
-	
-	<section class="car-container">
-	
+
+<!-- <div id="allSection"> -->
+
 <%
 	if(list.size() == 0) {
 %>
@@ -24,105 +29,71 @@
 	}
 	else {
 %>
+	<h2 style="margin: 0 auto;">대여 가능한 차량 목록</h2>
 	
-	<h2>대여 가능한 차량 목록</h2>
-	<ul>
-	
+	<section class="bfSection" style="margin: 0 auto;">
 <%
-		for(CarInfo car : list) {
-%>	
-
-	<li>
-		<div class="carBox">
-		
-		</div>
-	</li>
-		
-	
-	
-<%
-		}
-%>
-
-	</ul>
-	
-<%
-	}
-%>	
-	</section>
-
-
-<!-- <div class="search_wrap">
-		<div class="wrap">
-			<div class="search_wrap clearfix">
-				<div class="searchList_wrap">
-				<div class="searchList_text">
-					<div class="searchTermTxt">
-						<span class="period_txt">'2021-10-24 ~ 2021-10-25'</span>
-						<span>조건으로 대여 가능한 차량입니다.</span>
-					</div>
-
-					<div class="sort_option clearfix">
-						<div class="search_reservation_txt">
-							<span class="carCount">#</span>대의 차량이 예약 가능합니다.
-						</div>
-						
-						<div class="sort clearfix">
-							<ul>
-								<li class="tit">정렬 순서</li>
-								<li>
-									<select id="order">
-										<option value="charge|ASC" selected="">최저가 낮음</option>
-										<option value="charge|DESC">최저가 높음</option>
-										<option value="modelName|ASC">모델명(ㄱ-ㅎ)</option>
-										<option value="modelName|DESC">모델명(ㅎ-ㄱ)</option>
-									</select>
+		for(Car car : list) {
+%>		
+			<ul class="item-list">
+				<li class="box clearfix">
+				<div class="carSec">
+					<span style="left:10px; color:#fff; position:absolute;border-radius: 5px; display: inline-block; min-width:10px; padding: 6px 10px;font-size: 14px;font-weight:bold;text-align: center;vertical-align: middle;background-color:#ED6767 !important;z-index:1000"><%= car.getCarSize() %></span>
+					<img src="<%= request.getContextPath() %>/upload/car/<%= car.getImg() %>" width="300px;" alt="" class="lazy"/>
+						<div class="desc">
+							<div class="car_tit"><%= car.getCarName() %></div>
+							<ul class="option01 clearfix">
+								<li><%= car.getFuel() %></li>
+								<li><%= car.getReleaseYear() %></li>
+								<li><%= car.getMaker() %></li>
+							</ul>
+							<ul class="option02 clearfix">
+								<li><%= car.getCarOption() %></li>
+							</ul>
+							<!-- <ul class="option03 clearfix">
+								<li class="type01">
+									<span>지점방문</span>
 								</li>
+							</ul>
+							<span class="option04">만 26세 이상, 면허 1년 이상</span> -->
+							<ul class="option05 clearfix">
+								<li>대인 : <span>무한</span></li>
+								<li>대물 : <span>50,000,000</span>원</li>
+								<li>자손 : <span>15,000,000</span>원</li>
 							</ul>
 						</div>
 					</div>
-				</div>
-					<div class="item_wrap clearfix">
-					<div class="item_sec">
-					<a href="javascript:searchByModel('K3');">
-					<strong class="item_tit">K3<span class="grade">소형</span></strong>
-					<p class="price">최저 <span>55,600</span>원~</p>
-					<div class="goToReservation">총 <span>1</span>대 예약가능</div>
-					<div class="goToArrow"><span>모두보기</span></div>
-					<img src="https://img.rentking.co.kr/car/201810/1B5soSuqnIYZ0lHdlz2jfYIIw75vyLuiCewehsRG.png" alt="" style="width:325px;height:200px;"></a>
+					<div class="priceArea">
+						<div class="totalPrice">
+							<strong>차량대여료</strong>
+							<span><%= car.getPrice() %></span>원
+						</div>
+						<dl data-calculation="carInsurance01" class="clearfix">
+							<dt>자차1
+								<a href="javascript:void(0);" class="insuTrigger" data-pop="noInsurance">
+								<img src="//www.rentking.co.kr/resources/assets/src/imgs/rentking.w/ico/question_pop.svg?1622187507" alt="">
+								팝업
+								</a>
+							</dt>
+							<dd>20,000원 (면책금 30만원)</dd>
+						</dl>
+						<a href="javascript:void(0);" onclick="goToReservation('34677');" class="btn btn-l btn-color-type01">예약하기</a>
 					</div>
-					
-					<div class="item_sec">
-					<a href="javascript:searchByModel('아반떼AD');">
-					<strong class="item_tit">아반떼AD<span class="grade">소형</span></strong>
-					<p class="price">최저 <span>56,200</span>원~</p>
-					<div class="goToReservation">총 <span>4</span>대 예약가능</div>
-					<div class="goToArrow"><span>모두보기</span></div>
-					<img src="https://img.rentking.co.kr/car/201708/1503369214.jpg" alt="" style="width:325px;height:200px;"></a>
-					</div>
-					
-					<div class="item_sec">
-					<a href="javascript:searchByModel('더 뉴 아반떼AD');">
-					<strong class="item_tit">더 뉴 아반떼AD<span class="grade">소형</span></strong>
-					<p class="price">최저 <span>56,200</span>원~</p>
-					<div class="goToReservation">총 <span>2</span>대 예약가능</div>
-					<div class="goToArrow"><span>모두보기</span></div>
-					<img src="https://img.rentking.co.kr/car/202010/OW8ueOjEZUItk2yyZQtEAOMzP1QFCi4NbVtwxT84.png" alt="" style="width:325px;height:200px;"></a>
-					</div>
-					
-					<div class="item_sec">
-					<a href="javascript:searchByModel('레이');">
-					<strong class="item_tit">레이<span class="grade">소형</span></strong>
-					<p class="price">최저 <span>60,000</span>원~</p>
-					<div class="goToReservation">총 <span>1</span>대 예약가능</div>
-					<div class="goToArrow"><span>모두보기</span></div>
-					<img src="https://img.rentking.co.kr/car/201708/1502154596.jpg" alt="" style="width:325px;height:200px;"></a>
-					</div>
-					
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
+				</li>
+			</ul>
+		
+<%
+				}
+%>	
+
+		</section>
+<%
+	}
+%>	
+<!-- </div>	 -->
 	
+	
+	
+	
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
