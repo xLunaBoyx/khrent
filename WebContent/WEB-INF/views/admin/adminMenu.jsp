@@ -27,6 +27,8 @@
 						</li>
 						<li><a href="<%= request.getContextPath() %>/admin/adminCarList"><i class="ion-ios-alarm-outline"></i>보유 차량 관리</a>
 						</li>
+						<li><a href="<%= request.getContextPath() %>/admin/adminCarInsertSelect"><i class="ion-ios-alarm-outline"></i>차량/차종 추가</a>
+						</li>
 					</ul>
 				</li>
 
