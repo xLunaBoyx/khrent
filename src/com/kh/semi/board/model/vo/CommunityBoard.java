@@ -25,8 +25,6 @@ public class CommunityBoard implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
 
 	public CommunityBoard(int no, String writer, String title, String content, Date regDate, int readCount,
 			int boardCommentCount, Attachment attach) {

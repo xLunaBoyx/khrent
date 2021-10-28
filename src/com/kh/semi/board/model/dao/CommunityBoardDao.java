@@ -1,6 +1,7 @@
 package com.kh.semi.board.model.dao;
 
 
+
 import static com.kh.semi.common.JdbcTemplate.close;
 
 import java.io.FileReader;
@@ -126,10 +127,8 @@ public class CommunityBoardDao {
 				communityBoard.setTitle(rset.getString("community_title"));
 				communityBoard.setContent(rset.getString("community_content"));
 				communityBoard.setRegDate(rset.getDate("reg_date"));
-				communityBoard.setReadCount(rset.getInt("read_count"));						
-			}
-			
-			
+				communityBoard.setReadCount(rset.getInt("read_count"));
+			}				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -290,6 +289,103 @@ public class CommunityBoardDao {
 		
 		return result;
 	}
+
+	public Attachment selectOneAttachmentByCommunityBoardNo(Connection conn, int no) {
+		Attachment attach = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneAttachmentByCommunityBoardNo");
+		
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setInt(1, no);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				attach = new Attachment();
+				attach.setNo(rset.getInt("no"));
+				attach.setBoardNo(rset.getInt("community_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return attach;
+	}
+
+	public Attachment selectOneCommunityAttachment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Attachment attach = null;
+		String sql = prop.getProperty("selectOneCommunityAttachment");
+		
+		try {
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				attach = new Attachment();
+				attach.setNo(rset.getInt("no"));
+				attach.setBoardNo(rset.getInt("community_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attach;
+	}
+
+	public int deleteCommunityBoard(Connection conn, int no) {
+		// board의 행이 삭제되면 그 행의 no를 참조하는 attachment의 행도 따라서 삭제된다. on delete cascade 이기 때문에
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteCommunityBoard");
+		System.out.println(sql);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setInt(1, no);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 
 }
 
