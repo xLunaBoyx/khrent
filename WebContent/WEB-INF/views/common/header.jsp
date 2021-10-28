@@ -107,19 +107,19 @@
 
           </div>
         </li>
-		<%-- 관리자 보임 | 로그인하지 않거나, 일반회원 안보임 --%>
-<% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>
-        <li class="dropdown">
-          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/admin/admin';">관리자</div>
-        </li>
-<% } %>
 
 <% if (loginMember == null) { %>
         <li class="signUp"><a href="<%= request.getContextPath() %>/member/enroll">회원가입</a></li>
         <li class="login"><a href="<%= request.getContextPath() %>/member/login" id="login">로그인</a></li>
 <% } else { %>
         <li class="signUp"><a href="<%= request.getContextPath() %>/member/logout">로그아웃</a></li>
+		<%-- 관리자 보임 | 일반회원 안보임 --%>
+ 		<% if (MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())) { %>
+        <li class="login"><a href="<%= request.getContextPath() %>/admin/admin">관리자</a></li> 		
+ 		<%} else {%>
         <li class="login"><a href="<%= request.getContextPath() %>/member/myPage">마이페이지</a></li>
+ 		<%} %>
+ 		   
 <% } %>
         <li class="reserCall">예약문의 1544-9970</li>
       </ul>
