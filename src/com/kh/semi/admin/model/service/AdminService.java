@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.kh.semi.admin.model.dao.AdminDao;
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
 
 public class AdminService {
@@ -42,4 +43,27 @@ public class AdminService {
 		close(conn);
 		return totalContent;
 	}
+
+	public List<CarInfo> selectAllCarInfo(int startRownum, int endRownum) {
+		Connection conn = getConnection();
+		List<CarInfo> list = adminDao.selectAllCarInfo(conn, startRownum, endRownum);
+		close(conn);
+		return list;
+	}
+
+	public List<CarInfo> searchCarInfo(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<CarInfo> list = adminDao.searchCarInfo(conn, param);
+		close(conn);
+		return list;
+	}
+
+	public int searchCarInfoCount(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int totalContent = adminDao.searchCarInfoCount(conn, param);
+		close(conn);
+		return totalContent;
+	}
+
+
 }
