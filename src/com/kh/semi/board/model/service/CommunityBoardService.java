@@ -135,7 +135,7 @@ public class CommunityBoardService {
 		Connection conn = getConnection();
 		int result = 0;
 		try {
-			result = communityBoardDao.deleteQnaAttachment(conn, attachNo);
+			result = communityBoardDao.deleteCommunityAttachment(conn, attachNo);
 			if(result == 0)
 				throw new IllegalArgumentException("해당 첨부파일이 존재하지 않습니다. : " + attachNo);
 			commit(conn);

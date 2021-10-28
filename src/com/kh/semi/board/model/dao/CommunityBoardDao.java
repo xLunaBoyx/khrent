@@ -381,10 +381,10 @@ public class CommunityBoardDao {
 		return result;
 	}
 
-	public int deleteQnaAttachment(Connection conn, int attachNo) {
+	public int deleteCommunityAttachment(Connection conn, int attachNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = prop.getProperty("deleteCommentAttachment");
+		String sql = prop.getProperty("deleteCommunityAttachment");
 		
 		try {
 			//미완성쿼리문을 가지고 객체생성.
