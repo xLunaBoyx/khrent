@@ -153,14 +153,14 @@
 		margin-bottom: 15px;
 	}
 	#writing{
-		width: 111px;
-   		height: 40px;
-    	line-height: 40px;
-    	background-color: #2fad0c;
-    	border: 1px solid #ff9826;
+		width: 100px;
+   		height: 26px;
+    	line-height: 26px;
+    	background-color: #d1d1d1;
+    	border: 1px solid black;
 	    text-align: center;
-	    color: #fff !important;
-	    font-size: 13px;
+	    color: #000 !important;
+	    font-size: 12px;
 	}
 	
 	
