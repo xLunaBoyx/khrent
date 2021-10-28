@@ -397,30 +397,6 @@ public class AdminDao {
 		return result;
 	}
 
-	public int insertCarInfoAttach(Connection conn, CarInfoAttach attach) {
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertCarInfoAttach");
-		int result = 0;
-		System.out.println(attach);
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, attach.getCarInfoNo());
-			pstmt.setString(2, attach.getOriginalFileName());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			//throw new BoardException("첨부파일 등록 오류", e);
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
-
 	public int selectCarInfoTotalContents(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;

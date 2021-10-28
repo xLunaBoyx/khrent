@@ -75,14 +75,7 @@ public class AdminCarInfoInsertServlet extends HttpServlet {
 		String carSize = multipartRequest.getParameter("carSize");
 		String img = multipartRequest.getParameter("img");
 		
-		CarInfo carInfo = new CarInfo(0, carName, maker, fuel, carSize, originalFilename, 0, 0, 0, null);
-		
-		if(multipartRequest.getFile("img") != null) {
-			CarInfoAttach attach = new CarInfoAttach();
-			attach.setOriginalFileName(originalFilename);
-			System.out.println("AdminCarInfoInsertServlet@attach = " + attach);
-			carInfo.setAttach(attach);
-		}
+		CarInfo carInfo = new CarInfo(0, carName, maker, fuel, carSize, originalFilename, 0, 0, 0);
 		
 		System.out.println("AdminCarInfoInsertServlet@servlet = " + carInfo);
 		

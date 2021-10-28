@@ -84,12 +84,6 @@ public class AdminService {
 			// board객체에 set -> servlet에서 참조
 			carInfo.setCarInfoNo(carInfoNo);
 			
-			// attachment테이블 행추가
-			CarInfoAttach attach = carInfo.getAttach();
-			if(attach != null) {
-				attach.setCarInfoNo(carInfoNo);
-				result = adminDao.insertCarInfoAttach(conn, attach);
-			}
 			commit(conn);
 		} catch(Exception e) {
 			rollback(conn);
