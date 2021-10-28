@@ -153,8 +153,16 @@ tr, td{
 					<%-- 댓글 내용 --%>
 					<%= cb.getContent() %>			
 				</td>
+<%
+				// 댓글 작성자와 관리자계정에게만 대댓글 추가버튼, 삭제 버튼이 보인다.
+				if(loginMember != null && (cb.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()))) {
+%>	
 				<td>
 					<button class="btn-reply" value="<%= cb.getNo() %>">답글</button>
+					<button class="btn-delete" value="<%= cb.getNo() %>">삭제</button>
+<%
+				}
+%>
 				</td>
 			</tr>
 	
@@ -171,7 +179,16 @@ tr, td{
 					<%-- 댓글 내용 --%>
 					<%= cb.getContent() %>
 				</td>
-				<td></td>
+				<td>
+<%
+				//댓글 작성자와 관리자계정에게만 삭제 버튼이 보인다.
+				if(loginMember != null && (cb.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()))) {
+%>				
+					<button class="btn-delete" value="<%= cb.getNo() %>">삭제</button>
+<%
+				}
+%>
+				</td>
 			</tr>
 	
 	<%			
@@ -183,6 +200,14 @@ tr, td{
 		</table>
 		
 	</div>
+	<!-- 댓글 삭제용 폼 -->
+		<form 
+			action="<%= request.getContextPath() %>/board/communityBoardCommentDelete" 
+			name="communityBoardCommentDelFrm"
+			method="POST">
+			<input type="hidden" name="no" />
+			<input type="hidden" name="boardNo" value="<%= communityBoard.getNo() %>"/>
+		</form>
 		
 <br /><br />
 
@@ -268,6 +293,16 @@ console.log(tr);
 	// 현재버튼의 handler 제거
 	$(e.target).off('click');
 });
+
+//댓글삭제버튼
+$(".btn-delete").click(function(){
+	if(confirm("해당 댓글을 삭제하시겠습니까?")){
+		var $frm = $(document.communityBoardCommentDelFrm);
+		var no = $(this).val();
+		$frm.find("[name=no]").val(no);
+		$frm.submit();
+	}
+});	
 
 </script>
 
