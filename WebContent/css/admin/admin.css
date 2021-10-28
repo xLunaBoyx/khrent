@@ -25,48 +25,14 @@
   margin: 0;
 }
 
-ul {
-  list-style: none;
-}
-
-a,
-button {
-  color: inherit;
-}
-
-a {
-  text-decoration: none;
-}
-
-button {
-  background: none;
-  cursor: pointer;
-}
-
-input {
-  -webkit-appearance: none;
-}
-
 [type="checkbox"] {
   position: absolute;
   left: -9999px;
 }
 
-label {
-  cursor: pointer;
-}
-
-button,
-input {
-  border: none;
-}
-
-svg {
-  display: block;
-}
-
-body {
-  font: 16px/1.5 "Lato", sans-serif;
+.greeting {
+	font-size: 25px;
+	font-weight: bolder;
 }
 
 
@@ -80,6 +46,7 @@ body {
   margin: 0;
   margin-left: 300px;
   padding: 30px;
+  padding-top: 50px;
   color: var(--page-content-txtColor);
 }
 
