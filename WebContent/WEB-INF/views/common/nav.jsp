@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/common/nav.css" />
 
 <section class="searchSection l-ct">
-	<form action="/reservation/carSearch" style="display: content;">
+	<form action="/reservation/carSearch" style="display: contents;">
 		<div class="searchLayout">
 
 		<div class="searchLine vueDateBind">
