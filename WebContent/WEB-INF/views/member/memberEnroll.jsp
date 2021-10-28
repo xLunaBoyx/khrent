@@ -133,14 +133,8 @@
 		
 		//password
 		const $p1 = $("#password");
-		cosnt $p2 = $("#password2");
 		if(/^[a-zA-Z0-9!@#$$%^&*()]{8,}/.test($p1.val()) == false){
 			alert("비밀번호는 영문, 숫자 포함 8자리 이상입니다.");
-			$p1.select();
-			return false;
-		}
-		if($p1.val() != $p2.val()){
-			alert("비밀번호가 일치하지 않습니다.");
 			$p1.select();
 			return false;
 		}
