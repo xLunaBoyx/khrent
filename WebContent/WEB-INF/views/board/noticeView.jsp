@@ -118,8 +118,9 @@ alert("<%= msg %>");
 	    text-align: left;
 	    color: #434343;
 	    font-size: 15px;
-	    line-height: 36px;
-        width: 40px;	
+	    line-height: 85px;
+        width: 40px;
+        height: auto;	
 	}
 	.subject {
 		width: 70%;
