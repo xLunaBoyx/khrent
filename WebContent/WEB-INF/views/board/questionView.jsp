@@ -90,8 +90,8 @@
 	if(editable) {
 %>		
 		<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-			<input type="button" value="수정하기" onclick="updateBoard()">
-			<input type="button" value="삭제하기" onclick="deleteBoard()">
+			<input class="change" type="button" value="수정하기" onclick="updateBoard()">
+			<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
 <%
 	}
 %>				
@@ -102,27 +102,7 @@
 		<!-- 여기부터 댓글 -->
 		
 		<div class="comment-container">
-<%
-	if(editable) {
-%>	
-	<!-- 문의글 작성자와 관리자만 댓글작성 폼이 보인다. -->
-			<div class="comment-editor">
-				<form 
-					action="<%= request.getContextPath() %>/board/qnaBoardCommentEnroll" 
-					name="qnaBoardCommentFrm" 
-					method="post">
-					<textarea name="content" cols="60" rows="3"></textarea>
-					<button id="btn-insert">등록</button>
-					
-					<input type="hidden" name="commentLevel" value="1" />
-					<input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
-					<input type="hidden" name="boardNo" value="<%= questionBoard.getNo() %>" />
-					<input type="hidden" name="commentRef" value="0" />
-				</form>
-			</div>
-<%
-	}
-%>					
+
 			
 			<table id="tbl-comment">
 <%
@@ -183,6 +163,27 @@
 	}
 %>		
 			</table>
+<%
+	if(editable) {
+%>	
+	<!-- 문의글 작성자와 관리자만 댓글작성 폼이 보인다. -->
+			<div class="comment-editor">
+				<form 
+					action="<%= request.getContextPath() %>/board/qnaBoardCommentEnroll" 
+					name="qnaBoardCommentFrm" 
+					method="post">
+					<textarea id="insertText" name="content" cols="60" rows="3"></textarea>
+					<button id="btn-insert">등록</button>
+					
+					<input type="hidden" name="commentLevel" value="1" />
+					<input type="hidden" name="writer" value="<%= loginMember != null ? loginMember.getMemberId() : "" %>" />
+					<input type="hidden" name="boardNo" value="<%= questionBoard.getNo() %>" />
+					<input type="hidden" name="commentRef" value="0" />
+				</form>
+			</div>
+<%
+	}
+%>					
 		
 		</div>
 		<!-- 댓글 삭제용 폼 -->
@@ -318,6 +319,10 @@ const loginAlert = () => {
 	
 	
 <style>
+.change {
+	background-color: white;
+	border: none;
+}
 .buttons {
 	position: relative;
 	   right: -400px;
@@ -395,16 +400,44 @@ td {
 
 
 /*댓글등록버튼*/
-div.comment-container button#btn-insert{width:60px; height:50px; color:white; background:#3300ff; position:relative; top:-20px;}
+#insertText {
+	width: 885px;
+    border: 1px solid #0000001f;
+}
+div.comment-container button#btn-insert {
+	width:66px; 
+	height:59px; 
+    color: #000000;
+    background: #2980b9; 
+	position:relative; 
+	top:-24px;
+	border-radius: 13px;
+    left: -1px;
+}
 
 /*댓글테이블*/
-table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse;} 
-table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
+table#tbl-comment {
+	width:957px; 
+	margin:0 0 11px 0; 
+	border-collapse:collapse;
+    background-color: #f5f5f5;
+} 
+table#tbl-comment tr td {
+	padding:5px; 
+	text-align:left; 
+	line-height:150%;
+}
 table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
 table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-table#tbl-comment button.btn-reply{display:none;}
+table#tbl-comment button.btn-reply {
+	display:none;
+	background-color: lightgray;
+	border: none;
+}
 table#tbl-comment tr:hover {background:lightgray;}
-table#tbl-comment tr:hover button.btn-reply{display:inline;}
+table#tbl-comment tr:hover button.btn-reply {
+	display:inline;
+}
 table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
 table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
 
@@ -418,7 +451,12 @@ table#tbl-comment textarea{margin: 4px 0 0 0;}
 table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
 
 /* 삭제버튼관련 */
-table#tbl-comment button.btn-delete{background:red; color:white; display:none;}
+table#tbl-comment button.btn-delete {
+	background: lightgray;
+    color: #ff0909;
+    border: none;
+	display:none;
+}
 table#tbl-comment tr:hover button.btn-delete{display:inline;}
 
 </style>
