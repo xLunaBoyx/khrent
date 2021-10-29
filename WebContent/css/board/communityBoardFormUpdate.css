@@ -1,4 +1,30 @@
 @charset "UTF-8";
+#title {
+	width: 770px;
+	height: 21px;
+	margin-left: 30px;
+}
+#board-container h2 {
+	padding-left: 185px;
+}
+#writer {
+	height: 21px;
+	margin-left: 30px;
+}
+#content {
+	resize: none;
+	width: 770px;
+	margin-top: 24px;
+	margin-left: 30px;
+	height: 300px;
+}
+#boardEnrollFrm {
+	height: 900px;
+	padding: 16px;
+}
+#file {
+	margin-left: 30px;
+}
 [name=title] {
 		width: 500px;
 	}
@@ -17,6 +43,7 @@
 	table {
 		width: 1057px;
 		border-collapse: collapse;
+		margin: auto;
 	}
 	th {
 	    border-top: 1px solid #989898;
@@ -31,7 +58,6 @@
 	}
 	td {
 	    border-bottom: 1px solid #e3e3e3;
-	    text-align: center;
 	    color: #434343;
 	    font-size: 15px;
 	    line-height: 58px;

@@ -26,7 +26,7 @@
 <div class="board-container">
 	<table id="tbl-board">
 		<thead>
-			<tr><th colspan = "4">제목 : <%=communityBoard.getTitle()%></th></tr>
+			<tr><th colspan = "4"><%=communityBoard.getTitle()%></th></tr>
 		</thead>
 		<tbody>
 			<tr style="border-top: 1px solid black;">
@@ -54,7 +54,7 @@
 			</tr>
 		</tbody>
 		<tfoot>
-			<tr><td colspan = "4">댓글</td></tr>
+			<tr><td id="comment" colspan = "4"></td></tr>
 		</tfoot>
 	</table>
 	<br />

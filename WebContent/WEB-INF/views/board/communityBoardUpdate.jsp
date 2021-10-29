@@ -21,23 +21,23 @@
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/communityBoardUpdate"
 	enctype="multipart/form-data" 
-	method="post">
+	method="post" id="boardEnrollFrm">
 	<input type="hidden" name="no" value="<%= communityBoard.getNo() %>" />
 	<table id="tbl-board-view">
 		<tr>
 			<th>제 목</th>
-			<td><input type="text" name="title" value="<%= communityBoard.getTitle() %>" required></td>
+			<td><input id="title" type="text" name="title" value="<%= communityBoard.getTitle() %>" required></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer" value="<%= communityBoard.getWriter() %>" readonly/>
+				<input id="writer" type="text" name="writer" value="<%= communityBoard.getWriter() %>" readonly/>
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
 			<td style="position:relative">
-				<input type="file" name="upFile">
+				<input id="file" type="file" name="upFile">
 <%
 	Attachment attach = communityBoard.getAttach();
 	if(attach != null) {
@@ -53,7 +53,7 @@
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"><%= communityBoard.getContent()%></textarea></td>
+			<td><textarea id="content" rows="5" cols="40" name="content"><%= communityBoard.getContent()%></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
