@@ -12,10 +12,16 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/footer.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/nav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
+<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" /> --%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/bestFive.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
+<style>
+.top_comment {
+   position: relative;
+   left: 40%;
+}
+</style>
 <%
 	List<Car> list = (List<Car>) request.getAttribute("list");
 	String startDate = (String) request.getAttribute("start_date");
@@ -41,14 +47,18 @@ $("#end_date").val(<%= endDate %>);
 	if(list.size() == 0) {
 %>
 	
-	<h2>조건에 맞는 차량이 없습니다.</h2>
-	
+	<div class="top_comment">
+		<h2>조건에 맞는 차량이 없습니다.</h2>
+	</div>
 <%
 	}
 	else {
 %>
-	<h2 style="margin: 0 auto;">대여 가능한 차량 목록</h2>
-	
+
+	<div class="top_comment">
+		<h2><span style="color: #6EB1EC"><%= list.size() %></span>대의 차량이 예약 가능합니다.</h2>
+	</div>
+
 	<section class="bfSection" style="margin: 0 auto;">
 <%
 		for(Car car : list) {

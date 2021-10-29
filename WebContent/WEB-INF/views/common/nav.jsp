@@ -28,15 +28,5 @@
 	</form>
 </section>
 
-<script>
 
-	// 	날짜 선택 현재 날짜 기준으로 나타내기
-	document.getElementById('navSDate').value = new Date().toISOString()
-			.substring(0, 10);
-	;
-	document.getElementById('navEDate').value = new Date().toISOString()
-			.substring(0, 10);
-	;
-	
-</script>
 
