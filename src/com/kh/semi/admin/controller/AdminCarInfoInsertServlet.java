@@ -14,7 +14,6 @@ import com.kh.semi.admin.model.service.AdminService;
 import com.kh.semi.board.model.vo.QuestionBoard;
 import com.kh.semi.common.MvcFileRenamePolicy;
 import com.kh.semi.reservation.model.vo.CarInfo;
-import com.kh.semi.reservation.model.vo.CarInfoAttach;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 

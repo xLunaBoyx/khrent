@@ -15,6 +15,7 @@ import com.kh.semi.admin.model.service.AdminService;
 import com.kh.semi.common.MvcUtils;
 import com.kh.semi.member.model.service.MemberService;
 import com.kh.semi.member.model.vo.Member;
+import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarList;
 
 /**
@@ -22,7 +23,7 @@ import com.kh.semi.reservation.model.vo.CarList;
  */
 
 @WebServlet("/admin/carFinder")
-public class AdminCarFinderServlet extends HttpServlet {
+public class AdminTotalCarFinderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminService adminService = new AdminService();
@@ -56,7 +57,7 @@ public class AdminCarFinderServlet extends HttpServlet {
 		
 		// 2. 업무로직
 		// 	가. content영역
-		List<CarList> list = adminService.searchCar(param);
+		List<Car> list = adminService.searchCar(param);
 		System.out.println(list);
 		
 		// 	나. pagebar영역
@@ -74,7 +75,7 @@ public class AdminCarFinderServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		request.setAttribute("pagebar", pagebar);
 		request
-			.getRequestDispatcher("/WEB-INF/views/admin/adminCarList.jsp")
+			.getRequestDispatcher("/WEB-INF/views/admin/adminTotalCarList.jsp")
 			.forward(request, response);
 		
 	}
