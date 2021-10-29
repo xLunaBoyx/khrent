@@ -12,6 +12,7 @@ import java.util.Map;
 import com.kh.semi.admin.model.dao.AdminDao;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
+import com.kh.semi.reservation.model.vo.CarList;
 
 public class AdminService {
 
@@ -75,6 +76,17 @@ public class AdminService {
 		int totalContent = adminDao.selectCarInfoTotalContents(conn);
 		close(conn);
 		return totalContent;
+	}
+
+	public int insertCarList(CarList carList) {
+		Connection conn = getConnection();
+		int result = adminDao.insertCarList(conn, carList);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
 	}
 
 
