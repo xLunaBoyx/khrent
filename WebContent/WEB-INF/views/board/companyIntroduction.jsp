@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css" />
- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
+ <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/companyIntroduction.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp" %>

@@ -8,12 +8,16 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
+
 <%
 	List<NoticeBoard> list = (List<NoticeBoard>) request.getAttribute("list");
 %>
+
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
+
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+
 <%
 	NoticeBoard noticeBoard = (NoticeBoard)request.getAttribute("noticeBoard");
 	boolean editable = loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole());
@@ -23,6 +27,7 @@
 	// System.out.println("msg@header.jsp = " + msg);
 	if(msg != null) session.removeAttribute("msg");
 %>
+
 	<div class="board-container">
 		<table id="tbl-board">
 			<thead>
@@ -75,6 +80,7 @@ alert("<%= msg %>");
 
 </script>
 <% } %>
+
 	<style>
 	.board-title {
 		position: relative;
