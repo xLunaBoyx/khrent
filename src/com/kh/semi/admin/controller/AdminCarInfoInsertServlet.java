@@ -87,7 +87,7 @@ public class AdminCarInfoInsertServlet extends HttpServlet {
 		System.out.println("AdminCarInfoInsertServlet@servlet = " + carInfo);
 		
 		// 3. 응답처리 : redirect
-		String location = request.getContextPath() + "/admin/adminCarInfoList";
+		String location = request.getContextPath() + "/admin/adminTotalCarList";
 		response.sendRedirect(location);
 	}
 
