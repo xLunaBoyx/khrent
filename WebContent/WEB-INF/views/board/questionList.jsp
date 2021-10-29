@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/board.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/question.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/questionList.css" />
 <%
 	List<QuestionBoard> list = (List<QuestionBoard>) request.getAttribute("list");
 	
