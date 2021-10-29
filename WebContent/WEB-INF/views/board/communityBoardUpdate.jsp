@@ -16,7 +16,7 @@
 %>
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 <section id="board-container">
-<h2>게시판 수정</h2>
+<h2>커뮤니티</h2>
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/communityBoardUpdate"

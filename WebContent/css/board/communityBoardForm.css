@@ -3,13 +3,12 @@
 		position: relative;
 		font-size: 3em;
 }
-.board-container {
+#board-container {
 	display: flex;
 	flex-direction: column;
 	height: 1000px;
 	margin: 0 auto;
 	background-color: white;
-	align-items: center;
 }
 table#tbl-board-view {
 	width: 1057px;
@@ -18,10 +17,6 @@ table#tbl-board-view {
 }
 #title {
 	width: 770px;
-	height: 21px;
-	margin-left: 30px;
-}
-#writer {
 	height: 21px;
 	margin-left: 30px;
 }
@@ -35,6 +30,10 @@ table#tbl-board-view {
 #boardEnrollFrm {
 	height: 900px;
 	padding: 16px;
+}
+#writer {
+	height: 21px;
+	margin-left: 30px;
 }
 #file {
 	margin-left: 30px;

@@ -38,32 +38,33 @@ $(() => {
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
-	<h2>문의사항 작성</h2>
+	<h2>문의사항</h2>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/qnaBoardEnroll" 
 		method="post"
-		enctype="multipart/form-data">
+		enctype="multipart/form-data"
+		id="boardEnrollFrm">
 		<table id="tbl-board-view">
 		<tr>
 			<th>제 목</th>
-			<td><input type="text" name="title" required></td>
+			<td><input id="title" type="text" name="title" required></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>
-				<input type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
+				<input id="writer" type="text" name="writer" value="<%= loginMember.getMemberId() %>" readonly/>
 			</td>
 		</tr>
 		<tr>
 			<th>첨부파일</th>
 			<td>			
-				<input type="file" name="upFile">
+				<input id="file" type="file" name="upFile">
 			</td>
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea id="content" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
