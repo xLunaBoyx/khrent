@@ -79,11 +79,11 @@
 %>       							
 			</tbody>
 		</table>
-		</div>
-		</div>
-		
 		<div id='pageBar'>
 			<%= request.getAttribute("pagebar") %>
 		</div>
+	</div>
+</div>
+		
 		
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
