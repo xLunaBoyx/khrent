@@ -43,7 +43,7 @@
 	<div class="board-container">
 		<table id="tbl-board">
 			<thead>
-				<tr><th colspan = "4">제목 : <%=questionBoard.getQna_title()%></th></tr>
+				<tr><th colspan = "4"><%=questionBoard.getQna_title()%></th></tr>
 			</thead>
 			<tbody>
 				<tr style="text-align: center;">
