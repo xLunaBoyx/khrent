@@ -24,3 +24,6 @@ a {
 	text-decoration: none;
     cursor: pointer;
 }
+a:active {
+	    color: #00000042;
+}
