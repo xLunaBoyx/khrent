@@ -21,10 +21,6 @@ table#tbl-board-view {
 	height: 21px;
 	margin-left: 30px;
 }
-#writer {
-	height: 21px;
-	margin-left: 30px;
-}
 #content {
 	resize: none;
 	width: 770px;
@@ -35,6 +31,10 @@ table#tbl-board-view {
 #boardEnrollFrm {
 	height: 900px;
 	padding: 16px;
+}
+#writer {
+	height: 21px;
+	margin-left: 30px;
 }
 #file {
 	margin-left: 30px;
