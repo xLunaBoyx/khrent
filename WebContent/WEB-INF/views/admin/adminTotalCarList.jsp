@@ -28,7 +28,6 @@ String searchKeyword = request.getParameter("searchKeyword");
 <section id="carList-container">
         <h2>전체 차량 관리</h2>
         
-	        
         <table id="tbl-car">
             <thead>
                 <tr>
@@ -67,7 +66,7 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= car.getAvgScore() %></td>
             		<td><%= car.getReservCnt() %></td>
             		<td>
-            		<input type="button" value="수정" class="adminCarUpdateBtn" onclick="#"/>
+            		<input type="button" value="수정" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListUpdate?carCode=<%= car.getCarCode() %>';"/>
             		</td>
             		<td>
             		<input type="button" value="삭제" class="adminCarUpdateBtn" onclick="#"/>
@@ -106,7 +105,6 @@ String searchKeyword = request.getParameter("searchKeyword");
 	            </form>	
 	        </div>
 
-	        
 	        <div id="search-maker" class="search-type">
 	            <form action="<%=request.getContextPath()%>/admin/carFinder">
 	                <input type="hidden" name="searchType" value="maker"/>
