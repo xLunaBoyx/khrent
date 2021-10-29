@@ -5,6 +5,7 @@ import static com.kh.semi.common.JdbcTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -318,6 +319,63 @@ public class AdminDao {
 			pstmt.setString(3, carList.getCarOption());
 			pstmt.setInt(4, carList.getPrice());
 			pstmt.setString(5, carList.getNumberPlate());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public CarList selectOneCar(Connection conn, String carCode) {
+		String sql = prop.getProperty("selectOneCar");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		CarList carList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				String carName = rset.getString("car_name");
+				String releaseYear = rset.getString("release_year");
+				String carOption = rset.getString("car_option");
+				int price = rset.getInt("price");
+				String numberPlate = rset.getString("number_plate");
+				
+				carList = new CarList(carCode, carName, releaseYear, carOption, price, numberPlate);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return carList;
+	}
+
+	public int adminCarListUpdate(Connection conn, CarList carList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminCarListUpdate"); 
+		System.out.println(sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, carList.getCarOption());
+			pstmt.setInt(2, carList.getPrice());
+			pstmt.setString(3, carList.getCarCode());
 			
 			result = pstmt.executeUpdate();
 			

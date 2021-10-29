@@ -1,29 +1,37 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.semi.reservation.model.vo.CarList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminCarInfoInsert.css" />
+    <%
+	CarList carList = (CarList) request.getAttribute("carList");
+	%>
+	
+	 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/admin/adminCarListUpdate.css" />
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 <%@ include file="/WEB-INF/views/admin/adminMenu.jsp"%>
 
-<div class="mypageCont">
-	<section id="board-container">
-	<strong class="tit01">차량 추가</strong>
-	<p class="tit04">차량 추가는 차종이 존재해야 가능합니다.</p>
-		<form
-		name="carListInsertFrm"
-		action="<%=request.getContextPath() %>/admin/adminCarListInsert" 
-		method="post">
-		<table id="tbl-board-view">
+		<div class="mypageCont">
+				<strong class="tit01">차량 정보 수정</strong>
+				<div class="mypageDesc2">
+
+					<form name="carListUpdateFrm"
+						action="<%=request.getContextPath()%>/admin/adminCarListUpdate"
+						method="POST">
+						
+<table id="tbl-board-view">
+		<tr class="carInfoTr">
+			<th>차량코드</th>
+			<td><%= carList.getCarCode() %></td>
+		</tr>
 		<tr class="carInfoTr">
 			<th>이름</th>
-			<td><input type="text" name="carName" class="carInsertInput" required></td>
+			<td><%= carList.getCarName() %></td>
 		</tr>
 		<tr class="carInfoTr">
 			<th>제조년도</th>
-			<td>
-				<input type="text" name="releaseYear" class="carInsertInput" placeholder="숫자만 입력해주세요." required />
-			</td>
+			<td><%= carList.getReleaseYear() %></td>
 		</tr>
 		<tr class="carInfoTr">
 			<th>옵션</th>
@@ -65,14 +73,16 @@
 		<tr class="carInfoTr">
 			<th>가격</th>
 			<td>
-			<input type="text" name="price" class="carInsertInput" placeholder="숫자만 입력해주세요." required/>			
+				<input type="hidden" name="carCode" value="<%= carList.getCarCode() %>" />
+				<input type="hidden" name="carName" value="<%= carList.getCarName() %>" />
+				<input type="hidden" name="releaseYear" value="<%= carList.getReleaseYear() %>" />
+				<input type="hidden" name="numberPlate" value="<%= carList.getNumberPlate() %>" />
+				<input type="text" name="price" class="carInsertInput" placeholder="숫자만 입력해주세요." required/>			
 			</td>
 		</tr>
 		<tr class="carInfoTr">
 			<th>번호판</th>
-			<td>			
-				<input type="text" name="numberPlate" class="carInsertInput" required />	
-			</td>
+			<td><%= carList.getNumberPlate() %></td>
 		</tr>
 		<tr class="carInfoTr">
 			<th colspan="2">
@@ -80,22 +90,33 @@
 			</th>
 		</tr>
 	</table>
-	</form>
-	</section>
-</div>
-
+		</form>
+		</div>												
+	</div>
+				
 <script>
-    function fnGetdata(){
-        var obj = $("[name=option]");
-        var chkArray = new Array(); // 배열 선언
- 
-        $('input:checkbox[name=option]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
-            chkArray.push(this.value);
-        });
-        $('#array').val(chkArray);
-    }
- 
+
+<% 
+String msg = (String) session.getAttribute("msg");
+if(msg != null) session.removeAttribute("msg");
+
+%>
+
+<% if(msg != null) { %>
+// 사용자 메세지 전달
+alert("<%= msg %>");
+<% } %>
+
+function fnGetdata(){
+    var obj = $("[name=option]");
+    var chkArray = new Array(); // 배열 선언
+
+    $('input:checkbox[name=option]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+        chkArray.push(this.value);
+    });
+    $('#array').val(chkArray);
+}
+
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
-    

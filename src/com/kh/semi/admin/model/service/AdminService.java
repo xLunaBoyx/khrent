@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.semi.admin.model.dao.AdminDao;
+import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
@@ -88,6 +89,25 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+
+	public CarList selectOneCar(String carCode) {
+		Connection conn = getConnection();
+		CarList carList = adminDao.selectOneCar(conn, carCode);
+		close(conn);
+		return carList;
+	}
+
+	public int adminCarListUpdate(CarList carList) {
+		Connection conn = getConnection();
+		int result = adminDao.adminCarListUpdate(conn, carList);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 
 
 
