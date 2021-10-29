@@ -16,20 +16,21 @@
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <section id="board-container">
-<h2>게시판 수정</h2>
+<h2>공지사항</h2>
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/noticeBoardUpdate"
-	method="post">
+	method="post"
+	id="boardUpdateFrm">
 	<input type="hidden" name="no" value="<%= noticeBoard.getNoticeNo() %>" />
 	<table id="tbl-board-view">
 		<tr>
 			<th>제 목</th>
-			<td><input type="text" name="title" value="<%= noticeBoard.getNoticeTitle() %>" required></td>
+			<td><input id="title" type="text" name="title" value="<%= noticeBoard.getNoticeTitle() %>" required></td>
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea rows="5" cols="40" name="content"><%= noticeBoard.getNoticeContent() %></textarea></td>
+			<td><textarea id="content" rows="5" cols="40" name="content"><%= noticeBoard.getNoticeContent() %></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
