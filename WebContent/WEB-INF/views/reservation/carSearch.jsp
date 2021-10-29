@@ -54,9 +54,11 @@ $("#end_date").val(<%= endDate %>);
 	}
 	else {
 %>
+
 	<div class="top_comment">
 		<h2><span style="color: #6EB1EC"><%= list.size() %></span>대의 차량이 예약 가능합니다.</h2>
 	</div>
+
 	<section class="bfSection" style="margin: 0 auto;">
 <%
 		for(Car car : list) {

@@ -6,11 +6,64 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
-
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/board.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/community.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+#content{
+	display:flex;
+	flex-direction:column;
+	align-items: center;
+	
+}
+
+#comment-container{
+	width:1410px;
+	background-color: white;
+}
+
+table{
+	border-top:1px solid #4343436b;
+	border-bottom:1px solid #4343436b;
+	
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	width:1200px;		   
+}
+
+
+tr, td{
+	border-top:1px solid #4343436b;
+ 	solid #69666a63;
+    text-align: center;
+    color: black;
+    font-size: 15px;
+    line-height: 58px;
+}
+
+#comment-container{
+	text-align:center;
+	width:1400px;
+}
+.buttons{
+	position: relative;
+    right: -500px;
+}
+
+#tableContent{
+	height:200px;
+}
+
+
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 
 <%
 	CommunityBoard communityBoard = (CommunityBoard)request.getAttribute("communityBoard");
@@ -20,21 +73,16 @@
 	List<CommunityBoardComment>commentList = (List<CommunityBoardComment>)request.getAttribute("list");
 	boolean editable = loginMember != null && (communityBoard.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()));
 %>
-
-<div class="wrap clearfix" style="width: 1417px; margin:auto; margin-top: 20px;">
-
-<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
-
-<div class="board-container">
-	<table id="tbl-board">
+<div id=comment-container>
+	<table>
 		<thead>
 			<tr><th colspan = "4">제목 : <%=communityBoard.getTitle()%></th></tr>
 		</thead>
 		<tbody>
-			<tr style="border-top: 1px solid black;">
-				<td> 작성자 : <%=communityBoard.getWriter() %></td>
-				<td> 작성일 : <%=communityBoard.getRegDate()%></td>
-				<td> 조회수 : <%=communityBoard.getReadCount() %></td>
+			<tr>
+				<td width="33%"> 작성자 : <%=communityBoard.getWriter() %></td>
+				<td width="33%"> 작성일 : <%=communityBoard.getRegDate()%></td>
+				<td width="33%"> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
 			<tr>
 				<td>첨부 파일 </td>
@@ -150,7 +198,6 @@
 %>		
 
 		</table>
-		</div>
 		
 	</div>
 	<!-- 댓글 삭제용 폼 -->
@@ -259,4 +306,13 @@ $(".btn-delete").click(function(){
 
 </script>
 
+</body>
+</html>
+
+
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+
+

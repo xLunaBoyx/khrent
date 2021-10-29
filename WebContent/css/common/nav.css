@@ -5,11 +5,6 @@
 	opacity: 0;
 }
 
-.carSearchFrm {
-	display: contents;
-}
-
-
 section.searchSection {
 	display: flex;
 	flex-wrap: nowrap;
