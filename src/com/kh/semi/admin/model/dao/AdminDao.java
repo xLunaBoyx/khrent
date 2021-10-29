@@ -305,4 +305,29 @@ public class AdminDao {
 		return totalContents;
 	}
 
+	public int insertCarList(Connection conn, CarList carList) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertCarList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, carList.getCarName());
+			pstmt.setString(2, carList.getReleaseYear());
+			pstmt.setString(3, carList.getCarOption());
+			pstmt.setInt(4, carList.getPrice());
+			pstmt.setString(5, carList.getNumberPlate());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
