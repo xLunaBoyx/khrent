@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/board.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/community.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/communityView.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 
 <%
@@ -73,20 +73,7 @@
 		<br />
 		
 	
-		<div class="comment-editor">
-			<form 
-				action="<%= request.getContextPath() %>/board/communityBoardCommentEnroll" 
-				name="communityBoardEnroll" 
-				method="POST">
-				<textarea name="content" cols="60" rows="3"></textarea>
-				<button id="btn-insert">등록</button>
-				
-				<input type="hidden" name="commentLevel" value="1" />
-				<input type="hidden" name="writer" value="<%=loginMember != null ? loginMember.getMemberId() : "" %>" />
-				<input type="hidden" name="boardNo" value="<%=communityBoard.getNo() %>" />
-				<input type="hidden" name="commentRef" value="0" />
-			</form>
-		</div>
+		
 		
 		<table id="tbl-comment">
 	<%
@@ -148,6 +135,20 @@
 %>		
 
 		</table>
+		<div class="comment-editor">
+			<form 
+				action="<%= request.getContextPath() %>/board/communityBoardCommentEnroll" 
+				name="communityBoardEnroll" 
+				method="POST">
+				<textarea id="insertText" name="content" cols="60" rows="3"></textarea>
+				<button id="btn-insert">등록</button>
+				
+				<input type="hidden" name="commentLevel" value="1" />
+				<input type="hidden" name="writer" value="<%=loginMember != null ? loginMember.getMemberId() : "" %>" />
+				<input type="hidden" name="boardNo" value="<%=communityBoard.getNo() %>" />
+				<input type="hidden" name="commentRef" value="0" />
+			</form>
+		</div>
 		</div>
 		
 	</div>
