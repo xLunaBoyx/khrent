@@ -12,26 +12,33 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/footer.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/nav.css" />
-<%-- <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" /> --%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/bestFive.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
 <style>
-.top_comment {
+.topComment {
    position: relative;
-   left: 40%;
+   left: 28%;
+}
+.carSearchResult {
+	background-color: white;
 }
 </style>
 <%
 	List<Car> list = (List<Car>) request.getAttribute("list");
 	String startDate = (String) request.getAttribute("start_date");
 	String endDate = (String) request.getAttribute("end_date");
-	System.out.println("startDate = " + startDate);
-	System.out.println("endDate = " + endDate);
+	/* System.out.println("startDate = " + startDate);
+	System.out.println("endDate = " + endDate); */
 	
-	SimpleDateFormat fm = new SimpleDateFormat("yyyy-mm-dd");
-	Date start = fm.parse(startDate);
+	SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+	Date start = fm.parse(startDate);   // 시작일과 종료일 String을 Date로 변환
 	Date end = fm.parse(endDate);
+	/* System.out.println("start = " + start);
+	System.out.println("end = " + end); */
+	
+	// 예약 시작일과 종료일의 차이를 구함
 	int days = (int) (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
 	System.out.println(days);
 	
@@ -43,11 +50,12 @@ $("#start_date").val(<%= startDate %>);
 $("#end_date").val(<%= endDate %>);
 </script>
 
+
 <%
 	if(list.size() == 0) {
 %>
 	
-	<div class="top_comment">
+	<div class="topComment">
 		<h2>조건에 맞는 차량이 없습니다.</h2>
 	</div>
 <%
@@ -55,8 +63,10 @@ $("#end_date").val(<%= endDate %>);
 	else {
 %>
 
-	<div class="top_comment">
-		<h2><span style="color: #6EB1EC"><%= list.size() %></span>대의 차량이 예약 가능합니다.</h2>
+	<div class="topComment">
+		<h2>
+			<span style="color: #DE60B9">"<%= startDate %> ~ <%= endDate %>"</span> 선택하신 기간에 예약가능한 차량은 <span style="color: #6EB1EC"><%= list.size() %></span>대입니다.
+		</h2>
 	</div>
 
 	<section class="bfSection" style="margin: 0 auto;">
@@ -69,7 +79,7 @@ $("#end_date").val(<%= endDate %>);
 					<span style="left:10px; color:#fff; position:absolute;border-radius: 5px; display: inline-block; min-width:10px; padding: 6px 10px;font-size: 14px;font-weight:bold;text-align: center;vertical-align: middle;background-color:#ED6767 !important;z-index:1000"><%= car.getCarSize() %></span>
 					<img src="<%= request.getContextPath() %>/upload/car/<%= car.getImg() %>" width="300px;" alt="" class="lazy"/>
 						<div class="desc">
-							<div class="car_tit"><%= car.getCarName() %></div>
+							<div class="car_tit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= car.getCarName() %></div>   <!-- 차 이름이 밑의 글들과 들여쓰기가 안 맞아서 앞에 공백을 줌 -->
 							<ul class="option01 clearfix">
 								<li><%= car.getFuel() %></li>
 								<li><%= car.getReleaseYear() %></li>
@@ -105,7 +115,9 @@ $("#end_date").val(<%= endDate %>);
 							</dt>
 							<dd>20,000원 (면책금 30만원)</dd>
 						</dl>
-						<a href="javascript:void(0);" onclick="goToReservation('34677');" class="btn btn-l btn-color-type01">예약하기</a>
+						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= df.format(car.getPrice() * days) %>" class="btn btn-l btn-color-type01">예약하기</a>
+						<%-- <input type="button" onclick="location.href='<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>';" class="btn btn-l btn-color-type01" value="예약하기"/> --%>
+						<!-- 버튼태그로 하니까 css가 이상해져서 기존의 것으로 했다. -->
 					</div>
 				</li>
 			</ul>
@@ -118,10 +130,6 @@ $("#end_date").val(<%= endDate %>);
 <%
 	}
 %>	
-<!-- </div>	 -->
-	
-	
-	
 	
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
