@@ -2,14 +2,47 @@
 .board-title {
 		position: relative;
 		font-size: 3em;
-	}
-	.board-container {
-		display: flex;
-		flex-direction: column;
-		margin: 0 auto;
-		background-color: white;
-		align-items: center;
-	}
+}
+#board-container {
+	display: flex;
+	flex-direction: column;
+	height: 1070px;
+	margin: 0 auto;
+	background-color: white;
+	/* align-items: center; */
+	padding-top: 10px;
+}
+#board-container h2 {
+	padding-left: 64px;
+}
+table {
+	width: 1057px;
+	border-collapse: collapse;
+	margin: auto;
+}
+#title {
+width: 770px;
+height: 21px;
+margin-left: 30px;
+}
+#content {
+	resize: none;
+	width: 770px;
+	margin-top: 24px;
+	margin-left: 30px;
+	height: 300px;
+}
+#boardEnrollFrm {
+	height: 900px;
+	padding: 16px;
+}
+#writer {
+	height: 21px;
+	margin-left: 30px;
+}
+#file {
+	margin-left: 30px;
+}
 	table {
 		width: 1057px;
 		border-collapse: collapse;
@@ -27,7 +60,6 @@
 	}
 	td {
 	    border-bottom: 1px solid #e3e3e3;
-	    text-align: center;
 	    color: #434343;
 	    font-size: 15px;
 	    line-height: 58px;

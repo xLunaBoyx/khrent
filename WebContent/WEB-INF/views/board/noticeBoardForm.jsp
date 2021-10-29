@@ -43,15 +43,16 @@ $(() => {
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/noticeBoardEnroll" 
-		method="post">
+		method="post"
+		id="boardEnrollFrm">
 		<table id="tbl-board-view">
 		<tr>
 			<th>제 목</th>
-			<td><input type="text" name="title" required></td>
+			<td><input id="title" type="text" name="title" required></td>
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea wrap="hard" rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea id="content" wrap="hard" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
