@@ -24,9 +24,9 @@
 				<span class="">차량 관리</span></a>
 					<ul class="nav-flyout">
 						
-						<li><a href="<%= request.getContextPath() %>/admin/adminTotalCarList"><i class="ion-ios-camera-outline"></i>차량 전체 관리</a>
+						<li><a href="<%= request.getContextPath() %>/admin/adminTotalCarList"><i class="ion-ios-camera-outline"></i>전체 차량 관리</a>
 						</li>
-						<li><a href="<%= request.getContextPath() %>/admin/adminCarInsertSelect"><i class="ion-ios-alarm-outline"></i>차량/차종 추가</a>
+						<li><a href="<%= request.getContextPath() %>/admin/adminCarInsertSelect"><i class="ion-ios-alarm-outline"></i>차종/차량 추가</a>
 						</li>
 					</ul>
 				</li>
