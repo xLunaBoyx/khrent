@@ -37,7 +37,7 @@ String searchKeyword = request.getParameter("searchKeyword");
 					<th style="width: 50px;">연료</th>
 					<th style="width: 30px;">차종</th>
 					<th style="width: 30px;">제조년도</th>
-					<th>사진 파일명</th>
+					<th style="width: 160px;">사진 파일명</th>
 					<th>옵션</th>
 					<th>가격</th>
 					<th style="width: 50px;">번호판</th>
