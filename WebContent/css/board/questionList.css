@@ -50,12 +50,13 @@
 }
 .cPage {
     display: inline-block;
-    background: #ff9826;
-    border: 1px solid #ff9826;
+    background: #4a4a4a;
+    border: 1px solid #4a4a4a;
     color: #fff;
     font-weight: normal;
-    width: 27px;
+    width: 21px;
     vertical-align: middle;
+    text-align: center;
 }
 #pagebar a {
    background: #fff;
