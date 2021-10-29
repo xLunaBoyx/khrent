@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.semi.board.model.dao.CommunityBoardDao;
@@ -36,9 +37,9 @@ public class ReservationDao {
 		ResultSet rset = null;
 		List<Car> list = new ArrayList<>();
 		String sql = prop.getProperty("searchCar");
-		System.out.println(sql);
-		System.out.println("sdate = " + startDate);
-		System.out.println("edate = " + endDate);
+//		System.out.println(sql);
+//		System.out.println("sdate = " + startDate);
+//		System.out.println("edate = " + endDate);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -75,6 +76,71 @@ public class ReservationDao {
 		}
 		
 		return list;
+	}
+
+	public Car selectOneCar(Connection conn, String carCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Car car = null;
+		String sql = prop.getProperty("selectOneCar");
+		// System.out.println(sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				car = new Car();
+				
+				car.setCarCode(rset.getString("car_code"));
+				car.setCarName(rset.getString("car_name"));
+				car.setReleaseYear(rset.getString("release_year"));
+				car.setMaker(rset.getString("maker"));
+				car.setFuel(rset.getString("fuel"));
+				car.setCarSize(rset.getString("car_size"));
+				car.setCarOption(rset.getString("car_option"));
+				car.setNumberPlate(rset.getString("number_plate"));
+				car.setPrice(rset.getInt("price"));
+				car.setImg(rset.getString("img"));
+				car.setAssessCnt(rset.getInt("assess_cnt"));
+				car.setAvgScore(rset.getInt("avg_score"));
+				car.setReservCnt(rset.getInt("reserv_cnt"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return car;
+	}
+
+	public int insertReservation(Connection conn, Map<String, Object> reservation) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReservation");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) reservation.get("memberId"));
+			pstmt.setString(2, (String) reservation.get("carCode"));
+			pstmt.setString(3, (String) reservation.get("carName"));
+			pstmt.setString(4, (String) reservation.get("startDate"));
+			pstmt.setString(5, (String) reservation.get("endDate"));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
