@@ -5,7 +5,10 @@
 
 <section class="app">
 	<aside class="sidebar">
-		<header> Menu </header>
+		<header>  
+		<img src="https://i.ibb.co/82P28r4/default-profile.png" alt="admin" class="adminImage"/>
+		<%= loginMember.getMemberName()%>님
+		</header>
 		<nav class="sidebar-nav">
 
 			<ul>
