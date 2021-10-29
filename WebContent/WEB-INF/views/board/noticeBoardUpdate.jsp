@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/termsAndConditions.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
 
 <%
 	NoticeBoard noticeBoard = (NoticeBoard) request.getAttribute("noticeBoard");
