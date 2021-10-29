@@ -96,7 +96,7 @@
           <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/bestFive';">BEST 5</div>         
         </li>
         <li class="dropdown">
-          <div class="dropdown-menu">고객센터</div>
+          <div class="dropdown-menu" onclick="location.href='<%= request.getContextPath() %>/board/faq';">고객센터</div>
           <div class="dropdown-content">
  			<a href="<%= request.getContextPath() %>/board/faq">자주 묻는 질문</a>
             <a href="<%= request.getContextPath() %>/board/notice">공지사항</a>
