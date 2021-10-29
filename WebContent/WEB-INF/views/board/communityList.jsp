@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/community.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/communityList.css" />
 
 <%
 	List<CommunityBoard> list = (List<CommunityBoard>) request.getAttribute("list");
