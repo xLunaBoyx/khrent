@@ -48,10 +48,15 @@
          			var minDate = $(this).datepicker('getDate');
          			endDate.datepicker('setDate', minDate);
          			startDate.setDate(startDate.getDate() + 30);
-         			endDate.datepicker('option', 'maxDate', startDate);
-         			endDate.datepicker('option', 'minDate', minDate);
+         			minDate.setDate(startDate.getDate() + 1);
+         			endDate.datepicker('option', 'maxDate', startDate);   // 반납일 선택가능한 maxDate를 선택한 시작일로부터 30일 후까지로 제한
+         			endDate.datepicker('option', 'minDate', minDate);     // 반납일 선택가능한 minDate를 선택한 시작일의 내일로 제한
          		}  
             });
+            
+            // 페이지 로딩 완료시 검색바의 예약시작일 초기값을 오늘로 설정
+            $("#start_date").datepicker('setDate', 'today');
+
             
             $( "#end_date" ).datepicker({
                  changeMonth: true, 
@@ -66,10 +71,14 @@
                  showButtonPanel: true,
                  currentText: '오늘',
                  closeText: '닫기', 
-                 minDate: 0,
+                 minDate: "+1D",    // 내일부터 선택가능하게 함. 예약시작일과 반납일이 모두 오늘이 될 수 없게 함
                  maxDate: 60 
  
             });    
+            
+            // 초기값을 내일로 설정함
+            $("#end_date").datepicker('setDate', '+1D');   
+            
     });
 </script>
 

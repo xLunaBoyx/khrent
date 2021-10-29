@@ -44,13 +44,13 @@
 									<div class="sdate">
 										<label for="">대여일시</label>
 										<div class="searchBox clearfix">
-											<input type="text" id="start_date" placeholder="날짜 선택">
+											<input type="text" id="start_date" name="start_date" placeholder="날짜 선택">
 										</div>
 									</div>
 									<div class="edate">
 										<label for="">반납일시</label>
 										<div class="searchBox clearfix">
-											<input type="text" id="end_date" placeholder="날짜 선택">
+											<input type="text" id="end_date" name="end_date" placeholder="날짜 선택">
 										</div>
 										
 <script type="text/javascript">
