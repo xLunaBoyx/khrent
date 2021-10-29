@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.semi.reservation.model.vo.Car"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,6 +15,7 @@
 List<Car> list = (List<Car>) request.getAttribute("list");
 String searchType = request.getParameter("searchType");
 String searchKeyword = request.getParameter("searchKeyword");
+DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 	<style>
@@ -38,7 +40,7 @@ String searchKeyword = request.getParameter("searchKeyword");
 					<th style="width: 30px;">차종</th>
 					<th style="width: 30px;">제조년도</th>
 					<th style="width: 160px;">사진 파일명</th>
-					<th>옵션</th>
+					<th style="width: 280px;">옵션</th>
 					<th>가격</th>
 					<th style="width: 50px;">번호판</th>
 					<th style="width: 30px;">평가횟수</th>
@@ -60,7 +62,7 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= car.getReleaseYear() %></td>
             		<td><%= car.getImg() %></td>
             		<td><%= car.getCarOption() %></td>
-            		<td><%= car.getPrice() %></td>
+            		<td><%= fomatter.format(car.getPrice()) %></td>
             		<td><%= car.getNumberPlate() %></td>
             		<td><%= car.getAssessCnt() %></td>
             		<td><%= car.getAvgScore() %></td>
@@ -69,7 +71,7 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<input type="button" value="수정" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListUpdate?carCode=<%= car.getCarCode() %>';"/>
             		</td>
             		<td>
-            		<input type="button" value="삭제" class="adminCarUpdateBtn" onclick="#"/>
+            		<input type="button" value="삭제" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListDelete?carCode=<%= car.getCarCode() %>';"/>
             		</td>
             	</tr>
 <%		
