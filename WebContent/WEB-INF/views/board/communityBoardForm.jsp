@@ -36,7 +36,7 @@ $(() => {
 </script>
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<section id="board-container">
-	<h2>게시글 작성</h2>
+	<h2>커뮤니티</h2>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/communityBoardEnroll" 

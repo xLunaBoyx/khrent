@@ -38,7 +38,7 @@ $(() => {
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
-	<h2>문의사항 작성</h2>
+	<h2>문의사항</h2>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/qnaBoardEnroll" 
