@@ -38,7 +38,6 @@ th {
     
 }
 td {
-    border-bottom: 1px solid #e3e3e3;
     color: #434343;
     font-size: 15px;
     line-height: 58px;
@@ -187,6 +186,7 @@ table#tbl-comment tr:hover button.btn-delete {
 #tbl-board {
 	width: 1057px;
 	border-collapse: collapse;
+    margin-top: 36px;
 }
 
 .board-tr>th {
@@ -285,14 +285,12 @@ table{
 	margin-right: auto;
 	width:1200px;		   
 }
-
-
 tr, td{
-	border-top:1px solid #4343436b;
-    text-align: center;
+	text-align: center;
     color: black;
     font-size: 15px;
     line-height: 58px;
+    border-top: 1px solid #0000000f;
 }
 
 #comment-container{
@@ -307,4 +305,5 @@ tr, td{
 
 #tableContent{
 	height:200px;
+	width: 252px;
 }
