@@ -8,8 +8,7 @@
 .bfSection {
 	background: white;
     height: auto;
-    /* float: left; */
-    width: 1000px;
+    width: 935px;
 }
 h2.top {
 	text-align: center;
@@ -28,10 +27,9 @@ h2.top {
 }
 .item-list {
     float: right;
-    /* width: calc(110% - 135px); */
     padding-left: 0;
     margin-right: 41px;
-    width:918px;
+    width: 844px;
 }
 .item-list > li:last-child {
     margin-bottom: 0;
@@ -149,7 +147,7 @@ ol, ul {
 .priceArea {
     position: relative;
     float: right;
-    width: 290px;
+    width: 217px;
     height: 100%;
     padding-left: 20px;
     box-sizing: border-box;
@@ -215,9 +213,9 @@ ol, ul {
 }
 .btn-l {
     padding: 12px 0 11px;
-    height: 16px;
+    height: 10px;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 11px;
 }
 .btn {
     width: 100%;

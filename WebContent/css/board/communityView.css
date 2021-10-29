@@ -85,7 +85,7 @@ td {
     border: 1px solid #0000001f;
     resize:none;
 }
-div.comment-container button#btn-insert {
+div.comment-editor button#btn-insert {
 	width:66px; 
 	height:59px; 
     color: #000000;
@@ -169,7 +169,6 @@ table#tbl-comment button.btn-delete {
 table#tbl-comment tr:hover button.btn-delete {
 	display:inline;
 }
-@charset "UTF-8";
 
 .board-title {
 	position: relative;

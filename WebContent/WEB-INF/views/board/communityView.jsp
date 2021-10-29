@@ -74,7 +74,7 @@
 		
 	
 		
-		
+		<div class="comment-container">
 		<table id="tbl-comment">
 	<%
 	if(commentList != null && !commentList.isEmpty()){
@@ -150,8 +150,8 @@
 			</form>
 		</div>
 		</div>
-		
 	</div>
+	
 	<!-- 댓글 삭제용 폼 -->
 		<form 
 			action="<%= request.getContextPath() %>/board/communityBoardCommentDelete" 
