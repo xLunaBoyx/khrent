@@ -37,7 +37,7 @@ public class ReservationDao {
 		ResultSet rset = null;
 		List<Car> list = new ArrayList<>();
 		String sql = prop.getProperty("searchCar");
-//		System.out.println(sql);
+		System.out.println(sql);
 //		System.out.println("sdate = " + startDate);
 //		System.out.println("edate = " + endDate);
 		
@@ -83,7 +83,7 @@ public class ReservationDao {
 		ResultSet rset = null;
 		Car car = null;
 		String sql = prop.getProperty("selectOneCar");
-		// System.out.println(sql);
+		System.out.println(sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -122,6 +122,7 @@ public class ReservationDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertReservation");
+		System.out.println(sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
