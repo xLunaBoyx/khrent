@@ -42,19 +42,21 @@
 			<tr>
 				<td colspan = "4" id="content"><%= noticeBoard.getNoticeContent()%></td>
 			</tr>
-<% 	if(editable){ %>
-			<tr>
-				<%-- 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-				<th colspan="2">
-					<input type="button" value="수정하기" onclick="updateBoard()">
-					<input type="button" value="삭제하기" onclick="deleteBoard()">
-				</th>
-			</tr>
-<% 	} %>	
 		</tbody>
 		</table>
 		
 		<br />
+		<div class="buttons">
+<% 	if(editable){ %>
+			<tr>
+				<%-- 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
+				<th colspan="2">
+					<input class="change" type="button" value="수정하기" onclick="updateBoard()">
+					<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
+				</th>
+			</tr>
+<% 	} %>	
+		</div>
 	
 </div> <!-- </div> .board-container -->
 <% if(editable){ %>
