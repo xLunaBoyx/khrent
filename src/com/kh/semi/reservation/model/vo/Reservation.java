@@ -14,20 +14,21 @@ public class Reservation implements Serializable{
 	private String memberId;
 	private String carCode;
 	private String carName;
-	private String startDate;
-	private String endDate;
+	private Date startDate;
+	private Date endDate;
 	private String insuranceType;
 	private String issueDate;
 	private String licenseType;
 	private String reviewStatus;
 	private String returnStatus;
+	
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reservation(String reserNo, String memberId, String carCode, String carName, String startDate,
-			String endDate, String insuranceType, String issueDate, String licenseType, String reviewStatus,
-			String returnStatus) {
+
+	public Reservation(String reserNo, String memberId, String carCode, String carName, Date startDate, Date endDate,
+			String insuranceType, String issueDate, String licenseType, String reviewStatus, String returnStatus) {
 		super();
 		this.reserNo = reserNo;
 		this.memberId = memberId;
@@ -41,72 +42,95 @@ public class Reservation implements Serializable{
 		this.reviewStatus = reviewStatus;
 		this.returnStatus = returnStatus;
 	}
+
 	public String getReserNo() {
 		return reserNo;
 	}
+
 	public void setReserNo(String reserNo) {
 		this.reserNo = reserNo;
 	}
+
 	public String getMemberId() {
 		return memberId;
 	}
+
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
+
 	public String getCarCode() {
 		return carCode;
 	}
+
 	public void setCarCode(String carCode) {
 		this.carCode = carCode;
 	}
+
 	public String getCarName() {
 		return carName;
 	}
+
 	public void setCarName(String carName) {
 		this.carName = carName;
 	}
-	public String getStartDate() {
+
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(String startDate) {
+
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public String getEndDate() {
+
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 	public String getInsuranceType() {
 		return insuranceType;
 	}
+
 	public void setInsuranceType(String insuranceType) {
 		this.insuranceType = insuranceType;
 	}
+
 	public String getIssueDate() {
 		return issueDate;
 	}
+
 	public void setIssueDate(String issueDate) {
 		this.issueDate = issueDate;
 	}
+
 	public String getLicenseType() {
 		return licenseType;
 	}
+
 	public void setLicenseType(String licenseType) {
 		this.licenseType = licenseType;
 	}
+
 	public String getReviewStatus() {
 		return reviewStatus;
 	}
+
 	public void setReviewStatus(String reviewStatus) {
 		this.reviewStatus = reviewStatus;
 	}
+
 	public String getReturnStatus() {
 		return returnStatus;
 	}
+
 	public void setReturnStatus(String returnStatus) {
 		this.returnStatus = returnStatus;
 	}
+
 	@Override
 	public String toString() {
 		return "Reservation [reserNo=" + reserNo + ", memberId=" + memberId + ", carCode=" + carCode + ", carName="
