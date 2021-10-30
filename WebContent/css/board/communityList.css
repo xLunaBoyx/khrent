@@ -45,6 +45,9 @@
 .subject a:link {
 	color: black;
 }
+.subject a:visited {
+	color: black;
+}
 
 #pagebar {
 	clear: both;
