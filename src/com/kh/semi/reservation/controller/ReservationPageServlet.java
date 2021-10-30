@@ -28,7 +28,7 @@ public class ReservationPageServlet extends HttpServlet {
 		String startDate = request.getParameter("start_date");
 		String endDate = request.getParameter("end_date");
 		String carCode = request.getParameter("car_code");
-		String price = request.getParameter("price");
+		int price = Integer.parseInt(request.getParameter("price"));
 		
 //		System.out.println("ReservationPageServlet@startDate = " + startDate);
 //		System.out.println("ReservationPageServlet@endDate = " + endDate);

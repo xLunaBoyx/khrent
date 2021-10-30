@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.member.model.vo.MemberDel;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class MemberDao {
 	
@@ -494,6 +495,42 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+
+	public List<Reservation> selectMyReservationList(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMyReservationList"); 
+		
+		ResultSet rset = null;
+		List<Reservation> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Reservation reservation = new Reservation();
+				reservation.setReserNo(rset.getString("reserv_no"));
+				reservation.setCarCode(rset.getString("car_code"));
+				reservation.setCarName(rset.getString("car_name"));
+				reservation.setStartDate(rset.getDate("start_date"));
+				reservation.setEndDate(rset.getDate("end_date"));
+				reservation.setReviewStatus(rset.getString("review_status"));
+				reservation.setReturnStatus(rset.getString("return_status"));
+			
+				list.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원반납
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 
 
