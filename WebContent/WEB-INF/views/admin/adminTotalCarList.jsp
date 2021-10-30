@@ -46,7 +46,7 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
 					<th style="width: 30px;">평가횟수</th>
 					<th style="width: 30px;">평균이용평점</th>
 					<th style="width: 30px;">예약횟수</th>
-					<th colspan="2"></th>
+					<th></th>
                 </tr>
             </thead>
             <tbody>
@@ -69,9 +69,6 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
             		<td><%= car.getReservCnt() %></td>
             		<td>
             		<input type="button" value="수정" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListUpdate?carCode=<%= car.getCarCode() %>';"/>
-            		</td>
-            		<td>
-            		<input type="button" value="삭제" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListDelete?carCode=<%= car.getCarCode() %>';"/>
             		</td>
             	</tr>
 <%		
