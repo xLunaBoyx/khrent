@@ -115,7 +115,7 @@ $("#end_date").val(<%= endDate %>);
 							</dt>
 							<dd>20,000원 (면책금 30만원)</dd>
 						</dl>
-						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= df.format(car.getPrice() * days) %>" class="btn btn-l btn-color-type01">예약하기</a>
+						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= car.getPrice() * days %>" class="btn btn-l btn-color-type01">예약하기</a>
 						<%-- <input type="button" onclick="location.href='<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>';" class="btn btn-l btn-color-type01" value="예약하기"/> --%>
 						<!-- 버튼태그로 하니까 css가 이상해져서 기존의 것으로 했다. -->
 					</div>

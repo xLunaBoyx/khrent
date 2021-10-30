@@ -15,7 +15,7 @@
 				<dl class="reservation">
 					<dt>예약</dt>
 					<dd>
-						<a href="<%= request.getContextPath() %>/member/myPage">0</a>
+						<a href="<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>">0</a>
 					</dd>
 					
 					<dt>내 마일리지</dt>

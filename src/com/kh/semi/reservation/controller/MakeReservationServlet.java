@@ -26,13 +26,6 @@ public class MakeReservationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		String memberId = request.getParameter("member_id");
 		String startDate = request.getParameter("start_date");
@@ -65,9 +58,40 @@ public class MakeReservationServlet extends HttpServlet {
 		
 		String location = request.getContextPath() + "/member/myPage";
 		response.sendRedirect(location);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 사용자입력값 처리
+		String memberId = request.getParameter("member_id");
+		String startDate = request.getParameter("start_date");
+		String endDate = request.getParameter("end_date");
+		String carCode = request.getParameter("car_code");
+		String carName = request.getParameter("car_name");
+		String price = request.getParameter("price");
 		
+		System.out.println("MakeReservationServlet@memberId = " + memberId);
+		System.out.println("MakeReservationServlet@startDate = " + startDate);
+		System.out.println("MakeReservationServlet@endDate = " + endDate);
+		System.out.println("MakeReservationServlet@carCode = " + carCode);
+		System.out.println("MakeReservationServlet@carName = " + carName);
+		System.out.println("MakeReservationServlet@price = " + price);
 		
+		Map<String, Object> reservation = new HashMap<>();
+		reservation.put("memberId", memberId);
+		reservation.put("startDate", startDate);
+		reservation.put("endDate", endDate);
+		reservation.put("carCode", carCode);
+		reservation.put("carName", carName);
+		reservation.put("price", price);
 		
+		// 2. 업무로직 - 전달받은 정보들로 예약테이블에 행 추가
+		int result = reservationService.insertReservation(reservation);
+		
+		// 3. ajax에 쓰인 서블릿이므로 append로 돌려줄 값을 작성... 할 필요가 없나?
+		     
 	}
 
 }

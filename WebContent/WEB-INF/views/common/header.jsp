@@ -126,7 +126,7 @@
  		<% if (MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())) { %>
         <li class="login"><a href="<%= request.getContextPath() %>/admin/admin">관리자</a></li> 		
  		<%} else {%>
-        <li class="login"><a href="<%= request.getContextPath() %>/member/myPage">마이페이지</a></li>
+        <li class="login"><a href="<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>">마이페이지</a></li>
  		<%} %>
  		   
 <% } %>

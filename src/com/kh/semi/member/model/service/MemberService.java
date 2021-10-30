@@ -12,6 +12,7 @@ import java.util.Map;
 import com.kh.semi.member.model.dao.MemberDao;
 import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.member.model.vo.MemberDel;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class MemberService {
 
@@ -164,6 +165,14 @@ public class MemberService {
 			rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	public List<Reservation> selectMyReservationList(String memberId) {
+		Connection conn = getConnection();
+		List<Reservation> list = memberDao.selectMyReservationList(conn, memberId);
+		
+		close(conn);
+		return list;
 	}
 
 }

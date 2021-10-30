@@ -14,20 +14,20 @@ public class Reservation implements Serializable{
 	private String memberId;
 	private String carCode;
 	private String carName;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String insuranceType;
 	private String issueDate;
 	private String licenseType;
 	private String reviewStatus;
 	private String returnStatus;
-	
 	public Reservation() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
-	public Reservation(String reserNo, String memberId, String carCode, String carName, Date startDate, Date endDate,
-			String insuranceType, String issueDate, String licenseType, String reviewStatus, String returnStatus) {
+	public Reservation(String reserNo, String memberId, String carCode, String carName, String startDate,
+			String endDate, String insuranceType, String issueDate, String licenseType, String reviewStatus,
+			String returnStatus) {
 		super();
 		this.reserNo = reserNo;
 		this.memberId = memberId;
@@ -41,7 +41,6 @@ public class Reservation implements Serializable{
 		this.reviewStatus = reviewStatus;
 		this.returnStatus = returnStatus;
 	}
-	
 	public String getReserNo() {
 		return reserNo;
 	}
@@ -66,16 +65,16 @@ public class Reservation implements Serializable{
 	public void setCarName(String carName) {
 		this.carName = carName;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public String getInsuranceType() {
@@ -108,7 +107,6 @@ public class Reservation implements Serializable{
 	public void setReturnStatus(String returnStatus) {
 		this.returnStatus = returnStatus;
 	}
-	
 	@Override
 	public String toString() {
 		return "Reservation [reserNo=" + reserNo + ", memberId=" + memberId + ", carCode=" + carCode + ", carName="
@@ -116,5 +114,6 @@ public class Reservation implements Serializable{
 				+ ", issueDate=" + issueDate + ", licenseType=" + licenseType + ", reviewStatus=" + reviewStatus
 				+ ", returnStatus=" + returnStatus + "]";
 	}
+	
 	
 }

@@ -14,7 +14,7 @@
 	<div class="join_wrap">
 		<strong class="tit01"> 정보 입력
 			<p>
-				사용하실 아이디와, 비밀번호만 설정하시면<br>가입이 완료됩니다.
+				간단한 정보만 기입하시면<br>KH렌트의 서비스를 모두 이용하실 수 있습니다.
 			</p>
 		</strong>
 		<div class="register_form">
