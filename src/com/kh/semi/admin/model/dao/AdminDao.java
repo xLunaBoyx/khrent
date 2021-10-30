@@ -5,7 +5,6 @@ import static com.kh.semi.common.JdbcTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import com.kh.semi.member.model.dao.MemberDao;
-import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
@@ -386,6 +383,50 @@ public class AdminDao {
 		}
 		
 		return result;
+	}
+
+	public int ajaxAdminTodayEnroll(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("ajaxAdminTodayEnroll");
+		int todayEnroll = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				todayEnroll = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return todayEnroll;
+	}
+
+	public int ajaxAdminTodayStartReservation(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("ajaxAdminTodayStartReservation");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
 	}
 
 }
