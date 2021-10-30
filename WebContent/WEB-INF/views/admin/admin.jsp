@@ -53,7 +53,7 @@
 			<div class="white_box QA_section card_height_100">
 				<div class="white_box_tittle list_header m-0 align-items-center">
 					<div class="main-title mb-sm-15">
-						<h3 class="m-0 nowrap">Users</h3>
+						<h3 class="m-0 nowrap">list of recent subscriptions</h3>
 					</div>
 					<div class="box_right d-flex lms_block">
 					</div>
@@ -70,7 +70,7 @@
 								<tr role="row">
 									<th scope="col" class="sorting_asc" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-										style="width: 155px;" aria-sort="ascending"
+										style="width: 0;" aria-sort="ascending"
 										aria-label="Patients Name: activate to sort column descending">
 										ID</th>
 									<th scope="col" class="sorting" tabindex="0"
@@ -80,7 +80,7 @@
 									<th scope="col" class="sorting" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 104px;"
-										aria-label="Appointment Date: activate to sort column ascending">Member-Role</th>
+										aria-label="Appointment Date: activate to sort column ascending">Member Role</th>
 									<th scope="col" class="sorting" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 90px;"
@@ -88,69 +88,20 @@
 								</tr>
 							</thead>
 							
-							<tbody>
+							<tbody id="odd">
 							
 								<tr role="row" class="odd">
 									<th scope="row" tabindex="0" class="sorting_1">
 										<div class="patient_thumb d-flex align-items-center">
 											<div class="student_list_img mr_20"></div>
-											<p>Jhon Kural</p>
+											<p>아이디</p>
 										</div>
 									</th>
-									<td>Monte Carlo</td>
-									<td>11/03/2020</td>
-									<td>MDC65454</td>
-									<td></td>
+									<td>이름</td>
+									<td>멤버롤</td>
+									<td>가입일자</td>
 								</tr>
-								
-								<tr role="row" class="even">
-									<th scope="row" tabindex="0" class="sorting_1">
-										<div class="patient_thumb d-flex align-items-center">
-											<div class="student_list_img mr_20"></div>
-											<p>Jhon Kural</p>
-										</div>
-									</th>
-									<td>Monte Carlo</td>
-									<td>11/03/2020</td>
-									<td>MDC65454</td>
-								</tr>
-								
-								<tr role="row" class="odd">
-									<th scope="row" tabindex="0" class="sorting_1">
-										<div class="patient_thumb d-flex align-items-center">
-											<div class="student_list_img mr_20"></div>
-											<p>Jhon Kural</p>
-										</div>
-									</th>
-									<td>Monte Carlo</td>
-									<td>11/03/2020</td>
-									<td>MDC65454</td>
-								</tr>
-								
-								<tr role="row" class="even">
-									<th scope="row" tabindex="0" class="sorting_1">
-										<div class="patient_thumb d-flex align-items-center">
-											<div class="student_list_img mr_20"></div>
-											<p>Jhon Kural</p>
-										</div>
-									</th>
-									<td>Monte Carlo</td>
-									<td>11/03/2020</td>
-									<td>MDC65454</td>
-								</tr>
-								
-								<tr role="row" class="odd">
-									<th scope="row" tabindex="0" class="sorting_1">
-										<div class="patient_thumb d-flex align-items-center">
-											<div class="student_list_img mr_20"></div>
-											<p>Jhon Kural</p>
-										</div>
-									</th>
-									<td>Monte Carlo</td>
-									<td>11/03/2020</td>
-									<td>MDC65454</td>
-								</tr>
-								
+				
 							</tbody>
 						</table>
 					</div>
@@ -226,6 +177,24 @@
 		});
 	});
 	
+</script>
+
+<script>
+
+// 최근 가입 5건
+$(document).ready(function () {
+$.ajax({
+	url:"<%=request.getContextPath()%>/admin/ajaxAdminFiveRecentEnroll",
+	method: "GET",
+	success: function(data) {
+		$("#odd").html(data);
+	},
+	complete: function() {
+		console.log("complete")
+	}
+});
+});
+
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
