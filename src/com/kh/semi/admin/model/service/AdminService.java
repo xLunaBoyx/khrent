@@ -232,6 +232,20 @@ public class AdminService {
 		return totalContent;
 	}
 
+	public List<CarInfo> searchCarInfo(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<CarInfo> list = adminDao.searchCarInfo(conn, param);
+		close(conn);
+		return list;
+	}
+
+	public int searchCarInfoCount(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int totalContent = adminDao.searchCarInfoCount(conn, param);
+		close(conn);
+		return totalContent;
+	}
+
 
 
 

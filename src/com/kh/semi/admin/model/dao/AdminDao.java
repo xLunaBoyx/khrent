@@ -918,4 +918,117 @@ public class AdminDao {
 		return totalContents;
 	}
 
+	public List<CarInfo> searchCarInfo(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<CarInfo> list = new ArrayList<>();
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "carName":
+			sql = prop.getProperty("searchCarInfoByCarName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		case "maker":
+			sql = prop.getProperty("searchCarInfoByMaker");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "fuel":
+			sql = prop.getProperty("searchCarInfoByFuel");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "carSize":
+			sql = prop.getProperty("searchCarInfoByCarSize");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		}
+		
+		System.out.println("searchType@dao = " + searchType);
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			pstmt.setInt(2, (int) param.get("start"));
+			pstmt.setInt(3, (int) param.get("end"));
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				CarInfo carInfo = new CarInfo();
+
+				carInfo.setCarInfoNo(rset.getInt("car_info_no"));
+				carInfo.setCarName(rset.getString("car_name"));
+				carInfo.setMaker(rset.getString("maker"));
+				carInfo.setFuel(rset.getString("fuel"));
+				carInfo.setCarSize(rset.getString("car_size"));
+				carInfo.setImg(rset.getString("img"));
+				carInfo.setAssessCnt(rset.getInt("assess_cnt"));
+				carInfo.setAvgScore(rset.getInt("avg_score"));
+				carInfo.setReservCnt(rset.getInt("reserv_cnt"));
+			
+				list.add(carInfo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int searchCarInfoCount(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalContents = 0;
+		
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "carName":
+			sql = prop.getProperty("searchCarInfoCountByCarName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		case "maker":
+			sql = prop.getProperty("searchCarInfoCountByMaker");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "fuel":
+			sql = prop.getProperty("searchCarInfoCountByFuel");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "carSize":
+			sql = prop.getProperty("searchCarInfoCountByCarSize");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		}
+		
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalContents;
+	}
+
 }
