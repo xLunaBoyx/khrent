@@ -120,7 +120,7 @@ table#tbl-comment tr td:first-of-type {
 	padding: 5px 5px 5px 50px;
 }
 table#tbl-comment tr td:last-of-type {
-	text-align:right; width: 100px;
+	width: 100px;
 	}
 table#tbl-comment button.btn-reply {
 	display:none;

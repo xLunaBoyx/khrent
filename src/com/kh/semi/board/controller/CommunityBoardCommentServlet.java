@@ -38,9 +38,9 @@ public class CommunityBoardCommentServlet extends HttpServlet {
 		String msg = "";
 		
 		if(result>0)
-			msg = "댓글 등록 성공!";
+			msg = "댓글이 등록되었습니다.";
 		else
-			msg = "댓글 등록 실패!";
+			msg = "댓글이 등록되지 않았습니다.";
 		
 		request.getSession().setAttribute("msg", msg);
 		String location = request.getContextPath()+"/board/boardView?no="+boardNo;
