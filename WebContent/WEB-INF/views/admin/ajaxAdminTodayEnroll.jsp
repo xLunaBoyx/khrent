@@ -6,4 +6,4 @@
 			<%= request.getAttribute("todayEnroll") %>
 			</span>
 		</h3>
-		<p>Withdrawal</p>
+		<p>Today Join</p>

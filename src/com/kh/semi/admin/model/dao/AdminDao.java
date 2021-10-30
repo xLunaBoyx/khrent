@@ -5,6 +5,7 @@ import static com.kh.semi.common.JdbcTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.kh.semi.board.model.vo.NoticeBoard;
+import com.kh.semi.member.model.dao.MemberDao;
+import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
@@ -427,6 +431,43 @@ public class AdminDao {
 			close(pstmt);
 		}
 		return totalContents;
+	}
+
+	public List<Member> ajaxAdminFiveRecentEnroll(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Member> list = new ArrayList<>();
+		String sql = prop.getProperty("ajaxAdminFiveRecentEnroll");
+		
+		try {
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member member = new Member();
+				
+				member.setMemberId(rset.getString("member_id"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberRole(rset.getString("member_role"));
+				member.setRegDate(rset.getDate("reg_date"));
+				
+
+				System.out.println("member = " + member);
+				
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 }

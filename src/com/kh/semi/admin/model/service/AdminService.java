@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.semi.admin.model.dao.AdminDao;
+import com.kh.semi.board.model.vo.NoticeBoard;
+import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
@@ -119,6 +121,14 @@ public class AdminService {
 		int totalContents = adminDao.ajaxAdminTodayStartReservation(conn);
 		close(conn);
 		return totalContents;
+	}
+
+	public List<Member> AjaxAdminFiveRecentEnroll() {
+		Connection conn = getConnection();
+		List<Member> list = adminDao.ajaxAdminFiveRecentEnroll(conn);
+		close(conn);
+		
+		return list;
 	}
 
 
