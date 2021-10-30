@@ -27,7 +27,7 @@ public class AjaxAdminFiveRecentEnroll extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Member> list = adminService.AjaxAdminFiveRecentEnroll();
+		List<Member> list = adminService.ajaxAdminFiveRecentEnroll();
 		System.out.println("list@servlet = " + list);
 		
 		response.setContentType("text/text; charset=utf-8");
