@@ -15,6 +15,8 @@
 	String msg = (String) session.getAttribute("msg");
 	// System.out.println("msg@header.jsp = " + msg);
 	if(msg != null) session.removeAttribute("msg");
+	
+	DecimalFormat df = new DecimalFormat("###,###");
 %>
 
 <div class="detail_wrap">
@@ -34,6 +36,7 @@
 							<th>차종</th>
 							<th>예약 시작일</th>
 							<th>예약 종료일</th>
+							<th>결제금액</th>
 							<th>이용후기 작성 여부</th>
 							<th>차량 반납 여부</th>
 						</tr>
@@ -47,8 +50,9 @@
 				       		<td><%= reservation.getReserNo() %></td>
 				       		<td><%= reservation.getCarCode() %></td>
 				       		<td><%= reservation.getCarName() %></td>
-				       		<td><%= reservation.getStartDate() %></td>
-				       		<td><%= reservation.getEndDate() %></td>
+				       		<td><%= reservation.getStartDate().substring(0,11) %></td>   <!-- 시분초 자르고 yy-mm-dd 로 표시하기 위해서 -->
+				       		<td><%= reservation.getEndDate().substring(0,11) %></td>
+				       		<td><%= df.format(reservation.getPrice()) %>원</td>   <!-- 세자리마다 , 찍기 -->
 				       		<td><%= reservation.getReviewStatus() %></td>
 				       		<td><%= reservation.getReturnStatus() %></td>
 		       			</tr>
