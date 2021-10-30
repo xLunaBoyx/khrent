@@ -204,6 +204,34 @@ public class AdminService {
  		return result;
 	}
 
+	public List<Reservation> selectAllReservation(int startRownum, int endRownum) {
+		Connection conn = getConnection();
+		List<Reservation> list = adminDao.selectAllReservation(conn, startRownum, endRownum);
+		close(conn);
+		return list;
+	}
+
+	public int selectTotalReservationContents() {
+		Connection conn = getConnection();
+		int totalReservation = adminDao.selectTotalReservationContents(conn);
+		close(conn);
+		return totalReservation;
+	}
+
+	public List<Reservation> searchReservation(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Reservation> list = adminDao.searchReservation(conn, param);
+		close(conn);
+		return list;
+	}
+
+	public int searchReservationCount(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int totalContent = adminDao.searchReservationCount(conn, param);
+		close(conn);
+		return totalContent;
+	}
+
 
 
 

@@ -745,4 +745,177 @@ public class AdminDao {
 		return result;
 	}
 
+	public List<Reservation> selectAllReservation(Connection conn, int startRownum, int endRownum) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectAllReservation"); 
+		
+		ResultSet rset = null;
+		List<Reservation> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRownum);
+			pstmt.setInt(2, endRownum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Reservation reservation = new Reservation();
+
+				reservation.setReserNo(rset.getString("reserv_no"));
+				reservation.setMemberId(rset.getString("member_id"));
+				reservation.setCarCode(rset.getString("car_code"));
+				reservation.setCarName(rset.getString("car_name"));
+				reservation.setStartDate(rset.getString("start_date"));
+				reservation.setEndDate(rset.getString("end_date"));
+				reservation.setInsuranceType(rset.getString("insurance_type"));
+				reservation.setIssueDate(rset.getString("issue_date"));
+				reservation.setLicenseType(rset.getString("license_type"));
+				reservation.setReviewStatus(rset.getString("review_status"));
+				reservation.setReturnStatus(rset.getString("return_status"));
+			
+				list.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원반납
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectTotalReservationContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTotalReservationContents");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
+	}
+
+	public List<Reservation> searchReservation(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Reservation> list = new ArrayList<>();
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "reserNo":
+			sql = prop.getProperty("searchReservationByReserNo");
+			param.put("searchKeyword", "%" + param.get("searchKeyword")); 
+			break;
+		case "memberId":
+			sql = prop.getProperty("searchReservationByMemberId");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "carName":
+			sql = prop.getProperty("searchReservationByCarName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		}
+		
+		System.out.println("searchType@dao = " + searchType);
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			pstmt.setInt(2, (int) param.get("start"));
+			pstmt.setInt(3, (int) param.get("end"));
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Reservation reservation = new Reservation();
+
+				reservation.setReserNo(rset.getString("reserv_no"));
+				reservation.setMemberId(rset.getString("member_id"));
+				reservation.setCarCode(rset.getString("car_code"));
+				reservation.setCarName(rset.getString("car_name"));
+				reservation.setStartDate(rset.getString("start_date"));
+				reservation.setEndDate(rset.getString("end_date"));
+				reservation.setPrice(rset.getInt("price"));				
+				reservation.setInsuranceType(rset.getString("insurance_type"));
+				reservation.setIssueDate(rset.getString("issue_date"));
+				reservation.setLicenseType(rset.getString("license_type"));
+				reservation.setReviewStatus(rset.getString("review_status"));
+				reservation.setReturnStatus(rset.getString("return_status"));
+			
+				list.add(reservation);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int searchReservationCount(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalContents = 0;
+		
+		String sql = null;
+		String searchType = (String) param.get("searchType");
+		
+		switch(searchType) {
+		case "reserNo":
+			sql = prop.getProperty("searchReservationCountByReserNo");
+			param.put("searchKeyword", "%" + param.get("searchKeyword")); 
+			break;
+		case "memberId":
+			sql = prop.getProperty("searchReservationCountByMemberId");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "carName":
+			sql = prop.getProperty("searchReservationCountByCarName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		}
+		
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalContents;
+	}
+
 }
