@@ -32,7 +32,7 @@
 	<h1 class="board-title">커뮤니티</h1>
 	<% if(loginMember != null) { %>
 	<div id="writing-container" >
-		<input type="button" value="글쓰기" id="writing"
+		<input type="button" value="글쓰기" 
 		id="btn-add" 
 		onclick="location.href='<%= request.getContextPath() %>/board/commentBoardForm';" />
 	</div>
