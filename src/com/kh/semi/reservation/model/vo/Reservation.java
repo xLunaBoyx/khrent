@@ -14,8 +14,9 @@ public class Reservation implements Serializable{
 	private String memberId;
 	private String carCode;
 	private String carName;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
+	private int price;
 	private String insuranceType;
 	private String issueDate;
 	private String licenseType;
@@ -27,8 +28,9 @@ public class Reservation implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Reservation(String reserNo, String memberId, String carCode, String carName, Date startDate, Date endDate,
-			String insuranceType, String issueDate, String licenseType, String reviewStatus, String returnStatus) {
+	public Reservation(String reserNo, String memberId, String carCode, String carName, String startDate,
+			String endDate, int price, String insuranceType, String issueDate, String licenseType, String reviewStatus,
+			String returnStatus) {
 		super();
 		this.reserNo = reserNo;
 		this.memberId = memberId;
@@ -36,6 +38,7 @@ public class Reservation implements Serializable{
 		this.carName = carName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.price = price;
 		this.insuranceType = insuranceType;
 		this.issueDate = issueDate;
 		this.licenseType = licenseType;
@@ -75,20 +78,28 @@ public class Reservation implements Serializable{
 		this.carName = carName;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getInsuranceType() {
@@ -134,10 +145,9 @@ public class Reservation implements Serializable{
 	@Override
 	public String toString() {
 		return "Reservation [reserNo=" + reserNo + ", memberId=" + memberId + ", carCode=" + carCode + ", carName="
-				+ carName + ", startDate=" + startDate + ", endDate=" + endDate + ", insuranceType=" + insuranceType
-				+ ", issueDate=" + issueDate + ", licenseType=" + licenseType + ", reviewStatus=" + reviewStatus
-				+ ", returnStatus=" + returnStatus + "]";
+				+ carName + ", startDate=" + startDate + ", endDate=" + endDate + ", price=" + price
+				+ ", insuranceType=" + insuranceType + ", issueDate=" + issueDate + ", licenseType=" + licenseType
+				+ ", reviewStatus=" + reviewStatus + ", returnStatus=" + returnStatus + "]";
 	}
-	
 	
 }
