@@ -490,8 +490,8 @@ public class AdminDao {
 				reservation.setReserNo(rset.getString("reserv_no"));
 				reservation.setMemberId(rset.getString("member_id"));
 				reservation.setCarName(rset.getString("car_name"));
-				reservation.setStartDate(rset.getDate("start_date"));
-				reservation.setEndDate(rset.getDate("end_date"));
+				reservation.setStartDate(rset.getString("start_date"));
+				reservation.setEndDate(rset.getString("end_date"));
 				
 
 				System.out.println("reservation = " + reservation);

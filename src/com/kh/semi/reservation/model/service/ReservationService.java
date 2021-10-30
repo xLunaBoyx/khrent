@@ -1,14 +1,16 @@
 package com.kh.semi.reservation.model.service;
 
-import static com.kh.semi.common.JdbcTemplate.*;
+import static com.kh.semi.common.JdbcTemplate.close;
+import static com.kh.semi.common.JdbcTemplate.commit;
+import static com.kh.semi.common.JdbcTemplate.getConnection;
+import static com.kh.semi.common.JdbcTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
-import java.util.Map;
 
 import com.kh.semi.reservation.model.dao.ReservationDao;
 import com.kh.semi.reservation.model.vo.Car;
-import com.kh.semi.reservation.model.vo.CarInfo;
-import com.kh.semi.reservation.model.vo.CarList;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class ReservationService {
 
@@ -28,7 +30,7 @@ public class ReservationService {
 		return car;
 	}
 
-	public int insertReservation(Map<String, Object> reservation) {
+	public int insertReservation(Reservation reservation) {
 		Connection conn = getConnection();
 		int result = 0;
 		

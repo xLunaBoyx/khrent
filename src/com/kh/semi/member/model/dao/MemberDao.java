@@ -516,8 +516,8 @@ public class MemberDao {
 				reservation.setReserNo(rset.getString("reserv_no"));
 				reservation.setCarCode(rset.getString("car_code"));
 				reservation.setCarName(rset.getString("car_name"));
-				reservation.setStartDate(rset.getDate("start_date"));
-				reservation.setEndDate(rset.getDate("end_date"));
+				reservation.setStartDate(rset.getString("start_date"));
+				reservation.setEndDate(rset.getString("end_date"));
 				reservation.setReviewStatus(rset.getString("review_status"));
 				reservation.setReturnStatus(rset.getString("return_status"));
 			

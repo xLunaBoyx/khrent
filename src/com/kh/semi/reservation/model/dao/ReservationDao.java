@@ -17,6 +17,7 @@ import com.kh.semi.board.model.dao.CommunityBoardDao;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class ReservationDao {
 	
@@ -118,7 +119,7 @@ public class ReservationDao {
 		return car;
 	}
 
-	public int insertReservation(Connection conn, Map<String, Object> reservation) {
+	public int insertReservation(Connection conn, Reservation reservation) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertReservation");
@@ -127,11 +128,12 @@ public class ReservationDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, (String) reservation.get("memberId"));
-			pstmt.setString(2, (String) reservation.get("carCode"));
-			pstmt.setString(3, (String) reservation.get("carName"));
-			pstmt.setString(4, (String) reservation.get("startDate"));
-			pstmt.setString(5, (String) reservation.get("endDate"));
+			pstmt.setString(1, reservation.getMemberId());
+			pstmt.setString(2, reservation.getCarCode());
+			pstmt.setString(3, reservation.getCarName());
+			pstmt.setString(4, reservation.getStartDate());
+			pstmt.setString(5, reservation.getEndDate());
+			pstmt.setInt(6, reservation.getPrice());
 			
 			result = pstmt.executeUpdate();
 			
