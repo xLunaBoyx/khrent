@@ -518,6 +518,7 @@ public class MemberDao {
 				reservation.setCarName(rset.getString("car_name"));
 				reservation.setStartDate(rset.getString("start_date"));
 				reservation.setEndDate(rset.getString("end_date"));
+				reservation.setPrice(rset.getInt("price"));
 				reservation.setReviewStatus(rset.getString("review_status"));
 				reservation.setReturnStatus(rset.getString("return_status"));
 			
