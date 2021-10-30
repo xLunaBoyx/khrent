@@ -8,6 +8,7 @@
 		<header>  
 		<img src="https://i.ibb.co/82P28r4/default-profile.png" alt="admin" class="adminImage"/>
 		<%= loginMember.getMemberName()%>님
+		<input type="button" value="내정보" class="adminInfo" onclick="location.href='<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>';" />
 		</header>
 		<nav class="sidebar-nav">
 
