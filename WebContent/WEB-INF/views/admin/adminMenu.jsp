@@ -31,6 +31,8 @@
 						</li>
 						<li><a href="<%= request.getContextPath() %>/admin/adminCarInsertSelect"><i class="ion-ios-alarm-outline"></i>차종/차량 추가</a>
 						</li>
+						<li><a href="<%= request.getContextPath() %>/admin/adminCarDeleteSelect"><i class="ion-ios-alarm-outline"></i>차종/차량 삭제</a>
+						</li>
 					</ul>
 				</li>
 
