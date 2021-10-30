@@ -20,7 +20,7 @@
 				<a href="<%= request.getContextPath() %>" class="goHome"> <span> < 홈으로 가기</span>
 				</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<%= request.getContextPath() %>/member/myPage" class="goHome"> <span> 예약내역 확인하기></span>
+				<a href="<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>" class="goHome"> <span> 예약내역 확인하기></span>
 				</a>
 			</div>
 </div>
