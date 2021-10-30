@@ -15,6 +15,7 @@ import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class AdminService {
 
@@ -123,9 +124,17 @@ public class AdminService {
 		return totalContents;
 	}
 
-	public List<Member> AjaxAdminFiveRecentEnroll() {
+	public List<Member> ajaxAdminFiveRecentEnroll() {
 		Connection conn = getConnection();
 		List<Member> list = adminDao.ajaxAdminFiveRecentEnroll(conn);
+		close(conn);
+		
+		return list;
+	}
+
+	public List<Reservation> ajaxAdminFiveRecentReservation() {
+		Connection conn = getConnection();
+		List<Reservation> list = adminDao.ajaxAdminFiveRecentReservation(conn);
 		close(conn);
 		
 		return list;

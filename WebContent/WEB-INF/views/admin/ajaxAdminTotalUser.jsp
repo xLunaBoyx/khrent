@@ -5,5 +5,5 @@
 				<span class="counter" id="counter">
 				<%= request.getAttribute("totalContents") %>
 				</span>
-				<p>Total Users</p>
+				<p>총 회원 수</p>
 			</h3>

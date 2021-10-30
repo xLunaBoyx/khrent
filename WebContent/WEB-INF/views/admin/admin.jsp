@@ -48,12 +48,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- 		</article> -->
+		
+		<!-- 최근 가입 5명 목록 -->
+		<div class="tables">
 		<div class="col-xl-7">
 			<div class="white_box QA_section card_height_100">
 				<div class="white_box_tittle list_header m-0 align-items-center">
 					<div class="main-title mb-sm-15">
-						<h3 class="m-0 nowrap">list of recent subscriptions</h3>
+						<h3 class="m-0 nowrap">최근 가입 목록</h3>
 					</div>
 					<div class="box_right d-flex lms_block">
 					</div>
@@ -72,35 +74,72 @@
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 0;" aria-sort="ascending"
 										aria-label="Patients Name: activate to sort column descending">
-										ID</th>
+										아이디</th>
 									<th scope="col" class="sorting" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 99px;"
-										aria-label="department: activate to sort column ascending">Name</th>
+										aria-label="department: activate to sort column ascending">이름</th>
 									<th scope="col" class="sorting" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 104px;"
-										aria-label="Appointment Date: activate to sort column ascending">Member Role</th>
+										aria-label="Appointment Date: activate to sort column ascending">회원권한</th>
 									<th scope="col" class="sorting" tabindex="0"
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 										style="width: 90px;"
-										aria-label="Serial Number: activate to sort column ascending">Reg Date</th>
+										aria-label="Serial Number: activate to sort column ascending">가입일자</th>
 								</tr>
 							</thead>
 							
 							<tbody id="odd">
-							
-								<tr role="row" class="odd">
-									<th scope="row" tabindex="0" class="sorting_1">
-										<div class="patient_thumb d-flex align-items-center">
-											<div class="student_list_img mr_20"></div>
-											<p>아이디</p>
-										</div>
-									</th>
-									<td>이름</td>
-									<td>멤버롤</td>
-									<td>가입일자</td>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 최근 예약 목록 5건 -->
+		
+				<div class="col-xl-7">
+			<div class="white_box QA_section card_height_100">
+				<div class="white_box_tittle list_header m-0 align-items-center">
+					<div class="main-title mb-sm-15">
+						<h3 class="m-0 nowrap">최근 예약 목록</h3>
+					</div>
+					<div class="box_right d-flex lms_block">
+					</div>
+				</div>
+
+				<div class="QA_table ">
+					<!-- table-responsive -->
+					<div id="DataTables_Table_0_wrapper"
+						class="dataTables_wrapper no-footer">
+						<table
+							class="table lms_table_active2 dataTable no-footer dtr-inline"
+							id="DataTables_Table_0" role="grid" style="width: 852px;">
+							<thead>
+								<tr role="row">
+									<th scope="col" class="sorting_asc" tabindex="0"
+										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+										style="width: 0;" aria-sort="ascending"
+										aria-label="Patients Name: activate to sort column descending">예약번호</th>
+									<th scope="col" class="sorting" tabindex="0"
+										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+										style="width: 99px;"
+										aria-label="department: activate to sort column ascending">아이디</th>
+									<th scope="col" class="sorting" tabindex="0"
+										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+										style="width: 124px;"
+										aria-label="Appointment Date: activate to sort column ascending">예약차명</th>
+									<th scope="col" class="sorting" tabindex="0"
+										aria-controls="DataTables_Table_0" rowspan="1" colspan="2"
+										style="width: 90px;"
+										aria-label="Serial Number: activate to sort column ascending">예약일자</th>
 								</tr>
+							</thead>
+							
+							<tbody id="odd2">
 				
 							</tbody>
 						</table>
@@ -108,13 +147,7 @@
 				</div>
 			</div>
 		</div>
-
-
-		<article></article>
-		<article></article>
-		<article></article>
-		<article></article>
-		<article></article>
+		</div>
 	</section>
 </section>
 
@@ -188,6 +221,20 @@ $.ajax({
 	method: "GET",
 	success: function(data) {
 		$("#odd").html(data);
+	},
+	complete: function() {
+		console.log("complete")
+	}
+});
+});
+
+//최근 예약 5건
+$(document).ready(function () {
+$.ajax({
+	url:"<%=request.getContextPath()%>/admin/ajaxAdminFiveRecentReservation",
+	method: "GET",
+	success: function(data) {
+		$("#odd2").html(data);
 	},
 	complete: function() {
 		console.log("complete")
