@@ -630,4 +630,119 @@ public class AdminDao {
 		return result;
 	}
 
+	public List<CarList> selectTotalCarListOfList(Connection conn, int startRownum, int endRownum) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectTotalCarListOfList"); 
+		
+		ResultSet rset = null;
+		List<CarList> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRownum);
+			pstmt.setInt(2, endRownum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				CarList carList = new CarList();
+
+				carList.setCarCode(rset.getString("car_code"));
+				carList.setCarName(rset.getString("car_name"));
+				carList.setReleaseYear(rset.getString("release_year"));
+				carList.setCarOption(rset.getString("car_option"));
+				carList.setPrice(rset.getInt("price"));
+				carList.setNumberPlate(rset.getString("number_plate"));
+			
+				list.add(carList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원반납
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectTotalCarListContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTotalCarListContents");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
+	}
+
+	public CarList selectOneCarList(Connection conn, String carCode) {
+		String sql = prop.getProperty("selectOneCarList");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		CarList carList = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				String carName = rset.getString("car_name");
+				String releaseYear = rset.getString("release_year");
+				String carOption = rset.getString("car_option");
+				int price = rset.getInt("price");
+				String numberPlate = rset.getString("number_plate");
+				
+				carList = new CarList(carCode, carName, releaseYear, carOption, price, numberPlate);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return carList;
+	}
+
+	public int adminCarListDelete(Connection conn, String carCode) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("adminCarListDelete"); 
+		System.out.println("query@adminCarListDelete@Dao = " + query);
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+		
+			pstmt.setString(1, carCode);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
