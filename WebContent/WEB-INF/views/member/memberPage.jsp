@@ -53,7 +53,20 @@
 				       		<td><%= reservation.getStartDate().substring(0,11) %></td>   <!-- 시분초 자르고 yy-mm-dd 로 표시하기 위해서 -->
 				       		<td><%= reservation.getEndDate().substring(0,11) %></td>
 				       		<td><%= df.format(reservation.getPrice()) %>원</td>   <!-- 세자리마다 , 찍기 -->
-				       		<td><%= reservation.getReviewStatus() %></td>
+				       		<td>
+				       			<%= reservation.getReviewStatus() %>
+<%
+	if("N".equals(reservation.getReviewStatus())) {
+%>	
+	<input class="change" type="button" value="작성하기" onclick="location.href='<%= request.getContextPath() %>/board/reviewBoardForm?reserNo=<%= reservation.getReserNo()%>';"/>			       			
+<%
+	} else {
+%>
+	<input class="change" type="button" value="작성완료" />
+<%
+	}
+%>		       			
+			       			</td>
 				       		<td><%= reservation.getReturnStatus() %></td>
 		       			</tr>
 <%
