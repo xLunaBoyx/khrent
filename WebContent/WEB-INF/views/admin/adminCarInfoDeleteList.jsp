@@ -19,7 +19,7 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 	<style>
-    div#search-carName {display: <%= "carName".equals(searchType) ? "inline-block" : "none" %>; }
+    div#search-carName {display: <%= searchType == null || "carName".equals(searchType) ? "inline-block" : "none" %>; }
     div#search-maker {display: <%= "maker".equals(searchType) ? "inline-block" : "none" %>;}
     div#search-fuel {display: <%= "fuel".equals(searchType) ? "inline-block" : "none" %>;}
     div#search-carSize {display: <%= "carSize".equals(searchType) ? "inline-block" : "none" %>;}
