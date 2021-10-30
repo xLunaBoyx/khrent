@@ -20,6 +20,7 @@ import com.kh.semi.member.model.vo.Member;
 import com.kh.semi.reservation.model.vo.Car;
 import com.kh.semi.reservation.model.vo.CarInfo;
 import com.kh.semi.reservation.model.vo.CarList;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 public class AdminDao {
 	
@@ -458,6 +459,44 @@ public class AdminDao {
 				System.out.println("member = " + member);
 				
 				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public List<Reservation> ajaxAdminFiveRecentReservation(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Reservation> list = new ArrayList<>();
+		String sql = prop.getProperty("ajaxAdminFiveRecentReservation");
+		
+		try {
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Reservation reservation = new Reservation();
+				
+				reservation.setReserNo(rset.getString("reserv_no"));
+				reservation.setMemberId(rset.getString("member_id"));
+				reservation.setCarName(rset.getString("car_name"));
+				reservation.setStartDate(rset.getDate("start_date"));
+				reservation.setEndDate(rset.getDate("end_date"));
+				
+
+				System.out.println("reservation = " + reservation);
+				
+				list.add(reservation);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

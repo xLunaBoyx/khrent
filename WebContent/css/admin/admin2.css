@@ -61,7 +61,7 @@ img {
 .single_element .single_quick_activity p {
 	-webkit-transition: 0.5s;
 	transition: 0.5s;
-	font-size: 19px;
+	font-size: 18px;
 	font-weight: 500;
 	color: #B2B5C0;
 	line-height: 1;
@@ -69,10 +69,8 @@ img {
 
 /* 회원 가입 목록 */
 .col-xl-7 {
-	-ms-flex: 0 0 58.333333%;
-	flex: 0 0 58.333333%;
-	max-width: 58.333333%;
-	width: 700px;
+	max-width: 50%;
+	width: 745px;
 }
 
 .white_box {
@@ -89,7 +87,7 @@ img {
 
 .white_box {
 	background-color: #fff;
-	padding: 20px;
+	padding: 17px;
 }
 
 .list_header {
@@ -373,4 +371,9 @@ p {
 
 .main-title {
 	margin: 20px 0 20px 0;
+}
+
+.tables {
+	display: flex;
+	justify-content: space-between;
 }
