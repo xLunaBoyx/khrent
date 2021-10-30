@@ -16,11 +16,11 @@
 				<li><a href="#"><i class="ion-bag"></i> 
 				<span>예약 관리</span></a>
 					<ul class="nav-flyout">
-						<li><a href="#"><i class="ion-ios-color-filter-outline"></i>예약 조회</a>
+						<li><a href="<%= request.getContextPath() %>/admin/adminTotalReserList"><i class="ion-ios-color-filter-outline"></i>전체 예약 관리</a>
 						</li>
-						<li><a href="#"><i class="ion-ios-clock-outline"></i>예약 변경</a>
+						<li><a href="#"><i class="ion-ios-clock-outline"></i></a>
 						</li>
-						<li><a href="#"><i class="ion-android-star-outline"></i>예약 취소</a>
+						<li><a href="#"><i class="ion-android-star-outline"></i></a>
 						</li>
 					</ul></li>
 
