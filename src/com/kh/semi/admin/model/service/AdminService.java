@@ -140,6 +140,38 @@ public class AdminService {
 		return list;
 	}
 
+	public CarInfo selectOneCarInfo(String carName) {
+		Connection conn = getConnection();
+		CarInfo carList = adminDao.selectOneCarInfo(conn, carName);
+		close(conn);
+		return carList;
+	}
+
+	public List<CarInfo> selectTotalCarInfo(int startRownum, int endRownum) {
+		Connection conn = getConnection();
+		List<CarInfo> list = adminDao.selectTotalCarInfoList(conn, startRownum, endRownum);
+		close(conn);
+		return list;
+	}
+
+	public int selectTotalCarInfoContents() {
+		Connection conn = getConnection();
+		int totalContent = adminDao.selectTotalCarInfoContents(conn);
+		close(conn);
+		return totalContent;
+	}
+
+	public int adminCarInfoDelete(String carName) {
+ 		Connection conn = getConnection();
+ 		int result = adminDao.adminCarInfoDelete(conn, carName);
+ 		if(result>0)
+ 			commit(conn);
+ 		else 
+ 			rollback(conn);
+ 		close(conn);
+ 		return result;
+	}
+
 
 
 
