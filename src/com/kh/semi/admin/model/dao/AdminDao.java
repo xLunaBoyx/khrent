@@ -509,4 +509,125 @@ public class AdminDao {
 		return list;
 	}
 
+	public CarInfo selectOneCarInfo(Connection conn, String carName) {
+		String sql = prop.getProperty("selectOneCarInfo");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		CarInfo carInfo = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, carName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				int carInfoNo = rset.getInt("car_info_no");
+				String maker = rset.getString("maker");
+				String fuel = rset.getString("fuel");
+				String carSize = rset.getString("car_size");
+				String img = rset.getString("img");
+				int assessCnt = rset.getInt("assess_cnt");
+				int avgScore = rset.getInt("avg_score");
+				int reservCnt = rset.getInt("reserv_cnt");
+				
+				carInfo = new CarInfo(carInfoNo, carName, maker, fuel, carSize, img, assessCnt, avgScore, reservCnt);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return carInfo;
+	}
+
+	public List<CarInfo> selectTotalCarInfoList(Connection conn, int startRownum, int endRownum) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectTotalCarInfoList"); 
+		
+		ResultSet rset = null;
+		List<CarInfo> list = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startRownum);
+			pstmt.setInt(2, endRownum);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				CarInfo carInfo = new CarInfo();
+
+				carInfo.setCarInfoNo(rset.getInt("car_info_no"));
+				carInfo.setCarName(rset.getString("car_name"));
+				carInfo.setMaker(rset.getString("maker"));
+				carInfo.setFuel(rset.getString("fuel"));
+				carInfo.setCarSize(rset.getString("car_size"));
+				carInfo.setImg(rset.getString("img"));
+				carInfo.setAssessCnt(rset.getInt("assess_cnt"));
+				carInfo.setAvgScore(rset.getInt("avg_score"));
+				carInfo.setReservCnt(rset.getInt("reserv_cnt"));
+			
+				list.add(carInfo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원반납
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectTotalCarInfoContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectTotalCarInfoContents");
+		int totalContents = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				totalContents = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
+	}
+
+	public int adminCarInfoDelete(Connection conn, String carName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("adminCarInfoDelete"); 
+		System.out.println("query@adminCarInfoDelete@Dao = " + query);
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+		
+			pstmt.setString(1, carName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
