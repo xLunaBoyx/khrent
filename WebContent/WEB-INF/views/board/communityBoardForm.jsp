@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/communityBoardForm.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 
 <script>
 /**

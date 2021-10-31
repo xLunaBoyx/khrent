@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/noticeBoardForm.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 
 
 <script>
@@ -36,10 +36,10 @@ $(() => {
 	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
-	<h2>공지사항</h2>
+	<h1 class="board-title">공지사항</h1>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/noticeBoardEnroll" 
@@ -52,11 +52,11 @@ $(() => {
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" wrap="hard" rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea id="textarea" wrap="hard" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="writeBtn">
 			</th>
 		</tr>
 	</table>

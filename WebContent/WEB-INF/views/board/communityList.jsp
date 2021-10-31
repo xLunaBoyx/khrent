@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/communityList.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardList.css" />
 
 <%
 	List<CommunityBoard> list = (List<CommunityBoard>) request.getAttribute("list");
@@ -31,7 +31,7 @@
 	
 	<h1 class="board-title">커뮤니티</h1>
 	<% if(loginMember != null) { %>
-	<div id="writing-container" >
+	<div id="writing-container">
 		<input type="button" value="글쓰기" 
 		id="btn-add" 
 		onclick="location.href='<%= request.getContextPath() %>/board/commentBoardForm';" />
