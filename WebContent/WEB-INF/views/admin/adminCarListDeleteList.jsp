@@ -48,7 +48,7 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
             		<td><%= carList.getCarName() %></td>
             		<td><%= carList.getReleaseYear() %></td>            		
             		<td><%= carList.getCarOption() %></td>
-            		<td><%= carList.getPrice() %></td>
+            		<td><%= fomatter.format(carList.getPrice()) %></td>
             		<td><%= carList.getNumberPlate() %></td>
             		<td>
             		<input type="button" value="삭제" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminCarListDelete?carCode=<%= carList.getCarCode() %>';"/>
@@ -70,15 +70,15 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
 	        
 
 	        <div id="search-carCode" class="search-type">
-	            <form action="<%=request.getContextPath()%>/admin/carFinder">
-	                <input type="hidden" name="searchType" value="maker"/>
+	            <form action="<%=request.getContextPath()%>/admin/carListFinder">
+	                <input type="hidden" name="searchType" value="carCode"/>
 	                <input type="text" name="searchKeyword" size="25" placeholder="검색할 차량코드를 입력하세요." value="<%= "carCode".equals(searchType) ?  searchKeyword : "" %>"/>
 	                <button type="submit" class="carSearchBtn">검색</button>			
 	            </form>	
 	        </div>
 
 	        <div id="search-carName" class="search-type">
-	            <form action="<%=request.getContextPath()%>/admin/carFinder">
+	            <form action="<%=request.getContextPath()%>/admin/carListFinder">
 	                <input type="hidden" name="searchType" value="carName"/>
 	                <input type="text" name="searchKeyword"  size="25" placeholder="검색할 이름을 입력하세요." value="<%= "carName".equals(searchType) ? searchKeyword : "" %>"/>
 	                <button type="submit">검색</button>			
@@ -86,8 +86,8 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
 	        </div>
 	        
      	    <div id="search-numberPlate" class="search-type">
-	            <form action="<%=request.getContextPath()%>/admin/carFinder">
-	                <input type="hidden" name="searchType" value="fuel"/>
+	            <form action="<%=request.getContextPath()%>/admin/carListFinder">
+	                <input type="hidden" name="searchType" value="numberPlate"/>
 	                <input type="text" name="searchKeyword" size="25" placeholder="검색할 번호판을 입력하세요." value="<%= "numberPlate".equals(searchType) ?  searchKeyword : "" %>"/>
 	                <button type="submit" class="carSearchBtn">검색</button>			
 	            </form>	
