@@ -60,7 +60,7 @@
 	}
 %>
 			<tr style="height: 300px;">
-				<td id="tableContent"><%=communityBoard.getContent()%></td>	
+				<td id="questionViewContent"><%=communityBoard.getContent()%></td>	
 			</tr>
 		</tbody>
 		<tfoot>
