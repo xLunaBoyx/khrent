@@ -8,7 +8,7 @@
     border: none;
     font-size: 13px;
     outline: none;
-    margin-left: 969px;
+    margin-left: 1000px;
     margin-bottom: 11px;
 }
 
@@ -22,7 +22,7 @@
 	flex-direction: column;
 	height: 1070px;
 	margin: 0 auto;
-	background-color: white;
+	background-color: #fcfcfc;
 	align-items: center;
 	padding-top: 30px;
 }
@@ -89,4 +89,8 @@
 	letter-spacing: 0;
 	line-height: 27px;
 	vertical-align: middle;
+}
+
+#pageBar {
+	margin-top: 70px;
 }
