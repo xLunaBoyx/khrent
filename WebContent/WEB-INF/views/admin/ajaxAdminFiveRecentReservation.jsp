@@ -19,8 +19,8 @@ for (Reservation reservation : list) {
                                         </th>
                                         <td><%= reservation.getMemberId() %></td>
                                         <td><%= reservation.getCarName() %></td>
-                                        <td><%= reservation.getStartDate() %></td>
-                                        <td><%= reservation.getEndDate() %></td>
+                                        <td><%= reservation.getStartDate().substring(0,11) %></td>
+                                        <td><%= reservation.getEndDate().substring(0,11) %></td>
                     </tr>
 <%
 }
