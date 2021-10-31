@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/board.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/questionList.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardList.css" />
 <%
 	List<QuestionBoard> list = (List<QuestionBoard>) request.getAttribute("list");
 	
@@ -25,19 +25,21 @@
 <% } %>
 </script>
 
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
+
 <%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 
 	<div class="board-container">
 	
 	<h1 class="board-title">대여문의</h1>
-	
-<% if(loginMember != null){ %>	
+	<% if(loginMember != null){ %>	
+	<div id="writing-container">
 	<input 
 		type="button" 
 		value="글쓰기" 
 		id="btn-add" 
 		onclick="location.href='<%= request.getContextPath() %>/board/questionBoardForm';" />
+	</div>
 <% } %>
 
 		<table id="tbl-board">
@@ -48,7 +50,7 @@
 					<th>답변상태</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th style="width: 30px;">첨부파일</th>
+					<th>첨부파일</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
@@ -86,7 +88,7 @@
 		<div id='pageBar'>
 			<%= request.getAttribute("pagebar") %>
 		</div>
-	
+	</div>
 </div>
 	
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

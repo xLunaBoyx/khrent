@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/noticeList.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardList.css" />
 <%
 	List<NoticeBoard> list = (List<NoticeBoard>) request.getAttribute("list");
 
@@ -23,25 +23,29 @@
 <% } %>
 </script>
 
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
-<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 
+<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 
 	<div class="board-container">
 	
 	<h1 class="board-title">공지사항</h1>
 <% if(loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())){ %>	
+	<div id="writing-container">
 	<input 
 		type="button" 
 		value="글쓰기" 
 		id="btn-add" 
 		onclick="location.href='<%= request.getContextPath() %>/board/noticeBoardForm';" />
+	</div>
+	
 <% } %>
+
 	<!-- <div class="board-box"> -->
 		<table id="tbl-board">
 			<thead>
 				<tr class="board-tr">
-					<th style="width:30px;">번호</th>
+					<th>번호</th>
 					<th>제목</th>
 					<th>작성일</th>
 					<th>조회수</th>
