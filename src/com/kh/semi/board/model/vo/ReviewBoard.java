@@ -8,6 +8,7 @@ public class ReviewBoard implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int reviewNo;
+	private String reservNo;
 	private String reviewWriter;
 	private String reviewTitle;
 	private String reviewContent;
@@ -24,10 +25,11 @@ public class ReviewBoard implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewBoard(int reviewNo, String reviewWriter, String reviewTitle, String reviewContent, String carName,
-			Date regDate, int readCount, int score, int boardCommentCount, Attachment attach) {
+	public ReviewBoard(int reviewNo, String reservNo, String reviewWriter, String reviewTitle, String reviewContent,
+			String carName, Date regDate, int readCount, int score, int boardCommentCount, Attachment attach) {
 		super();
 		this.reviewNo = reviewNo;
+		this.reservNo = reservNo;
 		this.reviewWriter = reviewWriter;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
@@ -45,6 +47,14 @@ public class ReviewBoard implements Serializable {
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
+	}
+
+	public String getReservNo() {
+		return reservNo;
+	}
+
+	public void setReservNo(String reservNo) {
+		this.reservNo = reservNo;
 	}
 
 	public String getReviewWriter() {
@@ -125,11 +135,13 @@ public class ReviewBoard implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ReviewBoard [reviewNo=" + reviewNo + ", reviewWriter=" + reviewWriter + ", reviewTitle=" + reviewTitle
-				+ ", reviewContent=" + reviewContent + ", carName=" + carName + ", regDate=" + regDate + ", readCount="
-				+ readCount + ", score=" + score + ", boardCommentCount=" + boardCommentCount + ", attach=" + attach
-				+ "]";
+		return "ReviewBoard [reviewNo=" + reviewNo + ", reservNo=" + reservNo + ", reviewWriter=" + reviewWriter
+				+ ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", carName=" + carName
+				+ ", regDate=" + regDate + ", readCount=" + readCount + ", score=" + score + ", boardCommentCount="
+				+ boardCommentCount + ", attach=" + attach + "]";
 	}
+
+	
 
 	
 	
