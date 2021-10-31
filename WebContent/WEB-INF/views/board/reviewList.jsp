@@ -7,7 +7,8 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/communityList.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardList.css" />
 
 <%
 	List<ReviewBoard> list = (List<ReviewBoard>) request.getAttribute("list");
@@ -26,11 +27,11 @@
 
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 
+	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 
 	<div class="board-container">
 	
 	<h1 class="board-title">이용후기</h1>
-	
 	
 	
 		<table id="tbl-board">

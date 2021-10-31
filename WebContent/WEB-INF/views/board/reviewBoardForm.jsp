@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/questionBoardForm.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 <%
 	List<Reservation> list = (List<Reservation>) request.getAttribute("list");
 %>
