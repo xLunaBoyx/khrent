@@ -48,6 +48,8 @@
 				</div>
 			</div>
 		</div>
+
+<%@ include file="/WEB-INF/views/admin/adminPageChart.jsp"%>
 		
 		<!-- 최근 가입 5명 목록 -->
 		<div class="tables">
