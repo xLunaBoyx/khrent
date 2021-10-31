@@ -45,10 +45,6 @@
 						</li>
 					</ul>
 				</li>
-				
-				
-				<li><a href="<%= request.getContextPath()%>/admin/admin"><i class="ion-ios-medical-outline"></i> <span
-						class="">관리자 메인화면</span></a></li>
 			</ul>
 		</nav>
 	</aside>
