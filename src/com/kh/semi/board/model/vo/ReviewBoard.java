@@ -15,7 +15,7 @@ public class ReviewBoard implements Serializable {
 	private String carName;
 	private Date regDate;
 	private int readCount;
-	private int score;
+	private Double score;
 	private int boardCommentCount;
 	
 	private Attachment attach;
@@ -26,7 +26,7 @@ public class ReviewBoard implements Serializable {
 	}
 
 	public ReviewBoard(int reviewNo, String reservNo, String reviewWriter, String reviewTitle, String reviewContent,
-			String carName, Date regDate, int readCount, int score, int boardCommentCount, Attachment attach) {
+			String carName, Date regDate, int readCount, Double score, int boardCommentCount, Attachment attach) {
 		super();
 		this.reviewNo = reviewNo;
 		this.reservNo = reservNo;
@@ -105,11 +105,11 @@ public class ReviewBoard implements Serializable {
 		this.readCount = readCount;
 	}
 
-	public int getScore() {
+	public Double getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Double score) {
 		this.score = score;
 	}
 
@@ -142,7 +142,6 @@ public class ReviewBoard implements Serializable {
 	}
 
 	
-
 	
 	
 	
