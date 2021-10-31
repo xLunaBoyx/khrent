@@ -260,4 +260,11 @@ public class AdminService {
 		return totalContent;
 	}
 
+	public int ajaxMemberPageReservationCount(String memberId) {
+		Connection conn = getConnection();
+		int myReservation = adminDao.ajaxMemberPageReservationCount(conn, memberId);
+		close(conn);
+		return myReservation;
+	}
+
 }

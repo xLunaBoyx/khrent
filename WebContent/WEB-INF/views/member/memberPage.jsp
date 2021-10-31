@@ -91,4 +91,22 @@ alert("<%= msg %>");
 
 </script>
 
+<script>
+$(document).ready(function () {
+$.ajax({
+	url:"<%=request.getContextPath()%>/admin/ajaxMemberPageReservationCount",
+	method: "GET",
+	data: {
+		memberId: "<%= loginMember.getMemberId() %>"
+	},
+	success: function(data) {
+		$("#reserv").html(data);
+	},
+	complete: function() {
+		console.log("complete")
+	}
+});
+});
+</script>
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
