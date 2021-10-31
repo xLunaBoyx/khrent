@@ -8,15 +8,15 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/noticeBoardUpdate.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 
 <%
 	NoticeBoard noticeBoard = (NoticeBoard) request.getAttribute("noticeBoard");
 %>
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <section id="board-container">
-<h2>공지사항</h2>
+<h1 class="board-title">공지사항</h1>
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/noticeBoardUpdate"
@@ -30,12 +30,12 @@
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" rows="5" cols="40" name="content"><%= noticeBoard.getNoticeContent() %></textarea></td>
+			<td><textarea id="textarea" rows="5" cols="40" name="content"><%= noticeBoard.getNoticeContent() %></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="수정하기"/>
-				<input type="button" value="취소" onclick="history.go(-1);"/>
+				<input type="button" value="취소" onclick="history.go(-1);" class="cancelBtn"/>
+				<input type="submit" value="수정하기" class="writeBtn"/>
 			</th>
 		</tr>
 	</table>
