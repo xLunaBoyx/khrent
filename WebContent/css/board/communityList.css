@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-.board-title {
-	position: relative;
-	font-size: 3em;
-}
-
 .board-container {
 	display: flex;
 	flex-direction: column;
@@ -12,6 +7,19 @@
 	margin: 0 auto;
 	background-color: #fcfcfc;
 	align-items: center;
+	float: right;
+	width: calc(100%);
+}
+
+.board-title {
+	display: block;
+	font-size: 45px;
+	line-height: 56px;
+	font-weight: bold;
+	color: #484848;
+	margin-bottom: 0;
+	width: 1050px;
+	letter-spacing: -1px;
 }
 
 #tbl-board {
@@ -20,7 +28,7 @@
 }
 
 .board-tr>th {
-	border-top: 1px solid #989898;
+	border-top: 2px solid #4a4a4a;
 	border-bottom: 1px solid #e3e3e3;
 	text-align: center;
 	color: #434343;
@@ -42,9 +50,11 @@
 	width: 55%;
 	text-align: left;
 }
+
 .subject a:link {
 	color: black;
 }
+
 .subject a:visited {
 	color: black;
 }
@@ -57,13 +67,13 @@
 
 .cPage {
 	display: inline-block;
-    background: #4a4a4a;
-    border: 1px solid #4a4a4a;
-    color: #fff;
-    font-weight: normal;
-    width: 21px;
-    vertical-align: middle;
-    text-align: center;
+	background: #4a4a4a;
+	border: 1px solid #4a4a4a;
+	color: #fff;
+	font-weight: normal;
+	width: 21px;
+	vertical-align: middle;
+	text-align: center;
 }
 
 #pagebar a {
@@ -101,58 +111,56 @@
 }
 
 /* community-view */
-
-#content{
-	flex-direction:column;
+#content {
+	flex-direction: column;
 	align-items: center;
-	
 }
 
-#comment-container{
-	width:1410px;
+#comment-container {
+	width: 1410px;
 	background-color: white;
 }
 
-table{
-	border-top:1px solid #4343436b;
-	border-bottom:1px solid #4343436b;
-	
+table {
+	border-top: 1px solid #4343436b;
+	border-bottom: 1px solid #4343436b;
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
-	width:1200px;		   
+	width: 1200px;
 }
 
-
-tr, td{
-	border-top:1px solid #4343436b;
-    text-align: center;
-    color: black;
-    font-size: 15px;
-    line-height: 58px;
+tr, td {
+	border-top: 1px solid #4343436b;
+	text-align: center;
+	color: black;
+	font-size: 15px;
+	line-height: 58px;
 }
 
-#comment-container{
-	text-align:center;
-	width:1400px;
+#comment-container {
+	text-align: center;
+	width: 1400px;
 	margin: 0 auto;
 }
-.buttons{
+
+.buttons {
 	position: relative;
-    right: -500px;
+	right: -500px;
 }
 
-#tableContent{
-	height:200px;
+#tableContent {
+	height: 200px;
 }
+
 #btn-add {
 	background-color: rgb(41, 128, 185);
-    color: white;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 16%), 0 2px 10px rgb(0 0 0 / 12%);
-    border-radius: 2px;
-    border: none;
-    font-size: 13px;
-    outline: none;
+	color: white;
+	box-shadow: 0 2px 5px rgb(0 0 0/ 16%), 0 2px 10px rgb(0 0 0/ 12%);
+	border-radius: 2px;
+	border: none;
+	font-size: 13px;
+	outline: none;
 }
 
 #pageBar {

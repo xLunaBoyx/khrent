@@ -36,7 +36,7 @@ $(() => {
 </script>
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<section id="board-container">
-	<h2>커뮤니티</h2>
+	<h1 class="board-title">커뮤니티</h1>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/communityBoardEnroll" 
@@ -55,17 +55,20 @@ $(() => {
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td>			
-				<input id="file" type="file" name="upFile">
+			<td>
+				<div class="filebox">
+				<label for="ex_file">사진</label>			
+				<input type="file" name="upFile" id="ex_file">
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea id="textarea" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="writeBtn">
 			</th>
 		</tr>
 	</table>
