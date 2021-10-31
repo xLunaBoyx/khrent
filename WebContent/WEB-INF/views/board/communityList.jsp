@@ -42,7 +42,7 @@
 		<table id="tbl-board">
 			<thead>
 				<tr class="board-tr"> 
-					<th style="width:30px;">번호</th>
+					<th>번호</th>
 					<th>제목</th>
 					<th>첨부파일</th>
 					<th>작성자</th>

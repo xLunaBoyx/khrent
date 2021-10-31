@@ -10,7 +10,7 @@
 	flex-direction: column;
 	height: 1000px;
 	margin: 0 auto;
-	background-color: white;
+	background-color: #fcfcfc;
 	align-items: center;
 }
 
@@ -85,7 +85,7 @@
 /* 글쓰기 스타일  */
 #writing-container {
 	text-align: end;
-	width: 1000px;
+	width: 1050px;
 	margin-bottom: 15px;
 }
 
@@ -153,4 +153,8 @@ tr, td{
     border: none;
     font-size: 13px;
     outline: none;
+}
+
+#pageBar {
+	margin-top: 70px;
 }
