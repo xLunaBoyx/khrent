@@ -77,9 +77,30 @@
             });    
             
             // 초기값을 내일로 설정함
-            $("#end_date").datepicker('setDate', '+1D');   
+            $("#end_date").datepicker('setDate', '+1D');
             
+            $( "#issue_date" ).datepicker({
+                changeMonth: true, 
+                changeYear: true,
+                nextText: '다음 달',
+                prevText: '이전 달', 
+                dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                dateFormat: "yy-mm-dd",
+                showButtonPanel: true,
+                currentText: '오늘',
+                closeText: '닫기',
+                beforeShow: function(input) {
+        		    var i_offset= $(input).offset(); //클릭된 input의 위치값 체크
+        		    setTimeout(function(){
+        		       $('#ui-datepicker-div').css({'bottom':'', 'z-index':999, 'width': 292});      //datepicker의 div의 포지션을 강제로 input 위치에 그리고 좌측은 모바일이여서 작기때문에 무조건 10px에 놓았다.
+        		    })
+        		} 
+           });      
     });
+    
 </script>
 
 
