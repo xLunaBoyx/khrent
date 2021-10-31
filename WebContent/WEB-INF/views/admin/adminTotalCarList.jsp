@@ -34,18 +34,18 @@ DecimalFormat fomatter = new DecimalFormat("###,###.##");
             <thead>
                 <tr>
 					<th>차량코드</th>
-					<th style="width: 130px;">이름</th>
-					<th style="width: 50px;">제조사</th>
-					<th style="width: 50px;">연료</th>
+					<th>이름</th>
+					<th>제조사</th>
+					<th>연료</th>
 					<th style="width: 30px;">차종</th>
 					<th style="width: 30px;">제조년도</th>
-					<th style="width: 160px;">사진 파일명</th>
-					<th style="width: 280px;">옵션</th>
+					<th>사진 파일명</th>
+					<th>옵션</th>
 					<th>가격</th>
-					<th style="width: 50px;">번호판</th>
-					<th style="width: 30px;">평가횟수</th>
-					<th style="width: 30px;">평균이용평점</th>
-					<th style="width: 30px;">예약횟수</th>
+					<th>번호판</th>
+					<th>평가횟수</th>
+					<th>평균이용평점</th>
+					<th>예약횟수</th>
 					<th></th>
                 </tr>
             </thead>
