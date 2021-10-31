@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi.board.model.service.ReviewBoardService;
+import com.kh.semi.board.model.vo.Attachment;
+import com.kh.semi.board.model.vo.ReviewBoard;
 import com.kh.semi.common.MvcFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
@@ -65,10 +68,33 @@ public class ReviewBoardEnrollServlet extends HttpServlet {
 		String renamedFilename = multipartRequest.getFilesystemName("upFile");
 		
 		// 1. 사용자 입력값 처리
+		String reserNo = multipartRequest.getParameter("reserNo");
+		System.out.println("reserNo = " + reserNo);
 		String title = multipartRequest.getParameter("title");
 		String writer = multipartRequest.getParameter("writer");
 		String content = multipartRequest.getParameter("content");
 		String carName = multipartRequest.getParameter("carName");
+		Double score = Double.parseDouble(multipartRequest.getParameter("score"));
+		ReviewBoard reviewBoard = new ReviewBoard(0,reserNo, writer, title, content, carName, null, 0, score, 0, null);
+		
+		if(multipartRequest.getFile("upFile") != null) {
+			Attachment attach = new Attachment();
+			attach.setOriginalFilename(originalFilename);
+			attach.setRenamedFilename(renamedFilename);
+			System.out.println("ReviewBoardEnrollServlet@attach = " + attach);
+			reviewBoard.setAttach(attach);
+		}
+		
+		System.out.println("ReviewBoardEnrollServlet@servlet = " + reviewBoard);
+		
+		// 2. 업무로직
+		int result = reviewBoardService.insertReviewBoard(reviewBoard);
+		System.out.println("ReviewBoardEnrollServlet@servlet = " + reviewBoard);
+		
+		// 3. 응답처리 : redirect
+		HttpSession session = request.getSession();
+		String location = request.getContextPath() + "/board/reviewBoardView?no=" + reviewBoard.getReviewNo();
+		response.sendRedirect(location);
 	}
 
 }
