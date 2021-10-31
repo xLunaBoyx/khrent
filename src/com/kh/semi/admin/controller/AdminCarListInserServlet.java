@@ -53,8 +53,10 @@ public class AdminCarListInserServlet extends HttpServlet {
 
 		// 3.업무로직 
 		int result = adminService.insertCarList(carList);
+		String msg = result > 0 ? "차량 등록 성공" : "차량 등록 실패";
 	
 		HttpSession session = request.getSession();
+		session.setAttribute("msg", msg);
 
 		// 4.응답처리
 		if(result == 1){ // 성공
