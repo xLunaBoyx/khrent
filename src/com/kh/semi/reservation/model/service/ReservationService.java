@@ -47,6 +47,14 @@ public class ReservationService {
 		close(conn);
 		return result;
 	}
+
+	public List<Car> searchCarSort(String startDate, String endDate, String sortType) {
+		Connection conn = getConnection();
+		List<Car> list = reservationDao.searchCarSort(conn, startDate, endDate, sortType);
+		close(conn);
+		
+		return list;
+	}
 	
 	
 }
