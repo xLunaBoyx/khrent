@@ -9,15 +9,15 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/questionBoardUpdate.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 
 <%
 	QuestionBoard questionBoard = (QuestionBoard) request.getAttribute("questionBoard");
 %>
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <section id="board-container">
-<h2>문의사항</h2>
+<h1 class="board-title">대여문의</h1>
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/qnaBoardUpdate"
@@ -38,13 +38,17 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td style="position:relative">
-				<input id="file" type="file" name="upFile">
+			<td style="display: flex;">
+				<div class="updateFilebox">
+				<label for="ex_file">사진</label>			
+				<input type="file" name="upFile" id="ex_file">
+				</div>
 <%
 	Attachment attach = questionBoard.getAttach();
 	if(attach != null) {
 %>		
 				<span id="fname"><%= attach.getOriginalFilename() %></span>
+				
 				<div id="checkbox">
 					<input type="checkbox" name="delFile" id="delFile" value="<%= attach.getNo() %>" />
 					<label for="delFile">기존파일삭제</label>
@@ -56,12 +60,12 @@
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" rows="5" cols="40" name="content"><%= questionBoard.getQna_content() %></textarea></td>
+			<td><textarea id="textarea" rows="5" cols="40" name="content"><%= questionBoard.getQna_content() %></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="수정하기"/>
-				<input type="button" value="취소" onclick="history.go(-1);"/>
+				<input type="button" value="취소" onclick="history.go(-1);" class="cancelBtn"/>
+				<input type="submit" value="수정하기" class="writeBtn" />
 			</th>
 		</tr>
 	</table>

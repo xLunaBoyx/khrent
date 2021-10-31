@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/noticeView.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardView.css" />
 
 <%
 	List<NoticeBoard> list = (List<NoticeBoard>) request.getAttribute("list");
@@ -29,25 +29,13 @@
 	if(msg != null) session.removeAttribute("msg");
 %>
 
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+
 	<div class="board-container">
-		<table id="tbl-board">
-			<thead>
-			<tr style="border-top: 1px solid black;"><th colspan = "4"><%= noticeBoard.getNoticeTitle()%></th></tr>
-		</thead>
-		<tbody>
-			<tr style="border-top: 1px solid black;">
-				<td> 작성일 : <%= noticeBoard.getRegDate()%></td>
-				<td> 조회수 : <%= noticeBoard.getReadCount() %></td>
-			</tr>
-			<tr>
-				<td colspan = "4" id="content"><%= noticeBoard.getNoticeContent()%></td>
-			</tr>
-		</tbody>
-		</table>
-		
-		<br />
-		<div class="buttons">
+	<h1 class="board-title">공지사항</h1>
+	
 <% 	if(editable){ %>
+		<div id="writing-container">
 			<tr>
 				<%-- 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
 				<th colspan="2">
@@ -55,10 +43,30 @@
 					<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
 				</th>
 			</tr>
-<% 	} %>	
 		</div>
+<% 	} %>	
+
+		<table id="tbl-board">
+			<thead>
+			<tr style="border-top: 1px solid black;"><th colspan="4"><%= noticeBoard.getNoticeTitle()%></th></tr>
+			</thead>
+			<tbody>
+				<tr style="border-top: 1px solid black;">
+					<td style="width: 970px;"> 작성일 : <%= noticeBoard.getRegDate()%></td>
+					<td> 조회수 : <%= noticeBoard.getReadCount() %></td>
+				</tr>
+				<tr style="height: 300px;">
+					<td colspan = "4" id="textarea"><%= noticeBoard.getNoticeContent()%></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<br />
+		
+		<div class="space"></div>
 	
-</div> <!-- </div> .board-container -->
+</div> 
+</div>
 <% if(editable){ %>
 <form action="<%= request.getContextPath() %>/board/noticeBoardDelete" name="deleteBoardFrm">
 	<input type="hidden" name="no" value="<%= noticeBoard.getNoticeNo() %>" />

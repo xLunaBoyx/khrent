@@ -9,14 +9,18 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/communityBoardFormUpdate.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardForm.css" />
 
 <%
 	CommunityBoard communityBoard = (CommunityBoard) request.getAttribute("communityBoard");
 %>
+
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
+
 <section id="board-container">
-<h2>커뮤니티</h2>
+
+<h1 class="board-title">커뮤니티</h1>
+
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/communityBoardUpdate"
@@ -36,8 +40,11 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td style="position:relative">
-				<input id="file" type="file" name="upFile">
+			<td>
+				<div class="filebox">
+				<label for="ex_file">사진</label>			
+				<input type="file" name="upFile" id="ex_file">
+				</div>
 <%
 	Attachment attach = communityBoard.getAttach();
 	if(attach != null) {
@@ -53,12 +60,12 @@
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" rows="5" cols="40" name="content"><%= communityBoard.getContent()%></textarea></td>
+			<td><textarea id="textarea" rows="5" cols="40" name="content"><%= communityBoard.getContent()%></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="수정하기"/>
-				<input type="button" value="취소" onclick="history.go(-1);"/>
+				<input type="button" value="취소" onclick="history.go(-1);" class="cancelBtn"/>
+				<input type="submit" value="수정하기" class="writeBtn"/>
 			</th>
 		</tr>
 	</table>

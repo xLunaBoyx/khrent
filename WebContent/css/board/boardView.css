@@ -1,25 +1,54 @@
 @charset "UTF-8";
-.change {
-	background-color:rgb(74 74 74);
-    color: white;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 16%), 0 2px 10px rgb(0 0 0 / 12%);
-    border-radius: 2px;
-    border: none;
-    font-size: 13px;
-    outline: none;
+
+#tbl-board {
+	width: 1057px;
+	border-collapse: collapse;
+	border-bottom: 1px solid #989898;
 }
+
+.change {
+	background-color: rgb(255, 255, 255);
+	color: white;
+	border-radius: 2px;
+	border: 1px solid lightgray;
+	color: #4a4a4a;
+	font-size: 13px;
+	outline: none;
+	cursor: pointer
+}
+
+.change:hover {
+	border: 1px solid #4a4a4a;
+	background-color: rgb(255, 255, 255);
+}
+
+
+.board-title {
+	display: block;
+	font-size: 45px;
+	line-height: 56px;
+	font-weight: bold;
+	color: #484848;
+	margin-bottom: 24px;
+	width: 1050px;
+	letter-spacing: -1px;
+}
+
 .buttons {
 	position: relative;
-	   right: -461px;
+	right: -461px;
 }
+
 #questionViewContent {
 	/* min-height: 400px; */
 	min-height: 400px;
 }
+
 .board-title {
 	position: relative;
 	font-size: 3em;
 }
+
 .board-container {
 	display: flex;
 	flex-direction: column;
@@ -27,155 +56,190 @@
 	background-color: white;
 	align-items: center;
 }
+
 table {
 	width: 950px;
 	border-collapse: collapse;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1200px;
 }
+
 th {
-    border-top: 1px solid #989898;
-   	border-bottom: 1px solid #e3e3e3;
+	border-top: 1px solid #989898;
+	border-bottom: 1px solid #e3e3e3;
 	text-align: center;
 	color: #434343;
-	font-size: 15px;
+	font-size: 25px;
 	font-weight: 500;
 	line-height: 66px;
 	height: 66px;
-    
 }
+
 td {
-    color: #434343;
-    font-size: 15px;
-    line-height: 58px;
+	color: #434343;
+	font-size: 15px;
+	line-height: 58px;
 }
+
 .subject {
 	width: 70%;
 	text-align: left;
 	padding-left: 44px;
 }
+
 #pagebar {
-    clear: both;
-    text-align: center;
-    margin: 20px 0;
-}
-.cPage {
-    display: inline-block;
-    background: #ff9826;
-    border: 1px solid #ff9826;
-    color: #fff;
-    font-weight: normal;
-    width: 27px;
-    vertical-align: middle;
-}
-#pagebar a {
-	background: #fff;
-    text-decoration: none;
-    display: inline-block;
-    min-width: 27px;
-    height: 27px;
-    border: 1px solid #e3e3e3;
-    padding: 0;
-    height: 27px;
-    color: #414141;
-    font-size: 14px;
-    letter-spacing: 0;
-    line-height: 27px;
-    vertical-align: middle;
+	clear: both;
+	text-align: center;
+	margin: 20px 0;
 }
 
+.cPage {
+	display: inline-block;
+	background: #ff9826;
+	border: 1px solid #ff9826;
+	color: #fff;
+	font-weight: normal;
+	width: 27px;
+	vertical-align: middle;
+}
+
+#pagebar a {
+	background: #fff;
+	text-decoration: none;
+	display: inline-block;
+	min-width: 27px;
+	height: 27px;
+	border: 1px solid #e3e3e3;
+	padding: 0;
+	height: 27px;
+	color: #414141;
+	font-size: 14px;
+	letter-spacing: 0;
+	line-height: 27px;
+	vertical-align: middle;
+}
 
 /*댓글등록버튼*/
 #insertText {
-	width: 885px;
-    border: 1px solid #0000001f;
-    resize:none;
+	width: 980px;
+	border: 1px solid #0000001f;
+	resize: none;
 }
+
 div.comment-editor button#btn-insert {
-	width:47px; 
-    color: white;
-    background: rgb(41, 128, 185); 
-	position:relative; 
-	top:-7px;
-    left: -1px;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 16%), 0 2px 10px rgb(0 0 0 / 12%);
-    margin-bottom: 7px;
-    border-radius: 2px;
-    border: none;
-    font-size: 13px;
-    outline: none;
+	width: 60px;
+	height: 65px;
+	color: white;
+	background: rgb(255, 255, 255);
+	position: relative;
+	top: -25px;
+	border: 1px solid lightgray;
+	color: rgb(41, 128, 185);
+	left: -1px;
+	margin-bottom: 7px;
+	border-radius: 2px;
+	font-size: 13px;
+	outline: none;
+	cursor: pointer;
 }
+
+div.comment-editor button#btn-insert:hover {
+	border: 1px solid rgb(41, 128, 185);
+}
+
 
 /*댓글테이블*/
 table#tbl-comment {
-	width:891px; 
-	margin:0 0 11px 0; 
-	border-collapse:collapse;
-    background-color: #f5f5f5;
-} 
-table#tbl-comment tr td {
-	padding:5px; 
-	text-align:left; 
-	line-height:150%;
+	width: 891px;
+	margin: 0 0 11px 0;
+	border-collapse: collapse;
+	background-color: #f5f5f5;
 }
+
+table#tbl-comment tr td {
+	padding: 5px;
+	text-align: left;
+	line-height: 150%;
+}
+
 table#tbl-comment tr td:first-of-type {
 	padding: 5px 5px 5px 50px;
 }
+
 table#tbl-comment tr td:last-of-type {
 	width: 100px;
-	}
+}
+
 table#tbl-comment button.btn-reply {
-	display:none;
+	display: none;
 	background-color: lightgray;
 	border: none;
 }
+
 table#tbl-comment tr:hover {
-	background:lightgray;
+	background: lightgray;
 }
+
 table#tbl-comment tr:hover button.btn-reply {
-	display:inline;
+	display: inline;
 }
+
 table#tbl-comment sub.comment-writer {
-	color:navy; font-size:14px
+	color: navy;
+	font-size: 14px
 }
+
 table#tbl-comment sub.comment-date {
-	color:tomato; font-size:10px
+	color: tomato;
+	font-size: 10px
 }
 
 table#tbl-comment tr.level2 {
-	color:gray; font-size: 14px;
+	color: gray;
+	font-size: 14px;
 }
+
 table#tbl-comment tr.level2 td:first-of-type {
-	padding-left:100px;
+	padding-left: 100px;
 }
+
 table#tbl-comment tr.level2 sub.comment-writer {
-	color:#8e8eff; font-size:14px
+	color: #8e8eff;
+	font-size: 14px
 }
+
 table#tbl-comment tr.level2 sub.comment-date {
-	color:#ff9c8a; font-size:10px
+	color: #ff9c8a;
+	font-size: 10px
 }
 
 /*답글관련*/
 table#tbl-comment textarea {
 	margin: 4px 0 0 0;
 }
+
 table#tbl-comment button.btn-insert2 {
-	width:60px; 
-	height:23px; 
-	color:white; 
-	background:#3300ff; 
-	position:relative; 
-	top:-5px; 
-	left:10px;
+	width: 60px;
+	height: 23px;
+	color: white;
+	background: #3300ff;
+	position: relative;
+	top: -5px;
+	left: 10px;
 }
 
 /* 삭제버튼관련 */
 table#tbl-comment button.btn-delete {
 	background: lightgray;
-    color: #ff0909;
-    border: none;
-	display:none;
+	color: #ff0909;
+	border: none;
+	display: none;
 }
+
 table#tbl-comment tr:hover button.btn-delete {
-	display:inline;
+	display: inline;
 }
 
 .board-title {
@@ -186,17 +250,12 @@ table#tbl-comment tr:hover button.btn-delete {
 .board-container {
 	display: flex;
 	flex-direction: column;
-	height: 1000px;
+	height: auto;
 	margin: 0 auto;
 	background-color: white;
 	align-items: center;
 }
 
-#tbl-board {
-	width: 1057px;
-	border-collapse: collapse;
-    margin-top: 36px;
-}
 
 .board-tr>th {
 	border-top: 1px solid #989898;
@@ -257,7 +316,7 @@ table#tbl-comment tr:hover button.btn-delete {
 /* 글쓰기 스타일  */
 #writing-container {
 	text-align: end;
-	width: 1000px;
+	width: 1050px;
 	margin-bottom: 15px;
 }
 
@@ -273,42 +332,39 @@ table#tbl-comment tr:hover button.btn-delete {
 }
 
 /* community-view */
-
-#content{
-	flex-direction:column;
+#content {
+	flex-direction: column;
 	align-items: center;
-	
 }
 
-#comment-container{
-	width:1410px;
+#comment-container {
+	width: 1410px;
 	background-color: white;
 }
 
-table{
-	border-top:1px solid #4343436b;
-	border-bottom:1px solid #4343436b;
-	
-	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
-	width:1200px;		   
-}
-tr, td{
-	text-align: center;
-    color: black;
-    font-size: 15px;
-    line-height: 58px;
-    border-top: 1px solid #0000000f;
+tr, td {
+	text-align: left;
+	color: black;
+	font-size: 15px;
+	line-height: 58px;
+	border-top: 1px solid #0000000f;
 }
 
-#comment-container{
-	text-align:center;
-	width:1400px;
+#comment-container {
+	text-align: center;
+	width: 1400px;
 	margin: 0 auto;
 }
 
-#tableContent{
-	height:200px;
+#tableContent {
+	height: 200px;
 	width: 252px;
+}
+
+.comment-container {
+	height: 150px;
+}
+
+.space {
+	height: 150px;
 }

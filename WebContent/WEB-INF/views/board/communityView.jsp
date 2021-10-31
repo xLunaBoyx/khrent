@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/board.css" />
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/communityView.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/board/boardView.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 
 <%
@@ -20,37 +20,47 @@
 	boolean editable = loginMember != null && (communityBoard.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()));
 %>
 
-<div class="wrap clearfix" style="width: 1417px; margin:auto; margin-top: 20px;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto;">
 
 
 <div class="board-container">
+	<h1 class="board-title">커뮤니티</h1>
+<%
+	if(editable) {
+%>		
+<div id="writing-container">
+		<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
+			<input class="change" type="button" value="수정하기" onclick="updateBoard()">
+			<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
+</div>
+<%
+	}
+%>				
 	<table id="tbl-board">
 		<thead>
-			<tr><th colspan = "4"><%=communityBoard.getTitle()%></th></tr>
+			<tr><th colspan="4"><%=communityBoard.getTitle()%></th></tr>
 		</thead>
 		<tbody>
 			<tr style="border-top: 1px solid black;">
-				<td> 작성자 : <%=communityBoard.getWriter() %></td>
-				<td> 작성일 : <%=communityBoard.getRegDate()%></td>
-				<td> 조회수 : <%=communityBoard.getReadCount() %></td>
+				<td colspan="2" style="width: 900px;"> 작성자: <%=communityBoard.getWriter()%> <%=communityBoard.getRegDate()%></td>
+				<td style="width: 80px;"> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
-			<tr>
-				<td>첨부 파일 </td>
-				<td colspan = "2">
 <%
 	if(attachment != null) {
 %>			
+			<tr>
+				<td>첨부파일 </td>
+				<td colspan = "2">
 				<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
 				<img alt="첨부파일" src="<%= request.getContextPath() %>/images/file.png" width=16px>
 				<a href="<%= request.getContextPath() %>/communityboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>			
+				</td>
+			</tr>
 <%
 	}
 %>
-				</td>
-			</tr>
-			<tr>
+			<tr style="height: 300px;">
 				<td id="tableContent"><%=communityBoard.getContent()%></td>	
-				</td>
 			</tr>
 		</tbody>
 		<tfoot>
@@ -60,15 +70,6 @@
 	<br />
 		
 		<div class="buttons">
-<%
-	if(editable) {
-%>		
-		<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-			<input class="change" type="button" value="수정하기" onclick="updateBoard()">
-			<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
-<%
-	}
-%>				
 		</div>
 		<br />
 		
@@ -150,6 +151,7 @@
 			</form>
 		</div>
 		</div>
+	</div>
 	</div>
 	
 	<!-- 댓글 삭제용 폼 -->
