@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="com.kh.semi.reservation.model.vo.Reservation"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,7 @@
 
 <%
 List<Reservation> list = (List<Reservation>) request.getAttribute("list");
+DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 <%
@@ -21,6 +23,7 @@ for (Reservation reservation : list) {
                                         <td><%= reservation.getCarName() %></td>
                                         <td><%= reservation.getStartDate().substring(0,11) %></td>
                                         <td><%= reservation.getEndDate().substring(0,11) %></td>
+                                        <td><%= fomatter.format(reservation.getPrice()) %></td>
                     </tr>
 <%
 }

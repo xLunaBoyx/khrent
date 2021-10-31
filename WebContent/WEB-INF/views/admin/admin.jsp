@@ -136,6 +136,10 @@
 										aria-controls="DataTables_Table_0" rowspan="1" colspan="2"
 										style="width: 90px;"
 										aria-label="Serial Number: activate to sort column ascending">예약일자</th>
+									<th scope="col" class="sorting" tabindex="0"
+										aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+										style="width: 124px;"
+										aria-label="Appointment Date: activate to sort column ascending">결제금액</th>
 								</tr>
 							</thead>
 							
