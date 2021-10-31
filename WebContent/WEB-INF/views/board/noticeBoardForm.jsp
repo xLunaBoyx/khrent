@@ -36,8 +36,11 @@ $(() => {
 	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
+
 <div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
+
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
+
 	<section id="board-container">
 	<h1 class="board-title">공지사항</h1>
 	<form
