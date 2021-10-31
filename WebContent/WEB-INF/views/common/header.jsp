@@ -131,7 +131,7 @@
  			<a href="<%= request.getContextPath() %>/board/faq">자주 묻는 질문</a>
             <a href="<%= request.getContextPath() %>/board/notice">공지사항</a>
             <a href="<%= request.getContextPath() %>/board/questionList">대여문의</a>
-            <a href="#">대여후기</a>
+            <a href="<%= request.getContextPath() %>/board/reviewList">대여후기</a>
             <a href="<%= request.getContextPath() %>/board/termsAndConditions">약관/정책</a>
             <a href="<%= request.getContextPath() %>/board/companyIntroduction">회사소개</a>
 

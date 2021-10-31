@@ -1,8 +1,9 @@
 package com.kh.semi.board.model.dao;
 import static com.kh.semi.common.JdbcTemplate.close;
-import java.sql.Connection;
+
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.kh.semi.board.model.vo.Attachment;
+import com.kh.semi.board.model.vo.CommunityBoardComment;
+import com.kh.semi.board.model.vo.ReviewBoard;
+import com.kh.semi.board.model.vo.ReviewBoardComment;
 import com.kh.semi.reservation.model.vo.Reservation;
 
 public class ReviewBoardDao {
@@ -57,5 +62,311 @@ public class ReviewBoardDao {
 		}
 		return reservationList;
 	}
+
+	public int insertReviewBoard(Connection conn, ReviewBoard reviewBoard) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReviewBoard");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewBoard.getReviewWriter());
+			pstmt.setString(2, reviewBoard.getReviewTitle());
+			pstmt.setString(3, reviewBoard.getReviewContent());
+			pstmt.setString(4,  reviewBoard.getCarName());
+			pstmt.setInt(5,  reviewBoard.getScore());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int selectLastReviewBoardNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLastReviewBoardNo");
+		int reviewBoardNo = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				reviewBoardNo = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewBoardNo;
+	}
+
+	public int insertReviewAttachment(Connection conn, Attachment attach) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReviewAttachment");
+		int result = 0;
+		System.out.println(attach);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  attach.getBoardNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ReviewBoard> selectAllReviewBoard(Connection conn, int startRownum, int endRownum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewBoard> list = new ArrayList<>();
+		String sql = prop.getProperty("selectAllReviewBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRownum);
+			pstmt.setInt(2, endRownum);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ReviewBoard reviewBoard = new ReviewBoard();
+				
+				reviewBoard.setReviewNo(rset.getInt("review_no"));
+				reviewBoard.setReviewWriter(rset.getString("review_writer"));
+				reviewBoard.setReviewTitle(rset.getString("review_title"));
+				reviewBoard.setReviewContent(rset.getString("review_content"));
+				reviewBoard.setCarName(rset.getString("car_name"));
+				reviewBoard.setRegDate(rset.getDate("reg_date"));
+				reviewBoard.setReadCount(rset.getInt("read_count"));
+				reviewBoard.setScore(rset.getInt("score"));
+				
+				reviewBoard.setBoardCommentCount(rset.getInt("bc_count"));
+				System.out.println("reviewBoard = " + reviewBoard);
+				
+				if(rset.getInt("attach_no") != 0) {
+					Attachment attach = new Attachment();
+					attach.setNo(rset.getInt("attach_no"));
+					attach.setBoardNo(rset.getInt("attach_no"));
+					attach.setOriginalFilename(rset.getString("original_filename"));
+					attach.setRenamedFilename(rset.getString("renamed_filename"));
+					attach.setRegDate(rset.getDate("attach_reg_date"));
+					
+					reviewBoard.setAttach(attach);
+				}
+				
+				list.add(reviewBoard);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectTotalReviewContents(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalContents = 0;
+		String sql = prop.getProperty("selectTotalReviewContents");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				totalContents = rset.getInt("cnt");
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContents;
+	}
+
+	public int updateReviewBoardReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReviewBoardReadCount");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+
+	public ReviewBoard selectOneReviewBoard(Connection conn, int no) {
+		ReviewBoard reviewBoard = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneReviewBoard");
+		System.out.println(sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				reviewBoard = new ReviewBoard();
+				
+				reviewBoard.setReviewNo(rset.getInt("review_no"));
+				reviewBoard.setReviewWriter(rset.getString("review_writer"));
+				reviewBoard.setReviewTitle(rset.getString("review_title"));
+				reviewBoard.setReviewContent(rset.getString("review_content"));
+				reviewBoard.setCarName(rset.getString("car_name"));
+				reviewBoard.setRegDate(rset.getDate("reg_date"));
+				reviewBoard.setReadCount(rset.getInt("read_count"));
+				reviewBoard.setScore(rset.getInt("score"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return reviewBoard;
+	}
+
+	public Attachment selectOneAttachmentByReviewBoardNo(Connection conn, int no) {
+		Attachment attach = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneAttachmentByReviewBoardNo");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				attach = new Attachment();
+				
+				attach.setNo(rset.getInt("no"));
+				attach.setBoardNo(rset.getInt("review_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return attach;
+	}
+
+	public List<ReviewBoardComment> selectReviewBoardCommentList(Connection conn, int no) {
+		List<ReviewBoardComment> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReviewBoardCommentList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ReviewBoardComment reviewBoardComment = new ReviewBoardComment();
+				reviewBoardComment.setNo(rset.getInt("no"));
+				reviewBoardComment.setCommentLevel(rset.getInt("comment_level"));
+				reviewBoardComment.setWriter(rset.getString("writer"));
+				reviewBoardComment.setContent(rset.getString("content"));
+				reviewBoardComment.setReview_no(rset.getInt("review_no"));
+				reviewBoardComment.setCommentRef(rset.getInt("comment_ref"));
+				reviewBoardComment.setRegDate(rset.getDate("reg_date"));
+				list.add(reviewBoardComment);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}		
+		
+		return list;
+	}
+
+	public int insertReviewBoardComment(Connection conn, ReviewBoardComment reviewBoardComment) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertReviewBoardComment");
+		System.out.println("ReviewBoardDao@sql = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewBoardComment.getNo());
+			pstmt.setString(2, reviewBoardComment.getWriter());
+			pstmt.setString(3, reviewBoardComment.getContent());
+			pstmt.setInt(4, reviewBoardComment.getCommentLevel());
+			pstmt.setObject(5, reviewBoardComment.getCommentRef() == 0 ? null : reviewBoardComment.getCommentRef());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
