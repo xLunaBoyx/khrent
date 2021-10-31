@@ -6,7 +6,7 @@
     		<div class="lnb type03 borderNone clearfix">
 
 			<strong class="myName"><span><%=loginMember.getMemberName()%></span>님</strong>
-			<span class="division"> <%="U".equals(loginMember.getMemberRole()) == true ? "일반회원" : "관리자회원"%>
+			<span class="division"> <%="U".equals(loginMember.getMemberRole()) == true ? "일반회원" : "관리자"%>
 			</span> 
 	
 			<a href="<%=request.getContextPath()%>/member/memberDetail" class="btn btn-xxs btn-color-type02 btn-radius btn-line goToMyInfo">내정보</a>
@@ -15,8 +15,11 @@
 				<dl class="reservation">
 					<dt>예약</dt>
 					<dd>
-						<a href="<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>">0</a>
+						<a href="<%= request.getContextPath() %>/member/myPage?memberId=<%= loginMember.getMemberId() %>" id="reserv">
+						
+						</a>
 					</dd>
+
 					
 					<dt>내 마일리지</dt>
 					<dd style="text-decoration: underline; color: #2980b9;"><%= loginMember.getMileage() %></dd>

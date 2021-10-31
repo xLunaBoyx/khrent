@@ -1136,4 +1136,30 @@ public class AdminDao {
 		return totalContents;
 	}
 
+	public int ajaxMemberPageReservationCount(Connection conn, String memberId) {
+		String sql = prop.getProperty("ajaxMemberPageReservationCount");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int reservation = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				reservation = rset.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reservation;
+	}
+
 }
