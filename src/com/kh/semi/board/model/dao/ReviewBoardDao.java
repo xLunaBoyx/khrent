@@ -70,11 +70,12 @@ public class ReviewBoardDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, reviewBoard.getReviewWriter());
-			pstmt.setString(2, reviewBoard.getReviewTitle());
-			pstmt.setString(3, reviewBoard.getReviewContent());
-			pstmt.setString(4,  reviewBoard.getCarName());
-			pstmt.setInt(5,  reviewBoard.getScore());
+			pstmt.setString(1, reviewBoard.getReservNo());
+			pstmt.setString(2, reviewBoard.getReviewWriter());
+			pstmt.setString(3, reviewBoard.getReviewTitle());
+			pstmt.setString(4, reviewBoard.getReviewContent());
+			pstmt.setString(5,  reviewBoard.getCarName());
+			pstmt.setDouble(6, reviewBoard.getScore());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -152,7 +153,7 @@ public class ReviewBoardDao {
 				reviewBoard.setCarName(rset.getString("car_name"));
 				reviewBoard.setRegDate(rset.getDate("reg_date"));
 				reviewBoard.setReadCount(rset.getInt("read_count"));
-				reviewBoard.setScore(rset.getInt("score"));
+				reviewBoard.setScore(rset.getDouble("score"));
 				
 				reviewBoard.setBoardCommentCount(rset.getInt("bc_count"));
 				System.out.println("reviewBoard = " + reviewBoard);
@@ -237,15 +238,15 @@ public class ReviewBoardDao {
 			
 			while(rset.next()) {
 				reviewBoard = new ReviewBoard();
-				
 				reviewBoard.setReviewNo(rset.getInt("review_no"));
+				reviewBoard.setReservNo(rset.getString("reserv_no"));
 				reviewBoard.setReviewWriter(rset.getString("review_writer"));
 				reviewBoard.setReviewTitle(rset.getString("review_title"));
 				reviewBoard.setReviewContent(rset.getString("review_content"));
 				reviewBoard.setCarName(rset.getString("car_name"));
 				reviewBoard.setRegDate(rset.getDate("reg_date"));
 				reviewBoard.setReadCount(rset.getInt("read_count"));
-				reviewBoard.setScore(rset.getInt("score"));
+				reviewBoard.setScore(rset.getDouble("score"));
 			}
 			
 		} catch (SQLException e) {

@@ -71,11 +71,13 @@ public class ReviewBoardViewServlet extends HttpServlet {
 	System.out.println("조회수 등록 여부 :" + result);
 	
 	ReviewBoard reviewBoard = reviewBoardService.selectOneReviewBoard(no);
-	System.out.println("selectOntReviewBoard@servlet = " + reviewBoard);
+	System.out.println("selectOneReviewBoard@servlet = " + reviewBoard);
 	
 	// 댓글목록가져오기
 	List<ReviewBoardComment> commentList = reviewBoardService.selectReviewCommentList(no);
 	System.out.println("ReviewBoardCommentList@servlet = " + commentList);
+	
+	
 	
 	request.setAttribute("list", commentList);
 	request.setAttribute("reviewBoard", reviewBoard);

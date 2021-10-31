@@ -68,12 +68,13 @@ public class ReviewBoardEnrollServlet extends HttpServlet {
 		String renamedFilename = multipartRequest.getFilesystemName("upFile");
 		
 		// 1. 사용자 입력값 처리
+		String reserNo = multipartRequest.getParameter("reserNo");
+		System.out.println("reserNo = " + reserNo);
 		String title = multipartRequest.getParameter("title");
 		String writer = multipartRequest.getParameter("writer");
 		String content = multipartRequest.getParameter("content");
 		String carName = multipartRequest.getParameter("carName");
-		int score = Integer.parseInt(multipartRequest.getParameter("score"));
-		String reserNo = multipartRequest.getParameter("reserNo");
+		Double score = Double.parseDouble(multipartRequest.getParameter("score"));
 		ReviewBoard reviewBoard = new ReviewBoard(0,reserNo, writer, title, content, carName, null, 0, score, 0, null);
 		
 		if(multipartRequest.getFile("upFile") != null) {

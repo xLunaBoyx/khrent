@@ -67,7 +67,7 @@ $(() => {
 			<th>이용차량</th>
 			<td>
 				<input id="car" type="text" name="carName" value="<%= reservation.getCarName() %>" readonly/>
-				<input type="hidden" name="reserNo" value"<%= reservation.getReserNo() %> />
+				<input type="hidden" name="reserNo" value="<%= reservation.getReserNo() %>" />
 			</td>
 		</tr>
 <%
@@ -79,16 +79,16 @@ $(() => {
 			<td>
 				<select name="score" id="score">
 					<option value="" selected>선택</option>
-					<option value=0.5>0.5점</option>
-					<option value=1>1점</option>
-					<option value=1.5>1.5점</option>
-					<option value=2>2점</option>
-					<option value=2.5>2.5점</option>
-					<option value=3>3점</option>
-					<option value=3.5>3.5점</option>
-					<option value=4>4점</option>
-					<option value=4.5>4.5점</option>
-					<option value=5>5점</option>
+					<option value="0.5">0.5점</option>
+					<option value="1">1점</option>
+					<option value="1.5">1.5점</option>
+					<option value="2">2점</option>
+					<option value="2.5">2.5점</option>
+					<option value="3">3점</option>
+					<option value="3.5">3.5점</option>
+					<option value="4">4점</option>
+					<option value="4.5">4.5점</option>
+					<option value="5">5점</option>
 				</select>			
 			</td>
 		</tr>
