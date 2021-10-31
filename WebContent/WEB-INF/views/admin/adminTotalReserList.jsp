@@ -24,7 +24,7 @@ String searchKeyword = request.getParameter("searchKeyword");
     </style>
     
 <section id="carList-container">
-        <h2>전체 차량 관리</h2>
+        <h2>전체 예약 관리</h2>
         
         <table id="tbl-car">
             <thead>
@@ -53,8 +53,8 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= reservation.getMemberId() %></td>
             		<td><%= reservation.getCarCode() %></td>            		
             		<td><%= reservation.getCarName() %></td>
-            		<td><%= reservation.getStartDate() %></td>
-            		<td><%= reservation.getEndDate() %></td>
+            		<td><%= reservation.getStartDate().substring(0,11) %></td>
+            		<td><%= reservation.getEndDate().substring(0,11) %></td>
             		<td><%= reservation.getPrice() %></td>
             		<td><%= reservation.getInsuranceType() %></td>
             		<td><%= reservation.getIssueDate() %></td>
