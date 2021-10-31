@@ -138,7 +138,7 @@
 		const memberId = $this.data("memberId"); // data-속성의 키값을 camelcasing으로 처리
 		const memberRole = $this.val();
 		// jsp의 EL문법과 js의 String Template 충돌. escaping처리 할것.
-		const msg = `[\${memberId}]회원의 권한을 ${memberRole}]%>로 변경하시겠습니까?`;
+		const msg = `[\${memberId}] 회원의 권한을 [\${memberRole}]로 변경하시겠습니까?`;
 		
 		if(confirm(msg)){
 			const $frm = $(document.updateMemberRoleFrm);

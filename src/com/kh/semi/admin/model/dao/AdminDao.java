@@ -770,6 +770,7 @@ public class AdminDao {
 				reservation.setCarName(rset.getString("car_name"));
 				reservation.setStartDate(rset.getString("start_date"));
 				reservation.setEndDate(rset.getString("end_date"));
+				reservation.setPrice(rset.getInt("price"));
 				reservation.setInsuranceType(rset.getString("insurance_type"));
 				reservation.setIssueDate(rset.getString("issue_date"));
 				reservation.setLicenseType(rset.getString("license_type"));

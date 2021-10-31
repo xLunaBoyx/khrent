@@ -56,9 +56,9 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= reservation.getStartDate().substring(0,11) %></td>
             		<td><%= reservation.getEndDate().substring(0,11) %></td>
             		<td><%= reservation.getPrice() %></td>
-            		<td><%= reservation.getInsuranceType() %></td>
+            		<td><%= "Y".equals(reservation.getInsuranceType()) ? "자차" : "없음" %></td>
             		<td><%= reservation.getIssueDate() %></td>
-            		<td><%= reservation.getLicenseType() %></td>
+            		<td><%= "auto".equals(reservation.getLicenseType()) ? "2종" : "1종" %></td>
             		<td><%= reservation.getReviewStatus() %></td>
             		<td><%= reservation.getReturnStatus() %></td>
             		<td>
