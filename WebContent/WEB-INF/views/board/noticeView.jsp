@@ -56,7 +56,7 @@
 					<td> 조회수 : <%= noticeBoard.getReadCount() %></td>
 				</tr>
 				<tr style="height: 300px;">
-					<td colspan = "4" id="textarea"><%= noticeBoard.getNoticeContent()%></td>
+					<td colspan = "4" id="questionViewContent"><%= noticeBoard.getNoticeContent()%></td>
 				</tr>
 			</tbody>
 		</table>

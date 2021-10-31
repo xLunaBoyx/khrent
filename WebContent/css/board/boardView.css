@@ -22,7 +22,6 @@
 	background-color: rgb(255, 255, 255);
 }
 
-
 .board-title {
 	display: block;
 	font-size: 45px;
@@ -123,7 +122,13 @@ td {
 
 /*댓글등록버튼*/
 #insertText {
-	width: 980px;
+	width: 820px;
+	border: 1px solid #0000001f;
+	resize: none;
+}
+
+#insertText2 {
+	width: 600px;
 	border: 1px solid #0000001f;
 	resize: none;
 }
@@ -149,7 +154,6 @@ div.comment-editor button#btn-insert:hover {
 	border: 1px solid rgb(41, 128, 185);
 }
 
-
 /*댓글테이블*/
 table#tbl-comment {
 	width: 891px;
@@ -165,7 +169,7 @@ table#tbl-comment tr td {
 }
 
 table#tbl-comment tr td:first-of-type {
-	padding: 5px 5px 5px 50px;
+	padding: 5px 5px 10px 20px;
 }
 
 table#tbl-comment tr td:last-of-type {
@@ -176,6 +180,7 @@ table#tbl-comment button.btn-reply {
 	display: none;
 	background-color: lightgray;
 	border: none;
+	cursor: pointer;
 }
 
 table#tbl-comment tr:hover {
@@ -192,7 +197,7 @@ table#tbl-comment sub.comment-writer {
 }
 
 table#tbl-comment sub.comment-date {
-	color: tomato;
+	color: #4a4a4a;
 	font-size: 10px
 }
 
@@ -222,20 +227,27 @@ table#tbl-comment textarea {
 
 table#tbl-comment button.btn-insert2 {
 	width: 60px;
-	height: 23px;
 	color: white;
-	background: #3300ff;
+	background: rgb(255, 255, 255);
 	position: relative;
-	top: -5px;
-	left: 10px;
+	top: -7px;
+	border: 1px solid lightgray;
+	color: rgb(41, 128, 185);
+	left: -1px;
+	margin-bottom: 7px;
+	border-radius: 2px;
+	font-size: 13px;
+	outline: none;
+	cursor: pointer;
 }
 
 /* 삭제버튼관련 */
 table#tbl-comment button.btn-delete {
 	background: lightgray;
-	color: #ff0909;
+	color: #f76666;
 	border: none;
 	display: none;
+	cursor: pointer;
 }
 
 table#tbl-comment tr:hover button.btn-delete {
@@ -255,7 +267,6 @@ table#tbl-comment tr:hover button.btn-delete {
 	background-color: white;
 	align-items: center;
 }
-
 
 .board-tr>th {
 	border-top: 1px solid #989898;
@@ -345,7 +356,7 @@ table#tbl-comment tr:hover button.btn-delete {
 tr, td {
 	text-align: left;
 	color: black;
-	font-size: 15px;
+	font-size: 13px;
 	line-height: 58px;
 	border-top: 1px solid #0000000f;
 }
@@ -362,9 +373,14 @@ tr, td {
 }
 
 .comment-container {
-	height: 150px;
+	height: 250px;
 }
 
 .space {
 	height: 150px;
+}
+
+#questionViewContent {
+	font-size: 17px;
+	padding-left: 20px;
 }

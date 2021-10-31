@@ -227,7 +227,7 @@ $(".btn-reply").click((e) => {
 		<form 
 			action="<%= request.getContextPath() %>/board/qnaBoardCommentEnroll" 
 			method="post">
-			<textarea name="content" cols="60" rows="1"></textarea>
+			<textarea id="insertText2" name="content" cols="60" rows="1"></textarea>
 			<button class="btn-insert2">등록</button>
 			
 			<input type="hidden" name="commentLevel" value="2" />
