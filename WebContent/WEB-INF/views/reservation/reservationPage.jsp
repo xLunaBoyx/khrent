@@ -16,12 +16,12 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/bestFive.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
-<!-- 아임포트 삽입 스크립트. 20번줄이 기존 jquery 삽입코드랑 충돌날지도 모름 -->
+<!-- 아임포트 삽입 스크립트. header.jsp에 제이쿼리 삽입 코드가 있으므로 아래의 코드는 주석처리 -->
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<h1>임시 페이지</h1>
+<h1>임시 결제페이지</h1>
 <%
 	Car car = (Car) request.getAttribute("car");
 	String startDate = (String) request.getAttribute("start_date");
@@ -56,43 +56,15 @@
 </div>
 
 <script>
-<%-- 카카오페이는 구매자정보 입력란에 <%= %> 이게 안먹혀서 일단 보류 --%>
-<%-- function requestPay() {
-	var IMP = window.IMP;        // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
-	IMP.init("imp94728784");     
-	
-	IMP.request_pay({
-	    pg : 'kakaopay',
-	    pay_method : 'card', //생략 가능
-	    merchant_uid: "reservation_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	    name : '<%= car.getCarName() %>',
-	    amount : <%= price %>,
-	    /* buyer_email : 'iamport@siot.do', */
-	    buyer_name : '<%= loginMember.getMemberId() %>',
-	    buyer_tel : '010-1234-5678', 
-	    /* buyer_addr : '서울특별시 강남구 삼성동', */
-	    /* buyer_postcode : '123-456' */
-	}, function(rsp) { // callback 로직
-			if(rsp.success) {
-				var msg = "결제가 완료되었습니다.";
-				console.log(msg);
-			} else {
-				var msg = "결제에 실패하였습니다.";				
-				console.log(msg);
-			}
-	});
-} --%>
-
-
 function inicisPay() {
-	var IMP = window.IMP;        // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
-	IMP.init("imp94728784");     
+	var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
+	IMP.init("imp94728784");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
 	
 	IMP.request_pay({
 	    pg : 'html5_inicis',
 	    pay_method : 'card', //생략 가능
-	    merchant_uid: "reservation_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	    name : '<%= car.getCarName() %>',
+	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
+	    name : '<%= car.getCarName() %>',   
 	    amount : <%= price %>,
 	    buyer_name : '<%= loginMember.getMemberId() %>',
 	    buyer_tel : '<%= loginMember.getPhone() %>', 
@@ -128,6 +100,35 @@ function inicisPay() {
 			}
 	});
 }
+
+
+<%-- 카카오페이는 구매자정보 입력란에 <%= %> 이게 안먹혀서 일단 보류 --%>
+<%-- function requestPay() {
+	var IMP = window.IMP;        // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
+	IMP.init("imp94728784");     
+	
+	IMP.request_pay({
+	    pg : 'kakaopay',
+	    pay_method : 'card', //생략 가능
+	    merchant_uid: "reservation_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	    name : '<%= car.getCarName() %>',
+	    amount : <%= price %>,
+	    /* buyer_email : 'iamport@siot.do', */
+	    buyer_name : '<%= loginMember.getMemberId() %>',
+	    buyer_tel : '010-1234-5678', 
+	    /* buyer_addr : '서울특별시 강남구 삼성동', */
+	    /* buyer_postcode : '123-456' */
+	}, function(rsp) { // callback 로직
+			if(rsp.success) {
+				var msg = "결제가 완료되었습니다.";
+				console.log(msg);
+			} else {
+				var msg = "결제에 실패하였습니다.";				
+				console.log(msg);
+			}
+	});
+} --%>
+
 </script>	
 
 

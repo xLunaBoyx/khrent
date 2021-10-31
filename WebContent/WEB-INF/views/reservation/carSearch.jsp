@@ -18,31 +18,44 @@
 
 <style>
 .topComment {
+   display: flex;
    position: relative;
    left: 28%;
 }
 .carSearchResult {
 	background-color: white;
 }
+select {
+	width: 150px;
+	padding: .8em .5em;
+	border: 1px solid #999;
+	background: url('arrow.jpg') no-repeat 95% 50%;
+	border-radius: 0px;
+}
+.sort {
+    position: relative;
+    top: 17px;
+    left: 100px;
+}
+
 </style>
 <%
-	List<Car> list = (List<Car>) request.getAttribute("list");
-	String startDate = (String) request.getAttribute("start_date");
-	String endDate = (String) request.getAttribute("end_date");
-	/* System.out.println("startDate = " + startDate);
-	System.out.println("endDate = " + endDate); */
+	List<Car> list = (List<Car>) request.getAttribute("list");        // 검색결과 차 목록
+	String startDate = (String) request.getAttribute("start_date");   // 예약 시작일
+	String endDate = (String) request.getAttribute("end_date");       // 예약 종료일
 	
 	SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 	Date start = fm.parse(startDate);   // 시작일과 종료일 String을 Date로 변환
 	Date end = fm.parse(endDate);
-	/* System.out.println("start = " + start);
-	System.out.println("end = " + end); */
 	
 	// 예약 시작일과 종료일의 차이를 구함
 	int days = (int) (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
 	System.out.println(days);
 	
 	DecimalFormat df = new DecimalFormat("###,###"); 
+	
+	// 정렬 타입 변수
+	String sortType = (String) request.getAttribute("sortType");
 %>
 
 <script>
@@ -67,8 +80,19 @@ $("#end_date").val(<%= endDate %>);
 		<h2>
 			<span style="color: #DE60B9">"<%= startDate %> ~ <%= endDate %>"</span> 선택하신 기간에 예약가능한 차량은 <span style="color: #6EB1EC"><%= list.size() %></span>대입니다.
 		</h2>
+		<!-- 정렬 옵션 -->
+		<div class="sort">
+			<span>정렬 순서</span>
+			<select id="sortType">
+				<option value="b.price desc" <%= "b.price desc".equals(sortType) ? "selected" : "" %>>높은가격순</option>
+				<option value="b.price asc" <%= "b.price asc".equals(sortType) ? "selected" : "" %>>낮은가격순</option>
+				<option value="b.car_name asc" <%= "b.car_name asc".equals(sortType) ? "selected" : "" %>>차종명(ㄱ-ㅎ)</option>
+				<option value="b.car_name desc" <%= "b.car_name desc".equals(sortType) ? "selected" : "" %>>차종명(ㅎ-ㄱ)</option>
+				<option value="a.avg_score desc" <%= "a.avg.score desc".equals(sortType) ? "selected" : "" %>>평점높은순</option>
+			</select>
+		</div>
 	</div>
-
+	
 	<section class="bfSection" style="margin: 0 auto;">
 <%
 		for(Car car : list) {
@@ -131,5 +155,13 @@ $("#end_date").val(<%= endDate %>);
 	}
 %>	
 	
+<script>
+	$("#sortType").change((e) => {
+		const sortType = $(e.target).val();
+		
+		/* 현재 페이지에 넘어와있는 예약시작일과 종료일, 그리고 선택된 정렬옵션을 서블릿으로 보낸다. */
+		location.href=`<%= request.getContextPath() %>/reservation/carSearchSort?start_date=<%= startDate %>&end_date=<%= endDate %>&sort_type=\${sortType}`;   
+	});
+</script>	
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

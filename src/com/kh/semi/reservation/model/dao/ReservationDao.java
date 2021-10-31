@@ -146,4 +146,52 @@ public class ReservationDao {
 		return result;
 	}
 
+	public List<Car> searchCarSort(Connection conn, String startDate, String endDate, String sortType) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Car> list = new ArrayList<>();
+		String sql = prop.getProperty("searchCarSort");
+		sql = sql.replace("#", sortType);
+		
+		System.out.println(sql);
+//		System.out.println("sdate = " + startDate);
+//		System.out.println("edate = " + endDate);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, startDate);
+			pstmt.setString(2, endDate);
+			pstmt.setString(3, startDate);
+			pstmt.setString(4, endDate);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Car car = new Car();
+				
+				car.setCarCode(rset.getString("car_code"));
+				car.setCarName(rset.getString("car_name"));
+				car.setReleaseYear(rset.getString("release_year"));
+				car.setMaker(rset.getString("maker"));
+				car.setFuel(rset.getString("fuel"));
+				car.setCarSize(rset.getString("car_size"));
+				car.setCarOption(rset.getString("car_option"));
+				car.setNumberPlate(rset.getString("number_plate"));
+				car.setPrice(rset.getInt("price"));
+				car.setImg(rset.getString("img"));
+				car.setAssessCnt(rset.getInt("assess_cnt"));
+				car.setAvgScore(rset.getInt("avg_score"));
+				car.setReservCnt(rset.getInt("reserv_cnt"));
+				
+				list.add(car);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }

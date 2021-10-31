@@ -36,7 +36,7 @@ h2.top {
 	float: right;
 	padding-left: 0;
 	margin-right: 65px;
-	width: 811px;
+	width: 870px;
 }
 
 .item-list>li:last-child {
@@ -74,7 +74,7 @@ div.desc {
 	vertical-align: baseline;
 	color: #333;
 	letter-spacing: -0.2px;
-	width: 213px;
+	width: 270px;
 }
 
 .item-list .box .carSec .car_tit {
