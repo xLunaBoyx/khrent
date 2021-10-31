@@ -69,10 +69,12 @@ $(document).ready(function() {
 
 					<div>
 						<ul class="data clearfix">
-							<li><strong>예약가능차량</strong> <span class="counter"
-								data-counter="16986" style="font-weight: 900;">0</span></li>
-							<li><strong>예약가능차종</strong> <span class="counter"
-								data-counter="532" style="font-weight: 900;">0</span></li>
+							<li id="mainCount1">
+							
+							</li>
+							<li id="mainCount2">
+
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -133,6 +135,7 @@ $(document).ready(function() {
 <!-- 게시판 끝 -->
 
 <script>
+// 공지
 	$(document).ready(function () {
 		$.ajax({
 			url:"<%=request.getContextPath()%>/board/ajaxMainNoticeBoard",
@@ -148,12 +151,45 @@ $(document).ready(function() {
 </script>
 
 <script>
+// 대여문의
 $(document).ready(function () {
 	$.ajax({
 		url:"<%=request.getContextPath()%>/board/ajaxMainQuestionBoard",
 		method: "GET",
 		success: function(data) {
 			$("#boardList2").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
+
+<script>
+// 예약가능차량
+$(document).ready(function () {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/admin/ajaxMainCarListCount",
+		method: "GET",
+		success: function(data) {
+			$("#mainCount1").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
+
+<script>
+// 예약가능차종
+$(document).ready(function () {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/admin/ajaxMainCarInfoCount",
+		method: "GET",
+		success: function(data) {
+			$("#mainCount2").html(data);
 		},
 		complete: function() {
 			console.log("complete")
