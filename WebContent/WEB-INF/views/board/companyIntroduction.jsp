@@ -17,7 +17,9 @@
 	<div class="intro_form" style="padding-top: 40px;">
 		<section class="new_standard">
 			<div class="standard_header" style="text-align:center;">렌트카 예약의 새로운 기준</div>
-			<div class="topImg"></div>
+			<div class="topImg">
+			<img src="https://i.ibb.co/bdQr1wv/monitor-gd5561e8b2-1280-copy.png" alt="monitor" style="width: 600px;" />
+			</div>
 		</section>
 		<section class="service_special">
 			<div class="special_header">서비스 특장점</div>
@@ -33,11 +35,11 @@
 			<div class="info_wrap">
 				<div class="info_list">
 					<span class="list_head">설립일</span>
-					<span class="list_desc">2021년 11월 8일</span>
+					<span class="list_desc">2021년 5월 8일</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">업종</span>
-					<span class="list_desc">응용소프트웨어 개발/공급, 자동차 신품 판매업, 중고 자동차 판매업, 전자상거래</span>
+					<span class="list_desc">응용소프트웨어 개발/공급, 전자상거래</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">주요사업</span>
@@ -49,7 +51,7 @@
 				</div>
 				<div class="info_list">
 					<span class="list_head">사원수</span>
-					<span class="list_desc">5명</span>
+					<span class="list_desc">4명</span>
 				</div>
 				<div class="info_list">
 					<span class="list_head">대표번호</span>
