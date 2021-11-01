@@ -7,7 +7,7 @@
 	List<QuestionBoard> list = (List<QuestionBoard>) request.getAttribute("list");
 %>
 	
-					<a href="<%=request.getContextPath()%>/board/questionList" class="listItem"> 
+					<a href="<%= request.getContextPath() %>/board/questionList" class="listItem"> 
 <%
 	for(QuestionBoard board : list) {
 %>
