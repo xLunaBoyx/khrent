@@ -34,6 +34,10 @@ public class MakeReservationServlet extends HttpServlet {
 		String carCode = request.getParameter("car_code");
 		String carName = request.getParameter("car_name");
 		int price = Integer.parseInt(request.getParameter("price"));
+		String insuranceType_ = request.getParameter("insurance_type");
+		String issueDate = request.getParameter("issue_date");
+		String licenseType = request.getParameter("license_type");
+		String licenseNo = request.getParameter("license_no");
 		
 		System.out.println("MakeReservationServlet@memberId = " + memberId);
 		System.out.println("MakeReservationServlet@startDate = " + startDate);
@@ -41,8 +45,14 @@ public class MakeReservationServlet extends HttpServlet {
 		System.out.println("MakeReservationServlet@carCode = " + carCode);
 		System.out.println("MakeReservationServlet@carName = " + carName);
 		System.out.println("MakeReservationServlet@price = " + price);
+		System.out.println("MakeReservationServlet@insuranceType_ = " + insuranceType_);
+		System.out.println("MakeReservationServlet@issueDate = " + issueDate);
+		System.out.println("MakeReservationServlet@licenseType = " + licenseType);
+		System.out.println("MakeReservationServlet@licenseNo = " + licenseNo);
 		
-		Reservation reservation = new Reservation(null, memberId, carCode, carName, startDate, endDate, price, null, null, null, null, null);
+		String insuranceType = "20000".equals(insuranceType_) ? "Y" : "N";
+		
+		Reservation reservation = new Reservation(null, memberId, carCode, carName, startDate, endDate, price, insuranceType, issueDate, licenseType, null, null);
 		
 		// 2. 업무로직 - 전달받은 정보들로 예약테이블에 행 추가
 		int result = reservationService.insertReservation(reservation);
