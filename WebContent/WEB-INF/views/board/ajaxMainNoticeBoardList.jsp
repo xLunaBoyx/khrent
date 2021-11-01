@@ -7,7 +7,7 @@
 	List<NoticeBoard> list = (List<NoticeBoard>) request.getAttribute("list");
 %>
 
-					<a href="#" class="listItem">
+					<a href="<%= request.getContextPath() %>/board/notice" class="listItem">
 <%
 	for(NoticeBoard board : list) {
 %>

@@ -26,6 +26,7 @@ div.tabBtn.clearfix {
 	font-size: 18px;
 	color: #4889f6;
 	font-weight: bolder;
+	cursor: pointer;
 }
 div.tab {
 	text-align: left;
