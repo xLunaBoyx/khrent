@@ -9,7 +9,7 @@
 <%@ include file="/WEB-INF/views/common/nav.jsp"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
-<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/questionView.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardView.css" />
 <%
 	ReviewBoard reviewBoard = (ReviewBoard)request.getAttribute("reviewBoard");
 	Attachment attachment = reviewBoard.getAttach();
@@ -46,20 +46,32 @@
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<div class="board-container">
+	<h1 class = "board-title">이용후기</h1>
+<%
+	if(editable) {
+%>		
+			<div id="writing-container">
+				<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
+				<input class="change" type="button" value="수정하기" onclick="updateBoard()">
+				<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
+			</div>
+<%
+	}
+%>		
 		<table id="tbl-board">
 			<thead>
 				<tr><th colspan = "4"><%=reviewBoard.getReviewTitle()%></th></tr>
 			</thead>
 			<tbody>
 				<tr style="text-align: center;">
-					<td> 작성자 : <%=reviewBoard.getReviewWriter() %></td>
+					<td colspan="2" style="width: 600px;"> 작성자 : <%=reviewBoard.getReviewWriter() %></td>
 					<td> 작성일 : <%=reviewBoard.getRegDate()%></td>
 					<td> 조회수 : <%=reviewBoard.getReadCount() %></td>
 					<td> 이용차량 : <%=reviewBoard.getCarName() %></td>
 					<td> 점수 : <%=reviewBoard.getScore() %></td>
 				</tr>
 				<tr style="text-align: center;">
-					<td>첨부파일</td>
+					<td style="width: 70px;">첨부파일</td>
 					<td colspan = "3">
 <%
 	if(attachment != null) {
@@ -92,17 +104,6 @@
 		
 		<br />
 		
-		<div class="buttons">
-<%
-	if(editable) {
-%>		
-		<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
-			<input class="change" type="button" value="수정하기" onclick="updateBoard()">
-			<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
-<%
-	}
-%>				
-		</div>
 
 		<br />
 		

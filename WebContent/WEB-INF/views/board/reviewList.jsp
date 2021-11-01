@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/customerCenterNav.css" />
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/board.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardList.css" />
 
 <%
