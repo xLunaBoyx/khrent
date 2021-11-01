@@ -152,7 +152,7 @@
  		<%} %>
  		   
 <% } %>
-        <li class="reserCall">예약문의 1544-9970</li>
+        <li class="reserCall"><a href="tel:1544-9970" style="color: white">예약문의 1544-9970</a></li>
       </ul>
     </nav>
 				
