@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
 
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4eef51d57459d0f931a2732053570141&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1a97697dd34b5e3fa8819c43a86a081b&libraries=services"></script>
 
  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  <link rel="stylesheet" href="/resources/demos/style.css">
