@@ -29,6 +29,7 @@ public class ReservationPageServlet extends HttpServlet {
 		String endDate = request.getParameter("end_date");
 		String carCode = request.getParameter("car_code");
 		int price = Integer.parseInt(request.getParameter("price"));
+		int days = Integer.parseInt(request.getParameter("days"));
 		
 //		System.out.println("ReservationPageServlet@startDate = " + startDate);
 //		System.out.println("ReservationPageServlet@endDate = " + endDate);
@@ -43,6 +44,7 @@ public class ReservationPageServlet extends HttpServlet {
 		request.setAttribute("end_date", endDate);
 		request.setAttribute("car", car);
 		request.setAttribute("price", price);
+		request.setAttribute("days", days);
 		request
 			.getRequestDispatcher("/WEB-INF/views/reservation/reservationPage.jsp")
 			.forward(request, response);

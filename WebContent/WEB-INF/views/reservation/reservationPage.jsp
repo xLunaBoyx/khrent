@@ -26,6 +26,7 @@ Car car = (Car) request.getAttribute("car");
 String startDate = (String) request.getAttribute("start_date");
 String endDate = (String) request.getAttribute("end_date");
 int price = (int) request.getAttribute("price");
+int days = (int) request.getAttribute("days");
 
 DecimalFormat df = new DecimalFormat("###,###");
 %>
@@ -86,12 +87,10 @@ DecimalFormat df = new DecimalFormat("###,###");
 			<div class="reservation_info">
 				<div>
 					<div>
-						<img
-							src="https://img.rentking.co.kr/car/202110/PsbgGxVLdsvQHfyTZxkNmryslrz3h4IkYeD7OU7m.png"
-							alt="차량이미지">
+						<img src="<%= request.getContextPath() %>/upload/car/<%= car.getImg() %>" width="400px;" alt="차량이미지" />
 					</div>
 
-					<div class="reserve_notice" style="width: 320px;">
+					<div class="reserve_notice" style="width: 350px;">
 						<p class="notice">
 							<span class="color" style="font-size: 12px;"> *위 차량은 실대여시
 								모델명, 색상이 다를수 있습니다. </span>
@@ -101,25 +100,22 @@ DecimalFormat df = new DecimalFormat("###,###");
 					</div>
 				</div>
 				<div class="info_list">
-				<strong> 아반떼MD </strong>
+				<strong> &nbsp;&nbsp;&nbsp;<%= car.getCarName() %></strong>
 				<ul class="option01 clearfix">
-					<li>휘발유</li>
-					<li>2016</li>
-					<li>화이트</li>
+					<li><%= car.getFuel() %></li>
+					<li><%= car.getReleaseYear() %></li>
+					<li><%= car.getMaker() %></li>
 				</ul>
 				<br />
-				<p style="margin-left: 38px;">네비게이션 전면 블랙박스 후방카메라 후방센서 블루투스 AUX케이블</p>
-				<ul class="icoList clearfix">
+				<p style="margin-left: 38px;"><%= car.getCarOption() %></p>
+				<!-- <ul class="icoList clearfix">
 					<li class="icon visit active"><span>본사 방문</span></li>
 					<li class="icon recentYear "><span>최근연식</span></li>
 					<li class="icon nonSmokingCar active"><span>금연차</span></li>
 					<li class="icon electricCar "><span>전기차</span></li>
-				</ul>
+				</ul> -->
 				<br />
 				<ul class="notice">
-					<li>! 아래 조건에 맞아야 대여가 가능합니다.
-						<p>만 26세 이상 , 면허 취득 1년 이상</p>
-					</li>
 					<li>! 렌트킹의 모든 차량은 종합보험에 가입되어 있습니다.
 						<p>대인: 무한 &nbsp;&nbsp;&nbsp;&nbsp;대물:
 							20,000,000원&nbsp;&nbsp;&nbsp;&nbsp;자손: 15,000,000 원</p>
@@ -130,19 +126,19 @@ DecimalFormat df = new DecimalFormat("###,###");
 				</div>
 			<div class="map_area">
 
-				<div id="map" style="width: 500px; height: 500px;"></div>
-
-				<div class="map_info">
+				<div id="map2"></div>
+						<!-- <strong>KH렌트 (서울 강남구)</strong>
+						<p>평일 09:00 ~ 21:00 / 주말, 공휴일 09:00 ~ 20:00</p> -->
+				<div class="map_info">	
 					<strong class="location">KH렌트<span>(서울 강남구)</span></strong>
 					<p>평일 10:00 ~ 20:00 / 주말, 공휴일 10:00 ~ 20:00</p>
 					<p class="etc point">본사의 정확한 주소와 연락처는 예약이 완료되면 안내해드립니다.</p>
 				</div>
-
 			</div>
 		</div>
 		<div class="clearfix" style="position: relative;">
 			<div class="leftSec">
-				<div class="reservation_sec">
+				<div class="reservation_sec sec2">
 					<strong class="tit03"> 자차보험 선택 </strong> <a
 						class="modalPop insurance" href="javascript:;"
 						data-pop="insurance"><img
@@ -166,14 +162,12 @@ DecimalFormat df = new DecimalFormat("###,###");
 						</thead>
 						<tbody>
 							<tr>
-								<th><input type="radio" name="insurance" data-num="1"
-									data-limit="0" data-exem="500000" id="self1" value="20000">
-									<label for="self1">선택안함</label></th>
+								<th><input type="radio" name="insuranceType" id="self0" value="0">
+									<label for="self0">선택안함</label></th>
 								<td colspan="3">차량 사고 시 차량 손해액의 전부를 고객님께서 부담하셔야 합니다.</td>
 							</tr>
 							<tr>
-								<th><input type="radio" name="insurance" data-num="1"
-									data-limit="0" data-exem="500000" id="self1" value="20000">
+								<th><input type="radio" name="insuranceType" id="self1" value="20000" checked>
 									<label for="self1">자차 1</label></th>
 								<td>20,000원</td>
 								<td>무한</td>
@@ -191,7 +185,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 								<dd>
 									<span class="disable"> <!-- 포워딩된 회원정보 수정 불가 --> <input
 										type="text" id="firstDriverName" name="firstDriverName"
-										value="지수진" placeholder="제 1 운전자 이름">
+										value="" placeholder="제 1 운전자 이름">
 									</span>
 								</dd>
 							</dl>
@@ -204,20 +198,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 								<dd>
 									<span class="disable"> <input type="text"
 										id="firstDriverPhoneNumber" name="firstDriverPhoneNumber"
-										value="01089604543" maxlength="11" placeholder="(-)없이 숫자만 입력">
-									</span>
-								</dd>
-							</dl>
-							<dl>
-								<dt>
-									<label for="firstDriverBirth">생년월일 <span
-										style="color: rgb(131, 134, 131); font-size: 12px">(
-											8자리(예: 20190101))</span></label>
-								</dt>
-								<dd>
-									<span class="disable"> <input type="text"
-										id="firstDriverBirth" name="firstDriverBirth"
-										value="1995-09-22" maxlength="10" placeholder="8자리(YYYYMMDD)">
+										value="" maxlength="11" placeholder="(-)없이 숫자만 입력">
 									</span>
 								</dd>
 							</dl>
@@ -244,10 +225,10 @@ DecimalFormat df = new DecimalFormat("###,###");
 										<strong class="tit04">면허 종류</strong>
 
 										<div class="licenseList clearfix">
-											<input type="radio" id="stick" name="type" value="stick" checked="&quot;checked&quot;"> 
-												<label for="kinds1"><span>1종 보통</span></label> 
-											<input type="radio" id="auto" name="type" value="auto"> 
-											<label for="kinds3"><span>2종 보통</span></label>
+											<input type="radio" name="licenseType" id="stick" value="stick" checked> 
+												<label for="stick"><span>1종 보통</span></label> 
+											<input type="radio" name="licenseType" id="auto" value="auto"> 
+												<label for="auto"><span>2종 보통</span></label>
 										</div>
 									</div>
 									<div class="licenseNumber">
@@ -257,7 +238,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 											</dt>
 											<dd>
 												<div class="licenseNumInput">
-													<input type="text" placeholder="XX XXXXXX XX" value="" maxlength="12" name="license_no" id="license_no" required="">
+													<input type="text" placeholder="XX-XXXXXX-XX" value="" maxlength="12" name="license_no" id="license_no" required="">
 												</div>
 											</dd>
 										</dl>
@@ -269,7 +250,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 											</dt>
 											<dd>
 											<div class="licenseNumInput">
-												<input type="text" placeholder="날짜 선택" id="issue_date" name="issue_date" required="">
+												<input type="text" placeholder="날짜 선택" id="issue_date" name="issue_date" required>
 											</div>
 											</dd>
 										</dl>
@@ -304,7 +285,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 					<em>렌터카 대여시 자동차 보험</em>
 					<ul class="caution">
 						<li>자동차 보험의 정확한 보장 범위는 대여 시 렌트카업체에서 정하는 작성하는 임대차 계약서를 기준으로
-							결정됩니다. <br>차량 대여 시 작성하는 임대차계약서 내용을 반드시 확인해주세요
+							결정됩니다. <br>차량 대여 시 작성하는 임대차계약서 내용을 반드시 확인해주세요.
 						</li>
 					</ul>
 					<em>유의사항</em>
@@ -323,18 +304,16 @@ DecimalFormat df = new DecimalFormat("###,###");
 					<em>단,울릉도 지역은 동급 차종중에서 색상 및 옵션이 수시로 변경될 수 있습니다.</em>
 				</div>
 			</div>
-			<div class="rightSec" style="position: fixed;">
+			<div class="rightSec" style="position: absolute;">
 				<h2>대여기간</h2>
-				<span>2021-11-01 15:00 ~ 2021-11-02 15:00</span>
-				<p>
-					총 <em>1일 0시간</em> 이용
-				</p>
+				<span><%= startDate %> ~ <%= endDate %></span>
+					<p>총 <em><%= days %>일</em> 이용</p>
 
 				<div class="paymentArea">
 					<dl>
 						<dt>차량 대여료</dt>
 						<dd>
-							<span id="charge">29,000</span>원
+							<span id="charge"><%= price %></span>원
 						</dd>
 					</dl>
 					<dl>
@@ -346,7 +325,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 					<dl>
 						<dt>총 대여 금액</dt>
 						<dd>
-							<strong><span id="totalCharge">29,000</span>원</strong>
+							<strong><span id="totalCharge"><%= price %></span>원</strong>
 						</dd>
 					</dl>
 					<dl class="divideLine"></dl>
@@ -358,13 +337,14 @@ DecimalFormat df = new DecimalFormat("###,###");
 							<strong> <span id="paymentAmount" data-paymentamount="0"
 								data-totalcharge="0" data-deposit="0" data-charge="29000"
 								data-moncharge="0" data-leftcharge="0" data-precharge="0"
-								data-delivery="0" data-insu="0" data-partner="0" data-coupon="0">29,000</span>원
+								data-delivery="0" data-insu="0" data-partner="0" data-coupon="0"><%=price%></span>원
 							</strong>
 						</dd>
 					</dl>
 				</div>
 				<div>
-					<a href="javascript:;" onclick="doPayment('kcp'); return false;" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 350px; height: 30px; margin-top: 60px;">결제하기</a>
+					<a href="javascript:;" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 275px; height: 30px; margin-top: 60px;">결제하기</a>
+					<!-- <input type="button" value="결제하기" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 275px; height: 30px; margin-top: 60px;"/> -->
 				</div>
 			</div>
 		</div>
@@ -378,8 +358,21 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 
 <script>
+/* 보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류 */
+$("[name=insuranceType]").change = ((e) => {
+	console.log($("[name=insuranceType]:checked").val());
+	$("#paymentAmount").val(<%= price %> + $("[name=insuranceType]:checked").val());
+});
+
+$("[name=licenseType]").change = ((e) => {
+	console.log($("[name=licenseType]:checked").val());
+});
+</script>
+
+<script>
+
 // 지도
-var mapContainer = document.getElementById('map1'), // 지도를 표시할 div 
+var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
 mapOption = {
     center: new kakao.maps.LatLng(37.49904818396395, 127.03313483800216), // 지도의 중심좌표
     level: 4 // 지도의 확대 레벨
@@ -395,29 +388,48 @@ var geocoder = new kakao.maps.services.Geocoder();
 //주소로 좌표를 검색합니다
 geocoder.addressSearch('서울특별시 강남구 테헤란로14길 6', function(result, status) {
 
-// 정상적으로 검색이 완료됐으면 
- if (status === kakao.maps.services.Status.OK) {
-
-    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-    // 결과값으로 받은 위치를 마커로 표시합니다
-    var marker = new kakao.maps.Marker({
-        map: map,
-        position: coords
-    });
-
-    // 인포윈도우로 장소에 대한 설명을 표시합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="width: 150px; text-align: center; padding: 6px 0;">KH렌트</div>'
-    });
-    infowindow.open(map, marker);
-
-    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    map.setCenter(coords);
-} 
+	// 정상적으로 검색이 완료됐으면 
+	 if (status === kakao.maps.services.Status.OK) {
+	
+	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	    // 결과값으로 받은 위치를 마커로 표시합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: coords
+	    });
+	
+	    // 인포윈도우로 장소에 대한 설명을 표시합니다
+	    var infowindow = new kakao.maps.InfoWindow({
+	        content: '<div style="width: 150px; text-align: center; padding: 6px 0;">KH렌트</div>'
+	    });
+	    infowindow.open(map, marker);
+	
+	    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	    map.setCenter(coords);
+	} 
 });    
 
 
+/* 아래의 결제메소드 패러미터(pg: 로 시작하는거)에 '$("#firstDriverName").val()' 이런거 넣으면 결제창이 뜨자마자 꺼진다. 그래서 param을 먼저 만들어서
+ * 넣어봤는데 그래도 안된다. 예약하기 페이지에서 입력받은 값을 저기에 넣는 방법을 모르겠다. 일단 로그인한 회원의 이름과 폰번으로 했다.
+ */
+<%-- var name = $("#firstDriverName").val();
+var tel = $("#firstDriverPhoneNumber").val();
+var insuranceType = $("[name=insuranceType]:checked").val();
+var issueDate = $("#issue_date").val();
+var licenseType = $("[name=licenseType]").val();
+var ilcenseNo = $("#license_no").val();
+
+var param = {
+	pg : 'html5_inicis',
+    pay_method : 'card', //생략 가능
+    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
+    name : '<%= car.getCarName() %>',   
+    amount : <%= price %>,
+    buyer_name : '$("#firstDriverName").val()',
+    buyer_tel : '$("#firstDriverPhoneNumber").val()'	
+}; --%>
 
 // 결제
 function inicisPay() {
@@ -428,10 +440,10 @@ function inicisPay() {
 	    pg : 'html5_inicis',
 	    pay_method : 'card', //생략 가능
 	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
-	    name : '<%=car.getCarName()%>',   
-	    amount : <%=price%>,
-	    buyer_name : '<%=loginMember.getMemberId()%>',
-	    buyer_tel : '<%=loginMember.getPhone()%>', 
+	    name : '<%= car.getCarName() %>',   
+	    amount : <%= price %>,
+	    buyer_name : '<%= loginMember.getMemberName() %>',
+	    buyer_tel : '<%= loginMember.getPhone() %>' 
 	    /* buyer_email : 'iamport@siot.do', */
 	    /* buyer_addr : '서울특별시 강남구 삼성동', */
 	    /* buyer_postcode : '123-456' */
@@ -450,7 +462,11 @@ function inicisPay() {
 				        car_name : "<%=car.getCarName()%>",
 				        start_date: "<%=startDate%>",
 				        end_date: "<%=endDate%>",
-				        price: <%=price%>
+				        price: <%=price%>,
+				        insurance_type: $("[name=insuranceType]:checked").val(),
+				        issue_date: $("#issue_date").val(),
+				        license_type: $("[name=licenseType]").val(),
+				        license_no: $("#license_no").val()
 				    },
 				    success(data){
 				    	location.href="<%=request.getContextPath()%>/reservation/complete";
@@ -459,8 +475,7 @@ function inicisPay() {
 				  // 가맹점 서버 결제 API 성공시 로직
 				})
 			} else {
-				var msg = "결제에 실패하였습니다.";				
-				console.log(msg);
+				alert("결제에 실패하였습니다.");				
 			}
 	});
 }
@@ -494,6 +509,7 @@ function inicisPay() {
 } --%>
 
 </script>
+
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

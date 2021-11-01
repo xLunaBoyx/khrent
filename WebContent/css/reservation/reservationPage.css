@@ -1,49 +1,10 @@
 @charset "UTF-8";
 
-/* .reservationContainer { */
-/* 	display: flex; */
+#map2 {
+	width: 385px;
+	height: 385px;
+}
 
-/* } */
-/* .carData { */
-/* 	margin: 0 auto; */
-/* } */
-/* #map2 { */
-/* 	width: 450px; */
-/* 	height: 450px; */
-/* } */
-/* .upperBox { */
-/* 	display: flex; */
-/* 	margin: 0 auto; */
-/* } */
-/* .upperBox-right {  */
-/* 	width: 450px; */
-/* 	height: 570px; */
-/* 	border: 1px solid; */
-/* } */
-/* .locationDesc { */
-/* 	margin-top: 20px; */
-/* 	text-align: center; */
-/* 	font-size: 1.2em; */
-/* } */
-/* .carData { */
-/* 	display: flex; */
-/* 	margin: 20px 50px 10px 0; */
-/*     width: 900px; */
-/* } */
-/* .option01>li { */
-/* 	float: left; */
-/* } */
-/* .carImage-showReview { */
-/* 	margin-top: 90px; */
-/* 	display: flex; */
-/* 	flex-direction: column; */
-/* } */
-/* #reviewButton { */
-/*     width: 200px; */
-/*     height: 50px; */
-/*     text-align: center; */
-/*     margin: 10px auto 0; */
-/* } */
 .content_wrap {
 	padding: 40px 0 140px;
 	min-height: 787px;
@@ -52,9 +13,9 @@
 
 .wrap {
 	position: relative;
-	width: 1170px;
+	width: 1210px;
 	min-width: 1170px;
-	height: 3100px;
+	height: 2770px;
 	padding: 30px 30px 30px 30px;
 	margin: 0 auto;
 	background-color: white;
@@ -68,7 +29,12 @@ input {
 .reservation_sec {
 	padding-bottom: 48px;
 	margin-bottom: 32px;
-	border-bottom: 1px solid #e6e6e6;
+	/* border-bottom: 1px solid #e6e6e6; */
+}
+
+.sec2 {
+	position: relative;
+	top: 50px;	
 }
 
 .reservation_sec .reservation_info {
@@ -82,10 +48,10 @@ input {
 .reservation_sec .reservation_info img {
 	position: absolute;
 	left: 0;
-	top: 0;
-	width: 300px;
-	height: 187px;
-	object-fit: cover;
+	top: 10px;
+	width: 350px;
+	/* height: 187px; */
+	/* object-fit: cover; */
 }
 
 .reservation_info .reserve_notice {
@@ -112,9 +78,9 @@ input {
 }
 
 .info_list {
-	margin-left: 10px;
-	width: 500px;
-	margin-top: 30px;
+	margin-left: 40px;
+    width: 450px;
+    margin-top: 30px;
 }
 
 .btn:not(.btn-link):not(.btn-circle) {
@@ -230,6 +196,11 @@ ol, ul {
 	vertical-align: top;
 }
 
+.map_area {
+	float: right;
+	width: 385px;
+}
+
 .reservation_sec .map_area .map_info {
 	padding: 12px 16px 10px;
 	border: 1px solid #e6e6e6;
@@ -293,11 +264,15 @@ caption {
 	display: none;
 }
 
+.leftSec {
+	width: 740px;	
+}
+
 .leftSec .reservation_sec .insuranceTable thead th {
 	padding: 10px 0;
 	background-color: #fafafa;
 	font-weight: normal;
-	width: 100px;
+	width: 145px;
 }
 
 .leftSec .reservation_sec .insuranceTable tbody tr {
@@ -525,7 +500,7 @@ caption {
 
 .saveBtn {
 	display: inline-block;
-	width: 80px;
+	width: 95px;
 	height: 30px;
 	font-size: 12px;
 	line-height: 26px;
@@ -654,11 +629,11 @@ caption {
 
 /* 오른쪽 메뉴 */
 .rightSec {
-	right: 350px;
-	top: 300px;
+	right: 0;
+	top: 530px;
 	float: right;
 	padding: 30px 24px;
-	width: 370px;
+	width: 336px;
 	height: 500px;
 	border-radius: 2px;
 	box-shadow: 0 2px 30px 0 rgb(0 0 0/ 8%);

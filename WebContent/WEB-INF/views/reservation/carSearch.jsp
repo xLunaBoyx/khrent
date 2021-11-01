@@ -17,6 +17,27 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/reservation/carSearch.css" />
 
 <style>
+#myBtn {
+ display: none; /* Hidden by default */
+ position: fixed; /* Fixed/sticky position */
+ bottom: 20px; /* Place the button at the bottom of the page */
+ right: 30px; /* Place the button 30px from the right */
+ z-index: 99; /* Make sure it does not overlap */
+ border: none; /* Remove borders */
+ outline: none; /* Remove outline */
+ background-color: #F5F5F5; /* Set a background color */
+ color: black; /* Text color */
+ cursor: pointer; /* Add a mouse pointer on hover */
+ padding: 15px; /* Some padding */
+ border-radius: 5px; /* Rounded corners */
+ font-size: 18px; /* Increase font size */
+ box-shadow: 0px 0px 16px -5px grey;
+ }
+
+ #myBtn:hover {
+ background-color: #555; /* Add a dark-grey background on hover */
+ }
+ 
 .topComment {
    display: flex;
    position: relative;
@@ -63,6 +84,8 @@ $("#start_date").val(<%= startDate %>);
 $("#end_date").val(<%= endDate %>);
 </script>
 
+<!-- 페이지 제일 위로 가는 버튼 -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 <%
 	if(list.size() == 0) {
@@ -139,7 +162,7 @@ $("#end_date").val(<%= endDate %>);
 							</dt>
 							<dd>20,000원 (면책금 30만원)</dd>
 						</dl>
-						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= car.getPrice() * days %>" class="btn btn-l btn-color-type01">예약하기</a>
+						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= car.getPrice() * days %>&days=<%= days %>" class="btn btn-l btn-color-type01">예약하기</a>
 						<%-- <input type="button" onclick="location.href='<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>';" class="btn btn-l btn-color-type01" value="예약하기"/> --%>
 						<!-- 버튼태그로 하니까 css가 이상해져서 기존의 것으로 했다. -->
 					</div>
@@ -155,13 +178,45 @@ $("#end_date").val(<%= endDate %>);
 	}
 %>	
 	
+<!-- 	<div id="rightSide">
+		<div id="right_zzim">
+			<div  class="recTit">최근본상품 <span id=recentCnt></span></div>
+				<ul></ul>    본 상품이 뿌려질 부분 
+			<div id="paging"><a class="btn_prev" style="cursor:pointer" >이전</a><span  id="currentPage"></span><span id="totalPageCount"></span><a class="btn_next" style="cursor:pointer" >다음</a></div>
+		</div>
+	</div> --> 
+
+
 <script>
-	$("#sortType").change((e) => {
-		const sortType = $(e.target).val();
-		
-		/* 현재 페이지에 넘어와있는 예약시작일과 종료일, 그리고 선택된 정렬옵션을 서블릿으로 보낸다. */
-		location.href=`<%= request.getContextPath() %>/reservation/carSearchSort?start_date=<%= startDate %>&end_date=<%= endDate %>&sort_type=\${sortType}`;   
-	});
+// 정렬 기능(사실 재검색)
+$("#sortType").change((e) => {
+	const sortType = $(e.target).val();
+	
+	/* 현재 페이지에 넘어와있는 예약시작일과 종료일, 그리고 선택된 정렬옵션을 서블릿으로 보낸다. */
+	location.href=`<%= request.getContextPath() %>/reservation/carSearchSort?start_date=<%= startDate %>&end_date=<%= endDate %>&sort_type=\${sortType}`;   
+});
+
+// 페이지 제일 위로 가는 버튼
+//Get the button:
+mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+//When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 </script>	
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

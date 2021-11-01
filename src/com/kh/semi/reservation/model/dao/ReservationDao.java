@@ -134,6 +134,9 @@ public class ReservationDao {
 			pstmt.setString(4, reservation.getStartDate());
 			pstmt.setString(5, reservation.getEndDate());
 			pstmt.setInt(6, reservation.getPrice());
+			pstmt.setString(7, reservation.getInsuranceType());
+			pstmt.setString(8, reservation.getIssueDate());
+			pstmt.setString(9, reservation.getLicenseType());
 			
 			result = pstmt.executeUpdate();
 			
