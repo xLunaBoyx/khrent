@@ -14,8 +14,8 @@ import com.kh.semi.admin.model.service.AdminService;
 /**
  * Servlet implementation class AjaxAdminTotalCar
  */
-@WebServlet("/admin/ajaxAdminTotalCar")
-public class AjaxAdminTotalCar extends HttpServlet {
+@WebServlet("/admin/ajaxAdminTodayEndReservation")
+public class AjaxAdminTodayEndReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminService adminService = new AdminService();
@@ -24,14 +24,14 @@ public class AjaxAdminTotalCar extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int totalContents = adminService.selectTotalCarContents(); 
+		int totalContents = adminService.selectCarReturnContents(); 
 		System.out.println("totalContents@servlet = " + totalContents);
 		
 		response.setContentType("text/text; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		request.setAttribute("totalContents", totalContents);
-		request.getRequestDispatcher("/WEB-INF/views/admin/ajaxAdminTotalCar.jsp")
+		request.getRequestDispatcher("/WEB-INF/views/admin/ajaxAdminTodayEndReservation.jsp")
 			.forward(request, response);
 	}
 
