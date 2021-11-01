@@ -79,7 +79,7 @@ public class ReviewBoardViewServlet extends HttpServlet {
 	
 	
 	
-	request.setAttribute("list", commentList);
+	request.setAttribute("commentList", commentList);
 	request.setAttribute("reviewBoard", reviewBoard);
 	request.getRequestDispatcher("/WEB-INF/views/board/reviewView.jsp").forward(request, response);
 	
