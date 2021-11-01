@@ -32,20 +32,20 @@ public class ReviewBoardCommentEnroll extends HttpServlet {
 		String content = request.getParameter("content");
 		
 		
-		ReviewBoardComment reviewBoardComment = new ReviewBoardComment(0,boardNo, writer,content, null, commentLevel, commentRef);		
+		ReviewBoardComment reviewBoardComment = new ReviewBoardComment(0, boardNo, writer,content, null, commentLevel, commentRef);		
 		System.out.println("reviewBoardComment = " + reviewBoardComment);
 		//업무로직
 		int result = reviewBoardService.insertReviewBoardComment(reviewBoardComment);
 		
 		String msg = "";
 		
-		if(result>0)
+		if(result > 0)
 			msg = "댓글이 등록되었습니다.";
 		else
 			msg = "댓글이 등록되지 않았습니다.";
 		
 		request.getSession().setAttribute("msg", msg);
-		String location = request.getContextPath()+"/board/reviewView?no=" + boardNo;
+		String location = request.getContextPath()+"/board/reviewBoardView?no=" + boardNo;
 		response.sendRedirect(location);
 	}
 

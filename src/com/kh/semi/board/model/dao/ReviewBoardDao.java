@@ -332,7 +332,7 @@ public class ReviewBoardDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reviewBoardComment.getNo());
+			pstmt.setInt(1, reviewBoardComment.getReview_no());
 			pstmt.setString(2, reviewBoardComment.getWriter());
 			pstmt.setString(3, reviewBoardComment.getContent());
 			pstmt.setInt(4, reviewBoardComment.getCommentLevel());
@@ -415,6 +415,32 @@ public class ReviewBoardDao {
 			pstmt.setDouble(3, reviewBoard.getScore());
 			pstmt.setInt(4, reviewBoard.getReviewNo());
 			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteReviewBoard(Connection conn, int no) {
+		// board의 행이 삭제되면 그 행의 no를 참조하는 attachment의 행도 따라서 삭제된다. on delete cascade 이기 때문에
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReviewBoard");
+		System.out.println(sql);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setInt(1, no);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
