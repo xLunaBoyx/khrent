@@ -132,6 +132,17 @@ $(document).ready(function() {
 
 </section>
 
+    <div id="map" style="width:1170px;height:500px;"></div>
+    <script>
+        var container = document.getElementById('map');
+        var options = {
+            center: new kakao.maps.LatLng(37.49904818396395, 127.03313483800216),
+            level: 3
+        };
+ 
+        var map = new kakao.maps.Map(container, options);
+    </script>
+
 <!-- 게시판 끝 -->
 
 <script>
