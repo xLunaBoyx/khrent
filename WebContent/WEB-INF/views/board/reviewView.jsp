@@ -14,7 +14,11 @@
 	ReviewBoard reviewBoard = (ReviewBoard)request.getAttribute("reviewBoard");
 	Attachment attachment = reviewBoard.getAttach();
 	System.out.println(attachment);
-	boolean editable = loginMember != null && (reviewBoard.getReviewWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()));
+	boolean editable = 
+			loginMember != null && 
+			(reviewBoard.getReviewWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()));
+	boolean editable_ = 
+			loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole());
 	
 	List<ReviewBoardComment> commentList = (List<ReviewBoardComment>) request.getAttribute("commentList");
 %>
@@ -166,9 +170,9 @@
 %>		
 			</table>
 <%
-	if(editable) {
+	if(editable_) {
 %>	
-	<!-- 문의글 작성자와 관리자만 댓글작성 폼이 보인다. -->
+	<!-- 관리자만 댓글작성 폼이 보인다. -->
 			<div class="comment-editor">
 				<form 
 					action="<%= request.getContextPath() %>/board/ReviewBoardCommentEnroll" 
