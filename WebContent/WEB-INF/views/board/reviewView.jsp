@@ -21,6 +21,7 @@
 			loginMember != null && MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole());
 	
 	List<ReviewBoardComment> commentList = (List<ReviewBoardComment>) request.getAttribute("commentList");
+	System.out.println("commentList = " + commentList);
 %>
 
 <script>
@@ -175,7 +176,7 @@
 	<!-- 관리자만 댓글작성 폼이 보인다. -->
 			<div class="comment-editor">
 				<form 
-					action="<%= request.getContextPath() %>/board/ReviewBoardCommentEnroll" 
+					action="<%= request.getContextPath() %>/board/reviewBoardCommentEnroll" 
 					name="reviewBoardCommentFrm" 
 					method="post">
 					<textarea id="insertText" name="content" cols="60" rows="3"></textarea>
