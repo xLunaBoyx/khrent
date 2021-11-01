@@ -62,10 +62,10 @@
 %>		
 		<table id="tbl-board">
 			<thead>
-				<tr><th colspan = "4"><%=reviewBoard.getReviewTitle()%></th></tr>
+				<tr><th colspan="6"><%=reviewBoard.getReviewTitle()%></th></tr>
 			</thead>
 			<tbody>
-				<tr style="text-align: center;">
+				<tr style="border-top: 1px solid black;">
 					<td colspan="2" style="width: 600px;"> 작성자 : <%=reviewBoard.getReviewWriter() %></td>
 					<td> 작성일 : <%=reviewBoard.getRegDate()%></td>
 					<td> 조회수 : <%=reviewBoard.getReadCount() %></td>
@@ -74,7 +74,7 @@
 				</tr>
 				<tr style="text-align: center;">
 					<td style="width: 70px;">첨부파일</td>
-					<td colspan = "3">
+					<td colspan="3">
 <%
 	if(attachment != null) {
 %>		

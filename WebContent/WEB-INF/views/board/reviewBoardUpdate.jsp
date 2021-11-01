@@ -39,7 +39,7 @@
 		<tr>
 			<th>점수</th>
 			<td>
-				<select name="score" id="score">
+				<select name="score" id="score" style="border: 1px solid lightgray; margin-left: 30px; width: 50px; height: 40px;">
 					<option value="<%= reviewBoard.getScore() %>" selected><%= reviewBoard.getScore() %></option>
 					<option value="0.5">0.5점</option>
 					<option value="1">1점</option>

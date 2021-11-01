@@ -26,7 +26,7 @@
 	<% } %>
 </script>
 
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 
