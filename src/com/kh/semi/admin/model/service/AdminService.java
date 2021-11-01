@@ -267,4 +267,18 @@ public class AdminService {
 		return myReservation;
 	}
 
+	public List<Reservation> selectCarReturn(int startRownum, int endRownum) {
+		Connection conn = getConnection();
+		List<Reservation> list = adminDao.selectCarReturn(conn, startRownum, endRownum);
+		close(conn);
+		return list;
+	}
+
+	public int selectCarReturnContents() {
+		Connection conn = getConnection();
+		int carReturn = adminDao.selectCarReturnContents(conn);
+		close(conn);
+		return carReturn;
+	}
+
 }
