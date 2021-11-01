@@ -27,7 +27,7 @@ section#memberList-container table#tbl-member {
 }
 
 table#tbl-member th, table#tbl-member td {
-	border: 6px solid whitesmoke;
+	border: 1px solid whitesmoke;
 	background-color: white;
 	padding: 10px;
 	text-align: center;
@@ -125,4 +125,18 @@ button {
 
 .adminMemberUpdateBtn:hover {
 	cursor: pointer;
+}
+
+#tbl-member thead th {
+	background-color: rgb(72 72 72);
+	color: white;
+	font-weight: normal;
+}
+
+#tbl-member thead th:first-child {
+	border-radius: 30px 0px 0px 0px;
+}
+
+#tbl-member thead th:last-child {
+	border-radius: 0px 30px 0px 0px;
 }
