@@ -1,4 +1,4 @@
-@charset "UTF-8";
+	@charset "UTF-8";
 
 #allSection {
 	display: flex;
@@ -36,7 +36,7 @@ h2.top {
 	float: right;
 	padding-left: 0;
 	margin-right: 65px;
-	width: 870px;
+	width: 945px;
 }
 
 .item-list>li:last-child {
@@ -74,7 +74,7 @@ div.desc {
 	vertical-align: baseline;
 	color: #333;
 	letter-spacing: -0.2px;
-	width: 270px;
+	width: 310px;
 }
 
 .item-list .box .carSec .car_tit {
@@ -183,7 +183,7 @@ ol, ul {
 .priceArea {
 	position: relative;
 	float: right;
-	width: 252px;
+	width: 295px;
 	height: 100%;
 	padding-left: 20px;
 	box-sizing: border-box;
