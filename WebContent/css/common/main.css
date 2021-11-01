@@ -338,3 +338,10 @@ ol, ul {
 }
 
 /* board_area 끝 */
+
+/* map_area */
+
+#map {
+	margin: 0 auto;
+	margin-bottom: 85px;
+}
