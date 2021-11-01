@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi.board.model.vo.ReviewBoard"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.semi.reservation.model.vo.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +12,7 @@
 
 <%
 	List<Reservation> list = (List<Reservation>) request.getAttribute("list");
-
+	List<ReviewBoard> list2 = (List<ReviewBoard>) request.getAttribute("list2");
 	String msg = (String) session.getAttribute("msg");
 	// System.out.println("msg@header.jsp = " + msg);
 	if(msg != null) session.removeAttribute("msg");
@@ -56,23 +57,27 @@
 				       		<td>
 				       			<%= reservation.getReviewStatus() %>
 <%
-	if("N".equals(reservation.getReviewStatus())) {
+		if("N".equals(reservation.getReviewStatus())) {
 %>	
 	<input class="change" type="button" value="작성하기" onclick="location.href='<%= request.getContextPath() %>/board/reviewBoardForm?reserNo=<%= reservation.getReserNo()%>';"/>			       			
 <%
-	} else {
+	} else if("Y".equals(reservation.getReviewStatus())) {
+		
+		for(ReviewBoard reviewBoard : list2) {
 %>
-	<input class="change" type="button" value="작성완료" />
+	<input class="change" type="button" value="작성완료" onclick="location.href='<%= request.getContextPath() %>/board/reviewBoardView?no=<%= reviewBoard.getReviewNo()%>';"/>
 <%
+		}
 	}
-%>		       			
+%>	
+	       			
 			       			</td>
 				       		<td><%= reservation.getReturnStatus() %></td>
-		       			</tr>
 <%
 		}
 	}
 %>       							
+		       			</tr>
 					</tbody>
 				</table>
 			</div>

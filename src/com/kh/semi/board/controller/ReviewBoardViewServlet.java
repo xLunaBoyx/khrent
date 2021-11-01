@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi.board.model.service.ReviewBoardService;
 import com.kh.semi.board.model.vo.ReviewBoard;
 import com.kh.semi.board.model.vo.ReviewBoardComment;
+import com.kh.semi.reservation.model.vo.Reservation;
 
 /**
  * Servlet implementation class CommunityDetailViewServlet
@@ -72,6 +73,22 @@ public class ReviewBoardViewServlet extends HttpServlet {
 	
 	ReviewBoard reviewBoard = reviewBoardService.selectOneReviewBoard(no);
 	System.out.println("selectOneReviewBoard@servlet = " + reviewBoard);
+	
+	// reviewBoard에 등록된 예약번호가 있으면 reservation테이블의 같은 예약번호의 review_status가 Y로 바뀜
+	String isThereReserveNumber = "";
+
+	String reserveNumber = reviewBoard.getReservNo();
+	System.out.println("예약번호는?" + reserveNumber);
+	List<Reservation> reservation = reviewBoardService.selectOneReservation(reserveNumber);
+	System.out.println("나오는 예약리스트는? " + reservation);
+	System.out.println("reservation의 reserNo만 뽑아내기 = " + reservation.get(0).getReserNo());
+	if(reservation.size() >= 1) {
+		isThereReserveNumber = "Y";
+	} else {
+		isThereReserveNumber = "N";
+	}
+	
+	int result2 = reviewBoardService.updateReservationReviewSatatus(isThereReserveNumber, reservation.get(0).getReserNo());
 	
 	// 댓글목록가져오기
 	List<ReviewBoardComment> commentList = reviewBoardService.selectReviewCommentList(no);

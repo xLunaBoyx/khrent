@@ -30,6 +30,8 @@ public class ReviewBoardDeleteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자입력값 처리
 		int no = Integer.parseInt(request.getParameter("no"));
+		String reserveNo = request.getParameter("reserveNo");
+		System.out.println("예약번호  = " + reserveNo);
 				
 				
 		// 2.업무로직
@@ -44,8 +46,12 @@ public class ReviewBoardDeleteServlet extends HttpServlet {
 			boolean result = delFile.delete();
 			System.out.printf("첨부파일[%s] 삭제여부 : %b%n", filename, result);
 		}
-		
+		String review_status = "N";
 		int result = reviewBoardService.deleteReviewBoard(no);
+		// 삭제할 때 해당 예약번호가 있는 예약테이블의 review_status가 Y가 되야한다.
+		int result2 = reviewBoardService.updateReservationReviewSatatus(review_status, reserveNo);
+		
+		
 		String msg = result > 0 ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
 		
 		
