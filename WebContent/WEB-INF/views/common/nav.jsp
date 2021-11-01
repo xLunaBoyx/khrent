@@ -10,14 +10,14 @@
 		<div class="searchLine vueDateBind">
 			<p class="searchContent searchLabel">대여일</p>
 			<p class="searchContent searchInput inputDate">
-					<input type="text" id="start_date" name="start_date" autocomplete="off" class="hasNavDatepicker" placeholder="날짜선택"/>
+					<input type="text" id="start_date" name="start_date" autocomplete="off" class="hasNavDatepicker" placeholder="날짜선택" style="padding-left: 0 !important; padding-right: 0 !important;"/>
 			</p>
 			<p class="searchContent searchInput inputTime">
 				<i class="kit-search-time"></i> 
 			</p>
 			<p class="searchContent searchLabel">반납일</p>
 			<p class="searchContent searchInput inputDate">
-					<input type="text" id="end_date" name="end_date" autocomplete="off" class="hasNavDatepicker" placeholder="날짜선택"/>
+					<input type="text" id="end_date" name="end_date" autocomplete="off" class="hasNavDatepicker" placeholder="날짜선택" style="padding-left: 0 !important; padding-right: 0 !important;"/>
 			</p>
 			<p class="searchContent searchInput inputTime">
 				<i class="kit-search-time"></i> 
