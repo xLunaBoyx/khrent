@@ -1,15 +1,25 @@
 @charset "UTF-8";
 
 /********** 예약하기 상단 바 ****/
+.contents {
+	padding: 0px 50px;
+	width: 1417px;
+	background-color: white;
+	margin: 0 auto;
+	margin-top: 50px;
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+}
+
 #searchContent {
 	color: green;
-	line-geight: 57px;
+	line-height: 57px;
 	width: 85px;
 	text-align: center;
 }
 
 .rental {
-	background-color: rgb(39, 105, 168);
+	background-color: rgb(74 74 74);
 	height: 100px;
 	width: 380px;
 	padding-bottom: 15px;
@@ -52,14 +62,9 @@ table {
 
 table.guideTable thead th, table.guideTable tbody td {
 	color: #808080;
-	background-color: white;
+	border: 1px solid lightgray;
 	padding-left: 15px;
 	text-align: left;
-	border-right: 1px dashed;
-}
-
-table.guideTable tbody td:nth-child(3) {
-	border-right: #ffffff00;
 }
 
 table.guideTable thead th {

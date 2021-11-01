@@ -1228,4 +1228,65 @@ public class AdminDao {
 		return totalContents;
 	}
 
+	public Reservation selectOneReservation(Connection conn, String reserNo) {
+		String sql = prop.getProperty("selectOneReservation");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Reservation reservation = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reserNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				String memberId = rset.getString("member_id");
+				String carCode = rset.getString("car_code");
+				String carName = rset.getString("car_name");
+				String startDate = rset.getString("start_date");
+				String endDate = rset.getString("end_date");
+				int price = rset.getInt("price");
+				String insuranceType = rset.getString("insurance_type");
+				String issueDate = rset.getString("issue_date");
+				String licenseType = rset.getString("license_type");
+				String reviewStatus = rset.getString("review_status");
+				String returnStatus = rset.getString("return_status");
+				
+				reservation = new Reservation(reserNo, memberId, carCode, carName, startDate, endDate, price, insuranceType, issueDate, licenseType, reviewStatus, returnStatus);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reservation;
+	}
+
+	public int deleteReservation(Connection conn, String reserNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("deleteReservation"); 
+		System.out.println("query@deleteReservation@Dao = " + query);
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+		
+			pstmt.setString(1, reserNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
