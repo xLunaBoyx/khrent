@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/board/boardView.css" />
 <%
 	ReviewBoard reviewBoard = (ReviewBoard)request.getAttribute("reviewBoard");
+	System.out.println("리뷰보드 보기 = " + reviewBoard.getReservNo());
+	System.out.println("reviewBoard.jsp = " + reviewBoard);
 	Attachment attachment = reviewBoard.getAttach();
 	System.out.println(attachment);
 	boolean editable = 
@@ -199,8 +201,7 @@
 			action="<%= request.getContextPath() %>/board/reviewBoardCommentDelete" 
 			name="reviewBoardCommentDelFrm"
 			method="POST">
-			<input type="hidden" name="no" />
-			<input type="hidden" name="boardNo" value="<%= reviewBoard.getReviewNo() %>"/>
+			<input type="hidden" name="no" value="<%= reviewBoard.getReviewNo() %>"/>
 		</form>
 	
 	</div> <!-- </div> .board-container -->
@@ -209,6 +210,7 @@
 <!-- 게시글 삭제용 폼 -->
 <form action="<%= request.getContextPath() %>/board/reviewBoardDelete" name="deleteReviewBoardFrm" method="POST">
 	<input type="hidden" name="no" value="<%= reviewBoard.getReviewNo() %>" />
+	<input type="hidden" name="reserveNo" value="<%= reviewBoard.getReservNo() %>"/>
 </form>
 	
 <script>
@@ -221,6 +223,8 @@ const deleteBoard = () => {
 		document.deleteReviewBoardFrm.submit();
 	}
 }
+
+
 
 /* 대댓글 등록 버튼 */
 $(".btn-reply").click((e) => {

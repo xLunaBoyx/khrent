@@ -428,6 +428,8 @@ public class ReviewBoardDao {
 
 	public int deleteReviewBoard(Connection conn, int no) {
 		// board의 행이 삭제되면 그 행의 no를 참조하는 attachment의 행도 따라서 삭제된다. on delete cascade 이기 때문에
+		
+		
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("deleteReviewBoard");
@@ -450,6 +452,69 @@ public class ReviewBoardDao {
 		}
 		
 		return result;
+	}
+
+	public int updateReservationReviewSatatus(Connection conn, String isThereReserveNumber, String no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReservationReviewStatus");
+		System.out.println(sql);
+		System.out.println(isThereReserveNumber + "," + no);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setString(1, isThereReserveNumber);
+			pstmt.setString(2, no);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<ReviewBoard> selectMyReviewBoard(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewBoard> list = new ArrayList<>();
+		String sql = prop.getProperty("selectMyReviewBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ReviewBoard reviewBoard = new ReviewBoard();
+				
+				reviewBoard.setReviewNo(rset.getInt("review_no"));
+				reviewBoard.setReviewWriter(rset.getString("review_writer"));
+				reviewBoard.setReviewTitle(rset.getString("review_title"));
+				reviewBoard.setReviewContent(rset.getString("review_content"));
+				reviewBoard.setCarName(rset.getString("car_name"));
+				reviewBoard.setRegDate(rset.getDate("reg_date"));
+				reviewBoard.setReadCount(rset.getInt("read_count"));
+				reviewBoard.setScore(rset.getDouble("score"));
+				
+				System.out.println("reviewBoard = " + reviewBoard);
+				
+				list.add(reviewBoard);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 	
 	

@@ -188,4 +188,28 @@ public class ReviewBoardService {
 		return result;
 	}
 
+	public int updateReservationReviewSatatus(String isThereReserveNumber, String no) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = reviewBoardDao.updateReservationReviewSatatus(conn, isThereReserveNumber, no);
+			if(result == 0)
+				throw new IllegalArgumentException();
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public List<ReviewBoard> selectMyReviewBoard(String memberId) {
+		Connection conn = getConnection();
+		List<ReviewBoard> list = reviewBoardDao.selectMyReviewBoard(conn, memberId);
+		close(conn);
+		return list;
+	}
+
 }
