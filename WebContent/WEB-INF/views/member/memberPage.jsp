@@ -63,11 +63,13 @@
 <%
 	} else if("Y".equals(reservation.getReviewStatus())) {
 		
-		for(ReviewBoard reviewBoard : list2) {
+		
 %>
-	<input class="change" type="button" value="작성완료" onclick="location.href='<%= request.getContextPath() %>/board/reviewBoardView?no=<%= reviewBoard.getReviewNo()%>';"/>
+	<input class="change" type="button" value="작성완료" onclick="goReviewBoardView();"/>
+	
+	
 <%
-		}
+		
 	}
 %>	
 	       			
@@ -112,6 +114,12 @@ $.ajax({
 	}
 });
 });
+
+const goReviewBoardView = () => {
+<%	for(ReviewBoard reviewBoard : list2) { %>
+		location.href= "<%= request.getContextPath() %>/board/reviewBoardView?no=<%= reviewBoard.getReviewNo() %>";
+<%	} %>
+}
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
