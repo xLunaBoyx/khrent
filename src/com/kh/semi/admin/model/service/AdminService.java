@@ -281,4 +281,21 @@ public class AdminService {
 		return carReturn;
 	}
 
+	public Reservation selectOneReservation(String reserNo) {
+		Connection conn = getConnection();
+		Reservation reservation = adminDao.selectOneReservation(conn, reserNo);
+		close(conn);
+		return reservation;
+	}
+
+	public int deleteReservation(String reserNo) {
+ 		Connection conn = getConnection();
+ 		int result = adminDao.deleteReservation(conn, reserNo);
+ 		if(result>0)
+ 			commit(conn);
+ 		else 
+ 			rollback(conn);
+ 		close(conn);
+ 		return result;
+	}
 }
