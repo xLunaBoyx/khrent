@@ -35,7 +35,6 @@ h2.top {
 .item-list {
 	float: right;
 	padding-left: 0;
-	margin-right: 65px;
 	width: 945px;
 }
 
@@ -49,6 +48,7 @@ h2.top {
 	border: 1px solid #e6e6e6;
 	background-color: white;
 	box-sizing: border-box;
+	margin-left: 10px;
 }
 
 .item-list .box .carSec {
