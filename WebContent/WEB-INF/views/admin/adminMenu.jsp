@@ -18,7 +18,7 @@
 					<ul class="nav-flyout">
 						<li><a href="<%= request.getContextPath() %>/admin/adminTotalReserList"><i class="ion-ios-color-filter-outline"></i>전체 예약 관리</a>
 						</li>
-						<li><a href="#"><i class="ion-ios-clock-outline"></i></a>
+						<li><a href="<%= request.getContextPath() %>/admin/adminCarReturnList"><i class="ion-ios-color-filter-outline"></i>차량 반납 관리</a>
 						</li>
 						<li><a href="#"><i class="ion-android-star-outline"></i></a>
 						</li>
