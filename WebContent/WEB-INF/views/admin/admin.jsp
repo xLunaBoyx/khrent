@@ -205,7 +205,7 @@
 		// 총 차량수
 		$(document).ready(function () {
 		$.ajax({
-			url:"<%=request.getContextPath()%>/admin/ajaxAdminTotalCar",
+			url:"<%=request.getContextPath()%>/admin/ajaxAdminTodayEndReservation",
 			method: "GET",
 			success: function(data) {
 				$("#count_content4").html(data);
