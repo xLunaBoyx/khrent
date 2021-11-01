@@ -109,9 +109,9 @@ public class ReviewBoardDao {
 		return reviewBoardNo;
 	}
 
-	public int insertReviewAttachment(Connection conn, Attachment attach) {
+	public int insertReviewBoardAttachment(Connection conn, Attachment attach) {
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertReviewAttachment");
+		String sql = prop.getProperty("insertReviewBoardAttachment");
 		int result = 0;
 		System.out.println(attach);
 		
@@ -337,6 +337,83 @@ public class ReviewBoardDao {
 			pstmt.setString(3, reviewBoardComment.getContent());
 			pstmt.setInt(4, reviewBoardComment.getCommentLevel());
 			pstmt.setObject(5, reviewBoardComment.getCommentRef() == 0 ? null : reviewBoardComment.getCommentRef());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Attachment selectOneReviewBoardAttachment(Connection conn, int attachNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Attachment attach = null;
+		String sql = prop.getProperty("selectOneReviewBoardAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, attachNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				attach = new Attachment();
+				attach.setNo(rset.getInt("no"));
+				attach.setBoardNo(rset.getInt("review_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attach;
+	}
+
+	public int deleteReviewBoardAttachment(Connection conn, int attachNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteReviewBoardAttachment");
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setInt(1, attachNo);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateReviewBoard(Connection conn, ReviewBoard reviewBoard) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReviewBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reviewBoard.getReviewTitle());
+			pstmt.setString(2, reviewBoard.getReviewContent());
+			pstmt.setDouble(3, reviewBoard.getScore());
+			pstmt.setInt(4, reviewBoard.getReviewNo());
 			
 			result = pstmt.executeUpdate();
 			

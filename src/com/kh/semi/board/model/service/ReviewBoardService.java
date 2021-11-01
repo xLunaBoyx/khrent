@@ -44,7 +44,7 @@ public class ReviewBoardService {
 			Attachment attach = reviewBoard.getAttach();
 			if(attach != null) {
 				attach.setBoardNo(reviewBoardNo);
-				result = reviewBoardDao.insertReviewAttachment(conn, attach);
+				result = reviewBoardDao.insertReviewBoardAttachment(conn, attach);
 			}
 			commit(conn);
 		} catch(Exception e) {
@@ -109,6 +109,56 @@ public class ReviewBoardService {
 		
 		try {
 			result = reviewBoardDao.insertReviewBoardComment(conn, reviewBoardComment);
+			
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+	public Attachment selectOneReviewBoardAttachment(int attachNo) {
+		Connection conn = getConnection();
+		Attachment attach = reviewBoardDao.selectOneReviewBoardAttachment(conn, attachNo);
+		close(conn);
+		return attach;
+	}
+
+	public int deleteReviewBoardAttachment(int attachNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = reviewBoardDao.deleteReviewBoardAttachment(conn, attachNo);
+			if(result == 0)
+				throw new IllegalArgumentException("해당 첨부파일이 존재하지 않습니다. : " + attachNo);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+	public int updateReviewBoard(ReviewBoard reviewBoard) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1. 게시글 수정 - update board
+			result = reviewBoardDao.updateReviewBoard(conn, reviewBoard);
+			
+			// 2. 첨부파일이 있는 경우 - insert into attachment
+			Attachment attach = reviewBoard.getAttach();
+			if(attach != null) {
+				// 위에 boardEnroll에서 썼던 메소드. 저기에서는 보드넘버를 구하기 위해 보드넘버 구하는 메소드를 먼저 했지만, 여기서는 보드넘버가 이미 있으므로 그 과정은 필요없다.
+				result = reviewBoardDao.insertReviewBoardAttachment(conn, attach);   
+			}
 			
 			commit(conn);
 		} catch (Exception e) {
