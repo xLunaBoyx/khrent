@@ -17,7 +17,7 @@ ul.clearfix {
 footer * {
     color: #999;
 }
-.wrap {
+.footer_wrap {
 	position: relative;
     width: 1170px;
     min-width: 1170px;
@@ -103,7 +103,7 @@ footer .top_footer .contact_wrap .hour_wrap img {
 footer .top_footer .contact_wrap .hour_wrap .text_wrap {
     position: relative;
     float: left;
-    top: -14px;
+    top: 0px;
 }
 footer .top_footer .contact_wrap .hour_wrap .text_wrap dl {
     display: block;
