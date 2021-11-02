@@ -118,37 +118,12 @@ input {
 	color: #fff;
 	display: block;
 	height: 50px;
-	width: 50%;
+	width: 185px;
 	font-size: 16px;
 	text-align: center;
 	margin: 0 auto;
 	margin-top: 80px;
 }
-
-.btn-color-type07:hover {
-	background-color: white;
-	color: rgb(64, 64, 64);
-	border: 1px solid rgb(64, 64, 64);
-}
-
-.btn-color-type08 {
-	background: #b3b3b3;
-	color: #fff;
-	display: block;
-	height: 50px;
-	width: 50%;
-	font-size: 16px;
-	text-align: center;
-	margin: 0 auto;
-	margin-top: 10px;
-}
-
-.btn-color-type08:hover {
-	background-color: white;
-	color: rgb(64, 64, 64);
-	border: 1px solid rgb(64, 64, 64);
-}
-
 
 /* 회원가임 */
 .join_wrap {

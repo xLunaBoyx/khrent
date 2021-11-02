@@ -129,7 +129,10 @@ $(document).ready(function() {
 					
 		</div>
 	</div>
-
+<!-- 실시간 채팅 -->
+		<a href="<%= request.getContextPath() %>/admin/chat">
+		<img src="https://i.ibb.co/gtmgCqK/free-icon-live-chat-4213911.png" alt="chat" class="chat"/>
+		</a>
 </section>
 
 <!-- 게시판 끝 -->

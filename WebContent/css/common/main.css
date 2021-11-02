@@ -351,3 +351,13 @@ ol, ul {
 	margin: 0 auto;
 	margin-bottom: 85px;
 }
+
+/* 채팅 */
+
+.chat {
+	position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 70px;
+    height: 70px;
+}
