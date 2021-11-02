@@ -6,7 +6,7 @@
 		</section>
 		<footer>
 		
-			<div class="wrap">
+			<div class="footer_wrap">
 			<div class="top_footer">
 				<div class="link_wrap">
 					<ul class="clearfix">
