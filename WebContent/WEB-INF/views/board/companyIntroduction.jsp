@@ -18,7 +18,7 @@
 		<section class="new_standard">
 			<div class="standard_header" style="text-align:center;">렌트카 예약의 새로운 기준</div>
 			<div class="topImg">
-			<img src="https://i.ibb.co/bdQr1wv/monitor-gd5561e8b2-1280-copy.png" alt="monitor" style="width: 600px;" />
+			<img src="https://i.ibb.co/pPw70xj/monitor-gd5561e8b2-1280-copy.png" alt="monitor" style="width: 600px;" />
 			</div>
 		</section>
 		<section class="service_special">

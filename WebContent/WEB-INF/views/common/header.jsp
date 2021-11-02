@@ -13,6 +13,11 @@
 <head>
 <meta charset="UTF-8">
 <title>KH렌트</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/style.css" />
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/common/header.css" />
 
@@ -108,11 +113,11 @@
 </head>
 
 <body>
-		 <nav>
+		 <nav style="height: 60px;">
 		 <div class="header">
 			 <h1 class="logo">
 				 <a href="<%= request.getContextPath() %>">
-				 <img src="https://i.ibb.co/0Jf8Kxg/mark.png" alt="mark" class="mark"/>
+				 <img src="https://i.ibb.co/BcJnTqY/Untitled-1.png" alt="mark" class="mark"/>
 				 </a>
 			 </h1>
 		 </div>

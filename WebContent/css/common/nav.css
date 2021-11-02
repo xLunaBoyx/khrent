@@ -13,7 +13,7 @@ section.searchSection {
 }
 
 section.searchSection .searchLayout {
-	background-color: #27ae60;
+	background-color: #538797;
 	width: 100%;
 	min-width: 1200px;
 	height: 67px;
@@ -46,7 +46,7 @@ section.searchSection .searchLayout .searchBorder hr {
 
 section.searchSection .searchLayout .searchLabel {
 	color: #fff;
-	line-height: 57px;
+	line-height: 45px;
 	width: 85px;
 	text-align: center;
 }

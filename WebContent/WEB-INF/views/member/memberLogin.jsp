@@ -46,7 +46,7 @@ if(msg != null) session.removeAttribute("msg");
 					<input type="submit" value="로그인" class="btn btn-l btn-color-type07 btn-login" />
 				</form>
 				<br />
-					<p style="text-align: center;">아직 <span style="font-weight: bolder; color: #26ae60;">KHrent</span> 회원이 아니신가요?</p>
+					<p style="text-align: center;">아직 <span style="font-weight: bolder; color: #7398c3;">KHrent</span> 회원이 아니신가요?</p>
 					<input type="button" value="회원가입" class="btn btn-l btn-color-type07 btn-login" style="margin-top: 10px; background-color: #b3b3b3;" onclick="location.href='<%= request.getContextPath() %>/member/enroll';">
 			</div>		
 		</div>
