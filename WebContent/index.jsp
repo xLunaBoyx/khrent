@@ -210,6 +210,22 @@ $(document).ready(function () {
 </script>
 
 <script>
+// 대여후기
+$(document).ready(function () {
+	$.ajax({
+		url:"<%=request.getContextPath()%>/board/ajaxMainReviewBoard",
+		method: "GET",
+		success: function(data) {
+			$("#boardList3").html(data);
+		},
+		complete: function() {
+			console.log("complete")
+		}
+	});
+});
+</script>
+
+<script>
 // 예약가능차량
 $(document).ready(function () {
 	$.ajax({

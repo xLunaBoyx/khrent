@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.semi.board.model.vo.Attachment;
 import com.kh.semi.board.model.vo.CommunityBoardComment;
+import com.kh.semi.board.model.vo.NoticeBoard;
 import com.kh.semi.board.model.vo.ReviewBoard;
 import com.kh.semi.board.model.vo.ReviewBoardComment;
 import com.kh.semi.reservation.model.vo.Reservation;
@@ -20,6 +21,7 @@ import com.kh.semi.reservation.model.vo.Reservation;
 public class ReviewBoardDao {
 
 	private Properties prop = new Properties();
+	
 	public ReviewBoardDao() {
 		String filepath = ReviewBoardDao.class.getResource("/sql/board/board-query.properties").getPath();
 		try {
@@ -569,53 +571,39 @@ public class ReviewBoardDao {
 		return result;
 	}
 
-	public int insertAvgScore(Connection conn, Double score, String carName) {
+	public List<ReviewBoard> ajaxMainReviewBoardList(Connection conn) {
 		PreparedStatement pstmt = null;
-		int result = 0;
-		String sql = prop.getProperty("insertAvgScore");
-		System.out.println(sql);
-		System.out.println("차이름은?@insertAvgScoreDao " + carName);
+		ResultSet rset = null;
+		List<ReviewBoard> list = new ArrayList<>();
+		String sql = prop.getProperty("selectHomeReviewBoardList");
 		
 		try {
-			//미완성쿼리문을 가지고 객체생성.
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
 			pstmt = conn.prepareStatement(sql);
-			//쿼리문 완성시키기
-			pstmt.setDouble(1, score);
-			pstmt.setString(2, carName);
 			
-			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
-			//DML은 executeUpdate()
-			result = pstmt.executeUpdate();
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
 			
+			while(rset.next()) {
+				ReviewBoard reviewBoard = new ReviewBoard();
+				
+				reviewBoard.setReviewTitle(rset.getString("review_title"));
+				reviewBoard.setRegDate(rset.getDate("reg_date"));
+
+				System.out.println("reviewBoard = " + reviewBoard);
+				
+				list.add(reviewBoard);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			// 3. 자원반납
+			close(rset);
 			close(pstmt);
 		}
 		
-		return result;
+		return list;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
+	
+
