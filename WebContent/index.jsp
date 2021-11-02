@@ -142,6 +142,24 @@ $(document).ready(function() {
 <div id="map" style="width:1170px; height:500px;"></div>
 
 <script>
+// 메인 슬라이드
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 5000);    
+}
+</script>
+
+<script>
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
