@@ -211,6 +211,7 @@
 <form action="<%= request.getContextPath() %>/board/reviewBoardDelete" name="deleteReviewBoardFrm" method="POST">
 	<input type="hidden" name="no" value="<%= reviewBoard.getReviewNo() %>" />
 	<input type="hidden" name="reserveNo" value="<%= reviewBoard.getReservNo() %>"/>
+	<input type="hidden" name="carName" value="<%= reviewBoard.getCarName() %>"/>
 </form>
 	
 <script>

@@ -77,6 +77,11 @@ public class ReviewBoardEnrollServlet extends HttpServlet {
 		Double score = Double.parseDouble(multipartRequest.getParameter("score"));
 		ReviewBoard reviewBoard = new ReviewBoard(0,reserNo, writer, title, content, carName, null, 0, score, 0, null);
 		
+		
+		
+		// 이용후기 작성될 때 마다 car_info 테이블의 car_name에 해당하는 avg_score에 score가 입력되고 나누기 assess_cnt 해서 평균점수 구하기
+		
+		
 		if(multipartRequest.getFile("upFile") != null) {
 			Attachment attach = new Attachment();
 			attach.setOriginalFilename(originalFilename);
@@ -85,10 +90,13 @@ public class ReviewBoardEnrollServlet extends HttpServlet {
 			reviewBoard.setAttach(attach);
 		}
 		
-		System.out.println("ReviewBoardEnrollServlet@servlet = " + reviewBoard);
 		
 		// 2. 업무로직
 		int result = reviewBoardService.insertReviewBoard(reviewBoard);
+		
+		// 이용후기 작성될 때 마다 car_info테이블의 car_name에 해당하는 assess_cnt가 +1되도록
+		int result2 = reviewBoardService.plusOneAssessCnt(carName);
+		
 		System.out.println("ReviewBoardEnrollServlet@servlet = " + reviewBoard);
 		
 		// 3. 응답처리 : redirect

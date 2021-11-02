@@ -31,7 +31,9 @@ public class ReviewBoardDeleteServlet extends HttpServlet {
 		// 1. 사용자입력값 처리
 		int no = Integer.parseInt(request.getParameter("no"));
 		String reserveNo = request.getParameter("reserveNo");
-		System.out.println("예약번호  = " + reserveNo);
+		String carName = request.getParameter("carName");
+		System.out.println("예약번호@ReviewBoardDeleteServlet  = " + reserveNo);
+		System.out.println("차이름@ReviewBoardDeleteServlet  = " + carName);
 				
 				
 		// 2.업무로직
@@ -51,6 +53,8 @@ public class ReviewBoardDeleteServlet extends HttpServlet {
 		// 삭제할 때 해당 예약번호가 있는 예약테이블의 review_status가 Y가 되야한다.
 		int result2 = reviewBoardService.updateReservationReviewSatatus(review_status, reserveNo);
 		
+		// 이용후기 삭제할 때 해당 car_info의 해당 차이름 carName의 assess_cnt 가 -1이 되야함.
+		int result3 = reviewBoardService.minusOneAssessCnt(carName);
 		
 		String msg = result > 0 ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
 		
