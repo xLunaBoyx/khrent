@@ -298,4 +298,15 @@ public class AdminService {
  		close(conn);
  		return result;
 	}
+
+	public int updateReturnStatus(Reservation reservation) {
+		Connection conn = getConnection();
+		int result = adminDao.updateReturnStatus(conn, reservation);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
 }
