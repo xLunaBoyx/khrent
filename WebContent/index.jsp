@@ -133,7 +133,7 @@ $(document).ready(function() {
 	</div>
 <!-- 실시간 채팅 -->
 		<a href="<%= request.getContextPath() %>/admin/chat">
-		<img src="https://i.ibb.co/87jzbm6/free-icon-bubble-chat-5154300.png" alt="chat" class="chat" style="z-index: 999;"/>
+		<img src="https://i.ibb.co/qmtZFtz/free-icon-live-chat-2840204.png" alt="chat" class="chat" style="z-index: 999;"/>
 		</a>
 </section>
 

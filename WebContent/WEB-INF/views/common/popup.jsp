@@ -10,7 +10,7 @@
         <h4 class="title">KH렌트 공지사항</h4>
         <div class="cont">
             <p>
-<img src="https://i.ibb.co/ZcLtxg7/Untitled-1.jpg" width=500 height=500 usemap="#popup" alt="event page">
+<img src="https://i.ibb.co/YhgbwQB/3699167192-QYjhmzyk-b2f2b4b450897f3fcb71071f4821d6c202af9075.jpg" width=400 height=600 usemap="#popup" alt="event page">
             </p>
         </div>
           <form name="pop_form">
