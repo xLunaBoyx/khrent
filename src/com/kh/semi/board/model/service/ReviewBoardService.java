@@ -212,4 +212,38 @@ public class ReviewBoardService {
 		return list;
 	}
 
+	public int plusOneAssessCnt(String carName) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = reviewBoardDao.plusOneAssessCnt(conn, carName);
+			if(result == 0)
+				throw new IllegalArgumentException();
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public int minusOneAssessCnt(String carName) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = reviewBoardDao.minusOneAssessCnt(conn, carName);
+			if(result == 0)
+				throw new IllegalArgumentException();
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
 }
