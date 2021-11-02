@@ -1289,4 +1289,27 @@ public class AdminDao {
 		return result;
 	}
 
+	public int updateReturnStatus(Connection conn, Reservation reservation) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateReturnStatus"); 
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, reservation.getReturnStatus());
+			pstmt.setString(2, reservation.getReserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
