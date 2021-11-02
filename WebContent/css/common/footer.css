@@ -32,7 +32,8 @@ footer .top_footer .link_wrap {
     position: relative;
     float: left;
     width: 700px;
-    padding:28px 0px;
+    padding:38px 0px;
+    left: -79px;
 }
 ol, ul {
     list-style: none;
@@ -56,12 +57,13 @@ footer .top_footer .contact_wrap {
     position: relative;
     float: left;
     width: 450px;
-    height: 76px;
+    height: 103px;
+    left: -50px;
 }
 footer .top_footer .contact_wrap .tel_wrap {
     width: 35%;
     float: left;
-    padding-top: 23px;
+    padding-top: 61px;
 }
 
 footer .top_footer .contact_wrap .tel_wrap img {
@@ -89,7 +91,7 @@ footer .top_footer .contact_wrap .tel_wrap .sub_text {
 footer .top_footer .contact_wrap .hour_wrap {
     width: auto;
     float: left;
-    padding-top: 23px;
+    padding-top: 61px;
     padding-left: 27px;
 }
 
@@ -139,6 +141,7 @@ footer .bottom_footer {
 }
 footer .footer_info {
     position: relative;
+    left: -79px;
 }
 footer .footer_info .info {
     margin-bottom: 14px;
