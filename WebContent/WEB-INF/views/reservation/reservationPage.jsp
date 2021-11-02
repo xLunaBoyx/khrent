@@ -162,12 +162,12 @@ DecimalFormat df = new DecimalFormat("###,###");
 						</thead>
 						<tbody>
 							<tr>
-								<th><input type="radio" name="insuranceType" id="self0" value="0">
+								<th><input type="radio" name="insuranceType" id="self0" value="0" checked>
 									<label for="self0">선택안함</label></th>
 								<td colspan="3">차량 사고 시 차량 손해액의 전부를 고객님께서 부담하셔야 합니다.</td>
 							</tr>
 							<tr>
-								<th><input type="radio" name="insuranceType" id="self1" value="20000" checked>
+								<th><input type="radio" name="insuranceType" id="self1" value="20000">
 									<label for="self1">자차 1</label></th>
 								<td>20,000원</td>
 								<td>무한</td>
@@ -319,13 +319,14 @@ DecimalFormat df = new DecimalFormat("###,###");
 					<dl>
 						<dt>자차 보험료</dt>
 						<dd>
-							<span id="insu">0</span>원
+							<!-- <span id="insu">0</span>원 -->
+							<input type="text" id="insu" style="border: none; text-align: right; font-size: 16px;" value="0" readonly />
 						</dd>
 					</dl>
 					<dl>
 						<dt>총 대여 금액</dt>
 						<dd>
-							<strong><span id="totalCharge"><%= price %></span>원</strong>
+							<strong><input type="text" id="total1" style="border: none; text-align: right; font-size: 16px; font-weight: bold;" value="<%= price %>" readonly /></strong>
 						</dd>
 					</dl>
 					<dl class="divideLine"></dl>
@@ -334,11 +335,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 							<strong>결제금액</strong>
 						</dt>
 						<dd>
-							<strong> <span id="paymentAmount" data-paymentamount="0"
-								data-totalcharge="0" data-deposit="0" data-charge="29000"
-								data-moncharge="0" data-leftcharge="0" data-precharge="0"
-								data-delivery="0" data-insu="0" data-partner="0" data-coupon="0"><%=price%></span>원
-							</strong>
+							<strong><input type="text" id="total2" style="border: none; text-align: right; font-size: 16px; font-weight: bold;" value="<%= price %>" readonly /></strong>
 						</dd>
 					</dl>
 				</div>
@@ -354,18 +351,23 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 
 <script>
+$(document).ready(function() {
+	$("#insu").val('0원');
+	$("#total1").val(<%= price %> + '원');
+	$("#total2").val(<%= price %> + '원');
+});
+
 /* 보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류 */
-$("[name=insuranceType]").change = ((e) => {
-	console.log($("[name=insuranceType]:checked").val());
-	$("#paymentAmount").val(<%= price %> + $("[name=insuranceType]:checked").val());
+/* $("[name=insuranceType]").change = ((e) => {   여긴 이렇게 써놓고 다른데는  .change((e) => {  이렇게 하고 있었다. 정신이 나간건가? */
+$("[name=insuranceType]").change((e) => {
+	var fee = $("[name=insuranceType]:checked").val();
+	$("#insu").val(fee + '원');
+	
+	var totalFee = (String) ((parseInt(fee) + <%= price %>).toLocaleString('ko-KR'));
+	$("#total1").val(totalFee + '원');
+	$("#total2").val(totalFee + '원');
 });
 
-$("[name=licenseType]").change = ((e) => {
-	console.log($("[name=licenseType]:checked").val());
-});
-</script>
-
-<script>
 
 // 지도
 var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
@@ -437,7 +439,7 @@ function inicisPay() {
 	    pay_method : 'card', //생략 가능
 	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
 	    name : '<%= car.getCarName() %>',   
-	    amount : <%= price %>,
+	    amount : $("#total").val(),
 	    buyer_name : '<%= loginMember.getMemberName() %>',
 	    buyer_tel : '<%= loginMember.getPhone() %>' 
 	    /* buyer_email : 'iamport@siot.do', */
@@ -458,7 +460,7 @@ function inicisPay() {
 				        car_name : "<%=car.getCarName()%>",
 				        start_date: "<%=startDate%>",
 				        end_date: "<%=endDate%>",
-				        price: <%=price%>,
+				        price: $("#total").val(),
 				        insurance_type: $("[name=insuranceType]:checked").val(),
 				        issue_date: $("#issue_date").val(),
 				        license_type: $("[name=licenseType]").val(),
