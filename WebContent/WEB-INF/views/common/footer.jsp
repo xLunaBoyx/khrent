@@ -26,11 +26,11 @@
 						<div class="text_wrap">
 							<dl>
 								<dt>평일</dt>
-								<dd>09:00 ~ 18:00</dd>
+								<dd>10:00 ~ 20:00</dd>
 							</dl>
 							<dl>
-								<dt>토요일</dt>
-								<dd>09:00 ~ 18:00</dd>
+								<dt>주말, 공휴일</dt>
+								<dd>10:00 ~ 20:00</dd>
 							</dl>
 						</div>
 					</div>
