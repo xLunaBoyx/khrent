@@ -8,7 +8,20 @@
 <%
 HttpSession session2 = request.getSession();
 System.out.println(session2.getId());
+
+String msg = (String) session.getAttribute("msg");
+
+// 그냥 두면 페이지 새로 띄울때마다 alert 메시지가 계속 뜨기 때문에, 한번만 할 수 있도록 메시지 띄우고 나면 msg가 삭제되도록 한다.
+if(msg != null) session.removeAttribute("msg");
 %>
+
+<script>
+<% if(msg != null) { %>
+	// 사용자 메시지 전달
+	alert("<%= msg %>");
+<% } %>
+</script>
+
 	<div class="login_wrap">
 			<strong class="tit01" style="margin-bottom:25px;">로그인</strong>
 			<div class="login_box clearfix" >
@@ -32,21 +45,15 @@ System.out.println(session2.getId());
 					</div>
 					<input type="submit" value="로그인" class="btn btn-l btn-color-type07 btn-login" />
 				</form>
+				<br />
+					<p style="text-align: center;">아직 KHrent 회원이 아니신가요?</p>
+					<input type="button" value="회원가입" class="btn btn-l btn-color-type07 btn-login" style="margin-top: 10px" onclick="location.href='/khrent/member/enroll';"/>
 			</div>		
 		</div>
 
 <script>
 
-<% 
-	String msg = (String) session.getAttribute("msg");
-	if(msg != null) session.removeAttribute("msg");
-	
-%>
 
-<% if(msg != null) { %>
-	// 사용자 메세지 전달
-	alert("<%= msg %>");
-<% } %>
 
 $(() => {
 	

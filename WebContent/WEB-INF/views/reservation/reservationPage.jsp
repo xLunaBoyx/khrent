@@ -343,17 +343,13 @@ DecimalFormat df = new DecimalFormat("###,###");
 					</dl>
 				</div>
 				<div>
-					<a href="javascript:;" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 275px; height: 30px; margin-top: 60px;">결제하기</a>
+					<a href="javascript:;" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 315px; height: 30px; margin-top: 60px;">결제하기</a>
 					<!-- <input type="button" value="결제하기" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 275px; height: 30px; margin-top: 60px;"/> -->
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
 
 
 

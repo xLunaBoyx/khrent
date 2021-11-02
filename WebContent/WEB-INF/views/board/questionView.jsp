@@ -83,7 +83,7 @@
 				</tr>
 				
 				<tr>
-					<td colspan="4" id="questionViewContent">
+					<td colspan="4" id="questionViewContent" style="height: 300px;">
 <%
 	if(attachment != null) {
 %>	

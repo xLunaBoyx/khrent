@@ -62,7 +62,11 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= reservation.getReviewStatus() %></td>
             		<td><%= reservation.getReturnStatus() %></td>
             		<td>
+           		<% if(reservation.getReturnStatus() == null || "N".equals(reservation.getReturnStatus())) { %>
             		<input type="button" value="반납" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminReservationUpdate?reserNo=<%= reservation.getReserNo() %>';"/>
+           		<%} else if ("Y".equals(reservation.getReturnStatus())){%>
+            		<span class="returnOk">반납완료</span>
+           		<%} %>
             		</td>
             	</tr>
 <%		

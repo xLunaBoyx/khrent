@@ -38,10 +38,10 @@ $(() => {
 	$(document.boardEnrollFrm).submit(boardValidate);
 });
 </script>
-<div class="wrap clearfix" style="width: 1417px; margin:auto;">
+<div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<section id="board-container">
-	<h2>이용후기</h2>
+	<h1 class="board-title">대여후기</h1>
 	<form
 		name="boardEnrollFrm"
 		action="<%=request.getContextPath() %>/board/reviewBoardEnroll" 
@@ -76,7 +76,7 @@ $(() => {
 %>
 		<tr>
 			<th>점수</th>
-			<td>
+			<td style="text-align: left;">
 				<select name="score" id="score">
 					<option value="" selected>선택</option>
 					<option value="0.5">0.5점</option>
@@ -95,16 +95,19 @@ $(() => {
 		<tr>
 			<th>첨부파일</th>
 			<td>			
-				<input id="file" type="file" name="upFile">
+				<div class="filebox">
+				<label for="ex_file" style="margin-bottom: 10px;">사진</label>			
+				<input type="file" name="upFile" id="ex_file">
+				</div>
 			</td>
 		</tr>
 		<tr>
 			<th>내 용</th>
-			<td><textarea id="content" rows="5" cols="40" name="content"></textarea></td>
+			<td><textarea id="textarea" rows="5" cols="40" name="content"></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input type="submit" value="등록하기">
+				<input type="submit" value="등록하기" class="writeBtn">
 			</th>
 		</tr>
 	</table>
