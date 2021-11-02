@@ -351,19 +351,23 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 
 <script>
+// 페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 
 $(document).ready(function() {
 	$("#insu").val('0원');
 	$("#total1").val(<%= price %> + '원');
 	$("#total2").val(<%= price %> + '원');
 });
 
-/* 보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류 */
-/* $("[name=insuranceType]").change = ((e) => {   여긴 이렇게 써놓고 다른데는  .change((e) => {  이렇게 하고 있었다. 정신이 나간건가? */
+
+// 보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류
+// $("[name=insuranceType]").change = ((e) => {   여긴 이렇게 써놓고 다른데는  .change((e) => {  이렇게 하고 있었다. 정신이 나간건가? 
 $("[name=insuranceType]").change((e) => {
 	var fee = $("[name=insuranceType]:checked").val();
+	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다.
 	$("#insu").val(fee + '원');
 	
-	var totalFee = (String) ((parseInt(fee) + <%= price %>).toLocaleString('ko-KR'));
+	// 위에서 선언한 fee를 숫자형으로 바꾸고 대여료와 합치고 toLocaleString을 이용하여 세자리수마다 ,를 찍는다. 왠지는 모르겠지만 (String) 붙여서 문자열로 변환하지 않아도 +연산이 된다.
+	var totalFee = (parseInt(fee) + <%= price %>).toLocaleString('ko-KR');
 	$("#total1").val(totalFee + '원');
 	$("#total2").val(totalFee + '원');
 });
