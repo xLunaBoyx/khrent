@@ -13,6 +13,11 @@
 	<div class="section section0" id="section0"
 		style="height: 700px; z-index: 1;">
 
+<div class="w3-content w3-section" style="width:100%;">
+	<img class="mySlides w3-animate-fading" src="https://i.ibb.co/VCpvPy2/bmw-gb73281a79-1920.jpg" style="width:100%; opcity: .8;">
+  	<img class="mySlides w3-animate-fading" src="https://i.ibb.co/F33689x/rearview-mirror-g8cdf3d119-1920.jpg" style="width:100%; opcity: .8;">
+</div>
+
 		<div class="visual_cont">
 			<div class="wrap">
 				<div class="subs">
@@ -23,10 +28,6 @@
 					<p>합리적인 가격과</p>
 					<p>최상의 서비스</p>
 					<p class="point">모두 실시간 예약 가능합니다.</p>
-				</div>
-				<div class="home_img">
-					<img src="https://i.ibb.co/VB4tMYF/main.png" id="home_car_img"
-						alt="car" />
 				</div>
 			</div>
 		</div>
@@ -132,7 +133,7 @@ $(document).ready(function() {
 	</div>
 <!-- 실시간 채팅 -->
 		<a href="<%= request.getContextPath() %>/admin/chat">
-		<img src="https://i.ibb.co/gtmgCqK/free-icon-live-chat-4213911.png" alt="chat" class="chat"/>
+		<img src="https://i.ibb.co/87jzbm6/free-icon-bubble-chat-5154300.png" alt="chat" class="chat" style="z-index: 999;"/>
 		</a>
 </section>
 
