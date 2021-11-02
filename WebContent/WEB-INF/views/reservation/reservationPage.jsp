@@ -96,18 +96,18 @@ DecimalFormat df = new DecimalFormat("###,###");
 								모델명, 색상이 다를수 있습니다. </span>
 						</p>
 						<button type="button" class="btn btn-l btn-color-type01"
-							id="btn-preivew" style="width: 80%">차량 상세 이미지</button>
+							id="btn-preivew">차량 상세 이미지</button>
 					</div>
 				</div>
 				<div class="info_list">
-				<strong> &nbsp;&nbsp;&nbsp;<%= car.getCarName() %></strong>
+				<strong style="font-weight: bolder"> &nbsp;&nbsp;&nbsp;<%= car.getCarName() %></strong>
 				<ul class="option01 clearfix">
 					<li><%= car.getFuel() %></li>
 					<li><%= car.getReleaseYear() %></li>
 					<li><%= car.getMaker() %></li>
 				</ul>
 				<br />
-				<p style="margin-left: 38px;"><%= car.getCarOption() %></p>
+				<p class="carOption"><%= car.getCarOption() %></p>
 				<!-- <ul class="icoList clearfix">
 					<li class="icon visit active"><span>본사 방문</span></li>
 					<li class="icon recentYear "><span>최근연식</span></li>
@@ -132,7 +132,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 				<div class="map_info">	
 					<strong class="location">KH렌트<span>(서울 강남구)</span></strong>
 					<p>평일 10:00 ~ 20:00 / 주말, 공휴일 10:00 ~ 20:00</p>
-					<p class="etc point">본사의 정확한 주소와 연락처는 예약이 완료되면 안내해드립니다.</p>
+					<p class="etc point">본사의 정확한 주소와 연락처는 <br /> 예약이 완료되면 안내해드립니다.</p>
 				</div>
 			</div>
 		</div>
@@ -204,9 +204,6 @@ DecimalFormat df = new DecimalFormat("###,###");
 							</dl>
 							<div style="padding-top: 1em">*예약자와 제1운전자(이름,휴대폰,생년월일)가 다르면
 								수정하고 아래 면허정보에서 저장하세요.</div>
-							<div class="alertWrap">
-							<a href="javascript:;" class="saveBtn" onclick="saveLicense();">면허 정보 저장</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -218,8 +215,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 						<div class="licenseForm  active ">
 
 							<div class="driverLicense active">
-								<form action="" name="frmDomestic" id="frmDomestic"
-									method="post" novalidate="novalidate" style="display: flex; flex-direction: column;">
+								<form action="" name="frmDomestic" id="frmDomestic" method="post" novalidate="novalidate">
 
 									<div class="licenseType clearfix">
 										<strong class="tit04">면허 종류</strong>
@@ -340,7 +336,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 					</dl>
 				</div>
 				<div>
-					<a href="javascript:;" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 315px; height: 30px; margin-top: 60px;">결제하기</a>
+					<a href="javascript:;" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="margin-top: 60px; height: 30px; width: 315px; padding-top: 20px;">결제하기</a>
 					<!-- <input type="button" value="결제하기" onclick="inicisPay();" class="btn btn-l btn-color-type01" style="background-color: #39b56d; padding-top: 20px; width: 275px; height: 30px; margin-top: 60px;"/> -->
 				</div>
 			</div>
