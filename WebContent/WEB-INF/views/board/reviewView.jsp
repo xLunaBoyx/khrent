@@ -55,7 +55,6 @@
 			<div id="writing-container">
 				<%-- 작성자와 관리자만 마지막행 수정/삭제버튼이 보일수 있게 할 것 --%>
 				<input class="change" type="button" value="수정하기" onclick="updateBoard()">
-				<input class="change" type="button" value="삭제하기" onclick="deleteBoard()">
 			</div>
 <%
 	}
@@ -208,22 +207,22 @@
 </div> <!-- </div> .wrap clearfix -->	
 	
 <!-- 게시글 삭제용 폼 -->
-<form action="<%= request.getContextPath() %>/board/reviewBoardDelete" name="deleteReviewBoardFrm" method="POST">
+<%-- <form action="<%= request.getContextPath() %>/board/reviewBoardDelete" name="deleteReviewBoardFrm" method="POST">
 	<input type="hidden" name="no" value="<%= reviewBoard.getReviewNo() %>" />
 	<input type="hidden" name="reserveNo" value="<%= reviewBoard.getReservNo() %>"/>
 	<input type="hidden" name="carName" value="<%= reviewBoard.getCarName() %>"/>
-</form>
+</form> --%>
 	
 <script>
 const updateBoard = () => {
 	location.href = "<%= request.getContextPath() %>/board/reviewBoardUpdate?no=<%= reviewBoard.getReviewNo() %>";
 };
 
-const deleteBoard = () => {
+/* const deleteBoard = () => {
 	if(confirm("정말 이 게시물을 삭제하시겠습니까?")) {
 		document.deleteReviewBoardFrm.submit();
 	}
-}
+} */
 
 
 
