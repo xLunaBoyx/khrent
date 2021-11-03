@@ -155,7 +155,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 								<dd>
 									<span class="disable"> <input type="text"
 										id="firstDriverPhoneNumber" name="firstDriverPhoneNumber"
-										value="" maxlength="11" placeholder="01012345678">
+										value="" maxlength="11" placeholder="정수 11자리">
 									</span>
 								</dd>
 							</dl>
@@ -178,9 +178,9 @@ DecimalFormat df = new DecimalFormat("###,###");
 										<strong class="tit04">면허 종류</strong>
 
 										<div class="licenseList clearfix">
-											<input type="radio" name="license_type" id="stick" value="stick" checked> 
+											<input type="radio" name="license_type" id="stick" value="stick" <%= loginMember.getLicense_type() != null && "stick".equals(loginMember.getLicense_type()) ? "checked" : "" %>> 
 												<label for="stick"><span>1종 보통</span></label> 
-											<input type="radio" name="license_type" id="auto" value="auto"> 
+											<input type="radio" name="license_type" id="auto" value="auto" <%= loginMember.getLicense_type() != null && "auto".equals(loginMember.getLicense_type()) ? "checked" : "" %>> 
 												<label for="auto"><span>2종 보통</span></label>
 										</div>
 									</div>
@@ -191,7 +191,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 											</dt>
 											<dd>
 												<div class="licenseNumInput">
-													<input type="text" placeholder="정수 12자리" value="" maxlength="12" name="license_no" id="license_no" required>
+													<input type="text" placeholder="정수 12자리" maxlength="12" name="license_no" id="license_no" value="<%= loginMember.getLicense_no() != null ? loginMember.getLicense_no() : "" %>" required>
 												</div>
 											</dd>
 										</dl>
@@ -203,7 +203,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 											</dt>
 											<dd>
 											<div class="licenseNumInput">
-												<input type="text" placeholder="날짜 선택" id="issue_date" name="issue_date" required>
+												<input type="text" placeholder="날짜 선택" id="issue_date" name="issue_date" value="<%= loginMember.getIssue_date() != null ? loginMember.getIssue_date() : "" %>" required>
 											</div>
 											</dd>
 										</dl>

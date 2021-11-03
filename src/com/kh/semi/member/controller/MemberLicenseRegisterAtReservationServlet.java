@@ -38,6 +38,13 @@ public class MemberLicenseRegisterAtReservationServlet extends HttpServlet {
 		
 		// 2. 업무로직 - 면허정보 업데이트
 		int result_ = memberService.LicenseRegister(member);
+		
+		if(result_ > 0) {
+			HttpSession session = request.getSession();
+			Member newMember = memberService.selectOneMember(memberId);
+			session.setAttribute("loginMember", newMember);
+		}
+		
 		String result = result_ > 0 ? "ok" : "no";
 		
 		// 3. forward
