@@ -18,8 +18,7 @@
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
 <!-- iamport.payment.js -->
 
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <%
 Car car = (Car) request.getAttribute("car");
@@ -30,54 +29,6 @@ int days = (int) request.getAttribute("days");
 
 DecimalFormat df = new DecimalFormat("###,###");
 %>
-
-<!-- <div class="reservationContainer"> -->
-<!-- 	<div class="upperBox"> -->
-<!-- 		<div class="upperBox-left"> -->
-<!-- 			<div class="carData"> -->
-<!-- 				<div class="carImage-showReview"> -->
-<%-- 					<img src="<%= request.getContextPath() %>/upload/car/<%= car.getImg() %>" width="450px;" alt="" /> --%>
-<!-- 					<input type="button" id="reviewButton" value="리뷰보기"/> -->
-<!-- 				</div> -->
-<!-- 				<div class="text"> -->
-<%-- 					<p style="font-size: 2em">&nbsp;&nbsp;&nbsp;&nbsp;<%= car.getCarName() %></p> --%>
-<!-- 					<ul class="option01 clearfix"> -->
-<%-- 						<li><%= car.getFuel() %> &nbsp;|&nbsp;&nbsp;</li> --%>
-<%-- 						<li><%= car.getReleaseYear() %> &nbsp;|&nbsp;&nbsp;</li> --%>
-<%-- 						<li><%= car.getMaker() %></li> --%>
-<!-- 					</ul> -->
-<!-- 					<br /> -->
-<!-- 					<ul class="option02 clearfix"> -->
-<%-- 						<li><%= car.getCarOption() %></li> --%>
-<!-- 						<br /><br /> -->
-<!-- 						<li>! KH렌트의 모든 차량은 종합보험에 가입되어 있습니다.</li> -->
-<!-- 						<li>&nbsp;대인:무한 대물: 30,000,000원 자손: 15,000,000원</li> -->
-<!-- 						<br /><br /> -->
-<!-- 						<li>!자차보험은 고객 선택사항이니, 아래에서 선택해주세요.</li> -->
-<!-- 					</ul> -->
-<%-- 					<p>대여기간 : <%= startDate %> ~ <%= endDate %></p>
-<%-- 					<p>총 결제금액은 <%= df.format(price) %>원 입니다.</p> --%>
-<!-- --%> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			.	 -->
-<!-- 		</div> -->
-<!-- 		<div class="upperBox-right"> -->
-<!-- 			<div id="map2"></div> -->
-<!-- 			<div class="locationDesc"> -->
-<!-- 				<strong>KH렌트 (서울 강남구)</strong> -->
-<!-- 				<p>평일 09:00 ~ 21:00 / 주말, 공휴일 09:00 ~ 20:00</p> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	<br /><hr /><br /> -->
-<!-- 	<div class="lowerBox"> -->
-<!-- 		<div class="notice"> -->
-<!-- 			<p>유의사항</p> -->
-
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
 
 <div class="content_wrap">
 	<div class="wrap">
@@ -95,8 +46,8 @@ DecimalFormat df = new DecimalFormat("###,###");
 							<span class="color" style="font-size: 12px;"> *위 차량은 실대여시
 								모델명, 색상이 다를수 있습니다. </span>
 						</p>
-						<button type="button" class="btn btn-l btn-color-type01"
-							id="btn-preivew">차량 상세 이미지</button>
+<!-- 						<button type="button" class="btn btn-l btn-color-type01"
+							id="btn-preivew">차량 상세 이미지</button> -->
 					</div>
 				</div>
 				<div class="info_list">
@@ -176,6 +127,12 @@ DecimalFormat df = new DecimalFormat("###,###");
 						</tbody>
 					</table>
 					<strong class="tit03">운전자 정보 입력</strong>
+					<div class="agreeBox">
+	                    <span class="check-box">
+	                        <input type="checkbox" class="chkDel" id="memberDriverEqual" name="memberDriverEqual">
+	                        <label for="memberDriverEqual">예약자와 운전자가 동일(체크)</label>
+	                    </span>
+					</div>
 					<div class="licenseArea">
 						<div class="firstDriver">
 							<dl>
@@ -184,7 +141,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 								</dt>
 								<dd>
 									<span class="disable"> <!-- 포워딩된 회원정보 수정 불가 --> <input
-										type="text" id="firstDriverName" name="firstDriverName"
+										type="text" id="firstDriverName" name="firstDriverName" 
 										value="" placeholder="제 1 운전자 이름">
 									</span>
 								</dd>
@@ -198,11 +155,11 @@ DecimalFormat df = new DecimalFormat("###,###");
 								<dd>
 									<span class="disable"> <input type="text"
 										id="firstDriverPhoneNumber" name="firstDriverPhoneNumber"
-										value="" maxlength="11" placeholder="(-)없이 숫자만 입력">
+										value="" maxlength="11" placeholder="01012345678">
 									</span>
 								</dd>
 							</dl>
-							<div style="padding-top: 1em">*예약자와 제1운전자(이름,휴대폰,생년월일)가 다르면
+							<div style="padding-top: 1em">*예약자와 제1운전자(이름,휴대폰)가 다르면
 								수정하고 아래 면허정보에서 저장하세요.</div>
 						</div>
 					</div>
@@ -215,15 +172,15 @@ DecimalFormat df = new DecimalFormat("###,###");
 						<div class="licenseForm  active ">
 
 							<div class="driverLicense active">
-								<form action="" name="frmDomestic" id="frmDomestic" method="post" novalidate="novalidate">
-
+								<form action="<%= request.getContextPath() %>/member/memberLicenseRegisterAtReservation" name="frmDomestic" id="frmDomestic" method="post" novalidate="novalidate">
+									<input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>" />
 									<div class="licenseType clearfix">
 										<strong class="tit04">면허 종류</strong>
 
 										<div class="licenseList clearfix">
-											<input type="radio" name="licenseType" id="stick" value="stick" checked> 
+											<input type="radio" name="license_type" id="stick" value="stick" checked> 
 												<label for="stick"><span>1종 보통</span></label> 
-											<input type="radio" name="licenseType" id="auto" value="auto"> 
+											<input type="radio" name="license_type" id="auto" value="auto"> 
 												<label for="auto"><span>2종 보통</span></label>
 										</div>
 									</div>
@@ -234,7 +191,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 											</dt>
 											<dd>
 												<div class="licenseNumInput">
-													<input type="text" placeholder="XX-XXXXXX-XX" value="" maxlength="12" name="license_no" id="license_no" required="">
+													<input type="text" placeholder="정수 12자리" value="" maxlength="12" name="license_no" id="license_no" required>
 												</div>
 											</dd>
 										</dl>
@@ -252,7 +209,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 										</dl>
 									</div>
 									<div class="saveInfoBtn">
-										<input type="submit" value="면허 정보 저장" class="licenseRegisterBtn" />
+										<input type="button" value="면허 정보 저장" class="licenseRegisterBtn" onclick="updateLicenseInfo()"/>
 									</div>
 								</form>
 							</div>
@@ -347,6 +304,46 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 
 <script>
+//운전자와 예약자가 같은지 체크하면 값이 채워짐
+$("#memberDriverEqual").change((e) => {
+	if($("#memberDriverEqual").prop("checked") == true) {
+		$("#firstDriverName").val("<%= loginMember.getMemberName() %>");
+		$("#firstDriverPhoneNumber").val("<%= loginMember.getPhone() %>");
+	}
+	else {
+		$("#firstDriverName").val("");
+		$("#firstDriverPhoneNumber").val("");
+	}
+});
+ 
+// 입력한 면허 정보를 해당 회원 정보에 업데이트
+const updateLicenseInfo = () => {
+	
+	// 면허정보 입력란 유효성 검사를 updateLicenseInfo 안에 넣어야 면허정보 저장하기 눌렀을 때 체크가 된다. 밖에 두니까 일단 팝업창이 뜨고 그거 꺼야 alert가 떴다.
+	const $licenseNo = $("#license_no");
+	if(/^[0-9]{12}$/.test($licenseNo.val()) == false){
+		alert("숫자(정수) 12자리만 입력 가능합니다.");
+		$licenseNo.select();
+		return;
+	}
+	
+	const $issueDate = $("#issue_date");
+	if(/^[0-9]{4}/.test($issueDate.val()) == false){
+		alert("면허발급일자를 선택해 주세요.");
+		$issueDate.select();
+		return;
+	}
+
+	// 면허정보 저장 클릭하면 새 창에 결과가 뜨게 함. 회원가입의 중복아이디 체크 방법을 이용했다.
+	const title = "popupUpdateLicense";
+	const spec = "left=500px, top=300px, width=400px, height=200px";
+	const popup = open("", title, spec);
+	
+	const $frm = $(document.frmDomestic);
+	$frm.attr("target", title).submit();
+};
+
+
 // 페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 
 $(document).ready(function() {
 	$("#insu").val('0원');
@@ -416,7 +413,7 @@ geocoder.addressSearch('서울특별시 강남구 테헤란로14길 6', function
 var tel = $("#firstDriverPhoneNumber").val();
 var insuranceType = $("[name=insuranceType]:checked").val();
 var issueDate = $("#issue_date").val();
-var licenseType = $("[name=licenseType]").val();
+var licenseType = $("[name=license_type]").val();
 var ilcenseNo = $("#license_no").val();
 
 var param = {
@@ -431,6 +428,37 @@ var param = {
 
 // 결제
 function inicisPay() {
+	
+	// 유효성 검사
+	const $firstDriverName = $("#firstDriverName");
+	if(/^[가-힣]{2,}$/.test($firstDriverName.val()) == false){
+		alert("이름은 한글 2글자 이상이어야 합니다.");
+		$firstDriverName.select();
+		return;
+	}
+	
+	const $firstDriverPhoneNumber = $("#firstDriverPhoneNumber");
+	if(/^010[0-9]{8}$/.test($firstDriverPhoneNumber.val()) == false){
+		alert("유효한 전화번호가 아닙니다.");
+		$firstDriverPhoneNumber.select();
+		return;
+	}
+	
+	const $licenseNo = $("#license_no");
+	if(/^[0-9]{12}$/.test($licenseNo.val()) == false){
+		alert("숫자(정수) 12자리만 입력 가능합니다.");
+		$licenseNo.select();
+		return;
+	}
+	
+	const $issueDate = $("#issue_date");
+	if(/^[0-9]{4}/.test($issueDate.val()) == false){
+		alert("면허발급일자를 선택해 주세요.");
+		$issueDate.select();
+		return;
+	}
+
+	
 	var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
 	IMP.init("imp94728784");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
 	
@@ -439,7 +467,7 @@ function inicisPay() {
 	    pay_method : 'card', //생략 가능
 	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
 	    name : '<%= car.getCarName() %>',   
-	    amount : $("#total").val(),
+	    amount : parseInt($("[name=insuranceType]:checked").val()) + <%= price %>,
 	    buyer_name : '<%= loginMember.getMemberName() %>',
 	    buyer_tel : '<%= loginMember.getPhone() %>' 
 	    /* buyer_email : 'iamport@siot.do', */
@@ -460,10 +488,10 @@ function inicisPay() {
 				        car_name : "<%=car.getCarName()%>",
 				        start_date: "<%=startDate%>",
 				        end_date: "<%=endDate%>",
-				        price: $("#total").val(),
+				        price: parseInt($("[name=insuranceType]:checked").val()) + <%= price %>,
 				        insurance_type: $("[name=insuranceType]:checked").val(),
 				        issue_date: $("#issue_date").val(),
-				        license_type: $("[name=licenseType]").val(),
+				        license_type: $("[name=license_type]").val(),
 				        license_no: $("#license_no").val()
 				    },
 				    success(data){

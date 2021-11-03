@@ -256,18 +256,16 @@ select {
 .bfSection {
 	background-color: #ffffff82;
 	height: auto;
-	width: 1890px;
+	width: 1417px;
 	margin-bottom: 50px;
 	margin: 0 auto;
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
+	flex-direction: column;
 }
 
 .topComment {
 	display: flex;
-	width: 1000px;
-    margin: 0 auto;
 }
 
 .reserDate {
