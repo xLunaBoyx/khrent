@@ -42,8 +42,9 @@ public class MemberEnrollServlet extends HttpServlet {
 		String password = MvcUtils.getEncryptedPassword(request.getParameter("password"));
 		String memberName = request.getParameter("memberName");
 		String phone = request.getParameter("phone");
+		int mileage = 1000;
 	
-		Member member = new Member(memberId, password, MemberService.MEMBER_ROLE, memberName, phone, 0, null, null, null, null);
+		Member member = new Member(memberId, password, MemberService.MEMBER_ROLE, memberName, phone, mileage, null, null, null, null);
 
 		System.out.println("member@servlet = " + member);
 
@@ -54,9 +55,9 @@ public class MemberEnrollServlet extends HttpServlet {
 
 		// 4.응답처리
 		if(result == 1){ // 성공
+			session.setAttribute("loginMember", member);
 			String location = request.getContextPath() + "/member/memberEnrollCompleted";
 			response.sendRedirect(location);
-			session.setAttribute("loginMember", member);
 		} else { // 실패
 			String location = request.getContextPath() + "/";
 			response.sendRedirect(location);

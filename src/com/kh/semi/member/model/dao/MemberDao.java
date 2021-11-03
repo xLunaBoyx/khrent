@@ -44,7 +44,8 @@ public class MemberDao {
 			pstmt.setString(3, member.getMemberRole());
 			pstmt.setString(4, member.getMemberName());
 			pstmt.setString(5, member.getPhone());
-			
+			pstmt.setInt(6, member.getMileage());
+				
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
