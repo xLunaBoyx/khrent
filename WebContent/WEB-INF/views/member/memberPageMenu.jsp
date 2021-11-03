@@ -29,7 +29,7 @@
 			<hr class="memTypeDivider">
 			
 			<ul class="menuList">
-				<li class="active"><a href="<%= request.getContextPath() %>/member/myPage">예약내역</a></li>
+				<li class="active"><a href="<%= request.getContextPath() %>/member/myPage?memberId=<%=loginMember.getMemberId()%>">예약내역</a></li>
 				
 				<li class="">
 				<a href="<%=request.getContextPath()%>/member/memberDetail">내정보</a></li>
