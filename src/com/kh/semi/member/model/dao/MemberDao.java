@@ -534,6 +534,37 @@ public class MemberDao {
 		return list;
 	}
 
+	public Member findIdMember(Connection conn, String memberName, String phone) {
+		String sql = prop.getProperty("findIdMember");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberName);
+			pstmt.setString(2, phone);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				String memberId = rset.getString("member_id");
+				
+				member = new Member(memberId, null, null, memberName, phone, 0, null, null, null, null);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
+	}
+
 
 }
    

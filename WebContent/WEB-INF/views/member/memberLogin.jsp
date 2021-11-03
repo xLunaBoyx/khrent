@@ -41,6 +41,10 @@ if(msg != null) session.removeAttribute("msg");
 					<span class="check-box have-text">
 						<input type="checkbox" name="saveId" id="saveId">
 						<label for="remember">자동로그인</label>
+
+						<input type="button" class="findBtn" value="아이디 찾기" onclick="location.href='<%= request.getContextPath() %>/member/memberFindId';"/>
+						<input type="button" class="findBtn" value="비밀번호 찾기" onclick="location.href='<%= request.getContextPath() %>/member/memberFindPwd';"/>						
+
 					</span>
 					</div>
 					<input type="submit" value="로그인" class="btn btn-l btn-color-type07 btn-login" />
