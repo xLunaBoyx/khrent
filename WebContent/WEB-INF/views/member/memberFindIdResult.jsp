@@ -25,6 +25,8 @@
 					</span>
 			      </div>
 					<input type="button" class="btn btn-l btn-color-type07 btn-login" value="로그인" onclick="location.href='<%= request.getContextPath() %>/member/login';" />
+		<%} %>			
+
 			</div>		
 		</div>
 
