@@ -25,17 +25,6 @@
 					</span>
 			      </div>
 					<input type="button" class="btn btn-l btn-color-type07 btn-login" value="로그인" onclick="location.href='<%= request.getContextPath() %>/member/login';" />
-		<%} else { %>
-		
-					<span class="input-text-outer-wrap is-login-text">
-						<span class="is-text-inner-wrap">
-							<h4>등록된 정보가 없습니다.</h4>
-						</span>
-					</span>
-					<input type="button" value="다시 찾기" class="btn btn-l btn-color-type07 btn-login" onclick="history.back()" />
-					<input type="button" value="회원가입" class="btn btn-l btn-color-type07 btn-login" style="margin-top: 10px; background-color: #b3b3b3;" onclick="location.href='<%= request.getContextPath() %>/member/enroll';">
-		<%} %>			
-
 			</div>		
 		</div>
 

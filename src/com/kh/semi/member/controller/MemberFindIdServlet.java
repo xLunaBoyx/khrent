@@ -49,6 +49,8 @@ public class MemberFindIdServlet extends HttpServlet {
 				// 3. 업무로직 실행 
 				Member member = memberService.findIdMember(memberName, phone);
 				System.out.println("member@servlet = " + member);
+				
+				HttpSession session = request.getSession();
 
 				// b. 리턴된 회원객체에서 비밀번호 일치여부 검사
 				if(member != null && phone.equals(member.getPhone())) {
@@ -57,8 +59,8 @@ public class MemberFindIdServlet extends HttpServlet {
 					.forward(request, response);
 				}
 				else {
-					request.setAttribute("member", member);
-					request.getRequestDispatcher("/WEB-INF/views/member/memberFindIdResult.jsp")
+					session.setAttribute("msg", "일치하는 회원이 없습니다.");
+					request.getRequestDispatcher("/WEB-INF/views/member/memberFindId.jsp")
 					.forward(request, response);
 				}
 	}
