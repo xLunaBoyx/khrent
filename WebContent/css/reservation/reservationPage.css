@@ -6,7 +6,6 @@
 }
 
 .content_wrap {
-	padding: 40px 0 140px;
 	min-height: 787px;
 	box-sizing: border-box;
 }
@@ -15,7 +14,7 @@
 	position: relative;
 	width: 1210px;
 	min-width: 1170px;
-	height: 2770px;
+	height: auto;
 	padding: 30px 30px 30px 30px;
 	margin: 0 auto;
 	background-color: white;
@@ -34,7 +33,7 @@ input {
 
 .sec2 {
 	position: relative;
-	top: 50px;	
+	top: 50px;
 }
 
 .reservation_sec .reservation_info {
@@ -66,6 +65,7 @@ input {
 	text-align: center;
 	padding: 0px 20px 0px 24px;
 	justify-content: start;
+	margin-top: 50px;
 }
 
 .reserve_notice .notice {
@@ -79,8 +79,8 @@ input {
 
 .info_list {
 	margin-left: 40px;
-    width: 450px;
-    margin-top: 30px;
+	width: 450px;
+	margin-top: 30px;
 }
 
 .btn:not(.btn-link):not(.btn-circle) {
@@ -92,6 +92,7 @@ input {
 	border: none;
 	font-size: 13px;
 	outline: none;
+	margin: 0;
 }
 
 .btn-l {
@@ -143,10 +144,16 @@ strong {
 
 .reservation_sec .reservation_info .option01 {
 	margin-bottom: 20px;
+	margin-left: 35px;
 }
 
 ol, ul {
 	list-style: none;
+}
+
+.carOption {
+	margin-left: 38px;
+	margin-right: 20px;
 }
 
 .reservation_sec .reservation_info .option01 li {
@@ -223,7 +230,8 @@ ol, ul {
 }
 
 .reservation_sec .map_area .map_info p.etc {
-	color: #969696;
+	color: #d38d5a !important;
+	font-weight: bolder;
 }
 
 .reservation_sec .map_area .map_info p {
@@ -265,7 +273,7 @@ caption {
 }
 
 .leftSec {
-	width: 740px;	
+	width: 740px;
 }
 
 .leftSec .reservation_sec .insuranceTable thead th {
@@ -498,11 +506,12 @@ caption {
 	border: 0;
 }
 
-.saveBtn {
+.licenseRegisterBtn {
 	display: inline-block;
 	width: 95px;
 	height: 30px;
 	font-size: 12px;
+	background-color: white;
 	line-height: 26px;
 	color: #2980b9;
 	text-align: center;
@@ -701,6 +710,7 @@ caption {
 	height: 50px;
 	font-size: 18px;
 	line-height: 27px;
+	background-color: #4a4a4a;
 }
 
 .btn {
@@ -709,7 +719,7 @@ caption {
 	padding: 6px 12px;
 	margin-bottom: 0;
 	background-color: #4a4a4a;
-    color: white;
+	color: white;
 	font-size: 14px;
 	font-weight: normal;
 	line-height: 1.42857143;
@@ -740,4 +750,10 @@ a {
 
 ul.notice {
 	padding-left: 15px;
+}
+
+#frmDomestic {
+	display: flex; 
+	flex-direction: column;
+	margin-left: 30px;
 }
