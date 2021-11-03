@@ -26,7 +26,6 @@ String startDate = (String) request.getAttribute("start_date");
 String endDate = (String) request.getAttribute("end_date");
 int price = (int) request.getAttribute("price");
 int days = (int) request.getAttribute("days");
-
 DecimalFormat df = new DecimalFormat("###,###");
 %>
 
@@ -164,7 +163,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 						</div>
 					</div>
 				</div>
-				<div class="reservation_sec">
+				<div class="reservation_sec" style="padding-bottom: 20px; margin-bottom: 0;">
 					<strong class="tit04">면허정보</strong>
 					<div class="licenseArea">
 
@@ -214,6 +213,25 @@ DecimalFormat df = new DecimalFormat("###,###");
 								</form>
 							</div>
 						</div>
+					</div>
+				</div>
+				<div class="reservation_sec">
+					<strong class="tit04">마일리지</strong>
+					<p>보유 마일리지</p>
+					<div class="licenseNumInput">
+						<input type="number" id="myMileage" value="<%= loginMember.getMileage() %>" readonly />
+					</div>
+					<br />
+					<p>사용할 마일리지</p>
+					<div class="licenseNumInput">
+						<input type="number" id="usingMileage" min=0 max="<%= loginMember.getMileage() %>" style="width: 100%"/>
+					</div>
+					<br /><br />
+					<div class="saveInfoBtn">
+						<input type="button" value="마일리지 사용하기" class="licenseRegisterBtn" id="mileageBtn" style="width: 122px;"/>
+					</div>
+					<div class="saveInfoBtn">
+						<input type="button" value="마일리지 사용 취소" class="licenseRegisterBtn" id="mileageCancelBtn" style="width: 125px; display: none; color: #FF2628; border-color: #FF2628;"/>
 					</div>
 				</div>
 
@@ -284,6 +302,13 @@ DecimalFormat df = new DecimalFormat("###,###");
 					</dl>
 					<dl class="divideLine"></dl>
 					<dl>
+						<dt>사용 마일리지</dt>
+						<dd>
+							<strong><input type="text" id="mileageBox" style="border: none; text-align: right; font-size: 16px;" readonly /></strong>
+						</dd>
+					</dl>
+					<dl class="divideLine"></dl>
+					<dl>
 						<dt>
 							<strong>결제금액</strong>
 						</dt>
@@ -304,7 +329,88 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 
 <script>
-//운전자와 예약자가 같은지 체크하면 값이 채워짐
+//페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 세자리수마다 콤마도 찍는다. 
+$(document).ready(function() {
+	$("#mileageBox").val('0원');
+	$("#insu").val('0원');
+	$("#total1").val((<%= price %>).toLocaleString('ko-KR') + '원');
+	$("#total2").val((<%= price %>).toLocaleString('ko-KR') + '원');
+});
+
+
+//보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류
+//$("[name=insuranceType]").change = ((e) => {   여긴 이렇게 써놓고 다른데는  .change((e) => {  이렇게 하고 있었다. 정신이 나간건가? 
+$("[name=insuranceType]").change((e) => {
+	var fee = $("[name=insuranceType]:checked").val();
+	
+	// 보험 라디오 클릭할때마다 마일리지 사용 취소 버튼을 누르게 만든다. 대여료가 200원인데 보험 체크해서 20200원 해놓고 마일리지 1천원 쓰고 보험 취소하면 결제금액이 -800원이 되기 때문
+	$('#mileageCancelBtn').trigger('click');
+	
+	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다.
+	$("#insu").val(fee + '원');
+	
+	// 위에서 선언한 fee를 숫자형으로 바꾸고 대여료와 합치고 toLocaleString을 이용하여 세자리수마다 ,를 찍는다. 왠지는 모르겠지만 (String) 붙여서 문자열로 변환하지 않아도 +연산이 된다.
+	var totalFee = (parseInt(fee) + <%= price %>);
+	$("#total1").val(totalFee.toLocaleString('ko-KR') + '원');  // 총 대여금액
+	$("#total2").val((totalFee - $("#usingMileage").val()).toLocaleString('ko-KR') + '원');  // 마일리지까지 계산한 결제금액
+});
+
+
+//사용할 마일리지 입력란에 적은 숫자를 결제금액 에리어의 사용 마일리지 란에 넣는다. 입력한 숫자가 보유 마일리지보다 크면 alert를 띄운다.
+$("#mileageBtn").click((e) => {
+	if($("#usingMileage").val() == "") {
+		alert("0보다 큰 숫자를 입력해주세요.");
+	}
+	else if($("#usingMileage").val() > <%= loginMember.getMileage() %> || $("#usingMileage").val() < 0) {
+		alert("보유한 마일리지 범위 내에서 사용하실 수 있습니다.");
+	} 
+	else if((parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val()) < 0) {
+		alert("결제금액보다 많이 사용하실 수 없습니다.");
+	}
+	else {
+		// 마일리지 사용 버튼을 사용불가로 만들고 없앤다. 동시에 마일리지 사용 취소 버튼을 나타나게 한다.
+		$("#mileageBtn")
+			.prop('disabled', true)
+			.css('display', 'none');
+		$("#mileageCancelBtn").css('display', 'block');
+		
+		// 결제내역 에리어의 마일리지 사용란에 나오게 한다.
+		$("#mileageBox").val($("#usingMileage").val() + '원');
+		
+		// 대여료+보험료-마일리지를 결제금액에 넣는다.
+		var totalPrice = (parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val()).toLocaleString('ko-KR');   // 대여료 + 보험료 - 마일리지
+		$("#total2").val(totalPrice + '원');
+	}
+});
+
+
+// 마일리지 사용 취소 버튼
+$("#mileageCancelBtn").click((e) => {
+	// 마일리지 사용 취소 버튼을 안보이게 하고 마일리지 사용 버튼을 사용가능하게 하고 보이게 한다.
+	$("#mileageCancelBtn").css('display', 'none');
+	$("#mileageBtn")
+		.prop('disabled', false)
+		.css('display', 'block');
+	
+	// 사용할 마일리지 입력란과 결제금액 에리어의 마일리지 란을 초기화하고 총 결제금액에서도 마일리지 계산을 뺀다.
+	$("#usingMileage").val("");
+	$("#mileageBox").val("0원");
+	$("#total2").val((parseInt($("[name=insuranceType]:checked").val()) + <%= price %>).toLocaleString('ko-KR') + '원');
+});
+
+
+//결제금액 적힌 에리어가 화면 스크롤 내려가서 화면 제일 위까지 가면 따라오도록 함. position = 790이 이 에리어가 화면 상단에 닿을 때 $(window).scrollTop()의 값이고 여기서 -240 하니까 제일 위에 붙어있는 위치였다. else에는 저렇게 적으니까 되더라.
+var currentPosition = parseInt($(".rightSec").css("top"));   // 이 줄을 아래의 scroll function 안에다 넣으면 스크롤 할때마다 에리어가 점점 더 밑으로 내려간다. 뭔가 currentPosition이 중첩으로 계산되는 것 같다.
+$(window).scroll(function() { 
+	var position = $(window).scrollTop(); 
+	if(position > 790)
+		$(".rightSec").stop().animate({"top":position - 200 +"px"}, 700); 
+	else
+		$(".rightSec").stop().animate({"top":currentPosition+"px"}, 700);
+});
+
+
+//운전자와 예약자가 같은지 체크하면 값이 채워짐. 체크해제하면 빈칸
 $("#memberDriverEqual").change((e) => {
 	if($("#memberDriverEqual").prop("checked") == true) {
 		$("#firstDriverName").val("<%= loginMember.getMemberName() %>");
@@ -333,7 +439,6 @@ const updateLicenseInfo = () => {
 		$issueDate.select();
 		return;
 	}
-
 	// 면허정보 저장 클릭하면 새 창에 결과가 뜨게 함. 회원가입의 중복아이디 체크 방법을 이용했다.
 	const title = "popupUpdateLicense";
 	const spec = "left=500px, top=300px, width=400px, height=200px";
@@ -344,27 +449,6 @@ const updateLicenseInfo = () => {
 };
 
 
-// 페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 
-$(document).ready(function() {
-	$("#insu").val('0원');
-	$("#total1").val(<%= price %> + '원');
-	$("#total2").val(<%= price %> + '원');
-});
-
-
-// 보험 라디오박스 체크한 값에 따라서 최종결제금액을 변동하게 하려고 했는데, .click이나 .change나 둘다 안된다. 다른데 어디다가 써봐도 되는데, 여기만 안된다. 일단 보류
-// $("[name=insuranceType]").change = ((e) => {   여긴 이렇게 써놓고 다른데는  .change((e) => {  이렇게 하고 있었다. 정신이 나간건가? 
-$("[name=insuranceType]").change((e) => {
-	var fee = $("[name=insuranceType]:checked").val();
-	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다.
-	$("#insu").val(fee + '원');
-	
-	// 위에서 선언한 fee를 숫자형으로 바꾸고 대여료와 합치고 toLocaleString을 이용하여 세자리수마다 ,를 찍는다. 왠지는 모르겠지만 (String) 붙여서 문자열로 변환하지 않아도 +연산이 된다.
-	var totalFee = (parseInt(fee) + <%= price %>).toLocaleString('ko-KR');
-	$("#total1").val(totalFee + '원');
-	$("#total2").val(totalFee + '원');
-});
-
 
 // 지도
 var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
@@ -373,16 +457,12 @@ mapOption = {
     level: 4 // 지도의 확대 레벨
     
 };  
-
 //지도를 생성합니다    
 var map = new kakao.maps.Map(mapContainer, mapOption); 
-
 //주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
-
 //주소로 좌표를 검색합니다
 geocoder.addressSearch('서울특별시 강남구 테헤란로14길 6', function(result, status) {
-
 	// 정상적으로 검색이 완료됐으면 
 	 if (status === kakao.maps.services.Status.OK) {
 	
@@ -415,7 +495,6 @@ var insuranceType = $("[name=insuranceType]:checked").val();
 var issueDate = $("#issue_date").val();
 var licenseType = $("[name=license_type]").val();
 var ilcenseNo = $("#license_no").val();
-
 var param = {
 	pg : 'html5_inicis',
     pay_method : 'card', //생략 가능
@@ -426,10 +505,11 @@ var param = {
     buyer_tel : '$("#firstDriverPhoneNumber").val()'	
 }; --%>
 
+
 // 결제
 function inicisPay() {
 	
-	// 유효성 검사
+	// 유효성 검사 - 왼쪽 입력란들 하나라도 비어있으면 결제창 뜨지 않도록
 	const $firstDriverName = $("#firstDriverName");
 	if(/^[가-힣]{2,}$/.test($firstDriverName.val()) == false){
 		alert("이름은 한글 2글자 이상이어야 합니다.");
@@ -457,7 +537,14 @@ function inicisPay() {
 		$issueDate.select();
 		return;
 	}
-
+	
+	
+	// 만약에 결제금액이 음수가 되는 경우. 체크할 수 있는 건 다 했지만 혹시 모르니까 적어둔다.
+	if(parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val() < 0) {
+		alert("결제금액은 0보다 작을 수 없습니다. 마일리지 사용 여부를 확인해주세요.");
+		return;
+	}
+	
 	
 	var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
 	IMP.init("imp94728784");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
@@ -467,7 +554,7 @@ function inicisPay() {
 	    pay_method : 'card', //생략 가능
 	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
 	    name : '<%= car.getCarName() %>',   
-	    amount : parseInt($("[name=insuranceType]:checked").val()) + <%= price %>,
+	    amount : parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),  // 대여료+보험-마일리지
 	    buyer_name : '<%= loginMember.getMemberName() %>',
 	    buyer_tel : '<%= loginMember.getPhone() %>' 
 	    /* buyer_email : 'iamport@siot.do', */
@@ -488,11 +575,13 @@ function inicisPay() {
 				        car_name : "<%=car.getCarName()%>",
 				        start_date: "<%=startDate%>",
 				        end_date: "<%=endDate%>",
-				        price: parseInt($("[name=insuranceType]:checked").val()) + <%= price %>,
+				        price: parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),
 				        insurance_type: $("[name=insuranceType]:checked").val(),
 				        issue_date: $("#issue_date").val(),
 				        license_type: $("[name=license_type]").val(),
-				        license_no: $("#license_no").val()
+				        license_no: $("#license_no").val(),
+				        totalMileage: <%= loginMember.getMileage() %>,
+				        usedMileage: $("#usingMileage").val()
 				    },
 				    success(data){
 				    	location.href="<%=request.getContextPath()%>/reservation/complete";
@@ -505,8 +594,6 @@ function inicisPay() {
 			}
 	});
 }
-
-
 <%-- 카카오페이는 구매자정보 입력란에 <%= %> 이게 안먹혀서 일단 보류 --%>
 <%-- function requestPay() {
 	var IMP = window.IMP;        // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
@@ -533,7 +620,6 @@ function inicisPay() {
 			}
 	});
 } --%>
-
 </script>
 
 
