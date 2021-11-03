@@ -72,7 +72,14 @@ if (loginMember.getLicense_no() == null) {
 				<div class="btnGroup">
 					<a href="<%= request.getContextPath() %>/member/memberLicenseRegister" class="infoBtn btn-license">면허정보 등록</a>
 				</div>
-<% } %>
+<% } else {%>
+				<p>면허 종류 : <%= loginMember.getLicense_type() %></p>
+				<p>면허 번호 : <%= loginMember.getLicense_no() %></p>
+				<p>면허 발급일 : <%= loginMember.getIssue_date() %></p>
+
+<%
+	}
+%>
 			</div>
 
 			<div class="mypageDesc2">
