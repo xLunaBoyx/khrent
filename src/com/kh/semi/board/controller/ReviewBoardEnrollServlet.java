@@ -92,8 +92,13 @@ public class ReviewBoardEnrollServlet extends HttpServlet {
 		// 이용후기 작성될 때 마다 car_info테이블의 car_name에 해당하는 assess_cnt가 +1되도록
 		int result2 = reviewBoardService.plusOneAssessCnt(carName);
 		
+		// 이용후기 작성될 때 마다 member테이블의 해당 아이디에 해당하는 mileage에 + 500 되도록
+		int result3 = reviewBoardService.plusPoint(writer);
+		
 		// 이용후기 작성될 때 마다 car_info 테이블의 car_name에 해당하는 avg_score에 score가 입력되고 나누기 assess_cnt 해서 평균점수 구하기
 		int result4 = reviewBoardService.insertAvgScore(score ,carName);
+		
+		
 		
 		System.out.println("ReviewBoardEnrollServlet@servlet = " + reviewBoard);
 		
