@@ -272,8 +272,8 @@ pre {
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
-	color: #26ae60;
-	border: 1px solid #26ae60;
+	color: #d38d5b;
+	border: 1px solid #d38d5b;
 	font-size: inherit;
 	line-height: normal;
 	vertical-align: middle;
@@ -288,11 +288,11 @@ pre {
 }
 
 .filebox label:hover {
-	background-color: #26ae605c;
+	background-color: #d38d5b6b;
 }
 
 .filebox label:active {
-	background-color: #26ae605c;
+	background-color: #d38d5b6b;
 }
 
 .filebox input[type="file"] {
