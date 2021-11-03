@@ -16,7 +16,7 @@ Member member = (Member) request.getAttribute("member");
  	<div class="login_wrap">
 			<strong class="tit01" style="margin-bottom:25px;">비밀번호 재설정</strong>
 			<div class="login_box clearfix" >
-				<form id="findFrm" name="findFrm" class="ajax-form" action="<%= request.getContextPath() %>/member/memberFindIdResult" method="POST">
+				<form id="findFrm" name="findFrm" class="ajax-form" action="<%= request.getContextPath() %>/member/memberFindPwdResult" method="POST">
 	
 				<span class="input-text-outer-wrap is-login-text">
 					<span class="is-text-inner-wrap">
