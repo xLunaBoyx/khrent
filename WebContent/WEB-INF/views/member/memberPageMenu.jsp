@@ -33,7 +33,7 @@
 				
 				<li class="">
 				<a href="<%=request.getContextPath()%>/member/memberDetail">내정보</a></li>
-				<li><a id="kakao-link-btn" href="#"> 리뷰 쓰기 </a></li>
+				<li><a id="kakao-link-btn" href="<%= request.getContextPath() %>/member/myPage?memberId=<%=loginMember.getMemberId()%>"> 리뷰 쓰기 </a></li>
 			</ul>
 
 			<div class="bannerArea"></div>
