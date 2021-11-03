@@ -23,24 +23,29 @@
 	<%-- 면허정보가 등록된 경우 --%>
 	<span id="unduplicated">면허정보가 등록되었습니다.</span>
 	<br /><br />
-	<button class="checkIdBtn" onclick="popupClose();">닫기</button>
+	<button class="checkIdBtn" onclick="popupClose1();">닫기</button>
 
 <% } else { %>
 
 	<%-- 등록되지 않은 경우 --%>
 	<span id="notRegistered">면허정보가 등록되지 않았습니다. 다시 입력해 주세요.</span>
 	<br /><br />
-	<button class="checkIdBtn" onclick="popupClose();">닫기</button>
+	<button class="checkIdBtn" onclick="popupClose2();">닫기</button>
 	
 <% } %>
 
 	</div>
 	
 <script>
-const popupClose = () => {
-	/* // 부모창 opener 의 면허등록버튼 비활성화
-	$(".licenseRegisterBtn", opener.document).attr('disabled', true); */
+const popupClose1 = () => {
+	// 부모창 opener 의 면허등록버튼 비활성화
+	$(".licenseRegisterBtn", opener.document).attr('disabled', true);
 	
+	// popup 닫기
+	close();
+};
+
+const popupClose2 = () => {
 	// popup 닫기
 	close();
 };
