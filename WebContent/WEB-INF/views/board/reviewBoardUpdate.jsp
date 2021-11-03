@@ -37,6 +37,10 @@
 			</td>
 		</tr>
 		<tr>
+			<th>이용차량</th>
+			<td><input id="car" type="text" name="car" value="<%= reviewBoard.getCarName() %>" readonly/></td>
+		</tr>
+		<tr>
 			<th>점수</th>
 			<td>
 				<select name="score" id="score" style="border: 1px solid lightgray; margin-left: 30px; width: 50px; height: 40px;">
