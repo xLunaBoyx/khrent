@@ -152,6 +152,7 @@ hr.memTypeDivider {
 
 .lnb.type03>.menuList {
 	margin-bottom: 24px;
+	padding: 10px;
 }
 
 .lnb.type03>.menuList li {

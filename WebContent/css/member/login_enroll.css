@@ -13,6 +13,18 @@
 	height: 500px;
 }
 
+.find_wrap {
+	position: relative;
+	width: 370px;
+	min-width: 370px;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0.45);
+	padding: 60px 30px 100px 30px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	height: 400px;
+}
+
 .content_wrap {
 	padding: 25px 0 140px;
 	min-height: 787px;
@@ -85,6 +97,7 @@ input {
 	color: #7d7d7d;
 	font-size: 14px;
 	line-height: 20px;
+	margin-right: 80px;
 }
 
 .content_wrap.join .login_box .btn {
@@ -104,6 +117,7 @@ input {
 	border: none;
 	font-size: 13px;
 	outline: none;
+	cursor: pointer;
 }
 
 .btn-l {
@@ -282,4 +296,29 @@ span#duplicate {
 .goHome {
 	color: rgb(94, 94, 94);
 	font-weight: bolder;
+}
+
+.notice {
+	text-align: center;
+	background-color: white;
+	padding: 10px 0 10px 0;
+}
+
+.findId {
+	color: #538797;
+	font-weight: bolder;
+}
+
+.findBtn {
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+
+.findBtn:hover {
+	font-weight: bolder;
+}
+
+.findWrap {
+	margin-left: 30px;
 }

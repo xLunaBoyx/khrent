@@ -175,4 +175,11 @@ public class MemberService {
 		return list;
 	}
 
+	public Member findIdMember(String memberName, String phone) {
+		Connection conn = getConnection();
+		Member member = memberDao.findIdMember(conn, memberName, phone);
+		close(conn);
+		return member;
+	}
+
 }
