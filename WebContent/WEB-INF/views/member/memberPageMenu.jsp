@@ -22,7 +22,7 @@
 
 					
 					<dt>내 마일리지</dt>
-					<dd style="text-decoration: underline; color: #2980b9;"><%= loginMember.getMileage() %></dd>
+					<dd style="text-decoration: underline; color: #2980b9;"><%= fomatter.format(loginMember.getMileage()) %></dd>
 				</dl>
 			</div>
 			
