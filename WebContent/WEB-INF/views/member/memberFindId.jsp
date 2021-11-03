@@ -5,6 +5,11 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/member/login_enroll.css" />
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+<%
+String msg = (String) session.getAttribute("msg");
+if(msg != null) session.removeAttribute("msg");
+%>
+
  	<div class="login_wrap">
 			<strong class="tit01" style="margin-bottom:25px;">아이디 찾기</strong>
 			<div class="login_box clearfix" >
@@ -26,6 +31,15 @@
 					<input type="button" value="취소" class="btn btn-l btn-color-type07 btn-login" style="margin-top: 10px; background-color: #b3b3b3;" onclick="history.back()">
 			</div>		
 		</div>
+
+<script>
+
+<% if(msg != null) { %>
+// 사용자 메세지 전달
+alert("<%= msg %>");
+<% } %>
+
+</script>
 
 <script>
 
