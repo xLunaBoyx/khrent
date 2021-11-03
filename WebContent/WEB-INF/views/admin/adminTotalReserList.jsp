@@ -62,7 +62,7 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= reservation.getReviewStatus() %></td>
             		<td><%= reservation.getReturnStatus() %></td>
             		<td>
-            		<input type="button" value="취소" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminReservationUpdate?reserNo=<%= reservation.getReserNo() %>';"/>
+            		<input type="button" value="취소" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminReservationDelete?reserNo=<%= reservation.getReserNo() %>';"/>
             		</td>
             	</tr>
 <%		
