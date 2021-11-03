@@ -632,6 +632,32 @@ public class ReviewBoardDao {
 		return result;
 	}
 
+	public int plusPoint(Connection conn, String writer) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("plusPoint");
+		System.out.println("plusPoint쿼리@Dao = " + sql);
+		System.out.println("글쓴이?@plusPointDao = " + writer);
+		
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(sql);
+			//쿼리문 완성시키기
+			pstmt.setString(1, writer);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }
 	
 
