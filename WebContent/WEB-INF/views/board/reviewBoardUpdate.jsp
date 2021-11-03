@@ -17,7 +17,7 @@
 <div class="wrap clearfix" style="width: 1417px; margin:auto; display: flex;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 <section id="board-container">
-<h1 class="board-title">대여문의</h1>
+<h1 class="board-title">대여후기</h1>
 <form 
 	name="boardUpdateFrm" 
 	action="<%=request.getContextPath() %>/board/reviewBoardUpdate"

@@ -32,7 +32,7 @@
 
 	<div class="board-container">
 	
-	<h1 class="board-title">이용후기</h1>
+	<h1 class="board-title">대여후기</h1>
 	
 	
 		<table id="tbl-board">
@@ -40,10 +40,10 @@
 				<tr class="board-tr"> 
 					<th style="width:30px;">번호</th>
 					<th>제목</th>
-					<th>품목</th>
-					<th>첨부파일</th>
+					<th>이용차량</th>
 					<th>작성자</th>
 					<th>작성일</th>
+					<th>첨부파일</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
@@ -59,6 +59,8 @@
 		       			<%= board.getBoardCommentCount() != 0 ? "(" + board.getBoardCommentCount() + ")" : "" %>
 		       		</td>
 		       		<td><%= board.getCarName()%></td>
+		       		<td><%= board.getReviewWriter() %></td>
+		       		<td><%= board.getRegDate() %></td>
 		       		<td>
 <% 
 		if(board.getAttach() != null){
@@ -68,8 +70,6 @@
 		}
 %>			       		
 		       		</td>
-		       		<td><%= board.getReviewWriter() %></td>
-		       		<td><%= board.getRegDate() %></td>
 		       		<td><%= board.getReadCount() %></td>
        			</tr>      			
 <%
