@@ -99,6 +99,25 @@ if (loginMember.getLicense_no() == null) {
 </section>
 
 <script>
+$(document).ready(function () {
+$.ajax({
+	url:"<%=request.getContextPath()%>/admin/ajaxMemberPageReservationCount",
+	method: "GET",
+	data: {
+		memberId: "<%= loginMember.getMemberId() %>"
+	},
+	success: function(data) {
+		$("#reserv").html(data);
+	},
+	complete: function() {
+		console.log("complete")
+	}
+});
+});
+
+</script>
+
+<script>
 
 <% 
 String msg = (String) session.getAttribute("msg");
