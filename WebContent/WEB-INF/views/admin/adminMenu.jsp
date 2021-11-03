@@ -20,8 +20,6 @@
 						</li>
 						<li><a href="<%= request.getContextPath() %>/admin/adminCarReturnList"><i class="ion-ios-color-filter-outline"></i>차량 반납 관리</a>
 						</li>
-						<li><a href="#"><i class="ion-android-star-outline"></i></a>
-						</li>
 					</ul></li>
 
 				<li><a href="#"><i class="ion-ios-settings"></i> 
