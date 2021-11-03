@@ -48,7 +48,7 @@
 <div class="wrap clearfix" style="width: 1417px; margin:auto;">
 	<%@ include file="/WEB-INF/views/board/customerCenterNav.jsp" %>
 	<div class="board-container">
-	<h1 class = "board-title">이용후기</h1>
+	<h1 class = "board-title">대여후기</h1>
 <%
 	if(editable) {
 %>		
