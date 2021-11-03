@@ -55,7 +55,7 @@
                             <li class="mb50">
                                 <label for="validFrom">면허 발급일</label>
                                 <div class="validInput">
-									<input type="text" id="issue_date" name="issue_date" class="issue_date_index" placeholder="날짜 선택">
+									<input type="text" id="issue_date" name="issue_date" class="issue_date_index" placeholder="날짜 선택" required>
                                 </div>
                             </li>
                         </ul>
