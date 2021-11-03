@@ -309,4 +309,12 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+
+	public List<Car> ajaxBestFiveServlet() {
+		Connection conn = getConnection();
+		List<Car> list = adminDao.ajaxBestFiveServlet(conn);
+		close(conn);
+		
+		return list;
+	}
 }

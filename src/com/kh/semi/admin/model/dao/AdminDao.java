@@ -1312,4 +1312,48 @@ public class AdminDao {
 		return result;
 	}
 
+	public List<Car> ajaxBestFiveServlet(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Car> list = new ArrayList<>();
+		String sql = prop.getProperty("ajaxBestFiveServlet");
+		
+		try {
+			// 1. pstmt 객체 생성 & 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			
+			// 2. 쿼리 실행
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				Car car = new Car();
+
+				car.setCarCode(rset.getString("car_code"));
+				car.setCarName(rset.getString("car_name"));
+				car.setMaker(rset.getString("maker"));
+				car.setFuel(rset.getString("fuel"));
+				car.setCarSize(rset.getString("car_size"));
+				car.setReleaseYear(rset.getString("release_year"));
+				car.setImg(rset.getString("img"));
+				car.setCarOption(rset.getString("car_option"));
+				car.setPrice(rset.getInt("price"));
+				car.setNumberPlate(rset.getString("number_plate"));
+				car.setAssessCnt(rset.getInt("assess_cnt"));
+				car.setAvgScore(rset.getInt("avg_score"));
+				car.setReservCnt(rset.getInt("reserv_cnt"));
+			
+				list.add(car);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 3. 자원반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 }
