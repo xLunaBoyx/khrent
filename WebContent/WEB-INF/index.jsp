@@ -164,7 +164,7 @@ function carousel() {
 	transition-duration: 1.5s;
 }
 
-/* 애니메이션으로 그림 교체될 때 페이드인하고 페이드아웃하게 해보려고 애쓰다가, 그냥 위의 carousel()에서 style.display를 none과 block 변경하는것을 opacity 0 1로 하니까 쉽게 됐다. */
+/* 애니메이션으로 그림 교체될 때 페이드인하고 페이드아웃하게 해보려고 애쓰다가, 그냥 위의 carousel()에서 style.display를 none, block 변경하는것을 opacity 0, 1로 하니까 쉽게 됐다. */
 /* Fading animation */
 /* .fade {
   animation-name: fade;
