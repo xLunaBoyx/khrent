@@ -46,6 +46,10 @@
 								<dt>자차보험</dt>
 								<dd>자차1(보상한도: 2,000,000원 , 고객부담금: 500,000원/건)</dd>
 							</dl>
+							<dl>
+							<dt>차량 반납 여부</dt>
+							<dd style="font-weight: bolder; "><%= "Y".equals(reservation.getReturnStatus()) ? "반납확인" : "반납 미확인" %></dd>
+							</dl>
 <%
 	if("N".equals(reservation.getReviewStatus()) && "Y".equals(reservation.getReturnStatus())) {
 %>	

@@ -13,7 +13,7 @@
 	<div class="join_complete_wrap">
 		<div class="join_Complete">			
 			<div class="speechBubble">
-				<strong class="point" style="font-weight: bolder;"> KH렌트 </strong> 
+				<strong class="point" style="font-weight: bolder; color: #538797;"> KH렌트 </strong> 
 				에 가입해주셔서 감사드립니다. <br /><br />
 				저희 사이트에서 간편한 렌트카 대여 서비스를 이용해보세요.
 			</div>
