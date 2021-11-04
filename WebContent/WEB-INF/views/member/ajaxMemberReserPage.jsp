@@ -83,17 +83,43 @@
 	if("N".equals(reservation.getReturnStatus())) {
 %>	
 						<div class="cancel">
-							<a href="javascript:;" class="btn btn-l btn-disabled cancel-btn"
-								data-company="kcp2" data-paymentidx="40739"
-								data-dtcreate="2021-11-03 23:17:10"
-								data-sdate="2021-11-09 10:00:00">예약 취소</a>
+							<a class="btn btn-l btn-disabled cancel-btn"
+								onclick="deleteReservation()">예약 취소</a>
 						</div>
 <%
 	}
 %>	
 					</div>
 				</div>
+				<!-- 예약취소용 폼 -->
+<form action="<%= request.getContextPath() %>/reservation/ReservationDelete" name="deleteReservationFrm" method="POST">
+	<input type="hidden" name="reserNo" value="<%=reservation.getReserNo() %>" />
+	<input type="hidden" name="memberId" value="<%=reservation.getMemberId() %>" />
+</form>
 <%
 		}
 	}
-%>					
+%>	
+
+<script>
+	function deleteReservation() {
+		if(confirm("예약을 취소하시겠습니까?")) {
+			$(document.deleteReservationFrm).submit();
+		}
+	}
+</script>		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

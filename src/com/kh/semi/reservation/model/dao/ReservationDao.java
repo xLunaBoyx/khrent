@@ -196,5 +196,23 @@ public class ReservationDao {
 		
 		return list;
 	}
-
+	
+	public int deleteRservation(Connection conn, String reserNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteRservation");
+		System.out.println("sql@deleteReservation Dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, reserNo);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
