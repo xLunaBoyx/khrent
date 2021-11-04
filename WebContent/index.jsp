@@ -17,6 +17,8 @@
 <div class="w3-content w3-section" style="width:100%;">
 	<img class="mySlides fade" src="https://i.ibb.co/VCpvPy2/bmw-gb73281a79-1920.jpg" style="width:100%; opcity: 0.8;">
   	<img class="mySlides fade" src="https://i.ibb.co/F33689x/rearview-mirror-g8cdf3d119-1920.jpg" style="width:100%; opcity: 0.8;">
+  	<img class="mySlides fade" src="<%= request.getContextPath() %>/upload/2020-Lamborghini-Aventador-SVJ-Roadster.png" style="width:100%; opcity: 0.8;">
+  	<img class="mySlides fade" src="https://i.ibb.co/0DDKdtS/ferrari-360-g762eaccc4-1920.jpg" style="width:100%; opcity: 0.8;">
 </div>
 
 <!-- 	메인 상단 문구 -->
@@ -159,14 +161,14 @@ function carousel() {
   }
   myIndex++;
   if (myIndex > x.length) {myIndex = 1}    
-  x[myIndex-1].style.opacity = 1;  
-  setTimeout(carousel, 5000);    
+  x[myIndex-1].style.opacity = 0.8;  
+  setTimeout(carousel, 6000);    
 }
 </script>
 <style>
 .mySlides {
 	position: absolute;
-	transition-duration: 1.5s;
+	transition-duration: 2s;
 }
 
 /* 애니메이션으로 그림 교체될 때 페이드인하고 페이드아웃하게 해보려고 애쓰다가, 그냥 위의 carousel()에서 style.display를 none과 block 변경하는것을 opacity 0 1로 하니까 쉽게 됐다. */

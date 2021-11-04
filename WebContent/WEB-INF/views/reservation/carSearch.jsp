@@ -79,7 +79,7 @@ $("#end_date").val(<%= endDate %>);
 					<span style="left:10px; color:#fff; position:absolute;border-radius: 5px; display: inline-block; min-width:10px; padding: 6px 10px;font-size: 14px;font-weight:bold;text-align: center;vertical-align: middle;background-color:#ED6767 !important;z-index:1000"><%= car.getCarSize() %></span>
 					<img src="<%= request.getContextPath() %>/upload/car/<%= car.getImg() %>" width="300px;" alt="" class="lazy"/>
 						<div class="desc">
-							<div class="car_tit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= car.getCarName() %></div>   <!-- 차 이름이 밑의 글들과 들여쓰기가 안 맞아서 앞에 공백을 줌 -->
+							<div class="car_tit"><%= car.getCarName() %></div> 
 							<ul class="option01 clearfix">
 								<li><%= car.getFuel() %></li>
 								<li><%= car.getReleaseYear() %></li>
@@ -108,7 +108,7 @@ $("#end_date").val(<%= endDate %>);
 						</div>
 						<dl data-calculation="carInsurance01" class="clearfix">
 							<dt>자차1</dt>
-							<dd>20,000원 (면책금 30만원)</dd>
+							<dd>20,000원 (면책금 50만원)</dd>
 						</dl>
 						<a href="<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>&price=<%= car.getPrice() * days %>&days=<%= days %>" class="btn btn-l btn-color-type01">예약하기</a>
 						<%-- <input type="button" onclick="location.href='<%= request.getContextPath() %>/reservation/reservationPage?start_date=<%= startDate %>&end_date=<%= endDate %>&car_code=<%= car.getCarCode() %>';" class="btn btn-l btn-color-type01" value="예약하기"/> --%>
