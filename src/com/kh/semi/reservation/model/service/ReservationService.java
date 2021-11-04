@@ -56,5 +56,22 @@ public class ReservationService {
 		return list;
 	}
 	
+	public int deleteRservation(String reserNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = reservationDao.deleteRservation(conn, reserNo);
+			if(result == 0)
+				throw new IllegalArgumentException("해당 예약내역이 존재하지 않습니다." + reserNo);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+	
 	
 }
