@@ -96,7 +96,6 @@ $(() => {
 			<th>첨부파일</th>
 			<td>			
 				<div class="filebox">
-				<label for="ex_file" style="margin-bottom: 10px;">사진</label>			
 				<input type="file" name="upFile" id="ex_file">
 				</div>
 			</td>
