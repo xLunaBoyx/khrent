@@ -17,7 +17,7 @@
 <div class="w3-content w3-section" style="width:100%;">
 	<img class="mySlides fade" src="https://i.ibb.co/VCpvPy2/bmw-gb73281a79-1920.jpg" style="width:100%; opcity: 0.8;">
   	<img class="mySlides fade" src="https://i.ibb.co/F33689x/rearview-mirror-g8cdf3d119-1920.jpg" style="width:100%; opcity: 0.8;">
-  	<img class="mySlides fade" src="<%= request.getContextPath() %>/upload/2020-Lamborghini-Aventador-SVJ-Roadster.png" style="width:100%; opcity: 0.8;">
+  	<img class="mySlides fade" src="<%= request.getContextPath() %>/upload/2020-Lamborghini-Aventador-SVJ-Roadster.jpg" style="width:100%; opcity: 0.8;">
   	<img class="mySlides fade" src="https://i.ibb.co/0DDKdtS/ferrari-360-g762eaccc4-1920.jpg" style="width:100%; opcity: 0.8;">
 </div>
 
