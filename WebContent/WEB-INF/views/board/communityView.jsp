@@ -73,8 +73,6 @@
 		</div>
 		<br />
 		
-	
-		
 		<div class="comment-container">
 		<table id="tbl-comment">
 	<%
