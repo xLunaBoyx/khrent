@@ -42,16 +42,16 @@
 		</thead>
 		<tbody>
 			<tr style="border-top: 1px solid black;">
-				<td colspan="2" style="width: 900px;"> 작성자: <%=communityBoard.getWriter()%> </td>
-				<td style="width: 130px;"> 작성일 : <%=communityBoard.getRegDate()%></td>
-				<td style="width: 80px;"> 조회수 : <%=communityBoard.getReadCount() %></td>
+				<td colspan="2" style="width: 600px;"> 작성자: <%=communityBoard.getWriter()%> </td>
+				<td> 작성일 : <%=communityBoard.getRegDate()%></td>
+				<td> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
 <%
 	if(attachment != null) {
 %>			
 			<tr>
 				<td style="width: 70px;">첨부파일 </td>
-				<td colspan = "2">
+				<td colspan = "3">
 				<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
 				<img alt="첨부파일" src="<%= request.getContextPath() %>/images/file.png" width=16px>
 				<a href="<%= request.getContextPath() %>/communityboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>			
@@ -61,7 +61,7 @@
 	}
 %>
 			<tr style="height: 300px;">
-				<td id="questionViewContent">
+				<td id="questionViewContent" colspan="4">
 <%
 	if(attachment != null) {
 %>	
