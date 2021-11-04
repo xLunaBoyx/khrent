@@ -543,8 +543,8 @@ function inicisPay() {
 	
 	
 	// 만약에 결제금액이 음수가 되는 경우. 체크할 수 있는 건 다 했지만 혹시 모르니까 적어둔다.
-	if(parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val() < 0) {
-		alert("결제금액은 0보다 작을 수 없습니다. 마일리지 사용 여부를 확인해주세요.");
+	if(parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val() <= 0) {
+		alert("결제금액은 0보다 커야 합니다. 마일리지 사용 여부를 확인해주세요.");
 		return;
 	}
 	

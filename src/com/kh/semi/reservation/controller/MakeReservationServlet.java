@@ -40,8 +40,9 @@ public class MakeReservationServlet extends HttpServlet {
 		String licenseType = request.getParameter("license_type");
 		String licenseNo = request.getParameter("license_no");
 		
+		// 마일리지 업데이트를 위한 값들. 예약시 사용한 마일리지가 0원이면 getParameter 값이 "" 이므로 이럴 경우는 0으로 한다. 그냥 Integer~ 로만 해두면 넘버포맷익셉션이 발생한다. 
 		int totalMileage = Integer.parseInt(request.getParameter("totalMileage"));
-		int usedMileage = Integer.parseInt(request.getParameter("usedMileage"));
+		int usedMileage = "".equals(request.getParameter("usedMileage")) ? 0 : Integer.parseInt(request.getParameter("usedMileage"));
 		
 		System.out.println("MakeReservationServlet@memberId = " + memberId);
 		System.out.println("MakeReservationServlet@startDate = " + startDate);
