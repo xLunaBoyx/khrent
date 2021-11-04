@@ -77,7 +77,7 @@ $(() => {
 		}
 		
 		// password 체크
-		if(!/^.{4,}$/.test($password.val())){
+		if(!/^.{8,}$/.test($password.val())){
 			alert("비밀번호를 입력하세요.");
 			$password.select();
 			e.preventDefault();
