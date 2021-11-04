@@ -42,7 +42,8 @@
 		</thead>
 		<tbody>
 			<tr style="border-top: 1px solid black;">
-				<td colspan="2" style="width: 900px;"> 작성자: <%=communityBoard.getWriter()%> <%=communityBoard.getRegDate()%></td>
+				<td colspan="2" style="width: 900px;"> 작성자: <%=communityBoard.getWriter()%> </td>
+				<td style="width: 130px;"> 작성일 : <%=communityBoard.getRegDate()%></td>
 				<td style="width: 80px;"> 조회수 : <%=communityBoard.getReadCount() %></td>
 			</tr>
 <%
@@ -60,7 +61,18 @@
 	}
 %>
 			<tr style="height: 300px;">
-				<td id="questionViewContent"><%=communityBoard.getContent()%></td>	
+				<td id="questionViewContent">
+<%
+	if(attachment != null) {
+%>	
+					<br />
+					<img src="<%= request.getContextPath() %>/upload/board/<%= attachment.getRenamedFilename() %>" height="400px;" alt="" />
+					<br />
+<%
+	}
+%>	
+				<%=communityBoard.getContent()%>
+				</td>	
 			</tr>
 		</tbody>
 		<tfoot>
