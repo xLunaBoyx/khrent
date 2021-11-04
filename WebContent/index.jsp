@@ -149,7 +149,7 @@ $(document).ready(function() {
 <div id="map" style="width:1170px; height:500px;"></div>
 
 <script>
-// 메인 슬라이드 - 5초마다 배경이미지가 바뀐다. 1.5초동안 fadeIn fadeOut한다.
+// 메인 슬라이드 - 6초마다 배경이미지가 바뀐다. 2초동안 fadeIn fadeOut한다.
 var myIndex = 0;
 carousel();
 
