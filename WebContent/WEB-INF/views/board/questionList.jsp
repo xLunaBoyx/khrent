@@ -72,7 +72,7 @@
 <% 
 		if(board.getAttach() != null){
 %>
-				<img src="<%= request.getContextPath() %>/images/file.png" alt="" width="16px"/>			
+				<img src="https://i.ibb.co/wM6QjzV/1.png" alt="" width="16px"/>			
 <%
 		}
 %>		
