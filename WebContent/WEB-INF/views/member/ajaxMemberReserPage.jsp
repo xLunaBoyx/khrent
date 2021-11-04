@@ -43,7 +43,7 @@
 								<dd>자차1(보상한도: 2,000,000원 , 고객부담금: 500,000원/건)</dd>
 							</dl>
 <%
-	if("N".equals(reservation.getReviewStatus())) {
+	if("N".equals(reservation.getReviewStatus()) && "Y".equals(reservation.getReturnStatus())) {
 %>	
 	<dl>
 	<dt>리뷰 작성 여부</dt>	
