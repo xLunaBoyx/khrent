@@ -40,7 +40,6 @@
 			<th>첨부파일</th>
 			<td style="display: flex;">
 				<div class="updateFilebox">
-				<label for="ex_file">사진</label>			
 				<input type="file" name="upFile" id="ex_file">
 				</div>
 <%

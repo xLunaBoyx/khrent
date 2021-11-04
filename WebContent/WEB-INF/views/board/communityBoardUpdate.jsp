@@ -42,20 +42,18 @@
 			<th>첨부파일</th>
 			<td>
 				<div class="filebox">
-				<label for="ex_file">사진</label>			
 				<input type="file" name="upFile" id="ex_file">
-				</div>
 <%
 	Attachment attach = communityBoard.getAttach();
 	if(attach != null) {
 %>		
-				<span id="fname"><%= attach.getOriginalFilename() %></span>
-				<br />
-				<input type="checkbox" name="delFile" id="delFile" value="<%= attach.getNo() %>" />
-				<label for="delFile">기존파일삭제</label>
+					<span id="fname"><%= attach.getOriginalFilename() %></span>
+					<input type="checkbox" name="delFile" id="delFile" value="<%= attach.getNo() %>" />
+					<label id="gizon" for="delFile">기존파일삭제</label>
 <%
 	}
 %>
+				</div>
 			</td>
 		</tr>
 		<tr>
