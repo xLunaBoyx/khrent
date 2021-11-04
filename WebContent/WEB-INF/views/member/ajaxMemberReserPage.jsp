@@ -27,6 +27,10 @@
 					<div class="mypageReservation_sec clearfix">
 						<div class="mypageReservation_info" style="min-height: 270px;">
 							<dl>
+							<dt>예약번호</dt>
+							<dd><%= reservation.getReserNo() %></dd>
+							</dl>
+							<dl>
 								<dt>대여기간</dt>
 								<dd><%= reservation.getStartDate().substring(0,11) %> ~ <%= reservation.getEndDate().substring(0,11) %></dd>
 							</dl>

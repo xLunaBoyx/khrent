@@ -61,6 +61,7 @@ public class AdminMemberUpdateMileage extends HttpServlet {
 		if(result > 0) {
 			HttpSession session = request.getSession();
 			Member newMember = memberService.selectOneMember(memberId);
+			request.setAttribute("member", newMember);
 		}
 		
 		// 4.응답처리 msg속성 저장후 /mvc로 redirect할 것.
