@@ -112,11 +112,14 @@ strong.tit01 {
 	margin: 20px;
 	color: white;
 	box-shadow: 0 2px 16px 0 rgb(0 0 0/ 15%);
-	background-color: #2980b9;
+	background-color: #d38d5b;
 }
 
 .adminMemberUpdateBtn:hover {
 	cursor: pointer;
+	background-color: white;
+	border: 1px solid #d38d5b;
+	color: #d38d5b;
 }
 
 .license_type {
