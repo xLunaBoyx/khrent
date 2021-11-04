@@ -329,7 +329,7 @@
 
 
 <script>
-//페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 세자리수마다 콤마도 찍는다. 
+//페이지 로드시 보험료, 총 대여금액, 결제금액 초기값을 0원, (대여료)원 으로 설정. 이거 없으면 원 없이 숫자만 나온다. 세자리수마다 콤마도 찍는다. ,찍어주는 .toLocaleString()은 숫자에 붙여야 한다. 문자열에 붙이면 작동하지 않는다.
 $(document).ready(function() {
 	$("#mileageBox").val('0원');
 	$("#insu").val('0원');
@@ -346,13 +346,13 @@ $("[name=insuranceType]").change((e) => {
 	// 보험 라디오 클릭할때마다 마일리지 사용 취소 버튼이 클릭된 효과가 생기도록 만든다. 예를 들어 대여료가 200원인데 보험 체크해서 20200원 해놓고 마일리지 1천원 쓰고 보험 취소하면 결제금액이 -800원이 되기 때문에, 이런 상황을 사전에 배제하기 위함
 	$('#mileageCancelBtn').trigger('click');
 	
-	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다.
+	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다. parseInt(문자열) 하면 숫자가 된다.
 	$("#insu").val(parseInt(fee).toLocaleString('ko-KR') + '원');
 	
 	// 위에서 선언한 fee를 숫자형으로 바꾸고 대여료와 합치고 toLocaleString을 이용하여 세자리수마다 ,를 찍는다. 왠지는 모르겠지만 (String) 붙여서 문자열로 변환하지 않아도 +연산이 된다.
 	var totalFee = (parseInt(fee) + <%= price %>);
 	$("#total1").val(totalFee.toLocaleString('ko-KR') + '원');  // 총 대여금액
-	$("#total2").val((totalFee - $("#usingMileage").val()).toLocaleString('ko-KR') + '원');  // 마일리지까지 계산한 결제금액
+	$("#total2").val((totalFee - $("#usingMileage").val()).toLocaleString('ko-KR') + '원');  // 마일리지까지 계산한 총 결제금액
 });
 
 
@@ -378,7 +378,7 @@ $("#mileageBtn").click((e) => {
 		$("#mileageCancelBtn").css('display', 'block');
 		
 		// 결제내역 에리어의 마일리지 사용란에 나오게 한다.
-		$("#mileageBox").val($("#usingMileage").val() + '원');
+		$("#mileageBox").val((parseInt($("#usingMileage").val())).toLocaleString('ko-KR') + '원');
 		
 		// 대여료+보험료-마일리지를 결제금액에 넣는다.
 		var totalPrice = (parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val()).toLocaleString('ko-KR');   // 대여료 + 보험료 - 마일리지
@@ -389,7 +389,7 @@ $("#mileageBtn").click((e) => {
 
 // 마일리지 사용 취소 버튼
 $("#mileageCancelBtn").click((e) => {
-	// 마일리지 사용 취소 버튼을 안보이게 하고 마일리지 사용 버튼을 사용가능하게 하고 보이게 한다.
+	// 마일리지 사용 취소 버튼을 안보이게 하고, 마일리지 사용 버튼을 사용가능하게 하고 보이게 한다.
 	$("#mileageCancelBtn").css('display', 'none');
 	$("#mileageBtn")
 		.prop('disabled', false)
