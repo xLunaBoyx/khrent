@@ -13,11 +13,13 @@
 	<div class="section section0" id="section0"
 		style="height: 700px; z-index: 1;">
 
+<!-- 메인 이미지 -->
 <div class="w3-content w3-section" style="width:100%;">
 	<img class="mySlides fade" src="https://i.ibb.co/VCpvPy2/bmw-gb73281a79-1920.jpg" style="width:100%; opcity: 0.8;">
   	<img class="mySlides fade" src="https://i.ibb.co/F33689x/rearview-mirror-g8cdf3d119-1920.jpg" style="width:100%; opcity: 0.8;">
 </div>
 
+<!-- 	메인 상단 문구 -->
 		<div class="visual_cont">
 			<div class="wrap">
 				<div class="subs">
@@ -32,6 +34,7 @@
 			</div>
 		</div>
 
+<!-- 	날짜 검색 부분 -->
 		<div class="search_area" style="margin-top: 20px;">
 			<div class="wrap">
 
@@ -54,7 +57,7 @@
 										<div class="searchBox clearfix">
 											<input type="text" id="end_date" name="end_date" placeholder="날짜 선택">
 										</div>
-										
+<!-- datepicker -->
 <script type="text/javascript">
 $(document).ready(function() {
 		$("#datepicker").datepicker();
@@ -131,6 +134,7 @@ $(document).ready(function() {
 					
 		</div>
 	</div>
+	
 <!-- 실시간 채팅 -->
 		<a href="<%= request.getContextPath() %>/admin/chat">
 		<img src="https://i.ibb.co/qmtZFtz/free-icon-live-chat-2840204.png" alt="chat" class="chat" style="z-index: 999;"/>
@@ -139,6 +143,7 @@ $(document).ready(function() {
 
 <!-- 게시판 끝 -->
 
+<!-- 카카오맵 API -->
 <div id="map" style="width:1170px; height:500px;"></div>
 
 <script>
