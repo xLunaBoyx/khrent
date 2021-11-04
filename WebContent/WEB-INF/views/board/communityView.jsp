@@ -53,8 +53,8 @@
 				<td style="width: 70px;">첨부파일 </td>
 				<td colspan = "3">
 				<%-- 첨부파일이 있을경우만, 이미지와 함께 original파일명 표시 --%>
-				<img alt="첨부파일" src="<%= request.getContextPath() %>/images/file.png" width=16px>
-				<a href="<%= request.getContextPath() %>/communityboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>			
+				<img alt="첨부파일" src="https://i.ibb.co/wM6QjzV/1.png" width=16px>
+				<a class="fileName" href="<%= request.getContextPath() %>/communityboard/fileDownload?no=<%= attachment.getNo() %>"><%= attachment.getOriginalFilename() %></a>			
 				</td>
 			</tr>
 <%

@@ -381,3 +381,7 @@ tr, td {
 	font-size: 17px;
 	padding-left: 20px;
 }
+
+.fileName {
+	color: #404040;
+}
