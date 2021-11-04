@@ -56,6 +56,7 @@ public class MemberLoginServlet extends HttpServlet {
 		System.out.println(session.getId());
 
 		// b. 리턴된 회원객체에서 비밀번호 일치여부 검사
+		String location = "";
 		if(member != null && password.equals(member.getPassword())) {
 			// 로그인 성공
 			// session객체에 로그인 정보 기록
@@ -78,18 +79,19 @@ public class MemberLoginServlet extends HttpServlet {
 				cookie.setMaxAge(0); // 즉시 삭제
 			}
 			response.addCookie(cookie);
+			
+			
+			location = request.getContextPath() + "/";
 		}
 		else {
 			// 로그인 실패
 			session.setAttribute("msg", "아이디, 비밀번호가 일치하지 않습니다.");	
+			location = request.getContextPath() + "/member/login";
 		}
 		
-		// 4. 응답메세지 작성
-		String location = request.getContextPath() + "/";
+		// 4. 리다이렉트
 		response.sendRedirect(location);
 	}
-	
-
 
 }
 
