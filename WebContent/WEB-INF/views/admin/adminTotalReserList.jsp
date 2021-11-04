@@ -61,9 +61,13 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= "auto".equals(reservation.getLicenseType()) ? "2종" : "1종" %></td>
             		<td><%= reservation.getReviewStatus() %></td>
             		<td><%= reservation.getReturnStatus() %></td>
+<% if ("N".equals(reservation.getReturnStatus())) { %>
             		<td>
             		<input type="button" value="취소" class="adminCarUpdateBtn" onclick="location.href='<%= request.getContextPath() %>/admin/adminReservationDelete?reserNo=<%= reservation.getReserNo() %>';"/>
             		</td>
+<% } else { %>
+					<td></td>
+<% } %>
             	</tr>
 <%		
 	}
