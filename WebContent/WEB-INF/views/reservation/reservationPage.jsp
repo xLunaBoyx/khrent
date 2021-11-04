@@ -21,12 +21,12 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <%
-Car car = (Car) request.getAttribute("car");
-String startDate = (String) request.getAttribute("start_date");
-String endDate = (String) request.getAttribute("end_date");
-int price = (int) request.getAttribute("price");
-int days = (int) request.getAttribute("days");
-DecimalFormat df = new DecimalFormat("###,###");
+	Car car = (Car) request.getAttribute("car");
+	String startDate = (String) request.getAttribute("start_date");
+	String endDate = (String) request.getAttribute("end_date");
+	int price = (int) request.getAttribute("price");
+	int days = (int) request.getAttribute("days");
+	DecimalFormat df = new DecimalFormat("###,###");
 %>
 
 <div class="content_wrap">
@@ -93,7 +93,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 						class="modalPop insurance" href="javascript:;"
 						data-pop="insurance"><img
 						src="//www.rentking.co.kr/resources/assets/src/imgs/rentking.w/ico/question_pop.svg?1622187507"
-						alt="">자차보험 안내</a>
+						alt="">보험 선택 변경시 마일리지 사용이 초기화됩니다. 결제금액 오류를 방지하기 위함이니 양해해주시길 바랍니다.</a>
 					<table class="insuranceTable">
 						<caption>자차보험 선택 테이블</caption>
 						<colgroup>
@@ -284,7 +284,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 					<dl>
 						<dt>차량 대여료</dt>
 						<dd>
-							<span id="charge"><%= price %></span>원
+							<span id="charge"><%= df.format(price) %></span>원
 						</dd>
 					</dl>
 					<dl>
@@ -343,11 +343,11 @@ $(document).ready(function() {
 $("[name=insuranceType]").change((e) => {
 	var fee = $("[name=insuranceType]:checked").val();
 	
-	// 보험 라디오 클릭할때마다 마일리지 사용 취소 버튼을 누르게 만든다. 대여료가 200원인데 보험 체크해서 20200원 해놓고 마일리지 1천원 쓰고 보험 취소하면 결제금액이 -800원이 되기 때문
+	// 보험 라디오 클릭할때마다 마일리지 사용 취소 버튼이 클릭된 효과가 생기도록 만든다. 예를 들어 대여료가 200원인데 보험 체크해서 20200원 해놓고 마일리지 1천원 쓰고 보험 취소하면 결제금액이 -800원이 되기 때문에, 이런 상황을 사전에 배제하기 위함
 	$('#mileageCancelBtn').trigger('click');
 	
 	// 보험료 란에 보험비(0 or 20000)원으로 나오게 한다.
-	$("#insu").val(fee + '원');
+	$("#insu").val(parseInt(fee).toLocaleString('ko-KR') + '원');
 	
 	// 위에서 선언한 fee를 숫자형으로 바꾸고 대여료와 합치고 toLocaleString을 이용하여 세자리수마다 ,를 찍는다. 왠지는 모르겠지만 (String) 붙여서 문자열로 변환하지 않아도 +연산이 된다.
 	var totalFee = (parseInt(fee) + <%= price %>);
@@ -367,6 +367,9 @@ $("#mileageBtn").click((e) => {
 	else if((parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val()) < 0) {
 		alert("결제금액보다 많이 사용하실 수 없습니다.");
 	}
+	else if($("#usingMileage").val() % 100 != 0) {
+		alert("마일리지는 100원 단위로 사용하실 수 있습니다.");
+	} 
 	else {
 		// 마일리지 사용 버튼을 사용불가로 만들고 없앤다. 동시에 마일리지 사용 취소 버튼을 나타나게 한다.
 		$("#mileageBtn")
@@ -404,9 +407,9 @@ var currentPosition = parseInt($(".rightSec").css("top"));   // 이 줄을 아�
 $(window).scroll(function() { 
 	var position = $(window).scrollTop(); 
 	if(position > 790)
-		$(".rightSec").stop().animate({"top":position - 200 +"px"}, 700); 
+		$(".rightSec").stop().animate({"top":position - 200 +"px"}, 900); 
 	else
-		$(".rightSec").stop().animate({"top":currentPosition+"px"}, 700);
+		$(".rightSec").stop().animate({"top":currentPosition+"px"}, 900);
 });
 
 
@@ -545,54 +548,64 @@ function inicisPay() {
 		return;
 	}
 	
+<%-- 결제하기 버튼 클릭시 보여줄 확인창. p태그 등 html 태그 섞어서 써야한다고 생각했는데 그냥 글자 쓰는거였다. <%= %> 이거는 그냥 쓰면 되고, js 변수들은 \${} 이거 안에 쓰면 된다. --%>
+	var msg = `주문 정보
+차량명 : <%= car.getCarName() %>
+대여기간 : <%=startDate%> ~ <%=endDate%>
+운전자명 : \${$("#firstDriverName").val()}
+운전자 휴대폰번호 : \${$("#firstDriverPhoneNumber").val()}
+총 결제금액 : \${$("#total2").val()}
+위 내용으로 예약하시겠습니까?`;
 	
-	var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
-	IMP.init("imp94728784");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
-	
-	IMP.request_pay({
-	    pg : 'html5_inicis',
-	    pay_method : 'card', //생략 가능
-	    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
-	    name : '<%= car.getCarName() %>',   
-	    amount : parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),  // 대여료+보험-마일리지
-	    buyer_name : '<%= loginMember.getMemberName() %>',
-	    buyer_tel : '<%= loginMember.getPhone() %>' 
-	    /* buyer_email : 'iamport@siot.do', */
-	    /* buyer_addr : '서울특별시 강남구 삼성동', */
-	    /* buyer_postcode : '123-456' */
-	}, function(rsp) { // callback 로직
-			if(rsp.success) {
-				// jQuery로 HTTP 요청
-				$.ajax({
-				    url: "<%=request.getContextPath()%>/reservation/makeReservation",
-				    method: "GET",
-				    data: {
-				        /* imp_uid: rsp.imp_uid,
-				        merchant_uid: rsp.merchant_uid */
-				        //기타 필요한 데이터가 있으면 추가 전달
-				        member_id : "<%=loginMember.getMemberId()%>",
-				        car_code : "<%=car.getCarCode()%>",
-				        car_name : "<%=car.getCarName()%>",
-				        start_date: "<%=startDate%>",
-				        end_date: "<%=endDate%>",
-				        price: parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),
-				        insurance_type: $("[name=insuranceType]:checked").val(),
-				        issue_date: $("#issue_date").val(),
-				        license_type: $("[name=license_type]").val(),
-				        license_no: $("#license_no").val(),
-				        totalMileage: <%= loginMember.getMileage() %>,
-				        usedMileage: $("#usingMileage").val()
-				    },
-				    success(data){
-				    	location.href="<%=request.getContextPath()%>/reservation/complete";
-				    }
-				}).done(function (data) {
-				  // 가맹점 서버 결제 API 성공시 로직
-				})
-			} else {
-				alert("결제에 실패하였습니다.");				
-			}
-	});
+	if(confirm(msg)) {
+		var IMP = window.IMP;      // 계속 requestPay is undefined라고 떠서 시간을 한참 날렸는데, 이 두줄도 같이 function 안에 넣어줘야하는거였다.
+		IMP.init("imp94728784");   // 아임포트 관리자페이지에 있는 자신의 가맹점번호  
+		
+		IMP.request_pay({
+		    pg : 'html5_inicis',
+		    pay_method : 'card', //생략 가능
+		    merchant_uid: "reservation_" + new Date().getTime(), // 아임포트 관리자페이지의 결제내역 목록에서 각 건마다 붙는 등록번호같은것
+		    name : '<%= car.getCarName() %>',   
+		    amount : parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),  // 대여료+보험-마일리지
+		    buyer_name : $("#firstDriverName").val(),   // 따옴표 안에 넣으면 브라우저 콘솔에 뭐라 뜨면서 결제창이 뜨자마자 꺼진다.
+		    buyer_tel : $("#firstDriverPhoneNumber").val() 
+		    /* buyer_email : 'iamport@siot.do', */
+		    /* buyer_addr : '서울특별시 강남구 삼성동', */
+		    /* buyer_postcode : '123-456' */
+		}, function(rsp) { // callback 로직
+				if(rsp.success) {
+					// jQuery로 HTTP 요청
+					$.ajax({
+					    url: "<%=request.getContextPath()%>/reservation/makeReservation",
+					    method: "GET",
+					    data: {
+					        /* imp_uid: rsp.imp_uid,
+					        merchant_uid: rsp.merchant_uid */
+					        //기타 필요한 데이터가 있으면 추가 전달
+					        member_id : "<%=loginMember.getMemberId()%>",
+					        car_code : "<%=car.getCarCode()%>",
+					        car_name : "<%=car.getCarName()%>",
+					        start_date: "<%=startDate%>",
+					        end_date: "<%=endDate%>",
+					        price: parseInt($("[name=insuranceType]:checked").val()) + <%= price %> - $("#usingMileage").val(),
+					        insurance_type: $("[name=insuranceType]:checked").val(),
+					        issue_date: $("#issue_date").val(),
+					        license_type: $("[name=license_type]").val(),
+					        license_no: $("#license_no").val(),
+					        totalMileage: <%= loginMember.getMileage() %>,
+					        usedMileage: $("#usingMileage").val()
+					    },
+					    success(data){
+					    	location.href="<%=request.getContextPath()%>/reservation/complete";
+					    }
+					}).done(function (data) {
+					  // 가맹점 서버 결제 API 성공시 로직
+					})
+				} else {
+					alert("결제에 실패하였습니다.");				
+				}
+		});
+	}
 }
 <%-- 카카오페이는 구매자정보 입력란에 <%= %> 이게 안먹혀서 일단 보류 --%>
 <%-- function requestPay() {
