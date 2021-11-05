@@ -18,7 +18,7 @@ import com.kh.semi.reservation.model.vo.Reservation;
  * Servlet implementation class AdminTotalReserList
  */
 @WebServlet("/admin/adminTotalReserList")
-public class AdminTotalReserList extends HttpServlet {
+public class AdminTotalReserListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminService adminService = new AdminService();
