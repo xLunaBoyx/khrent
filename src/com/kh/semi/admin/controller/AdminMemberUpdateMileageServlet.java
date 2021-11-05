@@ -15,7 +15,7 @@ import com.kh.semi.member.model.vo.Member;
  * Servlet implementation class AdminMemberUpdateMileage
  */
 @WebServlet("/admin/adminMemberUpdateMileage")
-public class AdminMemberUpdateMileage extends HttpServlet {
+public class AdminMemberUpdateMileageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private MemberService memberService = new MemberService();

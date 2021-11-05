@@ -15,7 +15,7 @@ import com.kh.semi.admin.model.service.AdminService;
  * Servlet implementation class AjaxAdminTotalCar
  */
 @WebServlet("/admin/ajaxAdminTodayEndReservation")
-public class AjaxAdminTodayEndReservation extends HttpServlet {
+public class AjaxAdminTodayEndReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminService adminService = new AdminService();

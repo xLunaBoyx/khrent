@@ -2,7 +2,6 @@ package com.kh.semi.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi.admin.model.service.AdminService;
-import com.kh.semi.board.model.vo.NoticeBoard;
-import com.kh.semi.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxAdminFiveRecentEenroll
+ * Servlet implementation class AjaxAdminTodayEnroll
  */
-@WebServlet("/admin/ajaxAdminFiveRecentEnroll")
-public class AjaxAdminFiveRecentEnroll extends HttpServlet {
+@WebServlet("/admin/ajaxAdminTodayEnroll")
+public class AjaxAdminTodayEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminService adminService = new AdminService();
@@ -27,18 +24,14 @@ public class AjaxAdminFiveRecentEnroll extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Member> list = adminService.ajaxAdminFiveRecentEnroll();
-		System.out.println("list@servlet = " + list);
+		int todayEnroll = adminService.ajaxAdminTodayEnroll();
+		System.out.println("todayEnroll@servlet = " + todayEnroll);
 		
 		response.setContentType("text/text; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		for(Member b : list) {
-			out.println(b); //toString 자동 호출
-		}
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/WEB-INF/views/admin/ajaxAdminFiveRecentEnroll.jsp")
+		request.setAttribute("todayEnroll", todayEnroll);
+		request.getRequestDispatcher("/WEB-INF/views/admin/ajaxAdminTodayEnroll.jsp")
 			.forward(request, response);
 	}
 
