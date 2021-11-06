@@ -101,12 +101,12 @@
 					<%-- 댓글 내용 --%>
 					<%= cb.getContent() %>			
 				</td>
-<%
-				// 댓글 작성자와 관리자계정에게만 대댓글 추가버튼, 삭제 버튼이 보인다.
-				if(loginMember != null && (cb.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()))) {
-%>	
 				<td>
 					<button class="btn-reply" value="<%= cb.getNo() %>">답글</button>
+<%
+				// 댓글 작성자와 관리자계정에게만 삭제 버튼이 보인다.
+				if(loginMember != null && (cb.getWriter().equals(loginMember.getMemberId()) || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole()))) {
+%>	
 					<button class="btn-delete" value="<%= cb.getNo() %>">삭제</button>
 <%
 				}
