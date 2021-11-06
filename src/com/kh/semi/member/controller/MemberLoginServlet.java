@@ -80,7 +80,7 @@ public class MemberLoginServlet extends HttpServlet {
 			}
 			response.addCookie(cookie);
 			
-			
+//			location = request.getHeader("Referer");
 			location = request.getContextPath() + "/";
 		}
 		else {

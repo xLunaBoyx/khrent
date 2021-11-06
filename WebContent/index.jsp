@@ -49,22 +49,16 @@
 									action="<%=request.getContextPath()%>/reservation/carSearch"
 									name="carSearchFrm" class="clearfix">
 									<div class="sdate">
-										<label for="">대여일시</label>
+										<label for="">대여일</label>
 										<div class="searchBox clearfix">
 											<input type="text" id="start_date" name="start_date" placeholder="날짜 선택">
 										</div>
 									</div>
 									<div class="edate">
-										<label for="">반납일시</label>
+										<label for="">반납일</label>
 										<div class="searchBox clearfix">
 											<input type="text" id="end_date" name="end_date" placeholder="날짜 선택">
 										</div>
-<!-- datepicker -->
-<script type="text/javascript">
-$(document).ready(function() {
-		$("#datepicker").datepicker();
-});
-</script>
 									</div>
 								</form>
 								<button class="search_btn" type="button" onclick="submitForm();">
@@ -125,7 +119,7 @@ $(document).ready(function() {
 			</div>
 			
 			<div class="latestBoard">
-				<a href="#" class="boardTitle">
+				<a href="<%= request.getContextPath() %>/board/reviewList" class="boardTitle">
 					<p>
 						<span class="titleKr">대여후기</span> <span class="titleEn">Travel Reviews</span>
 					</p> <i class="fas fa-plus"></i>
