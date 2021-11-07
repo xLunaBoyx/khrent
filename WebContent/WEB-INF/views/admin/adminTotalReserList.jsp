@@ -15,6 +15,7 @@
 List<Reservation> list = (List<Reservation>) request.getAttribute("list");
 String searchType = request.getParameter("searchType");
 String searchKeyword = request.getParameter("searchKeyword");
+DecimalFormat fomatter = new DecimalFormat("###,###.##");
 %>
 
 	<style>
@@ -55,7 +56,7 @@ String searchKeyword = request.getParameter("searchKeyword");
             		<td><%= reservation.getCarName() %></td>
             		<td><%= reservation.getStartDate().substring(0,11) %></td>
             		<td><%= reservation.getEndDate().substring(0,11) %></td>
-            		<td><%= reservation.getPrice() %></td>
+            		<td><%= fomatter.format(reservation.getPrice()) %></td>
             		<td><%= "Y".equals(reservation.getInsuranceType()) ? "자차" : "없음" %></td>
             		<td><%= reservation.getIssueDate() %></td>
             		<td><%= "auto".equals(reservation.getLicenseType()) ? "2종" : "1종" %></td>
