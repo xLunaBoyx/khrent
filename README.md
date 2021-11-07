@@ -3,7 +3,7 @@ KH렌트
 
 ![Untitled-1](https://user-images.githubusercontent.com/85632733/140638624-4650c807-6ea7-46ac-90cc-c9bc136955eb.png)
 
-# Project introduction / 프로젝트 소개
+## Project introduction / 프로젝트 소개
 
 코로나 때문에 자동차를 이용하는 사람들이 많아지면서 평소 일상에서 사용해왔던 렌트카 어플리케이션들의 장단점을 생각해보고,
 장점만을 모은 렌트카 서비스를 제공하고 싶었습니다.또한 남녀노소 누구나 직관적으로 쉽게 접근할 수 있는 서비스가 필요하다고 느끼게 되어
