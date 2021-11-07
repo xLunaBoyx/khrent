@@ -16,7 +16,7 @@
 			<ul class="item-list">
 			<li class="box clearfix">
 			<div class="carSec">
-				<span style="left:10px; color:#fff; position:absolute;border-radius: 5px; display: inline-block; min-width:10px; padding: 6px 10px;font-size: 14px;font-weight:bold;text-align: center;vertical-align: middle;background-color:#ED6767 !important;z-index:1000">금연차</span>
+				<span style="left:10px; color:#fff; position:absolute;border-radius: 5px; display: inline-block; min-width:10px; padding: 6px 10px;font-size: 14px;font-weight:bold;text-align: center;vertical-align: middle;background-color:#ED6767 !important;z-index:1000">★<%= car.getAvgScore() %></span>
 				<img src="../upload/car/<%= car.getImg() %>" alt="" class="lazy">
 					<div class="desc">
 						<div class="car_tit"><%= car.getCarName()  %></div>
@@ -27,12 +27,13 @@
 						<ul class="option02 clearfix">
 							<li><%= car.getCarOption() %></li>
 						</ul>
+						<br />
 						<ul class="option03 clearfix">
 							<li class="type01">
 								<span>지점방문</span>
 							</li>
 						</ul>
-						<span class="option04">만 26세 이상, 면허 1년 이상</span>
+						<span class="option04">&nbsp;만 26세 이상, 면허 1년 이상</span>
 						<ul class="option05 clearfix">
 							<li>대인 : <span>무한</span></li>
 							<li>대물 : <span>50,000,000</span>원</li>
